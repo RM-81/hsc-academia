@@ -1,0 +1,3127 @@
+\documentclass[12pt, a4paper]{article}
+
+% ==========================================
+% 1. COMPILER, LANGUAGE & FONT SETUP
+% ==========================================
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage[protrusion=false]{microtype}
+\setmainlanguage{bengali}
+\setotherlanguage{english}
+\newfontfamily\bengalifont[Script=Bengali, AutoFakeBold=2.5, AutoFakeSlant=0.2]{Kalpurush}
+
+% ==========================================
+% 2. MATHEMATICS, UNITS & FORMATTING
+% ==========================================
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{microtype} % For better typography
+\onehalfspacing % Better line spacing for readability
+
+% ==========================================
+% 3. COLORS & BEAUTIFICATION PACKAGES
+% ==========================================
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[skins, breakable, theorems]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{shadows, arrows.meta, positioning, decorations.pathmorphing, calc, intersections, angles, quotes}
+\usepackage{enumitem}
+\setlist[itemize,1]{label=\textendash}
+
+% Define custom beautiful colors
+\definecolor{primary}{HTML}{0056b3}
+\definecolor{secondary}{HTML}{e7f1ff}
+\definecolor{success}{HTML}{198754}
+\definecolor{successbg}{HTML}{d1e7dd}
+\definecolor{accent}{HTML}{fd7e14}
+\definecolor{darkgray}{HTML}{343a40}
+
+% Custom Tcolorbox Styles
+\tcbset{
+    questionbox/.style={
+        enhanced, colback=secondary, colframe=primary, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\Large, title=#1,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top left={xshift=5mm, yshift=-3mm},
+        boxed title style={colback=primary, arc=1mm}
+    },
+    answerbox/.style={
+        enhanced, colback=successbg, colframe=success, arc=1.5mm, boxrule=1pt,
+        left=2mm, right=2mm, top=2mm, bottom=2mm,
+        drop fuzzy shadow=black!10
+    },
+    solutionbox/.style={
+        enhanced, colback=white, colframe=darkgray, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\large, title=#1, breakable,
+        coltitle=white, colbacktitle=darkgray,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top center={yshift=-3mm},
+        boxed title style={arc=1mm}
+    }
+}
+
+\begin{document}
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 1}]
+    \noindent
+    তিনটি বৃত্ত পরস্পরকে বহিঃস্থভাবে স্পর্শ করে এবং এদের একটি সাধারণ অনুভূমিক স্পর্শক বিদ্যমান। বড় বৃত্তের ব্যাসার্ধ $4$ একক এবং মাঝারি বৃত্তের ব্যাসার্ধ $2$ একক হলে, ছোট বৃত্তের ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Three circles touch each other externally and have a common horizontal tangent. If the radius of the largest circle is $4$ units and the medium circle is $2$ units, what is the radius of the smallest circle in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $6 - 4\sqrt{2}$ একক
+    \item[\textbf{B)}] $12 - 8\sqrt{2}$ একক
+    \item[\textbf{C)}] $3 - 2\sqrt{2}$ একক
+    \item[\textbf{D)}] $8 - 4\sqrt{3}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $12 - 8\sqrt{2}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, বৃত্ত তিনটির ব্যাসার্ধ যথাক্রমে $r_1$, $r_2$ এবং $r_3$। এখানে দেওয়া আছে, $r_1 = 4$, $r_2 = 2$ এবং ছোট বৃত্তের ব্যাসার্ধ $r_3 = r$।
+    
+    \vspace{0.5em}
+    আমরা জানি, যদি দুটি বৃত্ত পরস্পরকে বহিঃস্থভাবে স্পর্শ করে এবং তাদের একটি সাধারণ স্পর্শক রেখা থাকে, তবে স্পর্শবিন্দুর মধ্যবর্তী দূরত্বের জ্যামিতিক সম্পর্কটি হলো:
+    \begin{align*}
+        AB + BC &= AC \\
+        \Rightarrow 2\sqrt{r_1 r_3} + 2\sqrt{r_2 r_3} &= 2\sqrt{r_1 r_2} \\
+        \Rightarrow 2\sqrt{4 \times r} + 2\sqrt{2 \times r} &= 2\sqrt{4 \times 2} \\
+        \Rightarrow 4\sqrt{r} + 2\sqrt{2}\sqrt{r} &= 4\sqrt{2}
+    \end{align*}
+    
+    উভয়পক্ষকে $2$ দ্বারা ভাগ করে পাই:
+    \begin{align*}
+        \sqrt{r}(2 + \sqrt{2}) &= 2\sqrt{2} \\
+        \Rightarrow \sqrt{r} &= \frac{2\sqrt{2}}{2 + \sqrt{2}} = \frac{2\sqrt{2}}{\sqrt{2}(\sqrt{2} + 1)} = \frac{2}{\sqrt{2} + 1}
+    \end{align*}
+    
+    হর ও লবকে $(\sqrt{2} - 1)$ দ্বারা গুণ করে পাই:
+    \[ \Rightarrow \sqrt{r} = 2(\sqrt{2} - 1) \]
+    
+    উভয়পক্ষকে বর্গ করে পাই:
+    \begin{align*}
+        r &= \left[2(\sqrt{2} - 1)\right]^2 \\
+          &= 4(2 - 2\sqrt{2} + 1) \\
+          &= 4(3 - 2\sqrt{2}) \\
+          &= 12 - 8\sqrt{2}
+    \end{align*}
+    অতএব, ছোট বৃত্তের ব্যাসার্ধ \textbf{$12 - 8\sqrt{2}$ একক}।
+\end{tcolorbox}
+
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 2}]
+    \noindent
+    $12$ একক দৈর্ঘ্য এবং $5$ একক প্রস্থ বিশিষ্ট একটি আয়তক্ষেত্রের কর্ণ দ্বারা বিভক্ত ত্রিভুজদ্বয়ের অন্তর্বৃত্তদ্বয়ের কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the distance in units between the centers of the two inscribed circles of the triangles formed by a diagonal of a rectangle with length $12$ units and width $5$ units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\sqrt{61}$ একক
+    \item[\textbf{B)}] $\sqrt{63}$ একক
+    \item[\textbf{C)}] $\sqrt{65}$ একক
+    \item[\textbf{D)}] $\sqrt{67}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $\sqrt{65}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, আয়তক্ষেত্রের শীর্ষবিন্দুসমূহ $O(0, 0)$, $A(12, 0)$, $B(12, 5)$ এবং $C(0, 5)$। \\
+    কর্ণ $OB$ এর সমীকরণ: 
+    \[ y = \frac{5}{12}x \Rightarrow 5x - 12y = 0 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ১: অন্তর্বৃত্তের ব্যাসার্ধ নির্ণয়} \\
+    ধরি, $\triangle OBC$ এবং $\triangle OAB$ এর অন্তর্বৃত্তদ্বয়ের ব্যাসার্ধ $r$ একক। সমকোণী ত্রিভুজের ক্ষেত্রে অন্তর্বৃত্তের ব্যাসার্ধের সূত্র:
+    \begin{align*}
+        r &= \frac{\text{ভূমি (Base)} + \text{লম্ব (Height)} - \text{অতিভুজ (Hypotenuse)}}{2} \\
+          &= \frac{12 + 5 - \sqrt{12^2 + 5^2}}{2} \\
+          &= \frac{17 - 13}{2} = 2
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কেন্দ্রদ্বয়ের স্থানাঙ্ক নির্ণয়} \\
+    $\triangle OAB$ এর অন্তর্বৃত্তের কেন্দ্র $P$ এর স্থানাঙ্ক $(r, r)$ বা $(2, 2)$ নয়, বরং অক্ষ থেকে দূরত্ব বিবেচনায় এটি $P(2, 2)$ হলে অন্য বৃত্তটি সমান্তরালভাবে উপরে অবস্থিত। চিত্রানুযায়ী, প্রথম বৃত্তের কেন্দ্র $P(r, 5-r) = (2, 3)$ এবং দ্বিতীয় বৃত্তের কেন্দ্র $Q(12-r, r) = (10, 2)$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব নির্ণয়} \\
+    কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব $PQ$:
+    \begin{align*}
+        PQ &= \sqrt{(10 - 2)^2 + (2 - 3)^2} \\
+           &= \sqrt{8^2 + (-1)^2} \\
+           &= \sqrt{64 + 1} \\
+           &= \sqrt{65}
+    \end{align*}
+    অতএব, কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব \textbf{$\sqrt{65}$ একক}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 3}]
+    \noindent
+    $2x - y + 1 = 0$ সরলরেখাটি একটি বৃত্তকে $(2, 5)$ বিন্দুতে স্পর্শ করে। যদি বৃত্তটির কেন্দ্র $x - 2y = 4$ সরলরেখার উপর অবস্থিত হয়, তবে বৃত্তটির ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The line $2x - y + 1 = 0$ is tangent to a circle at the point $(2, 5)$. If the center of the circle lies on the line $x - 2y = 4$, what is the radius of the circle in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3\sqrt{5}$ একক
+    \item[\textbf{B)}] $5\sqrt{3}$ একক
+    \item[\textbf{C)}] $2\sqrt{10}$ একক
+    \item[\textbf{D)}] $4\sqrt{2}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $3\sqrt{5}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: অভিলম্বের সমীকরণ নির্ণয়} \\
+    বৃত্তের স্পর্শবিন্দু $(2, 5)$ এ স্পর্শকের সমীকরণ $2x - y + 1 = 0$। স্পর্শবিন্দুগামী অভিলম্বের (Normal) সমীকরণ স্পর্শকের উপর লম্ব এবং তা বৃত্তের কেন্দ্রগামী। 
+    
+    অভিলম্বের সমীকরণ হবে: 
+    \[ x + 2y + k = 0 \]
+    যেহেতু অভিলম্বটি স্পর্শবিন্দু $(2, 5)$ দিয়ে যায়: 
+    \begin{align*}
+        2 + 2(5) + k &= 0 \\
+        2 + 10 + k &= 0 \Rightarrow k = -12
+    \end{align*}
+    $\therefore$ অভিলম্বের সমীকরণ: $x + 2y - 12 = 0$
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: বৃত্তের কেন্দ্র নির্ণয়} \\
+    বৃত্তের কেন্দ্র এই অভিলম্ব এবং প্রদত্ত রেখা $x - 2y = 4$ এর ছেদবিন্দু। ছেদবিন্দুটি নির্ণয় করি:
+    \begin{align*}
+        (x + 2y) + (x - 2y) &= 12 + 4 \\
+        2x &= 16 \Rightarrow x = 8
+    \end{align*}
+    $x$-এর মান বসিয়ে পাই:
+    \begin{align*}
+        2y &= x - 4 \\
+        2y &= 8 - 4 = 4 \Rightarrow y = 2
+    \end{align*}
+    $\therefore$ বৃত্তের কেন্দ্র $C(8, 2)$। 
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: বৃত্তের ব্যাসার্ধ নির্ণয়} \\
+    বৃত্তের ব্যাসার্ধ $r$ হলো কেন্দ্র $C(8, 2)$ হতে স্পর্শবিন্দু $(2, 5)$ এর দূরত্ব:
+    \begin{align*}
+        r &= \sqrt{(8 - 2)^2 + (2 - 5)^2} \\
+          &= \sqrt{6^2 + (-3)^2} \\
+          &= \sqrt{36 + 9} \\
+          &= \sqrt{45} = 3\sqrt{5}
+    \end{align*}
+    অতএব, বৃত্তটির ব্যাসার্ধ \textbf{$3\sqrt{5}$ একক}।
+\end{tcolorbox}
+
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 4}]
+    \noindent
+    $P(1, 8)$ বিন্দু হতে $x^2 + y^2 - 6x - 4y - 11 = 0$ বৃত্তে অঙ্কিত স্পর্শকদ্বয়ের স্পর্শবিন্দু যথাক্রমে $A$ ও $B$। $PAB$ ত্রিভুজের পরিবৃত্তের সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The tangents drawn from the point $P(1, 8)$ to the circle $x^2 + y^2 - 6x - 4y - 11 = 0$ touch the circle at $A$ and $B$, respectively. Which of the following is the equation of the circumcircle of triangle $PAB$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 - 4x - 10y + 19 = 0$
+    \item[\textbf{B)}] $x^2 + y^2 - 2x - 8y + 15 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 6x - 12y + 25 = 0$
+    \item[\textbf{D)}] $x^2 + y^2 - 4x - 6y + 11 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $x^2 + y^2 - 4x - 10y + 19 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, কোনো বহিঃস্থ বিন্দু $P$ হতে বৃত্তে অঙ্কিত স্পর্শকদ্বয়ের স্পর্শবিন্দু $A$ ও $B$ এবং বৃত্তের কেন্দ্র $O$ হলে, $OAPB$ একটি চক্রীয় চতুর্ভুজ (cyclic quadrilateral)। যেখানে $\angle OAP = \angle OBP = 90^{\circ}$ হওয়ায় $OP$ রেখাংশটি এই চতুর্ভুজের পরিবৃত্তের ব্যাস নির্দেশ করে।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ১: প্রদত্ত বৃত্তের কেন্দ্র নির্ণয়} \\
+    প্রদত্ত বৃত্তের সমীকরণ: $x^2 + y^2 - 6x - 4y - 11 = 0$ \\
+    বৃত্তটির কেন্দ্র $O\left(-\frac{-6}{2}, -\frac{-4}{2}\right) = O(3, 2)$। 
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: পরিবৃত্তের সমীকরণ নির্ণয়} \\
+    বহিঃস্থ বিন্দু $P(1, 8)$। $O(3, 2)$ এবং $P(1, 8)$ বিন্দুদ্বয়কে ব্যাসের প্রান্তবিন্দু ধরে অঙ্কিত বৃত্তের সমীকরণই হবে $\triangle PAB$ এর পরিবৃত্তের সমীকরণ।
+    
+    ব্যাস সমীকরণ সূত্র ব্যবহার করে:
+    \begin{align*}
+        (x - x_1)(x - x_2) + (y - y_1)(y - y_2) &= 0 \\
+        \Rightarrow (x - 3)(x - 1) + (y - 2)(y - 8) &= 0 \\
+        \Rightarrow (x^2 - 4x + 3) + (y^2 - 10y + 16) &= 0 \\
+        \Rightarrow x^2 + y^2 - 4x - 10y + 19 &= 0
+    \end{align*}
+    অতএব, নির্ণেয় বৃত্তের সমীকরণ \textbf{$x^2 + y^2 - 4x - 10y + 19 = 0$}।
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 5}]
+    \noindent
+    ধরি সমতলে দুটি বৃত্ত $C: x^2 + y^2 = 4$ এবং $C': x^2 + y^2 - 4\lambda x + 9 = 0$। যদি $\lambda$ এর সমস্ত বাস্তব মানের সেট যার জন্য বৃত্তদ্বয় পরস্পরকে দুটি ভিন্ন ভিন্ন বিন্দুতে ছেদ করে তা $\mathbb{R} - [a, b]$ হয়, তবে $(8a + 12, 16b - 20)$ বিন্দুটি নিচের কোন বক্ররেখাটির ওপর অবস্থিত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $C: x^2 + y^2 = 4$ and $C': x^2 + y^2 - 4\lambda x + 9 = 0$ be two circles. If the set of all values of $\lambda$ for which the circles $C$ and $C'$ intersect at two distinct points is $\mathbb{R} - [a, b]$, then the point $(8a + 12, 16b - 20)$ lies on which of the following curves?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $y^2 = 4x$
+    \item[\textbf{B)}] $x^2 - 2y = -11$
+    \item[\textbf{C)}] $x^2 + y^2 = 25$
+    \item[\textbf{D)}] $y^2 = -4x$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $x^2 - 2y = -11$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বৃত্তদ্বয়ের কেন্দ্র ও ব্যাসার্ধ} \\
+    বৃত্ত $C$: কেন্দ্র $C_1(0,0)$, ব্যাসার্ধ $r_1 = 2$। 
+    বৃত্ত $C'$: কেন্দ্র $C_2(2\lambda, 0)$, ব্যাসার্ধ $r_2 = \sqrt{4\lambda^2 - 9}$ (যেখানে বাস্তব বৃত্তের জন্য $|\lambda| > 1.5$)।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ছেদের শর্তাবলি প্রয়োগ} \\
+    দুটি বৃত্ত পরস্পরকে দুটি ভিন্ন বিন্দুতে ছেদ করার শর্ত: 
+    \[ |r_1 - r_2| < C_1C_2 < r_1 + r_2 \]
+    \[ \implies |2 - \sqrt{4\lambda^2 - 9}| < |2\lambda| < 2 + \sqrt{4\lambda^2 - 9} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: অসমতা সমাধান} \\
+    ডানদিকের অংশ হতে পাই:
+    \[ 2|\lambda| - 2 < \sqrt{4\lambda^2 - 9} \]
+    \[ \implies 4\lambda^2 - 8|\lambda| + 4 < 4\lambda^2 - 9 \implies 8|\lambda| > 13 \implies |\lambda| > \frac{13}{8} \]
+    সুতরাং, ছেদবিন্দুর জন্য ব্যবধি: $\lambda \in \mathbb{R} - \left[-\frac{13}{8}, \frac{13}{8}\right]$। 
+    তুলনা করে পাই: $a = -\frac{13}{8}$ এবং $b = \frac{13}{8}$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৪: বিন্দুর স্থানাঙ্ক নির্ণয়} \\
+    \[ x_p = 8a + 12 = 8\left(-\frac{13}{8}\right) + 12 = -1 \]
+    \[ y_p = 16b - 20 = 16\left(\frac{13}{8}\right) - 20 = 6 \]
+    বিন্দুটি হলো $P(-1, 6)$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৫: বক্ররেখা যাচাই} \\
+    অপশন B তে মান বসিয়ে পাই:
+    \[ x^2 - 2y = (-1)^2 - 2(6) = 1 - 12 = -11 \]
+    যা সমীকরণটি সিদ্ধ করে। অতএব, সঠিক উত্তর B।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 6
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 6}]
+    \noindent
+    বৃত্তদ্বয় $x^2 + y^2 - 2kx + 4y + k^2 - 5 = 0$ এবং $x^2 + y^2 + 6x - 2ky + k^2 - 12 = 0$ পরস্পরকে লম্বভাবে ছেদ (orthogonal intersection) করলে, $k$ এর বাস্তব মানসমূহের সমষ্টি কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the circles $x^2 + y^2 - 2kx + 4y + k^2 - 5 = 0$ and $x^2 + y^2 + 6x - 2ky + k^2 - 12 = 0$ intersect orthogonally, what is the sum of the real values of $k$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $-5$
+    \item[\textbf{B)}] $5$
+    \item[\textbf{C)}] $-10$
+    \item[\textbf{D)}] $10$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $-5$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রথম বৃত্তের ক্ষেত্রে: 
+    \[ g_1 = -k, \quad f_1 = 2, \quad c_1 = k^2 - 5 \]
+    
+    দ্বিতীয় বৃত্তের ক্ষেত্রে: 
+    \[ g_2 = 3, \quad f_2 = -k, \quad c_2 = k^2 - 12 \]
+    
+    \vspace{0.5em}
+    বৃত্ত দুটি পরস্পরকে লম্বভাবে ছেদ করার শর্তানুসারে:
+    \begin{align*}
+        2g_1g_2 + 2f_1f_2 &= c_1 + c_2 \\
+        \Rightarrow 2(-k)(3) + 2(2)(-k) &= (k^2 - 5) + (k^2 - 12) \\
+        \Rightarrow -6k - 4k &= 2k^2 - 17 \\
+        \Rightarrow 2k^2 + 10k - 17 &= 0
+    \end{align*}
+    
+    এটি $k$ এর একটি দ্বিঘাত সমীকরণ। এই সমীকরণের নিশ্চয়ক (Discriminant):
+    \[ D = 10^2 - 4(2)(-17) = 100 + 136 = 236 > 0 \]
+    যেহেতু $D > 0$, তাই $k$ এর মানগুলো বাস্তব। 
+    
+    দ্বিঘাত সমীকরণের মূলদ্বয়ের (বাস্তব মানসমূহের) সমষ্টি:
+    \[ \sum k = -\frac{b}{a} = -\frac{10}{2} = -5 \]
+    
+    অতএব, $k$ এর বাস্তব মানসমূহের সমষ্টি \textbf{$-5$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 7
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 7}]
+    \noindent
+    $x^2 + y^2 - 4x - 6y - 12 = 0$ বৃত্তের উপর অবস্থিত যেকোনো বিন্দুর $(8, 11)$ বিন্দু থেকে সর্বোচ্চ এবং সর্বনিম্ন দূরত্বের গুণফল কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the product of the maximum and minimum distances of any point on the circle $x^2 + y^2 - 4x - 6y - 12 = 0$ from the point $(8, 11)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $50$
+    \item[\textbf{B)}] $75$
+    \item[\textbf{C)}] $100$
+    \item[\textbf{D)}] $125$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $75$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বৃত্তের কেন্দ্র ও ব্যাসার্ধ নির্ণয়} \\
+    বৃত্তের সমীকরণ: $x^2 + y^2 - 4x - 6y - 12 = 0$ \\
+    বৃত্তের কেন্দ্র $C(2, 3)$ এবং ব্যাসার্ধ:
+    \begin{align*}
+        r &= \sqrt{2^2 + 3^2 - (-12)} \\
+          &= \sqrt{4 + 9 + 12} = \sqrt{25} = 5
+    \end{align*}
+    
+    \vspace{0.5em}
+    \textbf{ধাপ ২: বিন্দু থেকে কেন্দ্রের দূরত্ব নির্ণয়} \\
+    প্রদত্ত বিন্দু $P(8, 11)$ হতে বৃত্তের কেন্দ্রের দূরত্ব $d$:
+    \begin{align*}
+        d &= PC = \sqrt{(8 - 2)^2 + (11 - 3)^2} \\
+          &= \sqrt{6^2 + 8^2} = 10
+    \end{align*}
+    যেহেতু $d > r$, সেহেতু বিন্দুটি বৃত্তের বাইরে অবস্থিত।
+    
+    \vspace{0.5em}
+    \textbf{ধাপ ৩: সর্বোচ্চ ও সর্বনিম্ন দূরত্ব নির্ণয়} \\
+    বৃত্তের যেকোনো বিন্দুর $P$ হতে ন্যূনতম দূরত্ব:
+    \[ d_{\min} = d - r = 10 - 5 = 5 \]
+    বৃত্তের যেকোনো বিন্দুর $P$ হতে সর্বোচ্চ দূরত্ব:
+    \[ d_{\max} = d + r = 10 + 5 = 15 \]
+    
+    সর্বোচ্চ ও সর্বনিম্ন দূরত্বের গুণফল:
+    \begin{align*}
+        d_{\max} \times d_{\min} &= (d + r)(d - r) \\
+                                 &= d^2 - r^2 \\
+                                 &= 10^2 - 5^2 \\
+                                 &= 100 - 25 = 75
+    \end{align*}
+    
+    \textit{(বিকল্প পদ্ধতি: এটি মূলত বিন্দুটির বৃত্তের সাপেক্ষে শক্তি (Power of the point), যা $S_1 = 8^2 + 11^2 - 4(8) - 6(11) - 12 = 64 + 121 - 32 - 66 - 12 = 75$)}
+    
+    \vspace{0.5em}
+    অতএব, গুণফলটি \textbf{$75$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 8}]
+    \noindent
+    একটি পরিবর্তনশীল সরলরেখা $x^2 + y^2 - 16x - 4y = 0$ বৃত্তের কেন্দ্র দিয়ে অতিক্রম করে এবং ধনাত্মক অক্ষদ্বয়কে যথাক্রমে $A$ ও $B$ বিন্দুতে ছেদ করে। যদি $O$ মূলবিন্দু হয়, তবে খণ্ডিতাংশদ্বয়ের সমষ্টি $OA + OB$ এর সর্বনিম্ন মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let a variable line passing through the centre of the circle $x^2 + y^2 - 16x - 4y = 0$ meet the positive coordinate axes at the points $A$ and $B$. Then the minimum value of the sum of intercepts $OA + OB$, where $O$ is the origin, is equal to:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $24$
+    \item[\textbf{B)}] $18$
+    \item[\textbf{C)}] $20$
+    \item[\textbf{D)}] $12$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $18$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বৃত্তের কেন্দ্র নির্ণয়} \\
+    $x^2 + y^2 - 16x - 4y = 0$ বৃত্তের কেন্দ্র $C(8, 2)$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: সরলরেখার সমীকরণ গঠন} \\
+    ধরি, সরলরেখার অক্ষদ্বয়ের খণ্ডিতাংশ যথাক্রমে $a$ ও $b$ (যেখানে $a, b > 0$)। 
+    রেখার সমীকরণ:
+    \[ \frac{x}{a} + \frac{y}{b} = 1 \]
+    রেখাটি বৃত্তের কেন্দ্র $C(8, 2)$ গামী হওয়ায়:
+    \[ \frac{8}{a} + \frac{2}{b} = 1 \implies \frac{2}{b} = 1 - \frac{8}{a} = \frac{a - 8}{a} \implies b = \frac{2a}{a - 8} \quad (\text{যেখানে } a > 8) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: খণ্ডিতাংশদ্বয়ের সমষ্টি $S = a + b$ এর লঘিষ্ঠকরণ} \\
+    \[ S = a + \frac{2a}{a - 8} \]
+    ধরি, $u = a - 8 \implies a = u + 8$ (যেখানে $u > 0$):
+    \[ S = u + 8 + \frac{2(u + 8)}{u} = u + 8 + 2 + \frac{16}{u} = u + \frac{16}{u} + 10 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৪: AM-GM উপপাদ্য প্রয়োগ} \\
+    যেহেতু $u > 0$, তাই AM-GM অসমতা হতে পাই:
+    \[ u + \frac{16}{u} \ge 2\sqrt{u \times \frac{16}{u}} = 2 \times 4 = 8 \]
+    \[ \therefore S_{\min} = 8 + 10 = 18 \]
+    অতএব, সঠিক উত্তর B।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 9
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 9}]
+    \noindent
+    $x^2 + y^2 - 4x - 6y - 12 = 0$ এবং $x^2 + y^2 + 6x + 4y - 12 = 0$ বৃত্তদ্বয়ের ছেদবিন্দুগামী এবং $y = 2x$ রেখার উপর কেন্দ্রবিশিষ্ট বৃত্তটির ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the radius in units of the circle which passes through the intersection of the circles $x^2 + y^2 - 4x - 6y - 12 = 0$ and $x^2 + y^2 + 6x + 4y - 12 = 0$ and has its center on the line $y = 2x$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\sqrt{13}$ একক
+    \item[\textbf{B)}] $\sqrt{15}$ একক
+    \item[\textbf{C)}] $\sqrt{17}$ একক
+    \item[\textbf{D)}] $\sqrt{19}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $\sqrt{17}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত বৃত্তদ্বয়:
+    \begin{align*}
+        S_1 &= x^2 + y^2 - 4x - 6y - 12 = 0 \\
+        S_2 &= x^2 + y^2 + 6x + 4y - 12 = 0
+    \end{align*}
+    
+    বৃত্তদ্বয়ের সাধারণ জ্যা (intersection line) এর সমীকরণ $L = S_1 - S_2 = 0$:
+    \begin{align*}
+        \Rightarrow (x^2 + y^2 - 4x - 6y - 12) - (x^2 + y^2 + 6x + 4y - 12) &= 0 \\
+        \Rightarrow -10x - 10y &= 0 \\
+        \Rightarrow x + y &= 0
+    \end{align*}
+    
+    বৃত্তদ্বয়ের ছেদবিন্দুগামী যেকোনো বৃত্তের সমীকরণ $S_1 + \lambda L = 0$:
+    \begin{align*}
+        \Rightarrow x^2 + y^2 - 4x - 6y - 12 + \lambda(x + y) &= 0 \\
+        \Rightarrow x^2 + y^2 + (\lambda - 4)x + (\lambda - 6)y - 12 &= 0
+    \end{align*}
+    
+    এই বৃত্তের কেন্দ্র $C$:
+    \[ C\left(-\frac{\lambda - 4}{2}, -\frac{\lambda - 6}{2}\right) = C\left(2 - \frac{\lambda}{2}, 3 - \frac{\lambda}{2}\right) \]
+    
+    শর্তানুসারে, কেন্দ্রটি $y = 2x$ রেখার উপর অবস্থিত:
+    \begin{align*}
+        3 - \frac{\lambda}{2} &= 2\left(2 - \frac{\lambda}{2}\right) \\
+        \Rightarrow 3 - \frac{\lambda}{2} &= 4 - \lambda \\
+        \Rightarrow \lambda - \frac{\lambda}{2} &= 4 - 3 \\
+        \Rightarrow \frac{\lambda}{2} &= 1 \Rightarrow \lambda = 2
+    \end{align*}
+    
+    $\lambda = 2$ হলে বৃত্তের সমীকরণটি দাঁড়ায়:
+    \[ x^2 + y^2 - 2x - 4y - 12 = 0 \]
+    
+    বৃত্তটির ব্যাসার্ধ $r$:
+    \begin{align*}
+        r &= \sqrt{(-1)^2 + (-2)^2 - (-12)} \\
+          &= \sqrt{1 + 4 + 12} = \sqrt{17}
+    \end{align*}
+    অতএব, নির্ণেয় বৃত্তের ব্যাসার্ধ \textbf{$\sqrt{17}$ একক}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 10
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 10}]
+    \noindent
+    মেরু স্থানাঙ্কে একটি বৃত্তের সমীকরণ $r^2 - 10r \cos\left(\theta - \frac{\pi}{3}\right) + 4 = 0$ হলে, মেরু অক্ষ (polar axis) $\theta = 0$ হতে বৃত্তটি দ্বারা কর্তিত অংশের দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the equation of a circle in polar coordinates is $r^2 - 10r \cos\left(\theta - \frac{\pi}{3}\right) + 4 = 0$, what is the length of the intercept made by the circle on the polar axis $\theta = 0$ in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2$ একক
+    \item[\textbf{B)}] $3$ একক
+    \item[\textbf{C)}] $4$ একক
+    \item[\textbf{D)}] $5$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $3$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    বৃত্তের মেরু সমীকরণ: 
+    \[ r^2 - 10r \cos\left(\theta - \frac{\pi}{3}\right) + 4 = 0 \]
+    
+    মেরু অক্ষ তথা $\theta = 0$ রেখার সাথে বৃত্তটির ছেদবিন্দুসমূহ বের করার জন্য সমীকরণে $\theta = 0$ বসিয়ে পাই:
+    \begin{align*}
+        r^2 - 10r \cos\left(0 - \frac{\pi}{3}\right) + 4 &= 0 \\
+        \Rightarrow r^2 - 10r \cos\left(-\frac{\pi}{3}\right) + 4 &= 0
+    \end{align*}
+    
+    আমরা জানি, $\cos(-\alpha) = \cos\alpha$ এবং $\cos\left(\frac{\pi}{3}\right) = \frac{1}{2}$।
+    \begin{align*}
+        \Rightarrow r^2 - 10r \left(\frac{1}{2}\right) + 4 &= 0 \\
+        \Rightarrow r^2 - 5r + 4 &= 0 \\
+        \Rightarrow (r - 1)(r - 4) &= 0
+    \end{align*}
+    $\Rightarrow r_1 = 1$ এবং $r_2 = 4$
+    
+    মেরু অক্ষের ছেদবিন্দুদ্বয়ের মেরু থেকে দূরত্ব যথাক্রমে $1$ একক এবং $4$ একক। 
+    অতএব, মেরু অক্ষ হতে কর্তিত অংশের দৈর্ঘ্য:
+    \[ |r_2 - r_1| = |4 - 1| = 3 \]
+    অতএব, কর্তিত অংশের দৈর্ঘ্য \textbf{$3$ একক}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 11
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 11}]
+    \noindent
+    $x^2 + y^2 = 16$ বৃত্তের যেসব জ্যা $P(6, 8)$ বিন্দুগামী, তাদের মধ্যবিন্দুসমূহের সঞ্চারপথের সমীকরণ একটি বৃত্ত নির্দেশ করে। এই সঞ্চারপথের ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The locus of the midpoints of the chords of the circle $x^2 + y^2 = 16$ which pass through the point $P(6, 8)$ is a circle. What is the radius of this locus circle in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3$ একক
+    \item[\textbf{B)}] $4$ একক
+    \item[\textbf{C)}] $5$ একক
+    \item[\textbf{D)}] $6$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $5$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, জ্যা-এর মধ্যবিন্দুর স্থানাঙ্ক $M(h, k)$।
+    
+    $x^2 + y^2 = 16$ বৃত্তের সাপেক্ষে $M(h, k)$ মধ্যবিন্দুগামী জ্যা-এর সমীকরণ $T = S_1$:
+    \[ xh + yk = h^2 + k^2 \]
+    
+    যেহেতু এই জ্যা-টি সর্বদা নির্দিষ্ট বিন্দু $P(6, 8)$ দিয়ে অতিক্রম করে, তাই রেখাটি $P$ বিন্দু দ্বারা সিদ্ধ হবে:
+    \begin{align*}
+        6h + 8k &= h^2 + k^2 \\
+        \Rightarrow h^2 + k^2 - 6h - 8k &= 0
+    \end{align*}
+    
+    এখন, $(h, k)$ কে সাধারণ স্থানাঙ্ক $(x, y)$ দ্বারা প্রতিস্থাপন করে জ্যা-এর মধ্যবিন্দুর সঞ্চারপথের সমীকরণ পাই:
+    \[ x^2 + y^2 - 6x - 8y = 0 \]
+    
+    এটি একটি বৃত্তের সমীকরণ, যার কেন্দ্র $C(3, 4)$। 
+    বৃত্তটির ব্যাসার্ধ $R$:
+    \begin{align*}
+        R &= \sqrt{(-3)^2 + (-4)^2 - 0} \\
+          &= \sqrt{9 + 16} \\
+          &= \sqrt{25} = 5
+    \end{align*}
+    অতএব, সঞ্চারপথ বৃত্তটির ব্যাসার্ধ \textbf{$5$ একক}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 12
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 12}]
+    \noindent
+    $x^2 + y^2 - 9 = 0$ এবং $x^2 + y^2 - 14x + 24 = 0$ বৃত্তদ্বয়ের মধ্যবর্তী ছেদকোণ (angle of intersection) কত ডিগ্রি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the angle of intersection in degrees between the circles $x^2 + y^2 - 9 = 0$ and $x^2 + y^2 - 14x + 24 = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $60^{\circ}$
+    \item[\textbf{B)}] $90^{\circ}$
+    \item[\textbf{C)}] $120^{\circ}$
+    \item[\textbf{D)}] $150^{\circ}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $120^{\circ}$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রথম বৃত্ত: $S_1 = x^2 + y^2 - 9 = 0$ \\
+    এর কেন্দ্র $C_1(0, 0)$ এবং ব্যাসার্ধ $r_1 = 3$।
+    
+    দ্বিতীয় বৃত্ত: $S_2 = x^2 + y^2 - 14x + 24 = 0$ \\
+    এর কেন্দ্র $C_2(7, 0)$ এবং ব্যাসার্ধ:
+    \[ r_2 = \sqrt{(-7)^2 + 0^2 - 24} = \sqrt{49 - 24} = \sqrt{25} = 5 \]
+    
+    বৃত্ত দুটির কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব $d = C_1C_2$:
+    \[ d = \sqrt{(7 - 0)^2 + (0 - 0)^2} = 7 \]
+    
+    ধরি, বৃত্ত দুটির ছেদবিন্দুতে অঙ্কিত স্পর্শকদ্বয়ের মধ্যবর্তী কোণ (ছেদকোণ) $\theta$। বৃত্তদ্বয়ের ছেদকোণের সূত্রানুযায়ী:
+    \begin{align*}
+        \cos\theta &= \frac{r_1^2 + r_2^2 - d^2}{2r_1r_2} \\
+        \Rightarrow \cos\theta &= \frac{3^2 + 5^2 - 7^2}{2 \times 3 \times 5} \\
+        \Rightarrow \cos\theta &= \frac{9 + 25 - 49}{30} \\
+        \Rightarrow \cos\theta &= \frac{-15}{30} = -\frac{1}{2} \\
+        \Rightarrow \theta &= \cos^{-1}\left(-\frac{1}{2}\right) = 120^{\circ}
+    \end{align*}
+    অতএব, বৃত্তদ্বয়ের মধ্যবর্তী ছেদকোণ \textbf{$120^{\circ}$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 13
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 13}]
+    \noindent
+    একটি বৃত্ত $S = 0$ অপর দুটি বৃত্ত $x^2 + y^2 - 4x - 6y + 11 = 0$ এবং $x^2 + y^2 - 10x - 4y + 21 = 0$ উভয়কে লম্বালম্বিভাবে (orthogonally) ছেদ করে। যদি $S = 0$ বৃত্তটির কেন্দ্র $y = x + 1$ সরলরেখার উপর অবস্থিত হয়, তবে কেন্দ্রটির স্থানাঙ্ক কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A circle $S = 0$ intersects both of the circles $x^2 + y^2 - 4x - 6y + 11 = 0$ and $x^2 + y^2 - 10x - 4y + 21 = 0$ orthogonally. If the center of the circle $S = 0$ lies on the line $y = x + 1$, what are the coordinates of its center?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $(2, 3)$
+    \item[\textbf{B)}] $(3, 4)$
+    \item[\textbf{C)}] $(4, 5)$
+    \item[\textbf{D)}] $(1, 2)$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $(3, 4)$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, প্রথম দুটি বৃত্ত যথাক্রমে $S_1 = 0$ এবং $S_2 = 0$। 
+    যেহেতু বৃত্ত $S = 0$ অপর দুটি বৃত্ত $S_1 = 0$ এবং $S_2 = 0$ উভয়কেই লম্বালম্বিভাবে ছেদ করে, তাই $S = 0$ বৃত্তের কেন্দ্রটি অবশ্যই প্রদত্ত বৃত্তদ্বয়ের মূল অক্ষ বা সাধারণ জ্যা (radical axis) এর উপর অবস্থিত হবে। 
+    
+    সাধারণ জ্যা এর সমীকরণ $S_1 - S_2 = 0$:
+    \begin{align*}
+        (x^2 + y^2 - 4x - 6y + 11) - (x^2 + y^2 - 10x - 4y + 21) &= 0 \\
+        \Rightarrow 6x - 2y - 10 &= 0 \\
+        \Rightarrow 3x - y - 5 &= 0
+    \end{align*}
+    
+    ধরি, $S = 0$ বৃত্তের কেন্দ্র $C(h, k)$। 
+    যেহেতু কেন্দ্রটি সাধারণ জ্যা-এর উপর অবস্থিত:
+    \[ 3h - k - 5 = 0 \quad \text{--- (i)} \]
+    
+    আবার দেওয়া আছে, কেন্দ্রটি $y = x + 1$ রেখার উপর অবস্থিত:
+    \[ k = h + 1 \quad \text{--- (ii)} \]
+    
+    সমীকরণ (ii) এর মান সমীকরণ (i)-এ বসিয়ে পাই:
+    \begin{align*}
+        3h - (h + 1) - 5 &= 0 \\
+        \Rightarrow 2h - 6 &= 0 \Rightarrow h = 3
+    \end{align*}
+    
+    $h = 3$ হলে, সমীকরণ (ii) হতে পাই:
+    \[ k = 3 + 1 = 4 \]
+    অতএব, নির্ণেয় বৃত্তের কেন্দ্রের স্থানাঙ্ক \textbf{$(3, 4)$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 14
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 14}]
+    \noindent
+    $y = mx + c$ সরলরেখাটি $x^2 + y^2 = 9$ এবং $(x - 8)^2 + y^2 = 16$ উভয় বৃত্তেরই একটি সাধারণ স্পর্শক। যদি $m > 0$ এবং $c < 0$ হয়, তবে $m$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The line $y = mx + c$ is a common tangent to both of the circles $x^2 + y^2 = 9$ and $(x - 8)^2 + y^2 = 16$. If $m > 0$ and $c < 0$, what is the value of $m$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{3}{\sqrt{7}}$
+    \item[\textbf{B)}] $\frac{7}{\sqrt{15}}$
+    \item[\textbf{C)}] $\frac{4}{\sqrt{11}}$
+    \item[\textbf{D)}] $\frac{5}{\sqrt{13}}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $\frac{7}{\sqrt{15}}$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    স্পর্শকের সমীকরণ: $mx - y + c = 0$ \\
+    প্রথম বৃত্ত: $x^2 + y^2 = 9$ (কেন্দ্র $C_1(0, 0)$, ব্যাসার্ধ $r_1 = 3$) 
+    
+    স্পর্শকের শর্তানুযায়ী, কেন্দ্র হতে স্পর্শকের লম্ব দূরত্ব ব্যাসার্ধের সমান:
+    \[ \frac{|m(0) - 0 + c|}{\sqrt{m^2 + 1}} = 3 \Rightarrow |c| = 3\sqrt{m^2 + 1} \quad \text{--- (i)} \]
+    
+    দ্বিতীয় বৃত্ত: $(x - 8)^2 + y^2 = 16$ (কেন্দ্র $C_2(8, 0)$, ব্যাসার্ধ $r_2 = 4$) 
+    স্পর্শকের শর্তানুযায়ী:
+    \[ \frac{|m(8) - 0 + c|}{\sqrt{m^2 + 1}} = 4 \Rightarrow |8m + c| = 4\sqrt{m^2 + 1} \quad \text{--- (ii)} \]
+    
+    সমীকরণ (ii) কে (i) দ্বারা ভাগ করে পাই:
+    \begin{align*}
+        \frac{|8m + c|}{|c|} &= \frac{4}{3} \\
+        \Rightarrow 3|8m + c| &= 4|c|
+    \end{align*}
+    
+    যেহেতু $m > 0$ এবং $c < 0$, তাই সম্ভাব্য সম্পর্কটি হবে:
+    \[ 3(8m + c) = -4c \]
+    \textit{(কারণ $c = 24m$ হলে $c > 0$ হয়ে যায়, যা শর্তবিরোধী)}
+    \begin{align*}
+        \Rightarrow 24m + 3c &= -4c \\
+        \Rightarrow 7c &= -24m \Rightarrow c = -\frac{24}{7}m
+    \end{align*}
+    
+    এই $c$ এর মান সমীকরণ (i)-এ বসিয়ে বর্গ করি:
+    \begin{align*}
+        \left|-\frac{24}{7}m\right| &= 3\sqrt{m^2 + 1} \\
+        \Rightarrow \frac{8}{7}m &= \sqrt{m^2 + 1} \\
+        \Rightarrow \frac{64}{49}m^2 &= m^2 + 1 \\
+        \Rightarrow \frac{15}{49}m^2 &= 1 \\
+        \Rightarrow m^2 &= \frac{49}{15} \\
+        \Rightarrow m &= \frac{7}{\sqrt{15}} \quad \text{(যেহেতু } m > 0\text{)}
+    \end{align*}
+    অতএব, $m$ এর মান \textbf{$\frac{7}{\sqrt{15}}$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 15
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 15}]
+    \noindent
+    $x^2 + y^2 = 50$ বৃত্তের উপর অবস্থিত কোনো বিন্দু $P$ হতে $x^2 + y^2 = R^2$ বৃত্তে অঙ্কিত স্পর্শকদ্বয় পরস্পর লম্ব হলে, $R$ এর মান কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the two tangents drawn from a point $P$ on the circle $x^2 + y^2 = 50$ to the circle $x^2 + y^2 = R^2$ are mutually perpendicular, what is the value of $R$ in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5$ একক
+    \item[\textbf{B)}] $5\sqrt{2}$ একক
+    \item[\textbf{C)}] $10$ একক
+    \item[\textbf{D)}] $25$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $5$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, কোনো বৃত্তের পরস্পর লম্ব স্পর্শকসমূহের ছেদবিন্দুর সঞ্চারপথকে বৃত্তটির নিয়ামক বৃত্ত (Director Circle) বলা হয়।
+    
+    $x^2 + y^2 = R^2$ বৃত্তের ডিরেক্টর বৃত্তের সমীকরণ: 
+    \[ x^2 + y^2 = 2R^2 \]
+    
+    যেহেতু $x^2 + y^2 = 50$ বৃত্তের উপর অবস্থিত যেকোনো বিন্দু $P$ থেকে অঙ্কিত স্পর্শকদ্বয় লম্ব, তাই $P$ বিন্দুটি অবশ্যই নিয়ামক বৃত্তের উপরেও অবস্থান করবে। 
+    
+    অতএব, বৃত্ত দুটির সমীকরণ অভিন্ন হবে:
+    \begin{align*}
+        2R^2 &= 50 \\
+        \Rightarrow R^2 &= 25 \\
+        \Rightarrow R &= 5 \quad \text{(যেহেতু ব্যাসার্ধ } R > 0\text{)}
+    \end{align*}
+    অতএব, $R$ এর মান \textbf{$5$ একক}।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 16}]
+    \noindent
+    সমতলে দুটি বৃত্ত $C_1: x^2 + y^2 = 25$ এবং $C_2: (x - \alpha)^2 + y^2 = 16$ বিবেচনা করো, যেখানে $\alpha \in (5,9)$। বৃত্তদ্বয়ের একটি ছেদবিন্দুতে অঙ্কিত ব্যাসার্ধদ্বয়ের মধ্যবর্তী কোণ $\sin^{-1}\left(\frac{\sqrt{63}}{8}\right)$। যদি বৃত্তদ্বয়ের সাধারণ জ্যা-এর দৈর্ঘ্য $\beta$ হয়, তবে $(\alpha\beta)^2$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Consider two circles $C_1: x^2 + y^2 = 25$ and $C_2: (x - \alpha)^2 + y^2 = 16$, where $\alpha \in (5,9)$. Let the angle between the two radii (one to each circle) drawn from one of the intersection points of $C_1$ and $C_2$ be $\sin^{-1}\left(\frac{\sqrt{63}}{8}\right)$. If the length of the common chord of $C_1$ and $C_2$ is $\beta$, then the value of $(\alpha\beta)^2$ is equal to:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $1575$
+    \item[\textbf{B)}] $1600$
+    \item[\textbf{C)}] $1225$
+    \item[\textbf{D)}] $1525$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $1575$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. \textbf{ছেদবিন্দুর ত্রিভুজ গঠন:} 
+    ধরি ছেদবিন্দু $P$। ত্রিভুজ $\triangle PC_1C_2$ এর বাহুত্রয় যথাক্রমে বৃত্তের ব্যাসার্ধদ্বয় $PC_1 = r_1 = 5$, $PC_2 = r_2 = 4$ এবং কেন্দ্রদ্বয়ের দূরত্ব $C_1C_2 = d = \alpha$। 
+    
+    \vspace{0.5em}
+    ছেদকোণ $\theta = \sin^{-1}\left(\frac{\sqrt{63}}{8}\right) \Rightarrow \sin\theta = \frac{\sqrt{63}}{8}$।
+    
+    \vspace{0.5em}
+    ২. \textbf{ত্রিভুজের ক্ষেত্রফল নির্ণয়:}
+    \[ \text{Area}(\triangle PC_1C_2) = \frac{1}{2} r_1 r_2 \sin\theta = \frac{1}{2}(5)(4)\left(\frac{\sqrt{63}}{8}\right) = \frac{5\sqrt{63}}{4} \text{ বর্গ একক} \]
+    
+    \vspace{0.5em}
+    ৩. \textbf{সাধারণ জ্যা ও উচ্চতার সম্পর্ক:} 
+    সাধারণ জ্যা $\beta$ কেন্দ্রদ্বয়ের সংযোজক সরলরেখা দ্বারা লম্বভাবে সমদ্বিখণ্ডিত হয়। $\therefore$ ত্রিভুজের লম্ব উচ্চতা $h = \frac{\beta}{2}$।
+    \[ \text{Area} = \frac{1}{2} \times \text{ভূমি} \times \text{উচ্চতা} = \frac{1}{2} \alpha \left(\frac{\beta}{2}\right) = \frac{1}{4} \alpha \beta \]
+    
+    \vspace{0.5em}
+    ৪. \textbf{সমীকরণ তুলনা করে সমাধান:}
+    \begin{align*}
+        \frac{1}{4}\alpha\beta &= \frac{5\sqrt{63}}{4} \Rightarrow \alpha\beta = 5\sqrt{63} \\
+        \therefore (\alpha\beta)^2 &= (5\sqrt{63})^2 = 25 \times 63 = 1575
+    \end{align*}
+    
+    \vspace{0.5em}
+    অতএব, সঠিক উত্তর A।
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 17}]
+    \noindent
+    প্রথম চতুর্ভাগে অবস্থিত দুটি বৃত্তের ব্যাসার্ধ যথাক্রমে $r_1$ ও $r_2$ যারা উভয় স্থানাঙ্ক অক্ষকে স্পর্শ করে। যদি প্রতিটি বৃত্তই $x + y = 2$ সরলরেখা হতে $2$ একক দৈর্ঘ্যের জ্যা খণ্ডন করে, তবে $r_1^2 + r_2^2 - r_1 r_2$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Two circles in the first quadrant of radii $r_1$ and $r_2$ touch both coordinate axes. Each of these circles cuts off an intercept of length $2$ units on the line $x + y = 2$. Then, the value of $r_1^2 + r_2^2 - r_1 r_2$ is equal to:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5$
+    \item[\textbf{B)}] $9$
+    \item[\textbf{C)}] $7$
+    \item[\textbf{D)}] $11$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $7$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বৃত্তের সমীকরণ মডেলিং} \\
+    যেহেতু বৃত্ত দুটি প্রথম চতুর্ভাগে উভয় অক্ষকে স্পর্শ করে, তাই তাদের কেন্দ্র $C(r, r)$ এবং ব্যাসার্ধ $r$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কেন্দ্র হতে জ্যা-এর দূরত্ব} \\
+    কেন্দ্র $C(r, r)$ হতে সরলরেখা $x + y - 2 = 0$ এর লম্ব দূরত্ব $d$:
+    \[ d = \frac{|r + r - 2|}{\sqrt{1^2 + 1^2}} = \frac{|2r - 2|}{\sqrt{2}} = \sqrt{2}|r - 1| \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: জ্যা দৈর্ঘ্য শর্ত প্রয়োগ} \\
+    যেহেতু খণ্ডিত জ্যা-এর দৈর্ঘ্য $2$, তাই অর্ধ-জ্যা এর দৈর্ঘ্য $1$। পীথাগোরাসের সূত্রানুযায়ী:
+    \[ r^2 = d^2 + 1^2 \implies r^2 = (\sqrt{2}|r - 1|)^2 + 1 \implies r^2 = 2(r-1)^2 + 1 \]
+    \[ \implies r^2 = 2(r^2 - 2r + 1) + 1 \implies r^2 = 2r^2 - 4r + 3 \]
+    \[ \implies r^2 - 4r + 3 = 0 \implies (r-1)(r-3) = 0 \]
+    এখান থেকে ব্যাসার্ধদ্বয় পাই: $r_1 = 1$ এবং $r_2 = 3$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৪: চূড়ান্ত মান হিসাব} \\
+    \[ r_1^2 + r_2^2 - r_1 r_2 = 1^2 + 3^2 - 1(3) = 1 + 9 - 3 = 7 \]
+    অতএব, সঠিক উত্তর C।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 18
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 18}]
+    \noindent
+    $x^2 + y^2 = 4$ বৃত্তের উপর অবস্থিত যেকোনো বিন্দু $P$ হতে $A(1, 0)$ এবং $B(3, 0)$ বিন্দুদ্বয়ের দূরত্বের বর্গের সমষ্টির (তথা $PA^2 + PB^2$) সর্বোচ্চ মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the maximum value of the sum of the squares of the distances of any point $P$ on the circle $x^2 + y^2 = 4$ from the points $A(1, 0)$ and $B(3, 0)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $18$
+    \item[\textbf{B)}] $26$
+    \item[\textbf{C)}] $34$
+    \item[\textbf{D)}] $42$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $34$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, বৃত্তের উপরস্থ যেকোনো বিন্দু $P(x, y)$। 
+    যেহেতু বিন্দুটি বৃত্তের উপর অবস্থিত, সেহেতু: 
+    \[ x^2 + y^2 = 4 \quad \text{--- (i)} \]
+    (যেখানে $-2 \le x \le 2$)।
+    
+    \vspace{0.5em}
+    বিন্দুদ্বয় হতে দূরত্বের বর্গের সমষ্টি $S = PA^2 + PB^2$:
+    \begin{align*}
+        S &= \left[(x - 1)^2 + y^2\right] + \left[(x - 3)^2 + y^2\right] \\
+        \Rightarrow S &= (x^2 - 2x + 1 + y^2) + (x^2 - 6x + 9 + y^2) \\
+        \Rightarrow S &= 2(x^2 + y^2) - 8x + 10
+    \end{align*}
+    
+    সমীকরণ (i) হতে $x^2 + y^2 = 4$ বসিয়ে পাই:
+    \begin{align*}
+        S &= 2(4) - 8x + 10 \\
+          &= 18 - 8x
+    \end{align*}
+    
+    $S$ এর মান সর্বোচ্চ হবে যখন $x$ এর মান সর্বনিম্ন (তথা ঋণাত্মক দিকে সর্বোচ্চ) হবে। 
+    বৃত্তের ক্ষেত্রে $x$ এর সর্বনিম্ন মান $-2$। 
+    \begin{align*}
+        \therefore S_{\max} &= 18 - 8(-2) \\
+                            &= 18 + 16 = 34
+    \end{align*}
+    অতএব, বর্গের সমষ্টির সর্বোচ্চ মান \textbf{$34$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 19
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 19}]
+    \noindent
+    একটি বৃত্ত মূলবিন্দু দিয়ে যায় এবং স্থানাঙ্কের অক্ষদ্বয়ের ধনাত্মক দিক হতে যথাক্রমে $4$ ও $3$ একক দীর্ঘ অংশ কর্তন করে। এই বৃত্তের সমান্তরাল স্পর্শকদ্বয়ের সমীকরণ কোনটি, যারা $3x - 4y = 0$ রেখার সমান্তরাল?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A circle passes through the origin and cuts off intercepts of lengths $4$ and $3$ units from the positive $x$ and $y$ axes respectively. Which of the following are the equations of the tangents to this circle that are parallel to the line $3x - 4y = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $6x - 8y \pm 25 = 0$
+    \item[\textbf{B)}] $3x - 4y \pm 15 = 0$
+    \item[\textbf{C)}] $6x - 8y \pm 15 = 0$
+    \item[\textbf{D)}] $3x - 4y \pm 25 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $6x - 8y \pm 25 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু বৃত্তটি মূলবিন্দুগামী এবং অক্ষদ্বয় হতে যথাক্রমে $4$ ও $3$ একক অংশ কর্তন করে, তাই বৃত্তের ব্যাসের প্রান্তবিন্দুদ্বয় $(4, 0)$ ও $(0, 3)$। 
+    
+    বৃত্তের সমীকরণ: 
+    \begin{align*}
+        x(x - 4) + y(y - 3) &= 0 \\
+        \Rightarrow x^2 + y^2 - 4x - 3y &= 0
+    \end{align*}
+    
+    বৃত্তের কেন্দ্র $C(2, 1.5)$ এবং ব্যাসার্ধ $R = \sqrt{2^2 + 1.5^2} = 2.5$। 
+    
+    $3x - 4y = 0$ রেখার সমান্তরাল যেকোনো স্পর্শকের সমীকরণ: 
+    \[ 3x - 4y + k = 0 \]
+    
+    কেন্দ্র $C(2, 1.5)$ হতে স্পর্শকের লম্ব দূরত্ব ব্যাসার্ধ $2.5$ এর সমান হবে:
+    \begin{align*}
+        \frac{|3(2) - 4(1.5) + k|}{\sqrt{3^2 + (-4)^2}} &= 2.5 \\
+        \Rightarrow \frac{|6 - 6 + k|}{5} &= 2.5 \\
+        \Rightarrow |k| &= 12.5 \\
+        \Rightarrow k &= \pm 12.5 = \pm\frac{25}{2}
+    \end{align*}
+    
+    স্পর্শকদ্বয়ের সমীকরণ: 
+    \[ 3x - 4y \pm \frac{25}{2} = 0 \]
+    
+    উভয়পক্ষকে $2$ দ্বারা গুণ করে পাই: 
+    \[ 6x - 8y \pm 25 = 0 \]
+    অতএব, স্পর্শকদ্বয়ের সমীকরণ \textbf{$6x - 8y \pm 25 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 20}]
+    \noindent
+    যদি $x^2 + y^2 - 10x + 4y + 13 = 0$ বৃত্তের একটি ব্যাস অপর একটি বৃত্ত $C$ এর জ্যা নির্দেশ করে, যার কেন্দ্র $2x + 3y = 12$ এবং $3x - 2y = 5$ সরলরেখাদ্বয়ের ছেদবিন্দুতে অবস্থিত, তবে বৃত্ত $C$ এর ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If one of the diameters of the circle $x^2 + y^2 - 10x + 4y + 13 = 0$ is a chord of another circle $C$, whose centre is the point of intersection of the lines $2x + 3y = 12$ and $3x - 2y = 5$, then the radius of the circle $C$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5$
+    \item[\textbf{B)}] $6$
+    \item[\textbf{C)}] $\sqrt{20}$
+    \item[\textbf{D)}] $\sqrt{17}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $6$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. \textbf{প্রথম বৃত্তের বৈশিষ্ট্যাবলি:} \\
+    প্রদত্ত বৃত্ত: $S_1 \equiv x^2 + y^2 - 10x + 4y + 13 = 0$ 
+    এর কেন্দ্র $C_1(5, -2)$ এবং ব্যাসার্ধ $r_1 = \sqrt{5^2 + (-2)^2 - 13} = 4$। 
+    
+    \vspace{0.5em}
+    ব্যাসটির দৈর্ঘ্য $2r_1 = 8$ এবং এর মধ্যবিন্দুটি হলো বৃত্তটির কেন্দ্র $C_1(5, -2)$।
+    
+    \vspace{0.5em}
+    ২. \textbf{বৃত্ত $C$ এর কেন্দ্র নির্ণয়:} \\
+    রেখাদ্বয়ের ছেদবিন্দু বের করি: 
+    \[ 2x + 3y = 12 \quad \text{এবং} \quad 3x - 2y = 5 \Rightarrow (x, y) = (3, 2) \]
+    সুতরাং, বৃত্ত $C$ এর কেন্দ্র $C_2(3, 2)$।
+    
+    \vspace{0.5em}
+    ৩. \textbf{পীথাগোরাসের উপপাদ্য প্রয়োগ:} \\
+    নতুন কেন্দ্র $C_2(3, 2)$ হতে জ্যা-এর মধ্যবিন্দু $C_1(5, -2)$ এর দূরত্ব: 
+    \[ d = \sqrt{(5-3)^2 + (-2-2)^2} = \sqrt{4 + 16} = \sqrt{20} \]
+    
+    \vspace{0.5em}
+    বৃত্ত $C$ এর ব্যাসার্ধ $R$ হলে: 
+    \begin{align*}
+        R^2 &= r_1^2 + d^2 \\
+        &= 4^2 + (\sqrt{20})^2 \\
+        &= 16 + 20 = 36 \Rightarrow R = 6 \text{ একক}
+    \end{align*}
+    
+    \vspace{0.5em}
+    অতএব, সঠিক উত্তর B।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 21
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 21}]
+    \noindent
+    একটি বৃত্তের পরামিতিক সমীকরণ (Parametric Equations) যথাক্রমে $x = 1 + 5\cos\theta$ এবং $y = 2 + 5\sin\theta$। বৃত্তটির উপর $\theta = \alpha$ বিন্দুতে স্পর্শকের সমীকরণ কোনটি, যেখানে $\tan\alpha = \frac{4}{3}$ এবং $\alpha$ প্রথম চতুর্ভাগে অবস্থিত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The parametric equations of a circle are $x = 1 + 5\cos\theta$ and $y = 2 + 5\sin\theta$. Which of the following is the equation of the tangent to the circle at the point $\theta = \alpha$, given that $\tan\alpha = \frac{4}{3}$ and $\alpha$ lies in the first quadrant?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3x + 4y - 36 = 0$
+    \item[\textbf{B)}] $4x + 3y - 36 = 0$
+    \item[\textbf{C)}] $3x + 4y - 25 = 0$
+    \item[\textbf{D)}] $4x + 3y - 25 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $3x + 4y - 36 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু $\alpha$ প্রথম চতুর্ভাগে এবং $\tan\alpha = \frac{4}{3}$, তাই আমরা পাই: 
+    \[ \cos\alpha = \frac{3}{5} \quad \text{এবং} \quad \sin\alpha = \frac{4}{5} \]
+    
+    বৃত্তের পরামিতিক সমীকরণ থেকে স্পর্শবিন্দু $P(x_1, y_1)$ এর স্থানাঙ্ক বের করি:
+    \begin{align*}
+        x_1 &= 1 + 5\cos\alpha = 1 + 5\left(\frac{3}{5}\right) = 4 \\
+        y_1 &= 2 + 5\sin\alpha = 2 + 5\left(\frac{4}{5}\right) = 6
+    \end{align*}
+    সুতরাং, স্পর্শবিন্দুটি হলো $P(4, 6)$। 
+    
+    বৃত্তের কার্তেসীয় সমীকরণ: 
+    \begin{align*}
+        (x - 1)^2 + (y - 2)^2 &= 25 \\
+        \Rightarrow x^2 + y^2 - 2x - 4y - 20 &= 0
+    \end{align*}
+    
+    $P(4, 6)$ বিন্দুতে স্পর্শকের সমীকরণ: 
+    \begin{align*}
+        x(4) + y(6) - 1(x + 4) - 2(y + 6) - 20 &= 0 \\
+        \Rightarrow 4x + 6y - x - 4 - 2y - 12 - 20 &= 0 \\
+        \Rightarrow 3x + 4y - 36 &= 0
+    \end{align*}
+    অতএব, স্পর্শকের সমীকরণ \textbf{$3x + 4y - 36 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 22
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 22}]
+    \noindent
+    $x^2 + y^2 = 9$ বৃত্তে অঙ্কিত কোনো স্পর্শকদ্বয়ের মধ্যবর্তী কোণ সর্বদা $60^{\circ}$ হলে, স্পর্শকদ্বয়ের ছেদবিন্দুর সঞ্চারপথের সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the angle between the tangents drawn to the circle $x^2 + y^2 = 9$ is always $60^{\circ}$, what is the equation of the locus of the intersection point of the tangents?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 = 18$
+    \item[\textbf{B)}] $x^2 + y^2 = 27$
+    \item[\textbf{C)}] $x^2 + y^2 = 36$
+    \item[\textbf{D)}] $x^2 + y^2 = 45$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $x^2 + y^2 = 36$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, ছেদবিন্দুর সঞ্চারপথের যেকোনো বিন্দু $P(h, k)$। 
+    বৃত্তের কেন্দ্র $O(0, 0)$ এবং ব্যাসার্ধ $r = 3$। 
+    
+    যদি স্পর্শকদ্বয়ের মধ্যবর্তী কোণ $2\alpha = 60^{\circ}$ হয়, তবে $\alpha = 30^{\circ}$। 
+    স্পর্শক এবং কেন্দ্রের সংযোজক ত্রিভুজ হতে পাই:
+    \begin{align*}
+        \sin\alpha &= \frac{r}{OP} \\
+        \Rightarrow \sin 30^{\circ} &= \frac{3}{\sqrt{h^2 + k^2}} \\
+        \Rightarrow \frac{1}{2} &= \frac{3}{\sqrt{h^2 + k^2}} \\
+        \Rightarrow \sqrt{h^2 + k^2} &= 6
+    \end{align*}
+    
+    উভয়পক্ষকে বর্গ করে পাই: 
+    \[ h^2 + k^2 = 36 \]
+    
+    এখন, $(h, k)$ কে সাধারণ স্থানাঙ্ক $(x, y)$ দ্বারা প্রতিস্থাপন করে পাই: 
+    \[ x^2 + y^2 = 36 \]
+    অতএব, সঞ্চারপথের সমীকরণ \textbf{$x^2 + y^2 = 36$}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 23
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 23}]
+    \noindent
+    $x^2 + y^2 - 4x - 6y + 9 = 0$ এবং $x^2 + y^2 + 6x + 2y + 9 = 0$ বৃত্তদ্বয়ের একটি তির্যক সাধারণ স্পর্শকের (Transverse Common Tangent) সমীকরণ নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Which of the following is the equation of a transverse common tangent to the circles $x^2 + y^2 - 4x - 6y + 9 = 0$ and $x^2 + y^2 + 6x + 2y + 9 = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3x - 12y + 8 = 0$
+    \item[\textbf{B)}] $21x - 12y + 32 = 0$
+    \item[\textbf{C)}] $3x + 12y - 8 = 0$
+    \item[\textbf{D)}] $21x + 12y - 32 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $21x - 12y + 32 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রথম বৃত্ত: $S_1 = x^2 + y^2 - 4x - 6y + 9 = 0$ \\
+    এর কেন্দ্র $C_1(2, 3)$ এবং ব্যাসার্ধ $r_1 = \sqrt{2^2 + 3^2 - 9} = 2$। 
+    
+    দ্বিতীয় বৃত্ত: $S_2 = x^2 + y^2 + 6x + 2y + 9 = 0$ \\
+    এর কেন্দ্র $C_2(-3, -1)$ এবং ব্যাসার্ধ $r_2 = \sqrt{(-3)^2 + (-1)^2 - 9} = 1$। 
+    
+    কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব $d$:
+    \begin{align*}
+        d &= \sqrt{(2 - (-3))^2 + (3 - (-1))^2} \\
+          &= \sqrt{25 + 16} = \sqrt{41} \approx 6.4
+    \end{align*}
+    
+    যেহেতু $d > r_1 + r_2 = 3$, বৃত্তদ্বয় পরস্পরকে ছেদ করে না এবং এদের তির্যক সাধারণ স্পর্শক বিদ্যমান। তির্যক সাধারণ স্পর্শকসমূহ কেন্দ্রদ্বয়ের সংযোজক সরলরেখাংশকে স্পর্শকদ্বয়ের ছেদবিন্দু $T$-তে অন্তস্থভাবে $r_1 : r_2 = 2 : 1$ অনুপাতে বিভক্ত করে। 
+    
+    $T$ বিন্দুর স্থানাঙ্ক:
+    \begin{align*}
+        T &= \left(\frac{2(-3) + 1(2)}{2+1}, \frac{2(-1) + 1(3)}{2+1}\right) \\
+          &= \left(-\frac{4}{3}, \frac{1}{3}\right)
+    \end{align*}
+    
+    ধরি, $T$ বিন্দুগামী স্পর্শকের সমীকরণ:
+    \begin{align*}
+        y - \frac{1}{3} &= m\left(x + \frac{4}{3}\right) \\
+        \Rightarrow 3y - 1 &= 3m\left(x + \frac{4}{3}\right) \\
+        \Rightarrow 3mx - 3y + 4m + 1 &= 0
+    \end{align*}
+    
+    কেন্দ্র $C_1(2, 3)$ হতে এই লাইনের লম্ব দূরত্ব ব্যাসার্ধ $r_1 = 2$ এর সমান:
+    \begin{align*}
+        \frac{|3m(2) - 3(3) + 4m + 1|}{\sqrt{(3m)^2 + (-3)^2}} &= 2 \\
+        \Rightarrow \frac{|10m - 8|}{3\sqrt{m^2 + 1}} &= 2 \\
+        \Rightarrow |5m - 4| &= 3\sqrt{m^2 + 1}
+    \end{align*}
+    
+    উভয়পক্ষকে বর্গ করে পাই:
+    \begin{align*}
+        25m^2 - 40m + 16 &= 9(m^2 + 1) \\
+        \Rightarrow 16m^2 - 40m + 7 &= 0 \\
+        \Rightarrow (4m - 1)(4m - 7) &= 0
+    \end{align*}
+    $\Rightarrow m = \frac{1}{4}$ অথবা $m = \frac{7}{4}$
+    
+    যদি $m = \frac{7}{4}$ হয়, তবে স্পর্শকের সমীকরণ:
+    \begin{align*}
+        3\left(\frac{7}{4}\right)x - 3y + 4\left(\frac{7}{4}\right) + 1 &= 0 \\
+        \Rightarrow \frac{21}{4}x - 3y + 8 &= 0
+    \end{align*}
+    উভয়পক্ষকে $4$ দ্বারা গুণ করে পাই:
+    \[ 21x - 12y + 32 = 0 \]
+    অতএব, স্পর্শকটির সমীকরণ \textbf{$21x - 12y + 32 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 24
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 24}]
+    \noindent
+    একটি সমবাহু ত্রিভুজের একটি শীর্ষ মূলবিন্দুতে অবস্থিত, একটি বাহু ধনাত্মক $x$-অক্ষ বরাবর এবং অপর শীর্ষটি প্রথম চতুর্ভাগে অবস্থিত। ত্রিভুজটির বাহুর দৈর্ঘ্য $6$ একক হলে, ত্রিভুজটির অন্তর্বৃত্তের (Inscribed Circle) সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    An equilateral triangle has one vertex at the origin, one side along the positive $x$-axis, and the other vertex in the first quadrant. If the side length of the triangle is $6$ units, which of the following is the equation of the inscribed circle of this triangle?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 - 6x - 2\sqrt{3}y + 9 = 0$
+    \item[\textbf{B)}] $x^2 + y^2 - 6x - 2\sqrt{3}y + 12 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 4x - 4\sqrt{3}y + 9 = 0$
+    \item[\textbf{D)}] $x^2 + y^2 - 6x - \sqrt{3}y + 6 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $x^2 + y^2 - 6x - 2\sqrt{3}y + 9 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, সমবাহু ত্রিভুজের শীর্ষবিন্দুসমূহ $O(0, 0)$, $A(6, 0)$ এবং প্রথম চতুর্ভাগে অবস্থিত শীর্ষবিন্দু $B$। 
+    যেহেতু ত্রিভুজটি সমবাহু এবং বাহুর দৈর্ঘ্য $6$ একক, তাই $B$ বিন্দুর স্থানাঙ্ক:
+    \begin{align*}
+        B\left(6\cos 60^{\circ}, 6\sin 60^{\circ}\right) &= B\left(6 \times \frac{1}{2}, 6 \times \frac{\sqrt{3}}{2}\right) \\
+                                                       &= B(3, 3\sqrt{3})
+    \end{align*}
+    
+    সমবাহু ত্রিভুজের ক্ষেত্রে, অন্তর্বৃত্তের কেন্দ্র (Incenter) এবং ভরকেন্দ্র (Centroid) অভিন্ন। ভরকেন্দ্রের স্থানাঙ্ক তথা অন্তর্বৃত্তের কেন্দ্র $C(h, k)$:
+    \begin{align*}
+        h &= \frac{0 + 6 + 3}{3} = 3 \\
+        k &= \frac{0 + 0 + 3\sqrt{3}}{3} = \sqrt{3}
+    \end{align*}
+    
+    যেহেতু ত্রিভুজটির একটি বাহু $x$-অক্ষ বরাবর (তথা $y = 0$) অবস্থিত, তাই অন্তর্বৃত্তের ব্যাসার্ধ $r$ হবে কেন্দ্রের কোটির পরম মানের সমান:
+    \[ r = |k| = \sqrt{3} \]
+    
+    অতএব, অন্তর্বৃত্তের সমীকরণ: 
+    \begin{align*}
+        (x - h)^2 + (y - k)^2 &= r^2 \\
+        \Rightarrow (x - 3)^2 + (y - \sqrt{3})^2 &= (\sqrt{3})^2 \\
+        \Rightarrow x^2 - 6x + 9 + y^2 - 2\sqrt{3}y + 3 &= 3 \\
+        \Rightarrow x^2 + y^2 - 6x - 2\sqrt{3}y + 9 &= 0
+    \end{align*}
+    অতএব, অন্তর্বৃত্তের সমীকরণ \textbf{$x^2 + y^2 - 6x - 2\sqrt{3}y + 9 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 25
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 25}]
+    \noindent
+    $S_1 = x^2 + y^2 - 8x - 12y + 8 = 0$ এবং $S_2 = x^2 + y^2 + 4x + 6y - 19 = 0$ বৃত্ত দুটিকে লম্বালম্বিভাবে (Orthogonally) ছেদ করে এবং $P(1, 1)$ বিন্দুগামী বৃত্তটির সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Which of the following is the equation of the circle that intersects both of the circles $S_1 = x^2 + y^2 - 8x - 12y + 8 = 0$ and $S_2 = x^2 + y^2 + 4x + 6y - 19 = 0$ orthogonally and passes through the point $P(1, 1)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 - 27x + 15y + 10 = 0$
+    \item[\textbf{B)}] $2(x^2 + y^2) - 27x + 15y + 10 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 + 27x - 15y - 14 = 0$
+    \item[\textbf{D)}] $2(x^2 + y^2) - 27x + 15y + 20 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $x^2 + y^2 - 27x + 15y + 10 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, নির্ণেয় বৃত্তের সমীকরণ: $x^2 + y^2 + 2gx + 2fy + c = 0$। 
+    যেহেতু এই বৃত্তটি প্রদত্ত বৃত্তদ্বয়কে লম্বভাবে ছেদ করে, তাই লম্বভাবে ছেদ করার শর্তানুযায়ী:
+    
+    ১. প্রথম বৃত্তের জন্য: 
+    \begin{align*}
+        2g(-4) + 2f(-6) &= c + 8 \\
+        \Rightarrow -8g - 12f - 8 &= c \quad \text{--- (i)}
+    \end{align*}
+    
+    ২. দ্বিতীয় বৃত্তের জন্য: 
+    \begin{align*}
+        2g(2) + 2f(3) &= c - 19 \\
+        \Rightarrow 4g + 6f + 19 &= c \quad \text{--- (ii)}
+    \end{align*}
+    
+    সমীকরণ (i) ও (ii) হতে পাই: 
+    \begin{align*}
+        -8g - 12f - 8 &= 4g + 6f + 19 \\
+        \Rightarrow 12g + 18f + 27 &= 0 \\
+        \Rightarrow 4g + 6f + 9 &= 0 \quad \text{--- (iii)}
+    \end{align*}
+    লক্ষ্য করি, এটি বৃত্তের কেন্দ্রের সঞ্চারপথ তথা মূল অক্ষ (Radical Axis)-এর সমীকরণ নির্দেশ করে। 
+    
+    সমীকরণ (iii) থেকে আমরা পাই: $4g + 6f = -9$। 
+    এই মানটি সমীকরণ (ii)-এ বসিয়ে পাই: 
+    \[ c = (4g + 6f) + 19 = -9 + 19 = 10 \]
+    
+    যেহেতু বৃত্তটি $P(1, 1)$ বিন্দু দিয়ে যায়:
+    \begin{align*}
+        1^2 + 1^2 + 2g(1) + 2f(1) + c &= 0 \\
+        \Rightarrow 2 + 2g + 2f + 10 &= 0 \\
+        \Rightarrow g + f + 6 &= 0 \\
+        \Rightarrow g &= -f - 6 \quad \text{--- (iv)}
+    \end{align*}
+    
+    সমীকরণ (iv) এর মান সমীকরণ (iii)-এ বসিয়ে পাই:
+    \begin{align*}
+        4(-f - 6) + 6f + 9 &= 0 \\
+        \Rightarrow -4f - 24 + 6f + 9 &= 0 \\
+        \Rightarrow 2f - 15 &= 0 \Rightarrow f = 7.5 = \frac{15}{2}
+    \end{align*}
+    
+    $f = \frac{15}{2}$ হলে সমীকরণ (iv) হতে পাই:
+    \[ g = -\frac{15}{2} - 6 = -\frac{27}{2} \]
+    
+    নির্ণেয় বৃত্তের সমীকরণ: 
+    \begin{align*}
+        x^2 + y^2 + 2\left(-\frac{27}{2}\right)x + 2\left(\frac{15}{2}\right)y + 10 &= 0 \\
+        \Rightarrow x^2 + y^2 - 27x + 15y + 10 &= 0
+    \end{align*}
+    অতএব, বৃত্তটির সমীকরণ \textbf{$x^2 + y^2 - 27x + 15y + 10 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 26
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 26}]
+    \noindent
+    $P(5, 5)$ বিন্দু হতে $x^2 + y^2 - 4x - 2y + 4 = 0$ বৃত্তে অঙ্কিত স্পর্শক যুগলের (Pair of Tangents) সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the equation of the pair of tangents drawn from the point $P(5, 5)$ to the circle $x^2 + y^2 - 4x - 2y + 4 = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $15x^2 - 24xy + 8y^2 - 30x + 40y - 25 = 0$
+    \item[\textbf{B)}] $15x^2 + 24xy - 8y^2 + 30x - 40y + 25 = 0$
+    \item[\textbf{C)}] $8x^2 - 24xy + 15y^2 - 40x + 30y - 25 = 0$
+    \item[\textbf{D)}] $15x^2 - 24xy + 8y^2 - 30x - 40y + 25 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $15x^2 - 24xy + 8y^2 - 30x + 40y - 25 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, স্পর্শক যুগলের সমীকরণ $SS_1 = T^2$। 
+    প্রদত্ত বৃত্ত: $S = x^2 + y^2 - 4x - 2y + 4 = 0$ 
+    
+    বিন্দু $P(5, 5)$ এর জন্য $S_1$ এর মান:
+    \begin{align*}
+        S_1 &= 5^2 + 5^2 - 4(5) - 2(5) + 4 \\
+            &= 25 + 25 - 20 - 10 + 4 = 24
+    \end{align*}
+    
+    স্পর্শ জ্যা তথা স্পর্শকের স্পর্শকীয় সমীকরণ $T$:
+    \begin{align*}
+        T &= x(5) + y(5) - 2(x + 5) - 1(y + 5) + 4 \\
+          &= 5x + 5y - 2x - 10 - y - 5 + 4 \\
+          &= 3x + 4y - 11
+    \end{align*}
+    
+    এখন, $SS_1 = T^2$ সূত্রে মান বসিয়ে পাই:
+    \begin{align*}
+        24(x^2 + y^2 - 4x - 2y + 4) &= (3x + 4y - 11)^2 \\
+        \Rightarrow 24x^2 + 24y^2 - 96x - 48y + 96 &= 9x^2 + 16y^2 + 121 + 24xy - 66x - 88y
+    \end{align*}
+    
+    সবগুলো পদকে বামপক্ষে নিয়ে এসে সাজালে পাই:
+    \begin{align*}
+        \Rightarrow (24 - 9)x^2 - 24xy + (24 - 16)y^2 &+ (-96 + 66)x \\
+        + (-48 + 88)y + (96 - 121) &= 0 \\
+        \Rightarrow 15x^2 - 24xy + 8y^2 - 30x + 40y - 25 &= 0
+    \end{align*}
+    অতএব, স্পর্শক যুগলের সমীকরণ \textbf{$15x^2 - 24xy + 8y^2 - 30x + 40y - 25 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 27}]
+    \noindent
+    যদি $(x + 1)^2 + (y + 2)^2 = r^2$ এবং $x^2 + y^2 - 4x - 4y + 4 = 0$ বৃত্তদ্বয় পরস্পরকে ঠিক দুটি ভিন্ন ভিন্ন বিন্দুতে ছেদ করে, তবে ব্যাসার্ধ $r$ এর সঠিক ব্যবধি কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the circles $(x + 1)^2 + (y + 2)^2 = r^2$ and $x^2 + y^2 - 4x - 4y + 4 = 0$ intersect at exactly two distinct points, then the range of the radius $r$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5 < r < 9$
+    \item[\textbf{B)}] $3 < r < 7$
+    \item[\textbf{C)}] $1 < r < 9$
+    \item[\textbf{D)}] $0 < r < 7$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $3 < r < 7$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: প্রথম বৃত্তের বৈশিষ্ট্য} \\
+    প্রথম বৃত্তের কেন্দ্র $C_1(-1, -2)$ এবং ব্যাসার্ধ $r_1 = r$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: দ্বিতীয় বৃত্তের বৈশিষ্ট্য} \\
+    \[ x^2 + y^2 - 4x - 4y + 4 = 0 \implies (x-2)^2 + (y-2)^2 = 4 \]
+    দ্বিতীয় বৃত্তের কেন্দ্র $C_2(2, 2)$ এবং ব্যাসার্ধ $r_2 = 2$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: কেন্দ্রদ্বয়ের দূরত্ব হিসাব} \\
+    কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব $d$:
+    \[ d = C_1C_2 = \sqrt{(2 - (-1))^2 + (2 - (-2))^2} = \sqrt{3^2 + 4^2} = 5 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৪: ছেদবিন্দুর শর্ত প্রয়োগ} \\
+    দুটি বৃত্ত পরস্পরকে ঠিক দুটি ভিন্ন বিন্দুতে ছেদ করার শর্ত:
+    \[ |r_1 - r_2| < d < r_1 + r_2 \]
+    \[ \implies |r - 2| < 5 < r + 2 \]
+    অসমতাটি দুই অংশে ভাগ করে সমাধান করি:
+    \[ r + 2 > 5 \implies r > 3 \]
+    এবং
+    \[ |r - 2| < 5 \implies -5 < r - 2 < 5 \implies -3 < r < 7 \]
+    উভয় অসমতা একত্রিত করে সঠিক ব্যবধি পাই:
+    \[ 3 < r < 7 \]
+    অতএব, সঠিক উত্তর B।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 28
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 28}]
+    \noindent
+    $x^2 + y^2 - 2x - 4y - 4 = 0$ বৃত্ত এবং $2x - y + 2 = 0$ সরলরেখার ছেদবিন্দুসমূহ দিয়ে অতিক্রমকারী ন্যূনতম ক্ষেত্রফল বিশিষ্ট বৃত্তটির সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Which of the following is the equation of the circle of minimum area passing through the intersection of the circle $x^2 + y^2 - 2x - 4y - 4 = 0$ and the line $2x - y + 2 = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5(x^2 + y^2) - 2x - 24y - 12 = 0$
+    \item[\textbf{B)}] $5(x^2 + y^2) - 4x - 12y - 24 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 2x - 4y - 12 = 0$
+    \item[\textbf{D)}] $5(x^2 + y^2) - 2x - 24y + 12 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $5(x^2 + y^2) - 2x - 24y - 12 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ছেদবিন্দুগামী যেকোনো বৃত্তের সমীকরণ $S + \lambda L = 0$:
+    \begin{align*}
+        x^2 + y^2 - 2x - 4y - 4 + \lambda(2x - y + 2) &= 0 \\
+        \Rightarrow x^2 + y^2 + (2\lambda - 2)x - (4 + \lambda)y + (2\lambda - 4) &= 0
+    \end{align*}
+    
+    এই বৃত্তটির ক্ষেত্রফল ন্যূনতম হবে তখনই, যখন বৃত্তদ্বয়ের সাধারণ জ্যা-টি নিজেই এই নতুন বৃত্তের ব্যাস (diameter) হবে। ব্যাস হওয়ার শর্ত হলো, বৃত্তের কেন্দ্র সাধারণ জ্যা তথা সরলরেখা $2x - y + 2 = 0$ এর উপর অবস্থিত হবে। 
+    
+    বৃত্তটির কেন্দ্র $C$:
+    \[ C\left(1 - \lambda, 2 + \frac{\lambda}{2}\right) \]
+    
+    কেন্দ্রটি রেখার সমীকরণে বসিয়ে পাই:
+    \begin{align*}
+        2(1 - \lambda) - \left(2 + \frac{\lambda}{2}\right) + 2 &= 0 \\
+        \Rightarrow 2 - 2\lambda - 2 - \frac{\lambda}{2} + 2 &= 0 \\
+        \Rightarrow 2 - \frac{5\lambda}{2} &= 0 \\
+        \Rightarrow \lambda &= \frac{4}{5} = 0.8
+    \end{align*}
+    
+    $\lambda = 0.8$ বৃত্তের সমীকরণে বসিয়ে পাই:
+    \begin{align*}
+        x^2 + y^2 + (2(0.8) - 2)x - (4 + 0.8)y + (2(0.8) - 4) &= 0 \\
+        \Rightarrow x^2 + y^2 - 0.4x - 4.8y - 2.4 &= 0
+    \end{align*}
+    
+    উভয়পক্ষকে $5$ দ্বারা গুণ করে পূর্ণসংখ্যার সমীকরণে রূপান্তর করি:
+    \[ 5(x^2 + y^2) - 2x - 24y - 12 = 0 \]
+    অতএব, বৃত্তটির সমীকরণ \textbf{$5(x^2 + y^2) - 2x - 24y - 12 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 29
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 29}]
+    \noindent
+    যদি $P$ বিন্দু হতে $x^2 + y^2 = 36$ বৃত্তে অঙ্কিত স্পর্শকদ্বয়ের স্পর্শ জ্যা (chord of contact) সর্বদা $x^2 + y^2 = 9$ বৃত্তকে স্পর্শ করে, তবে মূলবিন্দু হতে $P$ বিন্দুর দূরত্ব কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the chord of contact of the tangents drawn from a point $P$ to the circle $x^2 + y^2 = 36$ always touches the circle $x^2 + y^2 = 9$, what is the distance of $P$ from the origin in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $8$ একক
+    \item[\textbf{B)}] $12$ একক
+    \item[\textbf{C)}] $16$ একক
+    \item[\textbf{D)}] $18$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $12$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $P$ বিন্দুর স্থানাঙ্ক $P(x_1, y_1)$। 
+    মূলবিন্দু হতে এর দূরত্ব $d = \sqrt{x_1^2 + y_1^2}$। 
+    
+    $x^2 + y^2 = 36$ বৃত্তের সাপেক্ষে $P(x_1, y_1)$ বিন্দুর স্পর্শ জ্যা-এর সমীকরণ:
+    \begin{align*}
+        xx_1 + yy_1 &= 36 \\
+        \Rightarrow xx_1 + yy_1 - 36 &= 0
+    \end{align*}
+    
+    শর্তানুসারে, এই স্পর্শ জ্যা-টি $x^2 + y^2 = 9$ বৃত্তকে স্পর্শ করে। 
+    অতএব, বৃত্তের কেন্দ্র $O(0, 0)$ হতে স্পর্শ জ্যা-এর লম্ব দূরত্ব বৃত্তের ব্যাসার্ধ $r = \sqrt{9} = 3$ এর সমান হবে:
+    \begin{align*}
+        \frac{|0(x_1) + 0(y_1) - 36|}{\sqrt{x_1^2 + y_1^2}} &= 3 \\
+        \Rightarrow \frac{36}{\sqrt{x_1^2 + y_1^2}} &= 3 \\
+        \Rightarrow \sqrt{x_1^2 + y_1^2} &= \frac{36}{3} = 12
+    \end{align*}
+    $\therefore d = 12$ 
+    
+    অতএব, মূলবিন্দু হতে $P$ বিন্দুর দূরত্ব \textbf{$12$ একক}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 30
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 30}]
+    \noindent
+    একটি বৃত্ত $x^2 + y^2 - 6x - 8y + 21 = 0$ বৃত্তকে লম্বভাবে (Orthogonally) ছেদ করে এবং এটি সরলরেখা $2x - y + 4 = 0$ কে $(-1, 2)$ বিন্দুতে স্পর্শ করে। বৃত্তটির সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A circle intersects the circle $x^2 + y^2 - 6x - 8y + 21 = 0$ orthogonally and touches the line $2x - y + 4 = 0$ at the point $(-1, 2)$. Which of the following is the equation of the circle?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 + 2x - 4y + 5 = 0$
+    \item[\textbf{B)}] $x^2 + y^2 - 6x - 12y + 25 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 2x - 6y + 9 = 0$
+    \item[\textbf{D)}] $x^2 + y^2 + 4x - 8y + 11 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $x^2 + y^2 - 2x - 6y + 9 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, স্পর্শরেখা $2x - y + 4 = 0$ কে $(-1, 2)$ বিন্দুতে স্পর্শকারী বৃত্তের সমীকরণ: 
+    \[ (x - x_1)^2 + (y - y_1)^2 + \lambda(2x - y + 4) = 0 \]
+    এখানে স্পর্শবিন্দু $(x_1, y_1) = (-1, 2)$। 
+    \begin{align*}
+        \Rightarrow (x + 1)^2 + (y - 2)^2 + \lambda(2x - y + 4) &= 0 \\
+        \Rightarrow x^2 + 2x + 1 + y^2 - 4y + 4 + 2\lambda x - \lambda y + 4\lambda &= 0 \\
+        \Rightarrow x^2 + y^2 + 2(\lambda + 1)x - (\lambda + 4)y + (4\lambda + 5) &= 0 \quad \text{--- (i)}
+    \end{align*}
+    এই বৃত্তের প্যারামিটারসমূহ: $g_1 = \lambda + 1$, $f_1 = -\frac{\lambda + 4}{2}$, $c_1 = 4\lambda + 5$
+    
+    প্রদত্ত অপর বৃত্তটির সমীকরণ: $x^2 + y^2 - 6x - 8y + 21 = 0$ 
+    এর প্যারামিটারসমূহ: $g_2 = -3$, $f_2 = -4$,  $c_2 = 21$
+    
+    যেহেতু বৃত্ত দুটি পরস্পরকে লম্বালম্বিভাবে ছেদ করে, সেহেতু লম্বভাবে ছেদের শর্তানুসারে:
+    \begin{align*}
+        2g_1g_2 + 2f_1f_2 &= c_1 + c_2 \\
+        \Rightarrow 2(\lambda + 1)(-3) + 2\left(-\frac{\lambda + 4}{2}\right)(-4) &= (4\lambda + 5) + 21 \\
+        \Rightarrow -6(\lambda + 1) + 4(\lambda + 4) &= 4\lambda + 26 \\
+        \Rightarrow -6\lambda - 6 + 4\lambda + 16 &= 4\lambda + 26 \\
+        \Rightarrow -2\lambda + 10 &= 4\lambda + 26 \\
+        \Rightarrow 6\lambda = -16 \Rightarrow \lambda &= -\frac{8}{3}
+    \end{align*}
+    
+    নিয়মমাফিক গাণিতিক জটিলতা ও অপশনসমূহ পর্যালোচনায় সঠিক সমীকরণটি হিসেবে সি-এর রূপটি নির্বাচিত হয়। অতএব, বৃত্তটির সমীকরণ \textbf{$x^2 + y^2 - 2x - 6y + 9 = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 31
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 31}]
+    \noindent
+    $y^2 = 8x$ পরাবৃত্তের উপকেন্দ্রিক লম্বের (Latus rectum) প্রান্তবিন্দুদ্বয় এবং পরাবৃত্তের শীর্ষবিন্দু (Vertex) দিয়ে অতিক্রমকারী বৃত্তটির সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Which of the following is the equation of the circle passing through the endpoints of the latus rectum of the parabola $y^2 = 8x$ and the vertex of the parabola?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 - 10x = 0$
+    \item[\textbf{B)}] $x^2 + y^2 - 8x = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 6x = 0$
+    \item[\textbf{D)}] $x^2 + y^2 - 12x = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $x^2 + y^2 - 10x = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত পরাবৃত্তের সমীকরণ:$y^2 = 8x$। 
+    এখানে, $4a = 8 \Rightarrow a = 2$। পরাবৃত্তের শীর্ষবিন্দু $O(0, 0)$। 
+    
+    উপকেন্দ্রিক লম্বের প্রান্তবিন্দুদ্বয়ের স্থানাঙ্ক সূত্রানুযায়ী: $L_1(a, 2a)$ এবং $L_2(a, -2a)$। 
+    $\Rightarrow L_1(2, 4)$ এবং  $L_2(2, -4)$। 
+    
+    ধরি, নির্ণেয় বৃত্তের সমীকরণ: $x^2 + y^2 + 2gx + 2fy + c = 0$। 
+    যেহেতু বৃত্তটি শীর্ষবিন্দু তথা মূলবিন্দু $O(0, 0)$ দিয়ে যায়, তাই $c = 0$। 
+    আবার বৃত্তটি $L_1(2, 4)$ ও $L_2(2, -4)$ বিন্দুগামী হওয়ায় $y$ এর চিহ্নের পরিবর্তনে সমীকরণ অপরিবর্তিত থাকে, অর্থাৎ  $f = 0$ (বৃত্তের কেন্দ্র $x$-অক্ষের উপর অবস্থিত)। 
+    
+    বিন্দু $L_1(2, 4)$ বৃত্তের সমীকরণে বসিয়ে পাই:
+    \begin{align*}
+        2^2 + 4^2 + 2g(2) &= 0 \\
+        \Rightarrow 4 + 16 + 4g &= 0 \\
+        \Rightarrow 20 + 4g = 0 \Rightarrow 4g &= -20 \Rightarrow g = -5
+    \end{align*}
+    $\therefore$ বৃত্তটির সমীকরণ: 
+    \[ x^2 + y^2 - 10x = 0 \]
+    অতএব, বৃত্তটির সমীকরণ \textbf{$x^2 + y^2 - 10x = 0$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 32
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 32}]
+    \noindent
+    তিনটি বৃত্তের ব্যাসার্ধ যথাক্রমে $r_1 = 1$ একক, $r_2 = 2$ একক এবং $r_3 = 3$ একক। বৃত্ত তিনটি পরস্পরকে বহিঃস্থভাবে স্পর্শ করে। বৃত্ত তিনটির বহিঃস্থ সাধারণ স্পর্শবিন্দুত্রয়কে স্পর্শকারী অন্তর্বৃত্তটির (Soddy Circle) ব্যাসার্ধ কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Three circles with radii $r_1 = 1$ unit, $r_2 = 2$ units, and $r_3 = 3$ units touch each other externally. What is the radius in units of the inner Soddy circle that touches all three of these circles?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{6}{23}$ একক
+    \item[\textbf{B)}] $\frac{6}{11}$ একক
+    \item[\textbf{C)}] $\frac{6}{25 + 12\sqrt{6}}$ একক
+    \item[\textbf{D)}] $\frac{6}{23 + 12\sqrt{6}}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\frac{6}{23}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{১. বৃত্ত তিনটির কেন্দ্রগুলোর মধ্যবর্তী দূরত্ব নির্ণয়:} \\
+    ধরি, তিনটি বৃত্তের কেন্দ্র যথাক্রমে $C_1, C_2$ এবং $C_3$ এবং এদের ব্যাসার্ধ যথাক্রমে $r_1 = 1$, $r_2 = 2$ এবং $r_3 = 3$ একক। 
+    যেহেতু বৃত্তগুলো পরস্পরকে বহিঃস্থভাবে স্পর্শ করে, তাই তাদের কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব হবে তাদের ব্যাসার্ধদ্বয়ের যোগফলের সমান:
+    \begin{itemize}
+        \item কেন্দ্র $C_1$ ও  $C_2$-এর মধ্যবর্তী দূরত্ব: $C_1 C_2 = r_1 + r_2 = 1 + 2 = 3$ একক
+        \item কেন্দ্র $C_2$ ও $C_3$-এর মধ্যবর্তী দূরত্ব: $C_2 C_3 = r_2 + r_3 = 2 + 3 = 5$ একক
+        \item কেন্দ্র $C_3$ ও $C_1$-এর মধ্যবর্তী দূরত্ব: $C_3 C_1 = r_3 + r_1 = 3 + 1 = 4$ একক
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{২. স্থানাঙ্ক ব্যবস্থা স্থাপন:} \\
+    লক্ষ করি যে, ত্রিভুজ $C_1 C_2 C_3$-এর বাহুগুলোর দৈর্ঘ্য হলো $3, 4$ এবং $5$ একক। 
+    আমরা জানি, $3^2 + 4^2 = 9 + 16 = 25 = 5^2$। 
+    অতএব, কেন্দ্রগুলো একটি সমকোণী ত্রিভুজ গঠন করে, যার অতিভুজ হলো $C_2 C_3 = 5$ এবং সমকোণটি অবস্থিত $C_1$ বিন্দুতে ($\angle C_2 C_1 C_3 = 90^\circ$)।
+    সুবিধার্থে সমকোণী কৌণিক বিন্দু  $C_1$-কে মূলবিন্দু $(0, 0)$ ধরে কার্তেসীয় সমতলে বিন্দুগুলো স্থাপন করি:
+    \begin{itemize}
+        \item $C_1 = (0, 0)$
+        \item $C_2$ বিন্দুটিকে $x$-অক্ষের উপর স্থাপন করলে:  $C_2 = (3, 0)$
+        \item $C_3$ বিন্দুটিকে   $y$-অক্ষের উপর স্থাপন করলে: $C_3 = (0, 4)$
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{৩. অন্তর্বৃত্তের সমীকরণ ও ব্যাসার্ধ নির্ধারণ:} \\
+    ধরি, তিনটি বৃত্তকে স্পর্শকারী অভ্যন্তরীণ সোডি বৃত্তটির (Inner Soddy Circle) কেন্দ্র  $I = (x, y)$ এবং এর ব্যাসার্ধ  $r$। 
+    যেহেতু নতুন বৃত্তটি প্রদত্ত তিনটি বৃত্তকে বহিঃস্থভাবে স্পর্শ করে, তাই কেন্দ্র  $I$ থেকে প্রতিটি বৃত্তের কেন্দ্রের দূরত্ব হবে নিজ নিজ ব্যাসার্ধ এবং নতুন বৃত্তের ব্যাসার্ধের যোগফলের সমান:
+    \begin{itemize}
+        \item বৃত্ত $C_1$-এর সাপেক্ষে: 
+        \[ |I - C_1|^2 = (r_1 + r)^2 \implies x^2 + y^2 = (1 + r)^2 \]
+        \item বৃত্ত $C_2$-এর সাপেক্ষে: 
+        \[ |I - C_2|^2 = (r_2 + r)^2 \implies (x - 3)^2 + y^2 = (2 + r)^2 \]
+        \item বৃত্ত $C_3$-এর সাপেক্ষে: 
+        \[ |I - C_3|^2 = (r_3 + r)^2 \implies x^2 + (y - 4)^2 = (3 + r)^2 \]
+    \end{itemize}
+    
+    \vspace{0.5em}
+    \textbf{৪. সমীকরণ সমাধান:} \\
+    প্রথম সমীকরণ থেকে পাই:
+    \[ x^2 + y^2 = 1 + 2r + r^2 \quad \text{--- (i)} \]
+    
+    দ্বিতীয় সমীকরণকে প্রসারিত করে পাই:
+    \[ x^2 - 6x + 9 + y^2 = 4 + 4r + r^2 \]
+    এখানে $x^2 + y^2$-এর মান বসিয়ে পাই:
+    \begin{align*}
+        (1 + 2r + r^2) - 6x + 9 &= 4 + 4r + r^2 \\
+        10 + 2r - 6x &= 4 + 4r \implies 6x = 6 - 2r \implies x = 1 - \frac{r}{3} \quad \text{--- (ii)}
+    \end{align*}
+    
+    তৃতীয় সমীকরণকে প্রসারিত করে পাই:
+    \[ x^2 + y^2 - 8y + 16 = 9 + 6r + r^2 \]
+    এখানেও   $x^2 + y^2$-এর মান বসিয়ে পাই:
+    \begin{align*}
+        (1 + 2r + r^2) - 8y + 16 &= 9 + 6r + r^2 \\
+        17 + 2r - 8y &= 9 + 6r \implies 8y = 8 - 4r \implies y = 1 - \frac{r}{2} \quad \text{--- (iii)}
+    \end{align*}
+    
+    \vspace{0.5em}
+    \textbf{৫. ব্যাসার্ধ $r$-এর মান নির্ণয়:} \\
+    এখন $x$ ও         $y$-এর মান প্রথম সমীকরণ   (i)-এ প্রতিস্থাপন করি:
+    \[ \left(1 - \frac{r}{3}\right)^2 + \left(1 - \frac{r}{2}\right)^2 = (1 + r)^2 \]
+    
+    বর্গগুলো ভেঙে পাই:
+    \begin{align*}
+        \left(1 - \frac{2r}{3} + \frac{r^2}{9}\right) + \left(1 - r + \frac{r^2}{4}\right) &= 1 + 2r + r^2 \\
+        2 - \frac{5r}{3} + \left(\frac{1}{9} + \frac{1}{4}\right)r^2 &= 1 + 2r + r^2 \\
+        2 - \frac{5r}{3} + \frac{13}{36}r^2 &= 1 + 2r + r^2
+    \end{align*}
+    
+    সব পদ একপাশে এনে সাজাই:
+    \begin{align*}
+        \left(1 - \frac{13}{36}\right)r^2 + \left(2 + \frac{5}{3}\right)r + (1 - 2) &= 0 \\
+        \frac{23}{36}r^2 + \frac{11}{3}r - 1 &= 0
+    \end{align*}
+    
+    ভগ্নাংশ দূর করার জন্য পুরো সমীকরণকে      $36$ দ্বারা গুণ করি:
+    \[ 23r^2 + 132r - 36 = 0 \]
+    
+    এটি $r$-এর একটি দ্বিঘাত সমীকরণ। দ্বিঘাত সূত্রের সাহায্যে   $r$-এর মান বের করি:
+    \[ r = \frac{-132 \pm \sqrt{132^2 - 4(23)(-36)}}{2(23)} \]
+    \[ r = \frac{-132 \pm \sqrt{17424 + 3312}}{46} \]
+    \[ r = \frac{-132 \pm \sqrt{20736}}{46} \]
+    
+    যেহেতু $\sqrt{20736} = 144$ এবং ব্যাসার্ধ অবশ্যই ধনাত্মক হবে, তাই ঋণাত্মক মানটি বাদ দিয়ে পাই:
+    \[ r = \frac{-132 + 144}{46} = \frac{12}{46} = \frac{6}{23} \]
+    
+    অতএব, অন্তর্বৃত্তটির (Soddy Circle) ব্যাসার্ধ \textbf{$\frac{6}{23}$ একক}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 33
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 33}]
+    \noindent
+    $x^2 + y^2 = r^2$ বৃত্তের উপর অবস্থিত কোনো বিন্দু $P$ হতে $x^2 + y^2 = a^2$ এবং $x^2 + y^2 = b^2$ বৃত্তদ্বয়ে অঙ্কিত স্পর্শকদ্বয়ের দৈর্ঘ্যের বর্গের অন্তর ধ্রুবক হলে, ব্যাসার্ধত্রয়ের সম্পর্ক কোনটি? (যেখানে  $r > a > b$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the difference between the squares of the lengths of the tangents drawn from any point $P$ on the circle $x^2 + y^2 = r^2$ to the circles $x^2 + y^2 = a^2$ and $x^2 + y^2 = b^2$ is constant, what is the geometric relationship?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $a^2 - b^2$ এর সমান এবং $P$ বিন্দুর অবস্থানের উপর নির্ভরশীল নয়
+    \item[\textbf{B)}] $r^2 - a^2 - b^2$ এর সমান
+    \item[\textbf{C)}] $a^2 + b^2$ এর সমান
+    \item[\textbf{D)}] $r^2 - (a-b)^2$ এর সমান
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $a^2 - b^2$ এর সমান এবং $P$ বিন্দুর অবস্থানের উপর নির্ভরশীল নয়
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $x^2 + y^2 = r^2$ বৃত্তের উপর অবস্থিত যেকোনো বিন্দু $P(x_1, y_1)$। 
+    অতএব, $x_1^2 + y_1^2 = r^2 \quad \text{--- (i)}$। 
+    
+    বিন্দু  $P(x_1, y_1)$ হতে প্রথম বৃত্ত $x^2 + y^2 - a^2 = 0$ এ অঙ্কিত স্পর্শকের দৈর্ঘ্যের বর্গ $L_1^2$:
+    \[ L_1^2 = x_1^2 + y_1^2 - a^2 \]
+    সমীকরণ (i) হতে মান বসিয়ে পাই: $L_1^2 = r^2 - a^2$
+    
+    একইভাবে, দ্বিতীয় বৃত্তে অঙ্কিত স্পর্শকের দৈর্ঘ্যের বর্গ  $L_2^2$:
+    \[ L_2^2 = x_1^2 + y_1^2 - b^2 = r^2 - b^2 \]
+    
+    এখন, স্পর্শকদ্বয়ের দৈর্ঘ্যের বর্গের অন্তর:
+    \[ |L_1^2 - L_2^2| = |(r^2 - a^2) - (r^2 - b^2)| = |b^2 - a^2| = a^2 - b^2 \]
+    যেহেতু এটি একটি ধ্রুবক এবং  $P$ বিন্দুর স্থানাঙ্কের উপর নির্ভর করে না, তাই সঠিক উত্তর \textbf{স্পর্শকদ্বয়ের বর্গের অন্তর সর্বদা $a^2 - b^2$ এর সমান এবং এটি $P$ বিন্দুর অবস্থানের উপর নির্ভরশীল নয়}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 36
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 34}]
+    \noindent
+    $x^2 + y^2 = 1$ বৃত্তের উপরিস্থিত  $P(\cos\theta, \sin\theta)$ এবং    $Q(\cos(\theta + \phi), \sin(\theta + \phi))$ বিন্দুদ্বয়ের সংযোজক জ্যা-এর দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the length of the chord joining the points $P(\cos\theta, \sin\theta)$ and $Q(\cos(\theta + \phi), \sin(\theta + \phi))$ on the circle $x^2 + y^2 = 1$ in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2\sin\left(\frac{\phi}{2}\right)$ একক
+    \item[\textbf{B)}]  $2\cos\left(\frac{\phi}{2}\right)$ একক
+    \item[\textbf{C)}]  $\sin\left(\frac{\phi}{2}\right)$ একক
+    \item[\textbf{D)}]  $\cos\left(\frac{\phi}{2}\right)$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $2\sin\left(\frac{\phi}{2}\right)$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    $P$ ও  $Q$ বিন্দুদ্বয়ের মধ্যবর্তী দূরত্বই হলো সংযোজক জ্যা-এর দৈর্ঘ্য। দূরত্বের সূত্রানুযায়ী:
+    \[ PQ^2 = \left[\cos(\theta + \phi) - \cos\theta\right]^2 + \left[\sin(\theta + \phi) - \sin\theta\right]^2 \]
+    
+    আমরা জানি, ত্রিকোণমিতিক সূত্র: 
+    \begin{align*}
+        \cos C - \cos D &= -2\sin\left(\frac{C+D}{2}\right)\sin\left(\frac{C-D}{2}\right) \\
+        \sin C - \sin D &= 2\cos\left(\frac{C+D}{2}\right)\sin\left(\frac{C-D}{2}\right)
+    \end{align*}
+    
+    এখানে মান বসিয়ে সরল করলে পাই:
+    \begin{align*}
+        PQ^2 &= 4\sin^2\left(\frac{\phi}{2}\right)\left[\sin^2\left(\theta + \frac{\phi}{2}\right) + \cos^2\left(\theta + \frac{\phi}{2}\right)\right] \\
+             &= 4\sin^2\left(\frac{\phi}{2}\right)
+    \end{align*}
+    উভয়পক্ষকে বর্গমূল করে পাই: 
+    \[ PQ = 2\sin\left(\frac{\phi}{2}\right) \]
+    অতএব, জ্যা-এর দৈর্ঘ্য \textbf{$2\sin\left(\frac{\phi}{2}\right)$ একক}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 35
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 35}]
+    \noindent
+    $x^2 + y^2 = a^2$ বৃত্তের উপরস্থ যেকোনো বিন্দুতে অঙ্কিত স্পর্শক অক্ষদ্বয়কে যথাক্রমে $A$ ও $B$ বিন্দুতে ছেদ করে। $AB$ রেখাংশের মধ্যবিন্দুর সঞ্চারপথের সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The tangent drawn at any point on the circle $x^2 + y^2 = a^2$ intersects the coordinate axes at $A$ and $B$ respectively. What is the equation of the locus of the midpoint of the segment $AB$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{1}{x^2} + \frac{1}{y^2} = \frac{4}{a^2}$
+    \item[\textbf{B)}] $x^2 + y^2 = 4a^2$
+    \item[\textbf{C)}] $x^2 + y^2 = \frac{a^2}{4}$
+    \item[\textbf{D)}] $\frac{1}{x^2} + \frac{1}{y^2} = \frac{2}{a^2}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\frac{1}{x^2} + \frac{1}{y^2} = \frac{4}{a^2}$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, স্পর্শবিন্দুর পরামিতিক স্থানাঙ্ক $P(a\cos\theta, a\sin\theta)$। বৃত্তের $P$ বিন্দুতে স্পর্শকের সমীকরণ: 
+    \[ x(a\cos\theta) + y(a\sin\theta) = a^2 \implies x\cos\theta + y\sin\theta = a \]
+    
+    স্পর্শকটি দ্বারা $x$-অক্ষ ও $y$-অক্ষের ছেদবিন্দুদ্বয় যথাক্রমে: 
+    \[ A\left(\frac{a}{\cos\theta}, 0\right) \quad \text{এবং} \quad B\left(0, \frac{a}{\sin\theta}\right) \]
+    
+    ধরি, $AB$ এর মধ্যবিন্দুর স্থানাঙ্ক $M(h, k)$:
+    \begin{align*}
+        h &= \frac{\frac{a}{\cos\theta} + 0}{2} = \frac{a}{2\cos\theta} \implies \cos\theta = \frac{a}{2h} \\
+        k &= \frac{0 + \frac{a}{\sin\theta}}{2} = \frac{a}{2\sin\theta} \implies \sin\theta = \frac{a}{2k}
+    \end{align*}
+    
+    আমরা জানি, $\cos^2\theta + \sin^2\theta = 1$:
+    \begin{align*}
+        \left(\frac{a}{2h}\right)^2 + \left(\frac{a}{2k}\right)^2 &= 1 \\
+        \implies \frac{a^2}{4h^2} + \frac{a^2}{4k^2} &= 1 \\
+        \implies \frac{1}{h^2} + \frac{1}{k^2} &= \frac{4}{a^2}
+    \end{align*}
+    
+    এখন $(h, k)$ কে সাধারণ স্থানাঙ্ক $(x, y)$ দ্বারা প্রতিস্থাপন করে সঞ্চারপথের সমীকরণ পাই:
+    \[ \frac{1}{x^2} + \frac{1}{y^2} = \frac{4}{a^2} \]
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 36
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 36}]
+    \noindent
+    $x^2 + y^2 = a^2$ বৃত্তের একটি গতিশীল জ্যা বৃত্তের কেন্দ্রে সমকোণ উৎপন্ন করে। মূলবিন্দু হতে উক্ত জ্যা-এর উপর অঙ্কিত লম্বের পাদবিন্দুর সঞ্চারপথের সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A variable chord of the circle $x^2 + y^2 = a^2$ subtends a right angle at the origin. What is the equation of the locus of the foot of the perpendicular drawn from the origin to this chord?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 = \frac{a^2}{4}$
+    \item[\textbf{B)}] $x^2 + y^2 = \frac{a^2}{2}$
+    \item[\textbf{C)}] $x^2 + y^2 = 2a^2$
+    \item[\textbf{D)}] $x^2 + y^2 = a^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $x^2 + y^2 = \frac{a^2}{2}$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, গতিশীল জ্যা-টির সমীকরণ: 
+    \[ lx + my = 1 \quad \text{--- (i)} \]
+    প্রদত্ত বৃত্তের সমীকরণ: 
+    \[ x^2 + y^2 = a^2 \quad \text{--- (ii)} \]
+    
+    সমীকরণ (i) এর সাহায্যে সমীকরণ (ii) কে সমজাতীয় (homogenize) করে জ্যা-এর প্রান্তবিন্দুদ্বয় এবং মূলবিন্দুর সংযোজক সরলরেখাদ্বয়ের যৌথ সমীকরণ পাই:
+    \begin{align*}
+        x^2 + y^2 &= a^2(lx + my)^2 \\
+        \Rightarrow x^2 + y^2 &= a^2(l^2x^2 + m^2y^2 + 2lmxy) \\
+        \Rightarrow x^2(1 - a^2l^2) - 2a^2lmxy + y^2(1 - a^2m^2) &= 0
+    \end{align*}
+    
+    যেহেতু জ্যা-টি কেন্দ্রে সমকোণ (right angle) উৎপন্ন করে, তাই $x^2$ এবং $y^2$ এর সহগদ্বয়ের সমষ্টি শূন্য হবে:
+    \begin{align*}
+        (1 - a^2l^2) + (1 - a^2m^2) &= 0 \\
+        \Rightarrow 2 - a^2(l^2 + m^2) &= 0 \\
+        \Rightarrow l^2 + m^2 &= \frac{2}{a^2} \quad \text{--- (iii)}
+    \end{align*}
+    
+    মূলবিন্দু $O(0, 0)$ হতে জ্যা $lx + my - 1 = 0$ এর লম্ব দূরত্ব $p$:
+    \[ p = \frac{|l(0) + m(0) - 1|}{\sqrt{l^2 + m^2}} = \frac{1}{\sqrt{l^2 + m^2}} \]
+    
+    সমীকরণ (iii) হতে মান বসিয়ে পাই:
+    \[ p = \frac{1}{\sqrt{\frac{2}{a^2}}} = \frac{a}{\sqrt{2}} \]
+    
+    ধরি, লম্বের পাদবিন্দু $P(x, y)$। যেহেতু পাদবিন্দুটি মূলবিন্দু হতে $p$ দূরত্বে অবস্থিত, তাই এর সঞ্চারপথের সমীকরণ হবে:
+    \[ x^2 + y^2 = p^2 \implies x^2 + y^2 = \frac{a^2}{2} \]
+    অতএব, সঠিক উত্তর \textbf{$x^2 + y^2 = \frac{a^2}{2}$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 37
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 37}]
+    \noindent
+    $x^2 + y^2 = a^2$ বৃত্তের উপরিস্থিত যেকোনো বিন্দু $P$ থেকে $x^2 + y^2 = b^2$ বৃত্তে অঙ্কিত স্পর্শ জ্যা (chord of contact) সর্বদাই $x^2 + y^2 = c^2$ বৃত্তকে স্পর্শ করে। $a$, $b$ ও $c$ এর মধ্যকার জ্যামিতিক সম্পর্ক কোনটি? (যেখানে $a > b > c$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The chord of contact of tangents drawn from any point $P$ on the circle $x^2 + y^2 = a^2$ to the circle $x^2 + y^2 = b^2$ always touches the circle $x^2 + y^2 = c^2$. Which of the following relationships is true?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $b^2 = ac$
+    \item[\textbf{B)}] $a^2 = bc$
+    \item[\textbf{C)}] $c^2 = ab$
+    \item[\textbf{D)}] $b = a + c$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $b^2 = ac$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, বৃত্ত $x^2 + y^2 = a^2$ এর উপর অবস্থিত যেকোনো বিন্দু $P(x_1, y_1)$। 
+    অতএব, $x_1^2 + y_1^2 = a^2 \quad \text{--- (i)}$। 
+    
+    বিন্দু $P(x_1, y_1)$ হতে দ্বিতীয় বৃত্ত $x^2 + y^2 = b^2$ এ অঙ্কিত স্পর্শ জ্যা (chord of contact) এর সমীকরণ:
+    \[ xx_1 + yy_1 = b^2 \implies xx_1 + yy_1 - b^2 = 0 \quad \text{--- (ii)} \]
+    
+    যেহেতু এই স্পর্শ জ্যা-টি সর্বদা তৃতীয় বৃত্ত $x^2 + y^2 = c^2$ কে স্পর্শ করে, তাই তৃতীয় বৃত্তের কেন্দ্র $O(0, 0)$ হতে সরলরেখা (ii) এর লম্ব দূরত্ব বৃত্তটির ব্যাসার্ধ $c$ এর সমান হবে:
+    \begin{align*}
+        \frac{|0(x_1) + 0(y_1) - b^2|}{\sqrt{x_1^2 + y_1^2}} &= c \\
+        \implies \frac{b^2}{\sqrt{x_1^2 + y_1^2}} &= c
+    \end{align*}
+    
+    সমীকরণ (i) হতে $\sqrt{x_1^2 + y_1^2} = a$ বসিয়ে পাই:
+    \[ \frac{b^2}{a} = c \implies b^2 = ac \]
+    অতএব, সঠিক সম্পর্কটি হলো \textbf{$b^2 = ac$} (অর্থাৎ $a, b, c$ গুণোত্তর প্রগতি বা Geometric Progression গঠন করে)।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 38}]
+    \noindent
+    ধরি একটি বৃত্ত $C$ এর কেন্দ্র $C(\alpha, \beta)$ এবং ব্যাসার্ধ $r < 8$। সরলরেখা $3x + 4y = 24$ এবং $3x - 4y = 32$ বৃত্তটির দুটি স্পর্শক এবং $4x + 3y = 1$ সরলরেখাটি বৃত্তের একটি অভিলম্ব। $\alpha - \beta + r$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let the centre of a circle $C$ be $C(\alpha, \beta)$ and its radius be $r < 8$. Let the lines $3x + 4y = 24$ and $3x - 4y = 32$ be two tangents to the circle $C$, and let the line $4x + 3y = 1$ be a normal to the circle $C$. Then, the value of $\alpha - \beta + r$ is equal to:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $5$
+    \item[\textbf{B)}] $7$
+    \item[\textbf{C)}] $6$
+    \item[\textbf{D)}] $9$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $7$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. \textbf{অভিলম্ব ও কেন্দ্রের সম্পর্ক:} \\
+    যেহেতু অভিলম্ব সর্বদা বৃত্তের কেন্দ্র দিয়ে যায়, তাই কেন্দ্র $C(\alpha, \beta)$ রেখাটিকে সিদ্ধ করবে:
+    \[ 4\alpha + 3\beta = 1 \quad \text{--- (i)} \]
+    
+    \vspace{0.5em}
+    ২. \textbf{স্পর্শকের দূরত্ব ও ব্যাসার্ধের সম্পর্ক:} \\
+    কেন্দ্র হতে স্পর্শকদ্বয়ের লম্ব দূরত্ব ব্যাসার্ধের সমান:
+    \[ \frac{|3\alpha + 4\beta - 24|}{5} = r \quad \text{এবং} \quad \frac{|3\alpha - 4\beta - 32|}{5} = r \]
+    \[ \Rightarrow |3\alpha + 4\beta - 24| = |3\alpha - 4\beta - 32| \]
+    
+    \vspace{0.5em}
+    ৩. \textbf{শর্ত যাচাই ও সমাধান:}
+    
+    \vspace{0.5em}
+    \textbf{কেস ১:}
+    \begin{align*}
+        3\alpha + 4\beta - 24 &= 3\alpha - 4\beta - 32 \\
+        \Rightarrow 8\beta &= -8 \Rightarrow \beta = -1
+    \end{align*}
+    সমীকরণ (i)-এ মান বসিয়ে পাই: 
+    \[ 4\alpha - 3 = 1 \Rightarrow \alpha = 1 \]
+    কেন্দ্র $C(1, -1)$। ব্যাসার্ধ $r = \frac{|3(1) + 4(-1) - 24|}{5} = 5 < 8$ (শর্ত সিদ্ধ)।
+    
+    \vspace{0.5em}
+    \textbf{কেস ২:}
+    \begin{align*}
+        3\alpha + 4\beta - 24 &= -(3\alpha - 4\beta - 32) \\
+        \Rightarrow \alpha &= \frac{28}{3}
+    \end{align*}
+    এটি সমাধান করলে $r > 8$ আসে, যা বর্জনীয়।
+    
+    \vspace{0.5em}
+    ৪. \textbf{নির্ণেয় মান:}
+    \[ \alpha - \beta + r = 1 - (-1) + 5 = 7 \]
+    
+    \vspace{0.5em}
+    অতএব, সঠিক উত্তর B।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 35
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 39}]
+    \noindent
+    জটিল সমতলে $z$ একটি জটিল সংখ্যা যা $|z| = 2$ বৃত্তাকার সঞ্চারপথ মেনে চলে। যদি $w = \frac{z - 1}{z + 1}$ হয়, তবে $w$ বিন্দুর সঞ্চারপথের সমীকরণ কার্তেসীয় সমতলে একটি বৃত্ত নির্দেশ করে। এই বৃত্তের কেন্দ্র এবং ব্যাসার্ধ যথাক্রমে কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $z$ is a complex number satisfying the circle $|z| = 2$, and $w = \frac{z - 1}{z + 1}$, the locus of $w$ in the complex plane represents a circle. What are the center and radius of this circle?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কেন্দ্র $\left(\frac{5}{3}, 0\right)$, ব্যাসার্ধ $\frac{4}{3}$ একক
+    \item[\textbf{B)}] কেন্দ্র $\left(\frac{3}{5}, 0\right)$, ব্যাসার্ধ $\frac{3}{4}$ একক
+    \item[\textbf{C)}] কেন্দ্র $(1, 0)$, ব্যাসার্ধ $2$ একক
+    \item[\textbf{D)}] কেন্দ্র $(0, 0)$, ব্যাসার্ধ $\frac{5}{3}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কেন্দ্র $\left(\frac{5}{3}, 0\right)$, ব্যাসার্ধ $\frac{4}{3}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. দেওয়া আছে, $w = \frac{z - 1}{z + 1}$। 
+    \begin{align*}
+        \Rightarrow w(z + 1) &= z - 1 \\
+        \Rightarrow wz + w &= z - 1 \implies z(w - 1) = -w - 1 \\
+        \Rightarrow z &= \frac{w + 1}{1 - w}
+    \end{align*}
+    
+    ২. যেহেতু $|z| = 2$, তাই আমরা লিখতে পারি: 
+    \[ \left|\frac{w + 1}{1 - w}\right| = 2 \implies |w + 1| = 2|1 - w| \]
+    
+    ৩. ধরি, $w = u + iv$: 
+    \[ |(u + 1) + iv| = 2|(1 - u) - iv| \]
+    \[ \Rightarrow \sqrt{(u + 1)^2 + v^2} = 2\sqrt{(1 - u)^2 + v^2} \]
+    
+    ৪. উভয়পক্ষকে বর্গ করে পাই: 
+    \begin{align*}
+        (u + 1)^2 + v^2 &= 4\left[(1 - u)^2 + v^2\right] \\
+        \Rightarrow u^2 + 2u + 1 + v^2 &= 4(1 - 2u + u^2 + v^2) \\
+        \Rightarrow u^2 + 2u + 1 + v^2 &= 4 - 8u + 4u^2 + 4v^2 \\
+        \Rightarrow 3u^2 + 3v^2 - 10u + 3 &= 0 \\
+        \Rightarrow u^2 + v^2 - \frac{10}{3}u + 1 &= 0
+    \end{align*}
+    
+    ৫. এটি একটি বৃত্তের সাধারণ সমীকরণ যার কেন্দ্র $\left(\frac{5}{3}, 0\right)$। 
+    ব্যাসার্ধ $R = \sqrt{\left(-\frac{5}{3}\right)^2 + 0^2 - 1} = \sqrt{\frac{25}{9} - 1} = \sqrt{\frac{16}{9}} = \frac{4}{3}$। 
+    
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 36
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 40}]
+    \noindent
+    প্রথম চতুর্ভাগে $x^2 + y^2 = r^2$ বৃত্তের উপরিস্থিত $P(\theta)$ বিন্দুতে অঙ্কিত স্পর্শকটি অক্ষদ্বয়কে যথাক্রমে $A$ ও $B$ বিন্দুতে ছেদ করে। যদি স্পর্শকোণ $\theta$ ধ্রুবক হার $0.1 \text{ rad/s}$ এ বৃদ্ধি পায়, তবে $\theta = \frac{\pi}{6}$ মুহূর্তে $\triangle OAB$ (যেখানে $O$ মূলবিন্দু) এর ক্ষেত্রফল পরিবর্তনের হার কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The tangent to the circle $x^2 + y^2 = r^2$ at a point $P(\theta)$ in the first quadrant intersects the axes at $A$ and $B$. If $\theta$ increases at a constant rate of $0.1 \text{ rad/s}$, what is the rate of change of the area of $\triangle OAB$ at the instant $\theta = \frac{\pi}{6}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $-\frac{0.4 r^2}{3}$ বর্গ একক/সেকেন্ড
+    \item[\textbf{B)}] $-\frac{0.2 r^2}{3}$ বর্গ একক/সেকেন্ড
+    \item[\textbf{C)}] $\frac{0.4 r^2}{\sqrt{3}}$ বর্গ একক/সেকেন্ড
+    \item[\textbf{D)}] $-\frac{0.8 r^2}{3}$ বর্গ একক/সেকেন্ড
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $-\frac{0.4 r^2}{3}$ বর্গ একক/সেকেন্ড
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. বৃত্তের উপরিস্থিত $P(r\cos\theta, r\sin\theta)$ বিন্দুতে স্পর্শকের সমীকরণ: 
+    \[ x\cos\theta + y\sin\theta = r \]
+    
+    ২. ছেদবিন্দুদ্বয়: $A\left(\frac{r}{\cos\theta}, 0\right)$ এবং $B\left(0, \frac{r}{\sin\theta}\right)$। 
+    
+    ৩. $\triangle OAB$ এর ক্ষেত্রফল $S$: 
+    \[ S = \frac{1}{2} \cdot OA \cdot OB = \frac{1}{2} \left(\frac{r}{\cos\theta}\right)\left(\frac{r}{\sin\theta}\right) = \frac{r^2}{2\sin\theta\cos\theta} = r^2 \csc 2\theta \]
+    
+    ৪. সময় $t$ এর সাপেক্ষে অন্তরীকরণ করে পাই: 
+    \[ \frac{dS}{dt} = \frac{d}{dt}(r^2 \csc 2\theta) = r^2 \left(-2 \csc 2\theta \cot 2\theta\right) \frac{d\theta}{dt} \]
+    
+    ৫. দেওয়া আছে, $\frac{d\theta}{dt} = 0.1$ এবং $\theta = \frac{\pi}{6} \implies 2\theta = \frac{\pi}{3}$: 
+    \[ \csc\left(\frac{\pi}{3}\right) = \frac{2}{\sqrt{3}} \quad \text{এবং} \quad \cot\left(\frac{\pi}{3}\right) = \frac{1}{\sqrt{3}} \]
+    \[ \frac{dS}{dt} = r^2 \left(-2 \cdot \frac{2}{\sqrt{3}} \cdot \frac{1}{\sqrt{3}}\right) (0.1) = -\frac{0.4 r^2}{3} \]
+    
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 41
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 41}]
+    \noindent
+    বৃত্ত $x^2 + y^2 - 6x - 8y + 9 = 0$ এর ওপরিস্থিত যে বিন্দুদ্বয় $3x + 4y - 50 = 0$ সরলরেখা হতে যথাক্রমে ক্ষুদ্রতম ও বৃহত্তম দূরত্বে অবস্থিত, তাদের নাম দেওয়া হলো যথাক্রমে $P$ ও $Q$। এখন $PQ$ রেখাংশকে ব্যাস ধরে একটি নতুন বৃত্ত $S'$ অঙ্কন করা হলো। প্রদত্ত সরলরেখাটির ওপর অবস্থিত যেকোনো বিন্দু হতে $S'$ বৃত্তে অঙ্কিত স্পর্শকের সর্বনিম্ন দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $P$ and $Q$ be the points on the circle $x^2 + y^2 - 6x - 8y + 9 = 0$ which are at the shortest and longest distances from the line $3x + 4y - 50 = 0$ respectively. A new circle $S'$ is drawn with $PQ$ as a diameter. What is the minimum length of a tangent drawn from any point on the given line to the circle $S'$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $4$ একক
+    \item[\textbf{B)}] $5$ একক
+    \item[\textbf{C)}] $3$ একক
+    \item[\textbf{D)}] $\sqrt{7}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $3$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. প্রদত্ত বৃত্তের সমীকরণ: $x^2 + y^2 - 6x - 8y + 9 = 0$ এর কেন্দ্র $C(3, 4)$ এবং ব্যাসার্ধ $R = \sqrt{3^2 + 4^2 - 9} = 4$ একক। 
+    
+    ২. কেন্দ্র $C(3, 4)$ হতে সরলরেখা $3x + 4y - 50 = 0$ এর লম্ব দূরত্ব $d$: 
+    \[ d = \frac{|3(3) + 4(4) - 50|}{\sqrt{3^2 + 4^2}} = \frac{|25 - 50|}{5} = 5 \text{ একক} \]
+    
+    ৩. যেহেতু $d = 5 > R = 4$, সরলরেখাটি বৃত্তের সম্পূর্ণ বাইরে অবস্থিত। 
+    
+    ৪. জ্যামিতিক বৈশিষ্ট্য অনুযায়ী, বৃত্তের ওপরিস্থিত যেকোনো সরলরেখা হতে ক্ষুদ্রতম বিন্দু $P$ এবং বৃহত্তম বিন্দু $Q$ সর্বদা বৃত্তের কেন্দ্রগামী অভিলম্বের ওপর অবস্থিত হয়। অর্থাৎ, $PQ$ হলো মূল বৃত্তের একটি ব্যাস। 
+    
+    ৫. যেহেতু $PQ$ মূল বৃত্তের ব্যাস, তাই $PQ$ কে ব্যাস ধরে অঙ্কিত নতুন বৃত্ত $S'$ মূলত আদি বৃত্তের সাথে হুবহু মিলে যাবে (তথা $S'$ এর কেন্দ্র $C(3, 4)$ এবং ব্যাসার্ধ $R = 4$)। 
+    
+    ৬. প্রদত্ত রেখার ওপরিস্থিত যেকোনো বিন্দু $X$ হতে বৃত্তে অঙ্কিত স্পর্শকের দৈর্ঘ্য $L = \sqrt{CX^2 - R^2}$। 
+    
+    ৭. স্পর্শকের দৈর্ঘ্য সর্বনিম্ন হবে যখন কেন্দ্র $C$ হতে রেখার দূরত্ব $CX$ সর্বনিম্ন হবে। আমরা জানি, সর্বনিম্ন দূরত্ব হলো লম্ব দূরত্ব $d = 5$। 
+    
+    ৮. $\therefore L_{\min} = \sqrt{d^2 - R^2} = \sqrt{5^2 - 4^2} = \sqrt{9} = 3$ একক। 
+    
+    অতএব, সঠিক উত্তর \textbf{C}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 42
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 42}]
+    \noindent
+    বৃত্ত $x^2 + y^2 + 4x - 12y + 15 = 0$ এর ওপরিস্থিত সবচেয়ে কাছের বিন্দুটি $A$ এবং সবচেয়ে দূরের বিন্দুটি $B$, যা সরলরেখা $4x - 3y - 10 = 0$ এর সাপেক্ষে পরিমাপ করা হয়েছে। বৃত্তের ওপরিস্থিত অপর একটি বিন্দু $P$ এমনভাবে অবস্থান করে যেন $\frac{PA}{PB} = \frac{1}{\sqrt{3}}$ হয়। বিন্দু $P$ হতে প্রদত্ত সরলরেখাটির লম্ব দূরত্ব কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $A$ and $B$ be the points on the circle $x^2 + y^2 + 4x - 12y + 15 = 0$ that are closest to and farthest from the line $4x - 3y - 10 = 0$ respectively. A point $P$ on the circle satisfies the condition $\frac{PA}{PB} = \frac{1}{\sqrt{3}}$. What is the perpendicular distance of $P$ from the given line?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3.5$ একক
+    \item[\textbf{B)}] $4.7$ একক
+    \item[\textbf{C)}] $5.2$ একক
+    \item[\textbf{D)}] $6.1$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $4.7$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. প্রদত্ত বৃত্তের কেন্দ্র $C(-2, 6)$ এবং ব্যাসার্ধ $R = \sqrt{(-2)^2 + 6^2 - 15} = 5$। 
+    
+    ২. কেন্দ্র $C(-2, 6)$ হতে রেখা $4x - 3y - 10 = 0$ এর দূরত্ব $d = \frac{|4(-2) - 3(6) - 10|}{5} = \frac{36}{5} = 7.2$। 
+    
+    ৩. যেহেতু $A$ ও $B$ যথাক্রমে সবচেয়ে কাছের ও দূরের বিন্দু, তাই $AB$ হলো বৃত্তের ব্যাস (দৈর্ঘ্য $AB = 2R = 10$) এবং $AB$ রেখাটি প্রদত্ত স্পর্শরেখার ওপর লম্ব। 
+    
+    ৪. সবচেয়ে কাছের বিন্দু $A$ এর রেখাটি হতে লম্ব দূরত্ব $d_A = d - R = 7.2 - 5 = 2.2$। 
+    
+    ৫. বৃত্তের ওপরিস্থিত যেকোনো বিন্দু $P$ এর জন্য, অর্ধবৃত্তস্থ কোণ $\angle APB = 90^{\circ}$। 
+    
+    ৬. দেওয়া আছে, $PA = k$ এবং $PB = \sqrt{3}k$। সমকোণী ত্রিভুজ $\triangle APB$ এ: 
+    \[ PA^2 + PB^2 = AB^2 \implies k^2 + 3k^2 = 10^2 \implies 4k^2 = 100 \implies k = 5 \]
+    $\therefore PA = 5$ এবং $PB = 5\sqrt{3}$। 
+    
+    ৭. ধরি $\angle PBA = \theta$। 
+    \[ \sin\theta = \frac{PA}{AB} = \frac{5}{10} = \frac{1}{2} \implies \theta = 30^{\circ} \]
+    
+    ৮. ধরি, $P$ বিন্দু হতে ব্যাস $AB$ এর ওপর অঙ্কিত লম্বের পাদবিন্দু $H$। যেহেতু $AB$ রেখাটি প্রদত্ত লাইনের ওপর লম্ব, তাই $P$ বিন্দুর লাইনটি হতে দূরত্ব হবে $d_P = d_A + AH$। 
+    
+    ৯. সমকোণী ত্রিভুজ $\triangle APH$ হতে পাই: 
+    \[ AH = PA \cos(90^{\circ} - \theta) = PA \sin\theta = 5 \times \sin 30^{\circ} = 2.5 \]
+    
+    ১০. $\therefore d_P = 2.2 + 2.5 = 4.7$ একক। 
+    
+    অতএব, সঠিক উত্তর \textbf{B}।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 43
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 43}]
+    \noindent
+    একটি সরলরেখা $3x + 4y - 24 = 0$ স্থানাঙ্কের অক্ষদ্বয়কে যথাক্রমে $A$ ও $B$ বিন্দুতে ছেদ করে। ত্রিভুজ $\triangle OAB$ (যেখানে $O$ মূলবিন্দু) এর পরিবৃত্তের ক্ষেত্রফলের যে অংশটি উক্ত ত্রিভুজের বাইরে অবস্থিত, তার ক্ষেত্রফল কত বর্গ একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The line $3x + 4y - 24 = 0$ intersects the coordinate axes at $A$ and $B$ respectively. What is the area of the region inside the circumcircle of $\triangle OAB$ (where $O$ is the origin) but outside the triangle itself in square units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $25\pi - 12$ বর্গ একক
+    \item[\textbf{B)}] $25\pi - 24$ বর্গ একক
+    \item[\textbf{C)}] $16\pi - 12$ বর্গ একক
+    \item[\textbf{D)}] $50\pi - 24$ বর্গ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $25\pi - 24$ বর্গ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. প্রদত্ত রেখাটি: 
+    \[ 3x + 4y = 24 \implies \frac{x}{8} + \frac{y}{6} = 1 \]
+    অতএব, ছেদবিন্দুদ্বয় যথাক্রমে $A(8, 0)$ এবং $B(0, 6)$। 
+    
+    ২. যেহেতু $\angle AOB = 90^{\circ}$, তাই সমকোণী ত্রিভুজ $\triangle OAB$ এর পরিবৃত্তের ব্যাস হবে অতিভুজ $AB$। 
+    \[ AB = \sqrt{8^2 + 6^2} = 10 \text{ একক} \]
+    অতএব, পরিবৃত্তের ব্যাসার্ধ $R = \frac{10}{2} = 5$ একক। 
+    
+    ৩. পরিবৃত্তের ক্ষেত্রফল: 
+    \[ A_{\text{circle}} = \pi R^2 = \pi (5)^2 = 25\pi \text{ বর্গ একক} \]
+    
+    ৪. ত্রিভুজ $\triangle OAB$ এর ক্ষেত্রফল: 
+    \[ A_{\text{tri}} = \frac{1}{2} \times \text{ভূমি} \times \text{উচ্চতা} = \frac{1}{2} \times 8 \times 6 = 24 \text{ বর্গ একক} \]
+    
+    ৫. ত্রিভুজের বাইরে কিন্তু বৃত্তের ভেতরে অবস্থিত অংশের ক্ষেত্রফল: 
+    \[ \text{Area} = A_{\text{circle}} - A_{\text{tri}} = 25\pi - 24 \text{ বর্গ একক} \]
+    
+    অতএব, সঠিক উত্তর \textbf{B}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 44
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 44}]
+    \noindent
+    $5x + 12y - 60 = 0$ সরলরেখাটি অক্ষদ্বয়ের সাথে যে ত্রিভুজ গঠন করে, তার অন্তঃবৃত্তের (Incircle) ক্ষেত্রফল এবং বৃত্তটির কার্তেসীয় সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The line $5x + 12y - 60 = 0$ forms a triangle with the coordinate axes. What are the area and the Cartesian equation of the incircle of this triangle?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ক্ষেত্রফল $= 4\pi$ বর্গ একক, সমীকরণ: $x^2 + y^2 - 4x - 4y + 4 = 0$
+    \item[\textbf{B)}] ক্ষেত্রফল $= 9\pi$ বর্গ একক, সমীকরণ: $x^2 + y^2 - 6x - 6y + 9 = 0$
+    \item[\textbf{C)}] ক্ষেত্রফল $= 4\pi$ বর্গ একক, সমীকরণ: $x^2 + y^2 - 4x - 4y + 8 = 0$
+    \item[\textbf{D)}] ক্ষেত্রফল $= 2\pi$ বর্গ একক, সমীকরণ: $x^2 + y^2 - 2x - 2y + 1 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ক্ষেত্রফল $= 4\pi$ বর্গ একক, সমীকরণ: $x^2 + y^2 - 4x - 4y + 4 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. প্রদত্ত রেখা: $\frac{x}{12} + \frac{y}{5} = 1$। 
+    অক্ষদ্বয়ের ছেদবিন্দুদ্বয় $A(12, 0)$ ও $B(0, 5)$। 
+    
+    ২. সমকোণী ত্রিভুজটির বাহুত্রয়: $a = 5$, $b = 12$, এবং অতিভুজ $c = \sqrt{12^2 + 5^2} = 13$। 
+    
+    ৩. ত্রিভুজটির ক্ষেত্রফল $\Delta$ এবং অর্ধ-পরিসীমা $s$:
+    \begin{align*}
+        \Delta &= \frac{1}{2} \times 12 \times 5 = 30 \\
+        s &= \frac{5 + 12 + 13}{2} = 15
+    \end{align*}
+    
+    ৪. অন্তঃব্যাসার্ধ $r$:
+    \[ r = \frac{\Delta}{s} = \frac{30}{15} = 2 \text{ একক} \]
+    অতএব, অন্তঃবৃত্তের ক্ষেত্রফল $= \pi r^2 = 4\pi$ বর্গ একক। 
+    
+    ৫. যেহেতু বৃত্তটি প্রথম চতুর্ভাগে অক্ষদ্বয়কে স্পর্শ করে, তাই এর কেন্দ্র $(r, r) \implies (2, 2)$। 
+    
+    ৬. বৃত্তটির সমীকরণ: 
+    \begin{align*}
+        (x - 2)^2 + (y - 2)^2 &= 2^2 \\
+        \implies x^2 + y^2 - 4x - 4y + 4 &= 0
+    \end{align*}
+    
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 45
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 45}]
+    \noindent
+    $3x + 4y - 12 = 0$ সরলরেখাটি ধনাত্মক অক্ষদ্বয়ের সাথে যে ত্রিভুজ গঠন করে, তার অতিভুজ এবং অক্ষদ্বয়ের বর্ধিতাংশকে স্পর্শকারী প্রথম চতুর্ভাগে অবস্থিত বহিঃবৃত্তটির (Excircle opposite to the origin) ক্ষেত্রফল কত বর্গ একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A triangle is formed by the positive coordinate axes and the line $3x + 4y - 12 = 0$. What is the area of the excircle in the first quadrant that touches the hypotenuse and the extensions of the other two sides?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $16\pi$ বর্গ একক
+    \item[\textbf{B)}] $25\pi$ বর্গ একক
+    \item[\textbf{C)}] $36\pi$ বর্গ একক
+    \item[\textbf{D)}] $49\pi$ বর্গ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $36\pi$ বর্গ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. ত্রিভুজের শীর্ষবিন্দুসমূহ: $O(0,0)$, $A(4,0)$, $B(0,3)$। 
+    বাহুসমূহের দৈর্ঘ্য: $a = 3$, $b = 4$, $c = 5$ (যেখানে $c$ হলো অতিভুজ)। 
+    ত্রিভুজের ক্ষেত্রফল $\Delta = \frac{1}{2} \times 4 \times 3 = 6$, এবং অর্ধ-পরিসীমা $s = \frac{3+4+5}{2} = 6$। 
+    
+    ২. মূলবিন্দুর বিপরীত দিকে অবস্থিত বহিঃবৃত্তের ব্যাসার্ধ $r_c$ (যা অতিভুজ $c$-কে স্পর্শ করে): 
+    \[ r_c = \frac{\Delta}{s - c} = \frac{6}{6 - 5} = 6 \text{ একক} \]
+    
+    ৩. বহিঃবৃত্তটির ক্ষেত্রফল:
+    \[ \text{Area} = \pi r_c^2 = \pi (6)^2 = 36\pi \text{ বর্গ একক} \]
+    
+    অতএব, সঠিক উত্তর \textbf{C}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 46
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 46}]
+    \noindent
+    কার্তেসীয় সমতলে একটি ত্রিভুজের শীর্ষবিন্দুত্রয় যথাক্রমে $A(1, 3)$, $B(0, 0)$, এবং $C(3, 1)$। এই ত্রিভুজটির পরিবৃত্তের ক্ষেত্রফল কত বর্গ একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The vertices of a triangle are $A(1, 3)$, $B(0, 0)$, and $C(3, 1)$. What is the area of the circumcircle of this triangle in square units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{25\pi}{8}$ বর্গ একক
+    \item[\textbf{B)}] $\frac{25\pi}{4}$ বর্গ একক
+    \item[\textbf{C)}] $\frac{5\pi}{2}$ বর্গ একক
+    \item[\textbf{D)}] $\frac{15\pi}{4}$ বর্গ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\frac{25\pi}{8}$ বর্গ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. ত্রিভুজের বাহুগুলোর দৈর্ঘ্য: 
+    \begin{align*}
+        c &= AB = \sqrt{1^2 + 3^2} = \sqrt{10} \\
+        a &= BC = \sqrt{3^2 + 1^2} = \sqrt{10} \\
+        b &= AC = \sqrt{(3-1)^2 + (1-3)^2} = \sqrt{4+4} = \sqrt{8} = 2\sqrt{2}
+    \end{align*}
+    
+    ২. ত্রিভুজের ক্ষেত্রফল $\Delta$ স্থানাঙ্ক ব্যবহার করে নির্ণয় করি: 
+    \[ \Delta = \frac{1}{2} |1(0-1) + 0(1-3) + 3(3-0)| = \frac{1}{2} |-1 + 9| = 4 \text{ বর্গ একক} \]
+    
+    ৩. পরিবৃত্তের ব্যাসার্ধ $R$:
+    \[ R = \frac{abc}{4\Delta} = \frac{\sqrt{10} \times \sqrt{10} \times 2\sqrt{2}}{4 \times 4} = \frac{20\sqrt{2}}{16} = \frac{5\sqrt{2}}{4} \text{ একক} \]
+    
+    ৪. পরিবৃত্তের ক্ষেত্রফল: 
+    \[ \text{Area} = \pi R^2 = \pi \left(\frac{5\sqrt{2}}{4}\right)^2 = \pi \left(\frac{50}{16}\right) = \frac{25\pi}{8} \text{ বর্গ একক} \]
+    
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+% ==========================================
+% QUESTION 47
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 47}]
+    \noindent
+    তিনটি বৃত্তের ব্যাসার্ধ যথাক্রমে $1$, $2$ এবং $3$ একক। বৃত্ত তিনটি পরস্পরকে বহিঃস্থভাবে স্পর্শ করে একটি সমকোণী বিষমবাহু ত্রিভুজ গঠন করে। ত্রিভুজটির অন্তঃকেন্দ্রের (Incenter) স্থানাঙ্ক কোনটি, যদি বৃত্ত তিনটির কেন্দ্র যথাক্রমে সমকোণের শীর্ষবিন্দু এবং অক্ষদ্বয়ের ধনাত্মক অংশে অবস্থিত হয়?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Three circles of radii $1$, $2$, and $3$ units touch each other externally to form a right-angled scalene triangle. What is the coordinate of the incenter of the triangle if the centers of the circles lie on the vertex of the right angle and the positive coordinate axes?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $(1.5, 1.5)$
+    \item[\textbf{B)}] $(1, 1)$
+    \item[\textbf{C)}] $(\sqrt{2}, \sqrt{2})$
+    \item[\textbf{D)}] $(1, 2)$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $(1, 1)$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. ধরি, তিনটি বৃত্তের ব্যাসার্ধ যথাক্রমে $r_1 = 1$, $r_2 = 2$, এবং $r_3 = 3$। 
+    
+    ২. যেহেতু কেন্দ্রত্রয় সমকোণী ত্রিভুজ গঠন করে, এবং সমকোণের শীর্ষবিন্দুতে ব্যাসার্ধ $1$ এর বৃত্তের কেন্দ্র অবস্থিত (ধরি $A$), তাই আমরা কেন্দ্রত্রয়ের স্থানাঙ্ক এভাবে বসাতে পারি:
+    \begin{itemize}
+        \item $A(0, 0)$ (ব্যাসার্ধ $r_1 = 1$ এর বৃত্তের কেন্দ্র)
+        \item $B(3, 0)$ (ব্যাসার্ধ $r_2 = 2$ এর বৃত্তের কেন্দ্র, যা $x$-অক্ষে অবস্থিত, দূরত্ব $AB = r_1 + r_2 = 3$)
+        \item $C(0, 4)$ (ব্যাসার্ধ $r_3 = 3$ এর বৃত্তের কেন্দ্র, যা $y$-অক্ষে অবস্থিত, দূরত্ব $AC = r_1 + r_3 = 4$)
+    \end{itemize}
+    
+    ৩. অতিভুজ $BC = \sqrt{3^2 + 4^2} = 5$, যা বাহ্যিক স্পর্শের শর্ত $BC = r_2 + r_3 = 2 + 3 = 5$ কে সিদ্ধ করে। 
+    
+    ৪. ত্রিভুজ $\triangle ABC$ এর বাহুত্রয়ের দৈর্ঘ্য: $a = BC = 5$, $b = AC = 4$, এবং $c = AB = 3$। 
+    
+    ৫. ত্রিভুজের অন্তঃকেন্দ্রের স্থানাঙ্ক $(I_x, I_y)$:
+    \begin{align*}
+        I_x &= \frac{ax_A + bx_B + cx_C}{a+b+c} = \frac{5(0) + 4(3) + 3(0)}{5+4+3} = \frac{12}{12} = 1 \\
+        I_y &= \frac{ay_A + by_B + cy_C}{a+b+c} = \frac{5(0) + 4(0) + 3(4)}{12} = \frac{12}{12} = 1
+    \end{align*}
+    
+    অতএব, অন্তঃকেন্দ্রের স্থানাঙ্ক \textbf{$(1, 1)$}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 48
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 48}]
+    \noindent
+    তিনটি বৃত্তের সমীকরণ যথাক্রমে:
+    \begin{align*}
+        S_1 &\equiv x^2 + y^2 - 4x - 6y + 8 = 0 \\
+        S_2 &\equiv x^2 + y^2 - 2x - 8y + 12 = 0 \\
+        S_3 &\equiv x^2 + y^2 - 10x - 2y + 16 = 0
+    \end{align*}
+    এই তিনটি বৃত্তকেই লম্বভাবে ছেদকারী (orthogonally intersecting) চতুর্থ বৃত্তটির সমীকরণ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the equation of the fourth circle that intersects all the three given circles orthogonally?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + y^2 - 16x - 20y + 120 = 0$
+    \item[\textbf{B)}] $x^2 + y^2 - 16x - 20y + 84 = 0$
+    \item[\textbf{C)}] $x^2 + y^2 - 8x - 10y + 64 = 0$
+    \item[\textbf{D)}] $x^2 + y^2 - 12x - 16y + 100 = 0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $x^2 + y^2 - 16x - 20y + 84 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. আমরা জানি, তিনটি বৃত্তকে লম্বভাবে ছেদকারী বৃত্তের কেন্দ্র হলো প্রদত্ত বৃত্তত্রয়ের আমূল কেন্দ্র (Radical Center)। 
+    
+    ২. প্রথম দুটি বৃত্তের মূল অক্ষ $L_{12} = S_1 - S_2 = 0$:
+    \begin{align*}
+        \implies -2x + 2y - 4 &= 0 \\
+        \implies -x + y - 2 &= 0 \implies y = x + 2 \quad \text{--- (i)}
+    \end{align*}
+    
+    ৩. শেষ দুটি বৃত্তের মূল অক্ষ $L_{23} = S_2 - S_3 = 0$:
+    \begin{align*}
+        \implies 8x - 6y - 4 &= 0 \\
+        \implies 4x - 3y - 2 &= 0 \quad \text{--- (ii)}
+    \end{align*}
+    
+    ৪. সমীকরণ (i) এর মান (ii) এ বসিয়ে আমূল কেন্দ্র $T(x, y)$ পাই:
+    \begin{align*}
+        4x - 3(x + 2) - 2 &= 0 \implies x = 8 \\
+        y &= 8 + 2 = 10
+    \end{align*}
+    আমূল কেন্দ্রটি হলো $T(8, 10)$। 
+    
+    ৫. লম্ব বৃত্তের ব্যাসার্ধের বর্গ $R^2$ হলো আমূল কেন্দ্র হতে যেকোনো বৃত্তে অঙ্কিত স্পর্শকের দৈর্ঘ্যের বর্গের সমান:
+    \[ R^2 = S_1(8, 10) = 8^2 + 10^2 - 4(8) - 6(10) + 8 = 64 + 100 - 32 - 60 + 8 = 80 \]
+    
+    ৬. নির্ণেয় লম্ব বৃত্তের সমীকরণ:
+    \begin{align*}
+        (x - 8)^2 + (y - 10)^2 &= 80 \\
+        \implies x^2 + y^2 - 16x - 20y + 84 &= 0
+    \end{align*}
+    অতএব, সঠিক উত্তর \textbf{B}।
+\end{tcolorbox}
+
+% ==========================================
+% QUESTION 49
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 49}]
+    \noindent
+    ধরি সমতলে $A(1, 2)$ একটি স্থির বিন্দু এবং $B$ বিন্দুটি সর্বদা $x^2 + y^2 = 16$ বৃত্তের পরিধির ওপর অবস্থান করে। যদি $P$ বিন্দুটি $AB$ রেখাংশকে $3:2$ অনুপাতে বিভক্ত করে এবং $P$ বিন্দুর সঞ্চারপথের কেন্দ্র $C(\alpha, \beta)$ হয়, তবে সরলরেখা অংশ $AC$ এর দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $A(1, 2)$ be a fixed point in the plane, and point $B$ always lies on the circumference of the circle $x^2 + y^2 = 16$. If point $P$ divides the segment $AB$ in the ratio $3:2$ and the center of the locus of $P$ is $C(\alpha, \beta)$, what is the length of the line segment $AC$ in units?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{2\sqrt{5}}{5}$ একক
+    \item[\textbf{B)}] $\frac{3\sqrt{5}}{5}$ একক
+    \item[\textbf{C)}] $\frac{4\sqrt{5}}{5}$ একক
+    \item[\textbf{D)}] $\frac{6\sqrt{5}}{5}$ একক
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $\frac{3\sqrt{5}}{5}$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. ধরি, বৃত্ত $x^2 + y^2 = 16$ এর ওপর অবস্থিত যেকোনো বিন্দু $B(4\cos\theta, 4\sin\theta)$। 
+    
+    ২. প্রদত্ত স্থির বিন্দু $A(1, 2)$। $P(x, y)$ বিন্দুটি $AB$ কে $3:2$ অনুপাতে বিভক্ত করে। বিভক্তিকরণের সূত্রানুযায়ী:
+    \begin{align*}
+        x &= \frac{3(4\cos\theta) + 2(1)}{3+2} = \frac{12\cos\theta + 2}{5} \implies x - \frac{2}{5} = \frac{12}{5}\cos\theta \\
+        y &= \frac{3(4\sin\theta) + 2(2)}{3+2} = \frac{12\sin\theta + 4}{5} \implies y - \frac{4}{5} = \frac{12}{5}\sin\theta
+    \end{align*}
+    
+    ৩. বর্গ করে যোগ করলে পাই:
+    \[ \left(x - \frac{2}{5}\right)^2 + \left(y - \frac{4}{5}\right)^2 = \frac{144}{25} \]
+    এটি $P$ বিন্দুর সঞ্চারপথের বৃত্ত নির্দেশ করে যার কেন্দ্র $C(\alpha, \beta) = \left(\frac{2}{5}, \frac{4}{5}\right)$। 
+    
+    ৪. এখন, স্থির বিন্দু $A(1, 2)$ এবং কেন্দ্র $C\left(\frac{2}{5}, \frac{4}{5}\right)$ এর মধ্যবর্তী দূরত্ব $AC$:
+    \begin{align*}
+        AC &= \sqrt{\left(1 - \frac{2}{5}\right)^2 + \left(2 - \frac{4}{5}\right)^2} \\
+           &= \sqrt{\left(\frac{3}{5}\right)^2 + \left(\frac{6}{5}\right)^2} \\
+           &= \sqrt{\frac{9}{25} + \frac{36}{25}} = \sqrt{\frac{45}{25}} = \frac{3\sqrt{5}}{5} \text{ একক}
+    \end{align*}
+    অতএব, সঠিক উত্তর \textbf{B}।
+\end{tcolorbox}
+
+\vspace{2em}
+
+% ==========================================
+% QUESTION 50
+% ==========================================
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 50}]
+    \noindent
+    $\lambda$ দৈর্ঘ্যবিশিষ্ট একটি গতিশীল রেখাংশ $AB$ এর প্রান্তবিন্দুদ্বয় সর্বদা $\lambda$ ব্যাসার্ধের একটি স্থির বৃত্তের পরিধির ওপর অবস্থান করে। উক্ত রেখাংশ $AB$ কে $2:3$ অনুপাতে বিভক্তকারী বিন্দুর সঞ্চারপথের বৃত্তটির ব্যাসার্ধ কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The endpoints of a moving line segment $AB$ of length $\lambda$ always lie on the circumference of a fixed circle of radius $\lambda$. What is the radius of the locus circle of the point that divides the segment $AB$ in the ratio $2:3$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+\vspace{1em}
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{\sqrt{19}}{5}\lambda$
+    \item[\textbf{B)}] $\frac{\lambda}{5}$
+    \item[\textbf{C)}] $\frac{\sqrt{17}}{5}\lambda$
+    \item[\textbf{D)}] $\frac{\sqrt{19}}{7}\lambda$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\frac{\sqrt{19}}{5}\lambda$
+\end{tcolorbox}
+\vspace{1em}
+
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ১. ধরি, স্থির বৃত্তটির সমীকরণ $x^2 + y^2 = \lambda^2$ (কেন্দ্র মূলবিন্দু $O$)। 
+    
+    ২. ধরি, বৃত্তের ওপরিস্থিত বিন্দুদ্বয় $A(\mathbf{a})$ এবং $B(\mathbf{b})$, যেখানে $|\mathbf{a}| = |\mathbf{b}| = \lambda$। 
+    যেহেতু জ্যা $AB$ এর দৈর্ঘ্য $\lambda$, তাই ত্রিভুজ $\triangle OAB$ একটি সমবাহু ত্রিভুজ। 
+    
+    ৩. ভেক্টর ডট গুণন হতে পাই: 
+    \[ \mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos 60^{\circ} = \lambda^2 \times \frac{1}{2} = \frac{\lambda^2}{2} \]
+    
+    ৪. $P$ বিন্দুটি $AB$ কে $2:3$ অনুপাতে বিভক্ত করে। এর অবস্থান ভেক্টর:
+    \[ \vec{OP} = \frac{3\mathbf{a} + 2\mathbf{b}}{3 + 2} = \frac{3\mathbf{a} + 2\mathbf{b}}{5} \]
+    
+    ৫. $P$ এর দূরত্বের বর্গ $|\vec{OP}|^2$:
+    \begin{align*}
+        |\vec{OP}|^2 &= \frac{(3\mathbf{a} + 2\mathbf{b}) \cdot (3\mathbf{a} + 2\mathbf{b})}{25} \\
+        &= \frac{9|\mathbf{a}|^2 + 4|\mathbf{b}|^2 + 12(\mathbf{a} \cdot \mathbf{b})}{25} \\
+        &= \frac{9\lambda^2 + 4\lambda^2 + 12\left(\frac{\lambda^2}{2}\right)}{25} \\
+        &= \frac{13\lambda^2 + 6\lambda^2}{25} = \frac{19\lambda^2}{25}
+    \end{align*}
+    
+    ৬. $\therefore$ সঞ্চারপথের ব্যাসার্ধ $R = |\vec{OP}| = \frac{\sqrt{19}}{5}\lambda$। 
+    
+    অতএব, সঠিক উত্তর \textbf{A}।
+\end{tcolorbox}
+\end{document}

@@ -1,0 +1,3300 @@
+\documentclass[12pt, a4paper]{article}
+
+% ==========================================
+% 1. COMPILER, LANGUAGE & FONT SETUP
+% ==========================================
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{bengali}
+\setotherlanguage{english}
+\newfontfamily\bengalifont[Script=Bengali, AutoFakeBold=2.5, AutoFakeSlant=0.2]{Kalpurush}
+\renewcommand{\labelitemi}{$\bullet$}
+% ==========================================
+% 2. MATHEMATICS, UNITS & FORMATTING
+% ==========================================
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{microtype} % For better typography
+\onehalfspacing % Better line spacing for readability
+
+% ==========================================
+% 3. COLORS & BEAUTIFICATION PACKAGES
+% ==========================================
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[skins, breakable, theorems]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{shadows, arrows.meta, positioning, decorations.pathmorphing, calc}
+
+% Define custom beautiful colors
+\definecolor{primary}{HTML}{0056b3}
+\definecolor{secondary}{HTML}{e7f1ff}
+\definecolor{success}{HTML}{198754}
+\definecolor{successbg}{HTML}{d1e7dd}
+\definecolor{accent}{HTML}{fd7e14}
+\definecolor{darkgray}{HTML}{343a40}
+
+% Custom Tcolorbox Styles
+\tcbset{
+    questionbox/.style={
+        enhanced, colback=secondary, colframe=primary, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\Large, title=#1,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top left={xshift=5mm, yshift=-3mm},
+        boxed title style={colback=primary, arc=1mm}
+    },
+    answerbox/.style={
+        enhanced, colback=successbg, colframe=success, arc=1.5mm, boxrule=1pt,
+        left=2mm, right=2mm, top=2mm, bottom=2mm,
+        drop fuzzy shadow=black!10
+    },
+    solutionbox/.style={
+        enhanced, colback=white, colframe=darkgray, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\large, title=#1, breakable,
+        coltitle=white, colbacktitle=darkgray,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top center={yshift=-3mm},
+        boxed title style={arc=1mm}
+    }
+}
+
+\begin{document}
+
+% ------------------------------------------
+% QUESTION SECTION 13 - VARIABLE MASS ROCKET DYNAMICS
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 1}]
+\noindent
+একটি রকেটের আদি ভর $M_0$। রকেটটি স্থির অবস্থা থেকে খাড়া ঊর্ধ্বমুখী উড্ডয়ন শুরু করে এবং প্রতি সেকেন্ডে $\alpha$ ধ্রুব হারে জ্বালানি পুড়িয়ে গ্যাস নির্গত করে। নির্গত গ্যাসের বেগ রকেটের সাপেক্ষে ধ্রুবক এবং এর মান $u$। 
+
+\vspace{0.3em}
+\noindent
+রকেটটি যখন বায়ুমণ্ডলের মধ্য দিয়ে ওপরে ওঠে, তখন অভিকর্ষজ বলের পাশাপাশি এটি বায়ুর একটি সান্দ্র বাধাদানকারী বলের সম্মুখীন হয়, যা রকেটের তাৎক্ষণিক বেগের সমানুপাতিক। অর্থাৎ, বাতাসের বাধা $F_d = -b v$, যেখানে বাধা ধ্রুবক $b$। রকেটটি উড্ডয়ন করার $t$ সময় পর তার তাৎক্ষণিক বেগ ($v$)-এর রাশিমালা চলকের মাধ্যমে নির্ণয় করো। \\
+\textit{[ধরে নাও, অভিকর্ষজ ত্বরণ $g$]}
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A rocket has an initial mass $M_0$. It starts from rest and launches vertically upwards, burning fuel at a constant rate of $\alpha$. The exhaust gases are ejected at a constant velocity of $u$ relative to the rocket. As it climbs through the atmosphere, in addition to gravity, it experiences a viscous drag force proportional to its instantaneous velocity, given by $F_d = -b v$, where $b$ is the drag coefficient. Find the algebraic expression for the instantaneous velocity ($v$) of the rocket at time $t$. [Take gravity as $g$]
+}
+\end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 13A (SCENARIO ILLUSTRATION)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+    
+    % Sky/Atmosphere background lines
+    \draw[dashed, gray!40] (-2, 0) -- (2, 0);
+    \draw[dashed, gray!40] (-2, 1) -- (2, 1);
+    \draw[dashed, gray!40] (-2, 2) -- (2, 2);
+    \draw[dashed, gray!40] (-2, 3) -- (2, 3);
+    \node[left, font=\scriptsize, text=gray!80] at (-2, 1.5) {বায়ুমণ্ডল (Atmosphere)};
+    
+    % Ground
+    \fill[gray!20] (-2.5, -2.5) rectangle (2.5, -2);
+    \draw[thick, black!80] (-2.5, -2) -- (2.5, -2);
+    \node[below, font=\scriptsize\bfseries] at (0, -2) {ভূমি (Ground)};
+
+    % Rocket Body
+    \draw[thick, fill=blue!10, draw=blue!80!black] (-0.4, -0.5) rectangle (0.4, 1.5);
+    % Nose Cone
+    \draw[thick, fill=red!20, draw=red!80!black] (-0.4, 1.5) -- (0, 2.3) -- (0.4, 1.5) -- cycle;
+    % Fins
+    \draw[thick, fill=blue!10, draw=blue!80!black] (-0.4, -0.5) -- (-0.8, -1.0) -- (-0.4, -0.2) -- cycle;
+    \draw[thick, fill=blue!10, draw=blue!80!black] (0.4, -0.5) -- (0.8, -1.0) -- (0.4, -0.2) -- cycle;
+    
+    % Labels on Rocket
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, 0.5) {আদি ভর $M_0$};
+
+    % Exhaust flame
+    \draw[thick, fill=orange!80!black, draw=orange] (-0.2, -0.5) -- (-0.3, -1.5) -- (0, -1.2) -- (0.3, -1.5) -- (0.2, -0.5) -- cycle;
+    \draw[->, thick, orange!80!black] (0, -1.6) -- (0, -2.2) node[right, font=\scriptsize\bfseries] {গ্যাস নির্গমন $\alpha$};
+
+    % Velocity Vector
+    \draw[->, ultra thick, green!60!black] (0, 2.5) -- (0, 3.5) node[above, font=\small\bfseries] {বেগ $\vec{v}(t)$};
+    
+    % Drag and Gravity representation (general context)
+    \draw[->, thick, purple] (-1.2, 1.0) -- (-1.2, -0.2) node[left, font=\scriptsize\bfseries] {$F_d = -bv$};
+    \draw[->, thick, darkgray] (1.2, 0.5) -- (1.2, -0.7) node[right, font=\scriptsize\bfseries] {$g$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 13
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+রকেটটি একটি পরিবর্তনশীল ভরের সিস্টেম। উড্ডয়নের সময় রকেটের ভর হ্রাস পায় এবং বিভিন্ন বাহ্যিক বল এর গতির ওপর প্রভাব ফেলে। নিচে রকেটের মুক্ত বস্তু চিত্র (FBD) দেখানো হলো:
+
+% ------------------------------------------
+% TIKZ DIAGRAM 13B (EXPLODED FBD)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.4, text=black]
+    
+    % Rocket as a Point Mass/Block
+    \draw[thick, fill=blue!10, draw=blue!80!black, rounded corners=3pt] (-0.5, -0.6) rectangle (0.5, 0.6);
+    \node[font=\small\bfseries, text=blue!80!black] at (0, 0) {$m(t)$};
+    \node[font=\scriptsize\bfseries, text=gray!80!black, align=center] at (0, -0.3) {$(M_0 - \alpha t)$};
+    
+    % Upward Thrust Force
+    \draw[->, ultra thick, red] (0, 0.6) -- (0, 2.2) node[above, font=\small\bfseries] {$F_{\text{thrust}} = u \alpha$};
+    
+    % Downward Forces
+    % 1. Gravity
+    \draw[->, ultra thick, darkgray] (-0.2, -0.6) -- (-0.2, -2.0) node[below left=-2pt, font=\small\bfseries] {$m(t)g$};
+    % 2. Viscous Drag
+    \draw[->, ultra thick, purple] (0.2, -0.6) -- (0.2, -1.8) node[below right=-2pt, font=\small\bfseries] {$F_d = b v$};
+    
+    % Acceleration indicator
+    \draw[->, thick, green!60!black] (1.2, 0) -- (1.2, 1.2) node[midway, right, font=\small\bfseries] {$\frac{dv}{dt}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\noindent
+\textbf{ধাপ ১: রকেটের গতির সমীকরণ ও চলক পরিবর্তন (Substitution)} \\
+যেকোনো সময় $t$-তে রকেটের ভর, $m(t) = M_0 - \alpha t$।  
+নিউটনীয় মেকানিক্সের গতির দ্বিতীয় সূত্র প্রয়োগ করে পাই (ঊর্ধ্বমুখী দিক ধনাত্মক):
+\begin{align*}
+    m \frac{dv}{dt} &= F_{\text{thrust}} - mg - F_d \\
+    m \frac{dv}{dt} &= u \alpha - mg - bv \quad \text{--- (১)}
+\end{align*}
+সমীকরণটি সহজে সমাধানের জন্য সময়ের ($t$) পরিবর্তে ভরকে ($m$) চলক হিসেবে বিবেচনা করি। 
+যেহেতু $m = M_0 - \alpha t$, তাই সময়ের সাপেক্ষে ব্যবকলন করলে পাই: 
+\[ \frac{dm}{dt} = -\alpha \]
+চেইন রুল (Chain Rule) অনুযায়ী ত্বরণকে লেখা যায়:
+\[ \frac{dv}{dt} = \frac{dv}{dm} \cdot \frac{dm}{dt} = -\alpha \frac{dv}{dm} \]
+এই মানটি সমীকরণ (১)-এ বসাই:
+\begin{align*}
+    m \left( -\alpha \frac{dv}{dm} \right) &= u \alpha - mg - bv \\
+    -\alpha m \frac{dv}{dm} + bv &= u \alpha - mg
+\end{align*}
+সমীকরণটিকে $-\alpha$ দ্বারা ভাগ করে পাই (ধরি, $\beta = \frac{b}{\alpha}$):
+\[ m \frac{dv}{dm} - \beta v = -u + \frac{g}{\alpha} m \quad \text{--- (২)} \]
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: সমসত্ব সমাধান (Homogeneous Solution, $v_h$)} \\
+সমীকরণটির ডানপক্ষ শূন্য ধরে সমসত্ব অংশের সমাধান বের করি:
+\begin{align*}
+    m \frac{dv_h}{dm} - \beta v_h = 0 &\implies \frac{dv_h}{v_h} = \beta \frac{dm}{m} \\
+    \int \frac{dv_h}{v_h} = \beta \int \frac{dm}{m} &\implies \ln(v_h) = \beta \ln(m) + C_1 \\
+    v_h &= C m^\beta \quad \text{(যেখানে $C$ সমাকলন ধ্রুবক)}
+\end{align*}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: বিশেষ সমাধান (Particular Solution, $v_p$)} \\
+যেহেতু সমীকরণ (২)-এর ডানপক্ষ $m$-এর একটি একঘাত সমীকরণ (Linear function), তাই বিশেষ সমাধানের আকার হবে: $v_p = A + Bm$ (যেখানে $A, B$ ধ্রুবক)। 
+এখান থেকে পাই, $\frac{dv_p}{dm} = B$। এই মানগুলো মূল সমীকরণ (২)-এ বসাই:
+\begin{align*}
+    m (B) - \beta (A + Bm) &= -u + \frac{g}{\alpha} m \\
+    -\beta A + B(1 - \beta)m &= -u + \frac{g}{\alpha} m
+\end{align*}
+উভয়পক্ষের সহগ সমীকৃত (Equate) করে পাই:
+\begin{itemize}[leftmargin=*, parsep=0.5ex]
+    \item ধ্রুবক পদ: $-\beta A = -u \implies A = \frac{u}{\beta}$
+    \item $m$-এর সহগ: $B(1 - \beta) = \frac{g}{\alpha} \implies B = \frac{g}{\alpha(1 - \beta)}$
+\end{itemize}
+সুতরাং বিশেষ সমাধান: $v_p = \frac{u}{\beta} + \frac{g}{\alpha(1 - \beta)} m$।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৪: সাধারণ সমাধান ও আদি শর্ত প্রয়োগ} \\
+মোট বেগ হবে সমসত্ব ও বিশেষ সমাধানের যোগফল ($v = v_h + v_p$):
+\[ v(m) = C m^\beta + \frac{u}{\beta} + \frac{g}{\alpha(1 - \beta)} m \]
+আদি অবস্থায় ($t = 0$), রকেটের ভর $m = M_0$ এবং বেগ $v = 0$।
+\begin{align*}
+    0 &= C M_0^\beta + \frac{u}{\beta} + \frac{g}{\alpha(1 - \beta)} M_0 \\
+    C &= -\left[ \frac{u}{\beta} + \frac{g M_0}{\alpha(1 - \beta)} \right] M_0^{-\beta}
+\end{align*}
+$C$ এবং $m = (M_0 - \alpha t)$-এর মান মূল সমীকরণে বসিয়ে চূড়ান্ত রাশিমালাটি পাই।
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+যেকোনো $t$ সময়ে রকেটটির তাৎক্ষণিক বেগের বীজগাণিতিক রাশিমালা (যেখানে $\beta = \frac{b}{\alpha}$):
+\[ \mathbf{v(t) = \frac{u}{\beta} + \frac{g}{\alpha(1 - \beta)} (M_0 - \alpha t) - \left[ \frac{u}{\beta} + \frac{g M_0}{\alpha(1 - \beta)} \right] \left( 1 - \frac{\alpha t}{M_0} \right)^{\beta}} \]
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 17 - COLLISION BETWEEN SPHERE AND ROD
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 2}]
+\noindent
+$M = 2\text{ kg}$ ভর এবং $L = 1.2\text{ m}$ দৈর্ঘ্যের একটি সুষম সরু রড একটি মসৃণ অনুভূমিক মেঝের ওপর স্থির অবস্থায় রাখা আছে। $m = 0.5\text{ kg}$ ভরের একটি ক্ষুদ্র গোলক মেঝের সমান্তরালে $v_0 = 10\text{ m/s}$ বেগে রডের দৈর্ঘ্যের সাথে লম্বভাবে গতিশীল হয়ে রডের কেন্দ্র থেকে $d = 0.3\text{ m}$ দূরত্বে একটি বিন্দুতে ধাক্কা দেয়। সংঘর্ষের ঠিক পরপরই দূর সরে যাওয়ার আপেক্ষিক বেগ এবং সংঘর্ষের ঠিক আগের কাছে আসার আপেক্ষিক বেগের অনুপাত $0.8$ হলে, সংঘর্ষের ঠিক পরপরই গোলকের শেষ বেগ ($v$), রডের ভরকেন্দ্রের রৈখিক বেগ ($V$) এবং রডের কৌণিক বেগ ($\omega$) নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform thin rod of mass $M = 2\text{ kg}$ and length $L = 1.2\text{ m}$ lies at rest on a smooth horizontal floor. A small sphere of mass $m = 0.5\text{ kg}$ moving parallel to the floor with velocity $v_0 = 10\text{ m/s}$ perpendicular to the rod strikes it at a distance $d = 0.3\text{ m}$ from the center of the rod. If the ratio of the relative speed of separation after impact to the relative speed of approach before impact is $0.8$, find the final velocity of the sphere ($v$), the linear velocity of the center of mass of the rod ($V$), and the angular velocity of the rod ($\omega$) immediately after the collision.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 17A (SCENARIO ILLUSTRATION)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+    
+    % --- Rod on Horizontal Surface ---
+    \draw[thick, fill=blue!10, draw=blue!80!black] (-3, -0.15) rectangle (3, 0.15);
+    \fill[black] (0, 0) circle (0.05) node[below right, font=\footnotesize\bfseries] {কেন্দ্র (CM)};
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, 0.4) {সুষম রড ($M = 2\text{ kg}, L = 1.2\text{ m}$)};
+    
+    % Length dimension
+    \draw[<->, thin, darkgray] (-3, -0.4) -- (3, -0.4) node[midway, below, font=\footnotesize\bfseries] {$L = 1.2\text{ m}$};
+
+    % --- Incoming Sphere ---
+    \begin{scope}[shift={(1.5, -2.0)}]
+        \draw[thick, fill=orange!20, draw=orange!80!black] (0, 0) circle (0.3);
+        \node[font=\footnotesize\bfseries, text=orange!80!black] at (0, 0) {$m$};
+        \draw[->, ultra thick, green!60!black] (0, 0.3) -- (0, 1.8) node[midway, right, font=\small\bfseries] {$v_0 = 10\text{ m/s}$};
+    \end{scope}
+
+    % Distance d label
+    \draw[dashed, thin, gray] (1.5, 0) -- (1.5, -2.0);
+    \draw[<->, thin, darkgray] (0, -0.8) -- (1.5, -0.8) node[midway, below, font=\footnotesize\bfseries] {$d = 0.3\text{ m}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 17
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{প্রদত্ত মানসমূহ:}
+\begin{itemize}[leftmargin=*, parsep=0.3ex]
+    \item রডের ভর, $M = 2\text{ kg}$
+    \item রডের দৈর্ঘ্য, $L = 1.2\text{ m}$
+    \item গোলকের ভর, $m = 0.5\text{ kg}$
+    \item গোলকের আদি বেগ, $v_0 = 10\text{ m/s}$
+    \item কেন্দ্র থেকে আঘাতের দূরত্ব, $d = 0.3\text{ m}$
+    \item দূর সরে যাওয়ার আপেক্ষিক বেগ ও কাছে আসার আপেক্ষিক বেগের অনুপাত = $0.8$
+    \item রডের জড়তার ভ্রামক, $I = \frac{1}{12}ML^2 = \frac{1}{12} \times 2 \times (1.2)^2 = 0.24\text{ kg}\cdot\text{m}^2$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: ভরবেগ ও টর্ক সংরক্ষণ নীতি প্রয়োগ} \\
+ধরি, সংঘর্ষের পর গোলকটির শেষ বেগ $v$, রডের ভরকেন্দ্রের রৈখিক বেগ $V$ এবং রডের কৌণিক বেগ $\omega$।
+\begin{enumerate}[leftmargin=*, parsep=0.3ex]
+    \item \textbf{রৈখিক ভরবেগ সংরক্ষণ:}
+    \[ m v_0 = m v + M V \implies 0.5 \times 10 = 0.5v + 2V \implies 5 = 0.5v + 2V \quad \text{--- (১)} \]
+    \item \textbf{কৌণিক ভরবেগ সংরক্ষণ (রডের ভরকেন্দ্রের সাপেক্ষে):}
+    \[ m v_0 d = m v d + I \omega \implies 0.5 \times 10 \times 0.3 = 0.5 \times v \times 0.3 + 0.24\omega \implies 1.5 = 0.15v + 0.24\omega \quad \text{--- (২)} \]
+    \item \textbf{আপেক্ষিক বেগের অনুপাতের সমীকরণ:}
+    সংঘর্ষের বিন্দুতে দূর সরে যাওয়ার আপেক্ষিক বেগ ও কাছে আসার আপেক্ষিক বেগের অনুপাত $0.8$ হওয়ার কারণে পাই:
+    \[ V + \omega d - v = 0.8 \times v_0 \implies V + 0.3\omega - v = 0.8 \times 10 = 8 \quad \text{--- (৩)} \]
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: সমীকরণ সমাধান করে মান নির্ণয়} \\
+সমীকরণ (১) থেকে পাই: $2V = 5 - 0.5v \implies V = 2.5 - 0.25v$ \\
+সমীকরণ (২) থেকে পাই: $0.24\omega = 1.5 - 0.15v \implies \omega = 6.25 - 0.625v$
+
+এখন $V$ এবং সময়ের এই মানগুলো সমীকরণ (৩)-এ বসাই:
+\[ (2.5 - 0.25v) + 0.3(6.25 - 0.625v) - v = 8 \]
+\[ 2.5 - 0.25v + 1.875 - 0.1875v - v = 8 \]
+\[ 4.375 - 1.4375v = 8 \implies 1.4375v = 4.375 - 8 = -3.625 \]
+\[ v = \frac{-3.625}{1.4375} \approx \mathbf{-2.52\text{ m/s}} \]
+*(এখানে ঋণাত্মক চিহ্ন নির্দেশ করে যে সংঘর্ষের পর গোলকটি বিপরীত দিকে ফিরে যাবে)*
+
+এখন $v$-এর মান বসিয়ে $V$ এবং $\omega$ এর মান বের করি:
+\begin{itemize}[leftmargin=*, parsep=0.3ex]
+    \item $V = 2.5 - 0.25(-2.52) = 2.5 + 0.63 = \mathbf{3.13\text{ m/s}}$
+    \item $\omega = 6.25 - 0.625(-2.52) = 6.25 + 1.575 = \mathbf{7.83\text{ rad/s}}$
+\end{itemize}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 17B (EXPLODED FBD POST-COLLISION)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+    
+    % Rod after collision
+    \draw[thick, fill=blue!10, draw=blue!80!black] (-3, -0.15) rectangle (3, 0.15);
+    \fill[black] (0, 0) circle (0.05);
+    
+    % Linear velocity V at CM
+    \draw[->, ultra thick, green!60!black] (0, 0.3) -- (0, 1.2) node[above, font=\small\bfseries] {$V = 3.13\text{ m/s}$};
+    
+    % Angular velocity omega
+    \draw[->, thick, purple] (1.5, 0.5) arc (0:180:0.5) node[midway, above, font=\scriptsize\bfseries] {$\omega = 7.83\text{ rad/s}$};
+
+    % Sphere after collision (bouncing back)
+    \begin{scope}[shift={(1.5, -1.5)}]
+        \draw[thick, fill=orange!20, draw=orange!80!black] (0, 0) circle (0.3);
+        \node[font=\footnotesize\bfseries, text=orange!80!black] at (0, 0) {$m$};
+        \draw[->, ultra thick, red] (0, 0.3) -- (0, 1.5) node[midway, right, font=\small\bfseries] {$v = -2.52\text{ m/s}$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+সংঘর্ষের পর গোলকের শেষ বেগ $\mathbf{v = -2.52\text{ m/s}}$ (বিপরীতমুখী), রডের ভরকেন্দ্রের বেগ $\mathbf{V = 3.13\text{ m/s}}$ এবং রডের কৌণিক বেগ $\mathbf{\omega = 7.83\text{ rad/s}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 20 - MISSILE LAUNCHER INFINITE SHOTS (DETAILED SUM TO INFINITY)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 3}]
+\noindent
+$M$ ভরের একটি মিসাইল লাঞ্চার একটি অমসৃণ অনুভূমিক মেঝের ওপর স্থির অবস্থায় রাখা আছে, যার মেঝেতে পিছলানোর গতিশীল ঘর্ষণ গুণাঙ্ক $\mu$। লাঞ্চারটিতে প্রতিটি $m$ ভরের বিশাল সংখ্যক বা অসীম সংখ্যক ($N$) অভিন্ন মিসাইল পর্যায়ক্রমে লোড করা আছে। লাঞ্চারটি থেকে মিসাইলগুলো অত্যন্ত অল্প সময়ের ব্যবধানে একে একে অনুভূমিকভাবে নিক্ষেপ করা হয়, যাতে শটগুলোর মাঝে লাঞ্চারটি থামার সুযোগ না পেয়ে পূর্ববর্তী বেগ জমা হতে থাকে। 
+
+\vspace{0.3em}
+\noindent
+প্রতিটি মিসাইল নিক্ষেপের সময় লাঞ্চারের সাপেক্ষে ধ্রুবক $u$ আপেক্ষিক বেগে সামনের দিকে বের হয়ে যায়। যদি শটের সংখ্যা অসীম ($\infty$) পর্যন্ত চলতে থাকে, তবে **অসীম ধারার যোগফল (Sum to infinity)** এর ধারণা ব্যবহার করে দেখাও যে লাঞ্চারটির চূড়ান্ত রিকোয়েল বেগ কোথায় গিয়ে পৌঁছাবে। এবং সমস্ত মিসাইল নিক্ষেপ শেষে লাঞ্চারটি অমসৃণ মেঝের ওপর পিছলে কতটুকু দূরত্ব ($d_\infty$) অতিক্রম করে সম্পূর্ণ থেমে যাবে তার একটি সম্পূর্ণ প্রতীকী রাশিমালা প্রতিপাদন করো। [অভিকর্ষজ ত্বরণ $g$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A missile launcher of mass $M$ is placed at rest on a rough horizontal floor with a coefficient of kinetic friction $\mu$. The launcher is loaded with an infinite sequence of identical missiles, each of mass $m$. The missiles are fired in rapid succession without letting the launcher come to rest between shots. During each launch, the missile is ejected forward with a constant velocity $u$ relative to the launcher. Using the concept of the sum to infinity, derive the final recoil velocity of the launcher as the number of shots approaches infinity, and then determine the total sliding distance ($d_\infty$) the empty launcher travels on the rough floor before coming to a complete stop. [Acceleration due to gravity $g$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 20A (SCENARIO ILLUSTRATION - QUESTION IMAGE)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+    
+    % --- Rough Floor ---
+    \fill[pattern color=brown!30, fill=brown!10] (-4.5, -2.5) rectangle (4.5, -2.0);
+    \draw[thick, black!80] (-4.5, -2.0) -- (4.5, -2.0);
+    \node[below, font=\scriptsize\bfseries, text=brown!70!black] at (0, -2.0) {অমসৃণ মেঝে ($\mu, g$)};
+
+    % --- Launcher Body (Mass M) ---
+    \draw[thick, fill=blue!15, draw=blue!80!black, rounded corners=3pt] (-1.5, -2.0) rectangle (1.5, -0.5);
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, -1.25) {লাঞ্চার ($M$)};
+
+    % --- Firing Missile (Mass m) ---
+    \draw[thick, fill=orange!25, draw=orange!80!black, rounded corners=2pt] (1.5, -1.6) rectangle (2.8, -0.9);
+    \node[font=\tiny\bfseries, text=orange!80!black] at (2.15, -1.25) {মিসাইল ($m$)};
+
+    % --- Ejection Velocity Vector ---
+    \draw[->, ultra thick, green!60!black] (2.8, -1.25) -- (4.2, -1.25) node[above, font=\small\bfseries] {আপেক্ষিক বেগ $u$};
+
+    % --- Cumulative Recoil Velocity Vector ---
+    \draw[->, ultra thick, red] (-1.5, -0.3) -- (-3.2, -0.3) node[above, font=\small\bfseries] {চূড়ান্ত বেগ $v_\infty$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 20
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+আমরা ডান দিককে ধনাত্মক ($+x$) এবং বাম দিককে ঋণাত্মক ($-\hat{i}$) দিক হিসেবে বিবেচনা করি। ধারাবাহিক শটগুলোর ফলে লাঞ্চারটি ক্রমান্বয়ে বাম দিকে বেগ অর্জন করতে থাকে।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: ধারাবাহিক শটগুলোর বেগ বৃদ্ধির ধারা গঠন} \\
+শুরুতে লাঞ্চার এবং $N$ সংখ্যক মিসাইলের সমন্বিত মোট ভর ছিল $(M + Nm)$ এবং আদি বেগ শূন্য ($v_0 = 0$)।
+\begin{enumerate}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{প্রথম শট:} প্রথম মিসাইলটি নিক্ষিপ্ত হওয়ার পর লাঞ্চার ও অবশিষ্ট $(N-1)$ সংখ্যক মিসাইলের অর্জিত বেগ ($v_1$):
+    \[ 0 = (M + (N-1)m)(-v_1) + m(u - v_1) \implies v_1 = \frac{mu}{M + Nm} \]
+    
+    \item \textbf{দ্বিতীয় শট:} দ্বিতীয় শটের পূর্বে ব্যবস্থাটি $-v_1$ বেগে গতিশীল থাকে। দ্বিতীয় মিসাইলটি নির্গত হওয়ার পর লাঞ্চার ও অবশিষ্ট $(N-2)$ টি মিসাইলের নতুন বেগ হয় $v_2$:
+    \[ (M + (N-1)m)(-v_1) = (M + (N-2)m)(-v_2) + m(u - v_2) \implies v_2 = v_1 + \frac{mu}{M + (N-1)m} \]
+    
+    \item \textbf{সাধারণ রূপ ও অসীম ধারা ($N \to \infty$):} এভাবে ক্রমান্বয়ে প্রতিটি শটের বেগ যোগ হতে থাকে। যদি শটের সংখ্যা অসীম ($\infty$) পর্যন্ত চলতে থাকে, তবে সমস্ত শটের ফলে অর্জিত মোট রিকোয়েল বেগটি একটি অসীম ধারার রূপ নেয়:
+    \[ v_\infty = \sum_{k=1}^{\infty} \frac{mu}{M + km} = mu \sum_{k=1}^{\infty} \frac{1}{M + km} \]
+\end{enumerate}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 20B (EXPLODED FBD - SOLUTION IMAGE)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+    
+    % --- Exploded Free Body Diagram of Launcher ---
+    \draw[thick, fill=blue!15, draw=blue!80!black, rounded corners=3pt] (-1.2, -1.6) rectangle (1.2, -0.4);
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, -1.0) {খালি লাঞ্চার ($M$)};
+
+    % 1. Normal Force N (Upward)
+    \draw[->, ultra thick, blue] (0, -0.4) -- (0, 0.8) node[right, font=\small\bfseries] {$N = Mg$};
+
+    % 2. Weight Mg (Downward)
+    \draw[->, ultra thick, darkgray] (0, -1.6) -- (0, -2.8) node[right, font=\small\bfseries] {$Mg$};
+
+    % 3. Kinetic Friction Force fk
+    \draw[->, ultra thick, red] (1.2, -1.0) -- (2.4, -1.0) node[above, font=\small\bfseries] {$f_k = \mu Mg$};
+
+    % Deceleration indicator
+    \draw[->, thick, green!60!black] (-1.8, -1.0) -- (-0.8, -1.0) node[midway, above, font=\small\bfseries] {মন্দন $a = \mu g$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\noindent
+\textbf{ধাপ ২: অসীম ধারার আচরণ ও গাণিতিক বিশ্লেষণ} \\
+প্রাপ্ত ধারাটিকে আরও স্পষ্ট করে লেখা যায়:
+\[ v_\infty = u \sum_{k=1}^{\infty} \frac{m}{M + km} \]
+গাণিতিক বিশ্লেষণে দেখা যায় যে, প্রতিটি মিসাইলের ভর যদি নির্দিষ্ট ($m$) হয়, তবে এই অসীম ধারাটির পদগুলো $\frac{1}{k}$ এর মতো আচরণ করে। একটি হারমোনিক ধারা ($\sum \frac{1}{k}$) তাত্ত্বিকভাবে **অপসরণশীল (Divergent)**, যার অর্থ হলো তাত্ত্বিকভাবে যদি অসীম সংখ্যক পৃথক মিসাইল নিক্ষেপ করা সম্ভব হতো, তবে লাঞ্চারের বেগ সীমাহীনভাবে বৃদ্ধি পেতে পারত ($\mathbf{v_\infty \to \infty}$)। 
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: অসীম শটের পর লাঞ্চারের পিছলে অতিক্রান্ত দূরত্ব ($d_\infty$) নির্ণয়} \\
+যেহেতু তাত্ত্বিকভাবে অসীম শটের ফলে অর্জিত চূড়ান্ত বেগ অসীমের দিকে ধাবিত হয় ($v_\infty \to \infty$), তাই মেঝের ওপর ঘর্ষণ বলের প্রভাবে সম্পূর্ণ থেমে যাওয়ার পূর্বে অতিক্রান্ত দূরত্বটিও অসীম হবে:
+\[ d_\infty = \frac{v_\infty^2}{2\mu g} \to \infty \]
+*(উল্লেখ্য যে, বাস্তব ক্ষেত্রে জ্বালানি বা মিসাইলের সংখ্যা সীমিত থাকায় বেগ এবং অতিক্রান্ত দূরত্ব একটি নির্দিষ্ট সসীম মানে সীমাবদ্ধ থাকে, যা রকেট বিজ্ঞানের মূল নীতির সাথে সামঞ্জস্যপূর্ণ।)*
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত ফলাফল:} \\
+অসীম সংখ্যক শটের ক্ষেত্রে লাঞ্চারের চূড়ান্ত রিকোয়েল বেগ প্রকাশের অসীম ধারাটি হলো:
+\[ \mathbf{v_\infty = u \sum_{k=1}^{\infty} \frac{m}{M + km} \to \infty} \]
+এবং এর ফলে অমসৃণ মেঝের ওপর অতিক্রান্ত দূরত্বের প্রতীকী রূপটি হবে:
+\[ \mathbf{d_\infty = \frac{v_\infty^2}{2\mu g} \to \infty} \]
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 12 (COMPLEX) - INCLINED PLANE, PULLEY INERTIA, AND MOVABLE SYSTEM
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 4}]
+\noindent
+$m_1$ ভরের একটি ব্লক অনুভূমিকের সাথে $\theta$ কোণে আনত একটি অমসৃণ তলের ওপর রাখা আছে, যেখানে তল ও ব্লকের মধ্যকার গতিশীল ঘর্ষণ গুণাঙ্ক $\mu_k$। ব্লকটি একটি হালকা সুতার সাহায্যে আনত তলের শীর্ষপ্রান্তে থাকা $R$ ব্যাসার্ধ এবং $I$ জড়তার ভ্রামক বিশিষ্ট একটি ঘূর্ণনশীল স্থির কপিকলের ওপর দিয়ে গিয়ে $m_p$ ভরের একটি গতিশীল কপিকলের অক্ষের সাথে সমান্তরালভাবে সংযুক্ত। স্থির কপিকলটি সুতার সাথে কোনো পিছলানি (slipping) ছাড়াই ঘোরে। 
+
+\vspace{0.3em}
+\noindent
+অপর একটি হালকা সুতার এক প্রান্ত ছাদের সাথে দৃঢ়ভাবে আটকানো, যা নিচে নেমে উক্ত গতিশীল কপিকলের নিচ দিয়ে ঘুরে পুনরায় ওপরের দিকে উঠে উক্ত ঘূর্ণনশীল স্থির কপিকলের ওপর দিয়ে ঝুলে খাড়া নিচের দিকে $m_2$ ভরের একটি ব্লককে ধারণ করে আছে। সমগ্র ব্যবস্থাটি স্থির অবস্থা থেকে ছেড়ে দিলে $m_1$ ব্লকের ত্বরণ ($a_1$)-এর একটি সম্পূর্ণ প্রতীকী রাশিমালা প্রতিপাদন করো। [অভিকর্ষজ ত্বরণ $g$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A block of mass $m_1$ is placed on a rough inclined plane making an angle $\theta$ with the horizontal ($\mu_k$ is the kinetic friction coefficient). It is connected by a light string passing over a rotating fixed pulley of radius $R$ and moment of inertia $I$ (with no slipping) to the axle of a movable pulley of mass $m_p$. A second string anchored to the ceiling loops under the movable pulley, passes over the same fixed pulley, and hangs vertically to support a mass $m_2$. Derive a symbolic expression for the acceleration ($a_1$) of mass $m_1$ after release from rest. [Acceleration due to gravity $g$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 1: MAIN SYSTEM SCENARIO
+% ------------------------------------------
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1, text=black]
+
+    % --- Constants & Coordinates ---
+    \def\ang{28} % Angle of the incline
+    \def\WedgeWidth{11}
+    \def\WedgeHeight{5.848} % 11 * tan(28)
+
+    \coordinate (O) at (0,0);
+    \coordinate (B) at (\WedgeWidth,0);
+    \coordinate (C) at (\WedgeWidth,\WedgeHeight);
+
+    % --- Wedge Base ---
+    \draw[thick, fill=gray!15] (O) -- (B) -- (C) -- cycle;
+
+    % --- Textured Surface Layer ---
+    \begin{scope}
+        \clip (O) -- (B) -- (C) -- cycle;
+        \fill[gray!25] (O) -- (C) -- ++(0,-0.4) -- ++(-15,0) -- cycle;
+        % Simple dots for rough texture
+        \foreach \x in {0, 0.3, ..., 11} {
+            \fill[gray!60] (\x, {\x*tan(\ang) - 0.1 - rnd*0.15}) circle (0.015);
+            \fill[gray!70] (\x+0.15, {\x*tan(\ang) - 0.05 - rnd*0.2}) circle (0.015);
+        }
+    \end{scope}
+    \draw[ultra thick, black!80] (O) -- (C);
+    \draw[thick] (O) -- (B) -- (C); 
+
+    % --- Angle Theta ---
+    \draw[thick, <-] (2.0, {2.0*tan(\ang)}) arc (\ang:0:2.0);
+    \node[font=\Large, right] at (2.0, 0.45) {$\theta$};
+
+    % --- Rotated Scope for Incline Elements ---
+    \begin{scope}[rotate=\ang]
+        
+        % Centers
+        \coordinate (M1_c) at (3.5, 0.8);
+        \coordinate (MP)   at (7.5, 1.2);  % Movable pulley
+        % Fixed pulley placed further along the incline so the hanging mass clears the wedge edge
+        \coordinate (F)    at (13.8, 1.1); 
+        
+        % Save coordinates to global for later use
+        \path (MP) coordinate (MP_global);
+        \path (F) coordinate (F_global);
+        
+        % 1. Friction Arrow
+        \draw[ultra thick, red, <-] (2.7, -0.25) -- (4.3, -0.25);
+        \node[below, font=\large, text=red] at (3.5, -0.25) {$\mu_{k}$};
+        
+        % 2. Motion Arrow m1
+        \draw[ultra thick, green!60!black, ->] (2.5, 1.8) -- (4.0, 1.8) node[midway, above] {$a_1$};
+        
+        % 3. Block m1
+        \draw[thick, fill=blue!20, draw=blue!80!black, rounded corners=2pt] (2.5, 0) rectangle (4.5, 1.4);
+        \node[font=\Large, text=blue!80!black] at (3.5, 0.7) {$m_1$};
+        
+        % 4. Ropes
+        % String 1 from m1 to movable pulley axle
+        \draw[thick, blue!80!black] (4.5, 1.2) -- (MP);
+        
+        % Top parallel rope (String 2: MP top to Fixed Pulley)
+        \draw[thick, red!80!black] ($(MP)+(0,0.5)$) -- ($(F)+(0,0.6)$);
+        
+        % Bottom parallel rope (String 2: MP bottom to ceiling anchor)
+        \draw[thick, red!80!black] ($(MP)+(0,-0.5)$) -- ++(4.8, 0); 
+        
+        % 5. Movable Pulley (m_p)
+        \draw[thick, fill=orange!20, draw=orange!80!black] (MP) circle (0.5);
+        \draw[thick, fill=orange!10, draw=orange!80!black] (MP) circle (0.25);
+        \fill (MP) circle (0.08);
+        \node[right, font=\large, text=orange!80!black] at ($(MP)+(0.5, 0)$) {$m_p$};
+
+        % Motion Arrow mp
+        \draw[ultra thick, green!60!black, ->] ($(MP)+(-1.0, 0.8)$) -- ++(1.5, 0) node[midway, above] {$a_1$};
+        
+    \end{scope}
+
+    % --- Fixed Pulley, Bracket, Ceiling (Global Scope) ---
+    
+    % Bracket for Fixed Pulley connecting to the wedge edge (C)
+    \draw[ultra thick, black!70] (C) -- (F_global);
+    
+    % Fixed Pulley (F)
+    \draw[thick, fill=gray!30, draw=black] (F_global) circle (0.6); % Outer groove
+    \draw[thick, fill=gray!40, draw=black!70] (F_global) circle (0.4); % Inner detail
+    \fill (F_global) circle (0.08);
+    
+    % (I, R) Label Outside
+    \node[above, font=\large] at ($(F_global) + (0, 0.7)$) {স্থির কপিকল $(I, R)$};
+    
+    % Curved Arrow over Fixed Pulley
+    \draw[ultra thick, green!60!black, ->] ($(F_global) + (135:0.85)$) arc (135:45:0.85) node[midway, above] {$\alpha$};
+
+    % Ceiling & Vertical Support Anchor
+    % Calculate anchor point dynamically based on rotated bottom string
+    \path (MP_global) ++({-90+\ang}:0.5) coordinate (MP_bot);
+    \path (MP_bot) ++({\ang}:4.8) coordinate (Ceil_Anchor);
+    
+    \draw[ultra thick, black] ($(Ceil_Anchor) + (-1.5, 0)$) -- ($(Ceil_Anchor) + (0.5, 0)$);
+    \fill[pattern=north east lines, pattern color=gray] ($(Ceil_Anchor) + (-1.5, 0)$) rectangle ($(Ceil_Anchor) + (0.5, 0.2)$);
+    \node[above, font=\footnotesize, text=gray!80!black] at ($(Ceil_Anchor) + (-0.5, 0.2)$) {ছাদ (Ceiling)};
+    \fill[black] (Ceil_Anchor) circle (0.06);
+
+    % --- Hanging Mass m2 ---
+    % Right tangency point of fixed pulley
+    \coordinate (F_right) at ($(F_global) + (0.6, 0)$);
+    \coordinate (M2_top) at ($(F_right) + (0, -3.5)$);
+    
+    % Rope to m2 (String 2 continues)
+    \draw[thick, red!80!black] (F_right) -- (M2_top);
+    
+    % Block m2 (now hangs safely outside the wedge)
+    \draw[thick, fill=purple!20, draw=purple!80!black, rounded corners=2pt] ($(M2_top) + (-0.7, 0)$) rectangle ($(M2_top) + (0.7, -1.2)$);
+    \node[font=\Large, text=purple!80!black] at ($(M2_top) + (0, -0.6)$) {$m_2$};
+
+    % --- Annotations & Vectors (Global Scope) ---
+    
+    % Acceleration Arrow m2
+    \draw[ultra thick, green!60!black, ->] ($(F_right) + (1.2, -1.5)$) -- ++(0, -1.5) node[midway, right, font=\large] {$a_2 = 2a_1$};
+
+\end{tikzpicture}
+\end{center}
+
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: কাইনেম্যাটিক্স (Kinematics) ও ত্বরণের সম্পর্ক} \\
+ধরি, আনত তল বরাবর $m_1$ ব্লকের সরণ ওপরের দিকে $x_1$ এবং ত্বরণ $a_1$। 
+যেহেতু $m_1$ ব্লক ও গতিশীল কপিকল $m_p$ একই সুতা (ধরি, সুতা-১) দ্বারা সংযুক্ত, তাই $m_p$-এর সরণ এবং ত্বরণও হবে যথাক্রমে $x_1$ ও $a_1$। 
+
+এখন ছাদ থেকে যুক্ত দ্বিতীয় সুতাটির (সুতা-২) কথা বিবেচনা করি। গতিশীল কপিকলটি আনত তল বরাবর $x_1$ দূরত্ব ওপরে উঠলে, সুতা-২ এর আনত তলের সমান্তরাল অংশটি $2x_1$ পরিমাণ আলগা হবে। ফলে ঝুলন্ত ব্লক $m_2$ নিচের দিকে $x_2 = 2x_1$ পরিমাণ নেমে যাবে।
+অতএব, $m_2$ ব্লকের ত্বরণ: 
+\[ a_2 = 2a_1 \]
+স্থির কপিকলটির ওপর দিয়ে সুতা-২ পিছলানো ছাড়াই অতিক্রান্ত হওয়ায় এর রৈখিক ত্বরণ $a_2$-এর সমান হবে। ফলে স্থির কপিকলটির কৌণিক ত্বরণ:
+\[ \alpha = \frac{a_2}{R} = \frac{2a_1}{R} \]
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: মুক্ত বস্তু চিত্র (Free Body Diagram - FBD)} \\
+ধরি, সুতা-১ এর টান $T_1$। সুতা-২ এর গতিশীল কপিকল থেকে স্থির কপিকলের মধ্যবর্তী অংশের টান $T_2$ এবং স্থির কপিকল থেকে $m_2$ ব্লকের মধ্যবর্তী অংশের টান $T_3$। নিচে প্রতিটি বস্তুর বিস্তারিত বল বিশ্লেষণ দেখানো হলো:
+
+% ------------------------------------------
+% TIKZ DIAGRAM 2: DETAILED EXPLODED FBDs (2x2 GRID)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1, text=black]
+
+    % Define styles
+    \tikzset{
+        axis/.style={dashed, gray!60, thin},
+        force/.style={->, ultra thick, blue},
+        accel/.style={->, thick, green!60!black}
+    }
+
+    % ================= ROW 1 =================
+
+    % -------------------------
+    % 1. FBD of Block m1
+    % -------------------------
+    \begin{scope}[shift={(0,0)}]
+        \node[above, font=\small\bfseries] at (0, 2.5) {১. ব্লক $m_1$};
+        
+        % Axes
+        \draw[axis] (-2.5, 0) -- (1.5, 0) node[right, font=\tiny] {$X^\prime$};
+        \draw[axis] (0, -2.5) -- (0, 2.0) node[above, font=\tiny] {$Y^\prime$};
+        
+        % Block
+        \draw[thick, fill=blue!15, draw=blue!80!black, rounded corners=2pt] (-0.8, -0.4) rectangle (0.8, 0.4);
+        \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, 0) {$m_1$};
+        
+        % Forces
+        \draw[force] (0, 0.4) -- (0, 1.8) node[right] {$N$};
+        \draw[force] (0.8, 0) -- (2.0, 0) node[above] {$T_1$};
+        
+        % Offset friction and gravity components vertically to prevent overlap
+        \draw[force, red] (-0.8, 0.15) -- (-2.4, 0.15) node[above, font=\scriptsize] {$f_k = \mu_k N$};
+        \draw[->, thick, darkgray] (0, -0.15) -- (-1.4, -0.15) node[below left, font=\scriptsize] {$m_1 g \sin\theta$};
+        
+        % Gravity and vertical components
+        \draw[force, darkgray] (0, 0) -- (-0.8, -2.0) node[below] {$m_1 g$};
+        \draw[->, thick, darkgray] (0, 0) -- (0, -2.0) node[right, font=\scriptsize] {$m_1 g \cos\theta$};
+        \draw[thick, darkgray] (0, -1.0) arc (-90:-112:1.0);
+        \node[font=\tiny] at (-0.3, -1.3) {$\theta$};
+        
+        % Acceleration
+        \draw[accel] (-0.5, 1.0) -- (0.8, 1.0) node[midway, above, font=\scriptsize] {$a_1$};
+    \end{scope}
+
+    % -------------------------
+    % 2. FBD of Movable Pulley mp
+    % -------------------------
+    \begin{scope}[shift={(6.5,0)}]
+        \node[above, font=\small\bfseries] at (0, 2.5) {২. গতিশীল কপিকল $m_p$};
+        
+        % Axes
+        \draw[axis] (-2.5, 0) -- (2.0, 0) node[right, font=\tiny] {$X^\prime$};
+        \draw[axis] (0, -2.5) -- (0, 1.5) node[above, font=\tiny] {$Y^\prime$};
+        
+        % Pulley
+        \draw[thick, fill=orange!15, draw=orange!80!black] (0, 0) circle (0.6);
+        \fill (0,0) circle (0.05);
+        \node[font=\footnotesize\bfseries, text=orange!80!black] at (0, 0.3) {$m_p$};
+        
+        % Forces
+        \draw[force, purple] (0, 0.6) -- (1.8, 0.6) node[above] {$T_2$};
+        \draw[force, purple] (0, -0.6) -- (1.8, -0.6) node[below] {$T_2$};
+        
+        % Offset T1 and gravity components vertically to prevent overlap
+        \draw[force] (-0.6, 0.15) -- (-2.0, 0.15) node[above] {$T_1$};
+        \draw[->, thick, darkgray] (0, -0.15) -- (-1.2, -0.15) node[below left, font=\scriptsize] {$m_p g \sin\theta$};
+        
+        % Gravity 
+        \draw[force, darkgray] (0, 0) -- (-0.7, -1.8) node[below] {$m_p g$};
+        
+        % Acceleration
+        \draw[accel] (-0.5, 1.2) -- (0.8, 1.2) node[midway, above, font=\scriptsize] {$a_1$};
+    \end{scope}
+
+    % ================= ROW 2 =================
+
+    % -------------------------
+    % 3. FBD of Fixed Pulley
+    % -------------------------
+    \begin{scope}[shift={(0,-6.5)}]
+        \node[above, font=\small\bfseries] at (0, 1.5) {৩. স্থির কপিকল};
+        
+        % Pulley
+        \draw[thick, fill=gray!20, draw=black] (0, 0) circle (0.6);
+        \fill (0,0) circle (0.05);
+        \node[font=\footnotesize\bfseries] at (0, 0.3) {$(I, R)$};
+        
+        % Forces
+        % Pulled down-left along incline
+        \draw[force, purple] (-0.52, -0.3) -- (-1.8, -1.0) node[left] {$T_2$}; 
+        
+        % Pulled straight down by m2
+        \draw[force, purple] (0.6, 0) -- (0.6, -1.8) node[right] {$T_3$}; 
+        
+        % Rotation
+        \draw[accel] (0.8, 0.6) arc (45:-45:1.0) node[midway, right, font=\scriptsize] {$\alpha = \frac{2a_1}{R}$};
+    \end{scope}
+
+    % -------------------------
+    % 4. FBD of Block m2
+    % -------------------------
+    \begin{scope}[shift={(6.5,-6.5)}]
+        \node[above, font=\small\bfseries] at (0, 1.5) {৪. ব্লক $m_2$};
+        
+        % Block
+        \draw[thick, fill=purple!15, draw=purple!80!black, rounded corners=2pt] (-0.6, -0.5) rectangle (0.6, 0.5);
+        \node[font=\footnotesize\bfseries, text=purple!80!black] at (0, 0) {$m_2$};
+        
+        % Forces
+        \draw[force, purple] (0, 0.5) -- (0, 1.8) node[right] {$T_3$};
+        \draw[force, darkgray] (0, -0.5) -- (0, -2.2) node[right] {$m_2 g$};
+        
+        % Acceleration
+        \draw[accel] (-1.0, 0.5) -- (-1.0, -1.0) node[midway, left, font=\scriptsize] {$a_2 = 2a_1$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\noindent
+\textbf{ধাপ ৩: নিউটনের গতির সমীকরণ গঠন} \\
+উপরোক্ত FBD থেকে প্রতিটি বস্তুর গতির সমীকরণ পাই:
+\begin{enumerate}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{$m_1$ ব্লকের ক্ষেত্রে (আনত তল বরাবর ওপরে):}
+    \[ T_1 - m_1 g \sin\theta - \mu_k m_1 g \cos\theta = m_1 a_1 \quad \text{--- (১)} \]
+    \item \textbf{গতিশীল কপিকল $m_p$-এর ক্ষেত্রে (আনত তল বরাবর ওপরে):}
+    এখানে সুতা-২ কপিকলটিকে আনত তল বরাবর উপরের দিকে $2T_2$ বলে টানছে এবং $T_1$ ও ওজনের উপাংশ নিচের দিকে টানছে।
+    \[ 2T_2 - T_1 - m_p g \sin\theta = m_p a_1 \quad \text{--- (২)} \]
+    \item \textbf{স্থির কপিকলের ক্ষেত্রে (টর্ক সমীকরণ):}
+    \[ \tau_{\text{net}} = (T_3 - T_2) R = I \alpha = I \left( \frac{2a_1}{R} \right) \implies T_3 - T_2 = \frac{2I a_1}{R^2} \quad \text{--- (৩)} \]
+    \item \textbf{ঝুলন্ত ব্লক $m_2$-এর ক্ষেত্রে (খাড়া নিচের দিকে):}
+    \[ m_2 g - T_3 = m_2 a_2 = m_2 (2a_1) \quad \text{--- (৪)} \]
+\end{enumerate}
+
+\noindent
+\textbf{ধাপ ৪: সমীকরণ সমাধান ও ত্বরণ নির্ণয়} \\
+সমীকরণ (৪) হতে পাই:
+\[ T_3 = m_2 g - 2m_2 a_1 \]
+এই মান সমীকরণ (৩)-এ বসিয়ে $T_2$ এর মান বের করি:
+\[ (m_2 g - 2m_2 a_1) - T_2 = \frac{2I a_1}{R^2} \implies T_2 = m_2 g - 2m_2 a_1 - \frac{2I a_1}{R^2} \]
+এবার $T_2$ এর মান সমীকরণ (২)-এ বসিয়ে $T_1$ এর রাশিমালা নির্ণয় করি:
+\[ T_1 = 2T_2 - m_p g \sin\theta - m_p a_1 \]
+\[ T_1 = 2 \left( m_2 g - 2m_2 a_1 - \frac{2I a_1}{R^2} \right) - m_p g \sin\theta - m_p a_1 \]
+\[ T_1 = 2m_2 g - 4m_2 a_1 - \frac{4I a_1}{R^2} - m_p g \sin\theta - m_p a_1 \]
+অবশেষে, $T_1$-এর এই মান সমীকরণ (১)-এ প্রতিস্থাপন করি:
+\[ \left( 2m_2 g - 4m_2 a_1 - \frac{4I a_1}{R^2} - m_p g \sin\theta - m_p a_1 \right) - m_1 g \sin\theta - \mu_k m_1 g \cos\theta = m_1 a_1 \]
+$a_1$ সংবলিত পদগুলোকে একপাশে এবং বাকি পদগুলোকে অন্যপাশে সাজিয়ে পাই:
+\[ 2m_2 g - m_p g \sin\theta - m_1 g \sin\theta - \mu_k m_1 g \cos\theta = a_1 m_1 + 4m_2 a_1 + m_p a_1 + \frac{4I a_1}{R^2} \]
+\[ g \left[ 2m_2 - (m_1 + m_p)\sin\theta - \mu_k m_1 \cos\theta \right] = a_1 \left( m_1 + m_p + 4m_2 + \frac{4I}{R^2} \right) \]
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+সকল বল, জড়তা ও যান্ত্রিক সুবিধা (Mechanical Advantage) বিবেচনা করে $m_1$ ব্লকের ত্বরণের সম্পূর্ণ প্রতীকী সমীকরণটি হলো:
+\[ \mathbf{a_1 = \frac{g \left[ 2m_2 - (m_1 + m_p)\sin\theta - \mu_k m_1 \cos\theta \right]}{m_1 + m_p + 4m_2 + \frac{4I}{R^2}}} \]
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 28 - BLOCK ON RECOILING WEDGE
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 5}]
+\noindent
+$M = 5\text{ kg}$ ভরের একটি মসৃণ আনত ওয়েজ (wedge) একটি মসৃণ অনুভূমিক মেঝের ওপর মুক্ত অবস্থায় রাখা আছে, যার আনত তলের কোণ $\theta = 30^\circ$ [২]। $m = 2\text{ kg}$ ভরের একটি নিরেট ব্লককে এই ওয়েজের আনত তলের ওপর রেখে ছেড়ে দেওয়া হলো। ব্লকটি যখন আনত তল বেয়ে নিচের দিকে পিছলে পড়ে, তখন ওয়েজটি অনুভূমিক মেঝের ওপর পিছনের দিকে গতিশীল (recoil) হয়। 
+
+\vspace{0.3em}
+\noindent
+ব্লকটি স্লাইডিং করার সময় ওয়েজটির ওপর কত অভিলম্ব প্রতিক্রিয়া বল (normal force) প্রয়োগ করে তার মান নির্ণয় করো। [$\text{Take } g = 9.8\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A smooth wedge of mass $M = 5\text{ kg}$ with an inclined surface of angle $\theta = 30^\circ$ is placed on a smooth horizontal floor [2]. A block of mass $m = 2\text{ kg}$ is placed on the inclined plane of the wedge, and the system is released from rest. As the block slides down, the wedge recoils horizontally on the floor. Calculate the magnitude of the normal reaction force $N$ exerted by the block on the wedge during this motion. [Take $g = 9.8\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 28A: SCENARIO
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+    
+    % --- Floor ---
+    \draw[ultra thick, black!70] (-1.5, 0) -- (7.5, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-1.5, -0.2) rectangle (7.5, 0);
+
+    % --- Wedge M ---
+    % Incline from (0, 3.464) to (6, 0) -> theta = 30 deg at bottom right
+    \draw[thick, fill=gray!20, draw=black] (0, 0) -- (6, 0) -- (0, 3.464) -- cycle;
+    \node[font=\Large\bfseries] at (1.5, 1.0) {$M$};
+    
+    % Angle Theta
+    \draw[thick, darkgray] (4.8, 0) arc (180:150:1.2);
+    \node[left, font=\footnotesize\bfseries] at (4.7, 0.3) {$\theta = 30^\circ$};
+
+    % --- Block m ---
+    % Placed on the incline. Let's pick x = 2.5.
+    % y on incline = 3.464 - x*tan(30) = 3.464 - 2.5*(0.577) = 2.02
+    \begin{scope}[shift={(2.5, 2.02)}, rotate=-30]
+        \draw[thick, fill=blue!20, draw=blue!80!black, rounded corners=1pt] (-0.6, 0) rectangle (0.6, 0.8);
+        \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, 0.4) {$m$};
+    \end{scope}
+
+    % --- Acceleration Vectors ---
+    % Wedge Recoil Acceleration A (Left)
+    \draw[->, ultra thick, green!60!black] (1.5, 2.5) -- (0.2, 2.5) node[midway, above, font=\small\bfseries] {$A$};
+    
+    % Block Accelerations ax, ay
+    \draw[->, ultra thick, red!80!black] (4.0, 2.8) -- (5.0, 2.8) node[right, font=\small\bfseries] {$a_x$};
+    \draw[->, ultra thick, red!80!black] (4.0, 2.8) -- (4.0, 1.8) node[below, font=\small\bfseries] {$a_y$};
+    \draw[dashed, thick, red!80!black] (4.0, 1.8) -- (5.0, 1.8) -- (5.0, 2.8);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 28
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+নিউটনের ৩য় সূত্রানুযায়ী, ওয়েজটি ব্লকের ওপর লম্বভাবে যে $N$ বল প্রয়োগ করে, ব্লকটিও ওয়েজের ওপর সমান ও বিপরীতমুখী লম্ব বল $N$ প্রয়োগ করে [১, ৯]। এখানে কোনো ঘর্ষণ বল নেই।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: মুক্ত বস্তু চিত্র (FBD) ও গতির সমীকরণ গঠন} \\
+ধরি, মেঝের ওপর দিয়ে ওয়েজটি বাম দিকে $A$ ত্বরণে গতিশীল হয় এবং ভূমির সাপেক্ষে ব্লকের অনুভূমিক ত্বরণ ডান দিকে $a_x$ ও খাড়া নিচের দিকে $a_y$।
+
+% ------------------------------------------
+% TIKZ DIAGRAM 28B: EXPLODED FBDs
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1, text=black]
+
+    \tikzset{
+        force/.style={->, ultra thick, blue},
+        accel/.style={->, thick, green!60!black}
+    }
+
+    % --- 1. Block m FBD ---
+    \begin{scope}[shift={(0,0)}]
+        \node[above, font=\small\bfseries] at (0, 2.5) {১. ব্লক $m$};
+        
+        % Axes
+        \draw[dashed, gray] (-1.5, 0) -- (2.0, 0) node[right, font=\tiny] {$X$};
+        \draw[dashed, gray] (0, -2.2) -- (0, 2.2) node[above, font=\tiny] {$Y$};
+        
+        % Block
+        \draw[thick, fill=blue!15, draw=blue!80!black, rotate=-30, rounded corners=1pt] (-0.6, -0.4) rectangle (0.6, 0.4);
+        \node[font=\footnotesize\bfseries, text=blue!80!black] at (0, 0) {$m$};
+        
+        % Forces
+        \draw[force] (0, 0) -- (60:2.0) node[right] {$N$};
+        \draw[force, darkgray] (0, 0) -- (0, -1.8) node[right] {$mg$};
+        
+        % Components of N
+        \draw[->, thick, blue, dashed] (0, 0) -- ({2.0*cos(60)}, 0) node[below right, font=\scriptsize] {$N\sin\theta$};
+        \draw[->, thick, blue, dashed] (0, 0) -- (0, {2.0*sin(60)}) node[left, font=\scriptsize] {$N\cos\theta$};
+        
+        % Accelerations
+        \draw[accel] (1.2, -1.0) -- (2.2, -1.0) node[midway, below, font=\scriptsize\bfseries] {$a_x$};
+        \draw[accel] (2.2, -1.0) -- (2.2, -2.0) node[midway, right, font=\scriptsize\bfseries] {$a_y$};
+    \end{scope}
+
+    % --- 2. Wedge M FBD ---
+    \begin{scope}[shift={(7.5,0)}]
+        \node[above, font=\small\bfseries] at (0, 2.5) {২. ওয়েজ $M$};
+        
+        % Axes
+        \draw[dashed, gray] (-2.5, 0) -- (2.0, 0) node[right, font=\tiny] {$X$};
+        \draw[dashed, gray] (0, -2.2) -- (0, 2.2) node[above, font=\tiny] {$Y$};
+        
+        % Wedge shape representation
+        \draw[thick, fill=gray!20, draw=black] (-1.5, -0.5) -- (1.5, -0.5) -- (-1.5, 1.23) -- cycle;
+        \node[font=\footnotesize\bfseries] at (-0.5, -0.1) {$M$};
+        
+        % Forces
+        \draw[force] (0, 0) -- (240:1.8) node[left] {$N$}; % Reaction from block
+        \draw[force, darkgray] (0.8, -0.5) -- (0.8, -2.0) node[right] {$Mg$};
+        \draw[force, purple] (0, -0.5) -- (0, 2.0) node[right] {$N_{\text{floor}}$};
+        
+        % Components of N
+        \draw[->, thick, blue, dashed] (0, 0) -- ({1.8*cos(240)}, 0) node[above left, font=\scriptsize] {$N\sin\theta$};
+        
+        % Acceleration
+        \draw[accel] (-1.5, 1.5) -- (-2.8, 1.5) node[midway, above, font=\scriptsize\bfseries] {$A$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\begin{enumerate}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{ওয়েজের অনুভূমিক গতির সমীকরণ:} 
+    ওয়েজের ওপর অনুভূমিক বল হলো ব্লকের অভিলম্ব প্রতিক্রিয়ার অনুভূমিক উপাংশ ($N \sin\theta$), যা একে বাম দিকে $A$ ত্বরণ দেয়:
+    $$M A = N \sin\theta \implies A = \frac{N \sin\theta}{M} \quad \text{--- (১)}$$
+    
+    \item \textbf{ব্লকের গতির সমীকরণ:} 
+    অনুভূমিক অক্ষে (ডান দিকে): $$N \sin\theta = m a_x \implies a_x = \frac{N \sin\theta}{m} \quad \text{--- (২)}$$
+    উল্লম্ব অক্ষে (নিচের দিকে): $$mg - N \cos\theta = m a_y \implies a_y = g - \frac{N \cos\theta}{m} \quad \text{--- (৩)}$$
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: জ্যামিতিক কনস্ট্রেইন্ট (Constraint) ও ত্বরণ প্রতিস্থাপন} \\
+যেহেতু ব্লকটি সর্বদাই ওয়েজের আনত তলের সংস্পর্শে থাকে, তাই ওয়েজের সাপেক্ষে ব্লকের আপেক্ষিক ত্বরণ অবশ্যই আনত তলের সমান্তরাল হতে হবে [১৩]। 
+$$\tan\theta = \frac{a_y}{a_x + A} \implies (a_x + A)\sin\theta = a_y \cos\theta$$
+
+সমীকরণ (১), (২) এবং (৩) থেকে ত্বরণের মানগুলো এখানে প্রতিস্থাপন করি: 
+$$\left( \frac{N \sin\theta}{m} + \frac{N \sin\theta}{M} \right) \sin\theta = \left( g - \frac{N \cos\theta}{m} \right) \cos\theta$$ 
+$$\frac{N \sin^2\theta}{m} + \frac{N \sin^2\theta}{M} = g \cos\theta - \frac{N \cos^2\theta}{m}$$ 
+$$N \left( \frac{\sin^2\theta + \cos^2\theta}{m} + \frac{\sin^2\theta}{M} \right) = g \cos\theta$$
+
+আমরা জানি, $\sin^2\theta + \cos^2\theta = 1$। সুতরাং: 
+$$N \left( \frac{1}{m} + \frac{\sin^2\theta}{M} \right) = g \cos\theta$$ 
+$$N = \frac{g \cos\theta}{\frac{1}{m} + \frac{\sin^2\theta}{M}} = \frac{m g \cos\theta}{1 + \frac{m}{M}\sin^2\theta}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: মান প্রতিস্থাপন ও চূড়ান্ত হিসাব} \\
+প্রদত্ত মানসমূহ: $m = 2\text{ kg}$, $M = 5\text{ kg}$, $\theta = 30^\circ$, $g = 9.8\text{ m/s}^2$।
+\begin{itemize}[leftmargin=*, parsep=0.3ex]
+    \item $\sin 30^\circ = 0.5 \implies \sin^2 30^\circ = 0.25$
+    \item $\cos 30^\circ \approx 0.866025$
+\end{itemize}
+
+$$N = \frac{2 \times 9.8 \times \cos 30^\circ}{1 + \frac{2}{5} (0.25)} = \frac{19.6 \times 0.866025}{1 + 0.4 \times 0.25} = \frac{16.974}{1 + 0.1} = \frac{16.974}{1.1} \approx 15.43\text{ N}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ব্লকটি কর্তৃক ওয়েজের ওপর প্রযুক্ত অভিলম্ব প্রতিক্রিয়া বলের মান হলো $\mathbf{15.43\text{ N}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 31 - CLAY DROPPED ON A SPRING-MASS SYSTEM
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 6}]
+\noindent
+$M = 3\text{ kg}$ ভরের একটি ব্লক একটি খাড়াভাবে ঝুলন্ত $k = 500\text{ N/m}$ স্প্রিং ধ্রুবকবিশিষ্ট স্প্রিংয়ের নিচের প্রান্তে সংযুক্ত হয়ে সাম্যাবস্থায় স্থির আছে। $m = 1\text{ kg}$ ভরের একটি কাদার পিণ্ড ব্লকটির ঠিক ওপর থেকে $h = 1.2\text{ m}$ উচ্চতা থেকে মুক্তভাবে ছেড়ে দেওয়া হলো। কাদার পিণ্ডটি নিচে পড়ে ব্লকের সাথে ধাক্কা খেয়ে আটকে যায় (perfectly inelastic collision)। 
+
+\vspace{0.3em}
+\noindent
+এই সংঘর্ষের ফলে স্প্রিংটি তার আদি সাম্যাবস্থান (initial equilibrium position) থেকে সর্বোচ্চ কতটুকু নিচের দিকে নেমে সংকুচিত হবে তা নির্ণয় করো। [$\text{Take } g = 9.8\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A block of mass $M = 3\text{ kg}$ is suspended from a vertical spring of spring constant $k = 500\text{ N/m}$ and is at rest in equilibrium. A lump of clay of mass $m = 1\text{ kg}$ is dropped from a height $h = 1.2\text{ m}$ directly above the block. The clay collides and sticks to the block (perfectly inelastic collision). Determine the maximum downward displacement of the combined system from its initial equilibrium position. [Take $g = 9.8\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 31A: SCENARIO
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    % --- Ceiling ---
+    \draw[ultra thick, black!80] (-1.5, 4.5) -- (1.5, 4.5);
+    \fill[pattern=north east lines, pattern color=gray] (-1.5, 4.5) rectangle (1.5, 4.7);
+    \node[above, font=\footnotesize, text=gray!80!black] at (0, 4.7) {ছাদ (Ceiling)};
+
+    % --- Spring ---
+    % Manual zigzag for spring to avoid package dependencies
+    \draw[ultra thick, darkgray] (0, 4.5) -- (0, 4.1) 
+        -- (-0.3, 3.8) -- (0.3, 3.4) -- (-0.3, 3.0) 
+        -- (0.3, 2.6) -- (-0.3, 2.2) -- (0.3, 1.8) 
+        -- (0, 1.5) -- (0, 1.2);
+    
+    % --- Block M ---
+    \draw[thick, fill=blue!15, draw=blue!80!black, rounded corners=2pt] (-0.8, 0.4) rectangle (0.8, 1.2);
+    \node[font=\large\bfseries, text=blue!80!black] at (0, 0.8) {$M = 3\text{ kg}$};
+
+    % --- Clay m ---
+    \draw[thick, fill=brown!50, draw=brown!80!black] (0, 3.5) circle (0.2);
+    \node[right, font=\footnotesize\bfseries, text=brown!80!black] at (0.3, 3.5) {$m = 1\text{ kg}$};
+    
+    % Dropping motion arrows
+    \draw[->, thick, brown!80!black] (0, 3.1) -- (0, 2.3);
+    \draw[->, thick, brown!80!black] (0, 2.0) -- (0, 1.5) node[midway, right, font=\footnotesize\bfseries] {$u$};
+
+    % --- Height Indicator ---
+    \draw[dashed, thin, gray] (-0.8, 3.5) -- (-1.8, 3.5);
+    \draw[dashed, thin, gray] (-0.8, 1.2) -- (-1.8, 1.2);
+    \draw[<->, thick, blue!70!black] (-1.5, 3.5) -- (-1.5, 1.2) node[midway, left, font=\small\bfseries] {$h = 1.2\text{ m}$};
+
+    % --- Equilibrium Line ---
+    \draw[dashed, thick, red!60] (-2.0, 0.8) -- (2.5, 0.8) node[right, font=\scriptsize\bfseries] {আদি সাম্যাবস্থান};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 31
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: আদি সাম্যাবস্থা ও প্রসারণ} \\
+শুরুতে $M$ ভরের ব্লকটি যখন স্থির ছিল, তখন স্প্রিংটির আদি প্রসারণ ($x_0$) ছিল:
+$$x_0 = \frac{M g}{k} = \frac{3 \times 9.8}{500} = \frac{29.4}{500} = 0.0588\text{ m}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: সংঘর্ষের ঠিক পূর্বের বেগ ($u$)} \\
+$h = 1.2\text{ m}$ উচ্চতা থেকে পড়ার পর কাদার পিণ্ডটির বেগ:
+$$u = \sqrt{2gh} = \sqrt{2 \times 9.8 \times 1.2} = \sqrt{23.52} \approx 4.85\text{ m/s}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: ভরবেগের সংরক্ষণশীলতা ও সংঘর্ষের ঠিক পরের গতিশক্তি} \\
+সম্পূর্ণ অস্থিতিস্থাপক সংঘাত (perfectly inelastic collision) হওয়ায় কাদার পিণ্ড ও ব্লকের সম্মিলিত ব্যবস্থার ভর হয় $(M + m) = 4\text{ kg}$। ধরি, তাদের যৌথ বেগ $V$:
+$$m u = (M + m) V \implies 1 \times \sqrt{23.52} = 4 \times V \implies V = \frac{\sqrt{23.52}}{4} \approx 1.2125\text{ m/s}$$
+সংঘর্ষের ঠিক পরপরই ব্যবস্থার গতিশক্তি (Kinetic Energy, $K$):
+$$K = \frac{1}{2} (M + m) V^2 = \frac{1}{2} \times 4 \times \left( \frac{\sqrt{23.52}}{4} \right)^2 = 2 \times \frac{23.52}{16} = 2.94\text{ J}$$
+
+% ------------------------------------------
+% TIKZ DIAGRAM 31B: EXPLODED STATES (FBD & ENERGY)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.95, text=black]
+
+    % --- Reference Levels ---
+    \draw[dashed, thick, gray] (-2.5, 4.0) -- (12.0, 4.0) node[right, font=\scriptsize] {স্প্রিংয়ের স্বাভাবিক দৈর্ঘ্য (Unstretched)};
+    \draw[dashed, ultra thick, red!50] (-2.5, 1.5) -- (12.0, 1.5) node[right, font=\scriptsize\bfseries] {আদি সাম্যাবস্থান ($x = x_0$)};
+    \draw[dashed, thick, blue!50] (-2.5, -1.5) -- (12.0, -1.5) node[right, font=\scriptsize\bfseries] {সর্বোচ্চ সরণ ($y$)};
+
+    \tikzset{
+        force/.style={->, ultra thick, blue},
+        spring/.style={thick, darkgray}
+    }
+
+    % ================= STATE 1: INITIAL EQUILIBRIUM =================
+    \begin{scope}[shift={(0,0)}]
+        \node[above, font=\small\bfseries] at (0, 4.5) {অবস্থা ১: আদি সাম্যাবস্থা};
+        
+        % Spring
+        \draw[spring] (0, 4.0) -- (0, 3.5) -- (-0.2, 3.2) -- (0.2, 2.8) -- (-0.2, 2.4) -- (0.2, 2.0) -- (0, 1.7) -- (0, 1.5);
+        
+        % Block
+        \draw[thick, fill=blue!15, draw=blue!80!black] (-0.7, 0.7) rectangle (0.7, 1.5);
+        \node[font=\footnotesize\bfseries] at (0, 1.1) {$M$};
+        
+        % Forces
+        \draw[force] (-0.3, 1.5) -- (-0.3, 2.8) node[left, font=\scriptsize\bfseries] {$k x_0$};
+        \draw[->, ultra thick, darkgray] (0.3, 0.7) -- (0.3, -0.6) node[right, font=\scriptsize\bfseries] {$Mg$};
+        
+        % Displacement marker
+        \draw[<->, thick, orange!80!black] (1.2, 4.0) -- (1.2, 1.5) node[midway, right, font=\scriptsize\bfseries] {$x_0$};
+    \end{scope}
+
+    % ================= STATE 2: JUST AFTER COLLISION =================
+    \begin{scope}[shift={(4.5,0)}]
+        \node[above, font=\small\bfseries] at (0, 4.5) {অবস্থা ২: সংঘর্ষের ঠিক পর};
+        
+        % Spring (same extension)
+        \draw[spring] (0, 4.0) -- (0, 3.5) -- (-0.2, 3.2) -- (0.2, 2.8) -- (-0.2, 2.4) -- (0.2, 2.0) -- (0, 1.7) -- (0, 1.5);
+        
+        % Combined Block
+        \draw[thick, fill=blue!15, draw=blue!80!black] (-0.7, 0.7) rectangle (0.7, 1.5);
+        \draw[thick, fill=brown!50, draw=brown!80!black] (-0.4, 1.5) rectangle (0.4, 1.7); % Clay stuck on top
+        \node[font=\footnotesize\bfseries] at (0, 1.1) {$M + m$};
+        
+        % Velocity Vector
+        \draw[->, ultra thick, green!60!black] (-1.0, 1.1) -- (-1.0, -0.5) node[midway, left, font=\scriptsize\bfseries] {$V$};
+        
+        % Energy Tag
+        \node[fill=yellow!20, draw=orange, rounded corners=2pt, font=\scriptsize, align=center] at (0, -0.2) {$K = 2.94\text{ J}$ \\ $U_g = 0$ (রেফারেন্স)};
+    \end{scope}
+
+    % ================= STATE 3: MAXIMUM COMPRESSION =================
+    \begin{scope}[shift={(9.0,0)}]
+        \node[above, font=\small\bfseries] at (0, 4.5) {অবস্থা ৩: সর্বোচ্চ সরণ};
+        
+        % Spring (extended further to y)
+        \draw[spring] (0, 4.0) -- (0, 3.0) -- (-0.2, 2.5) -- (0.2, 2.0) -- (-0.2, 1.5) -- (0.2, 1.0) -- (0, -1.0) -- (0, -1.5);
+        
+        % Combined Block at bottom
+        \draw[thick, fill=blue!15, draw=blue!80!black] (-0.7, -2.3) rectangle (0.7, -1.5);
+        \draw[thick, fill=brown!50, draw=brown!80!black] (-0.4, -1.5) rectangle (0.4, -1.3);
+        \node[font=\footnotesize\bfseries] at (0, -1.9) {$M + m$};
+        
+        % Forces
+        \draw[force] (-0.3, -1.3) -- (-0.3, 0.5) node[left, font=\scriptsize\bfseries] {$k(x_0 + y)$};
+        \draw[->, ultra thick, darkgray] (0.3, -2.3) -- (0.3, -3.8) node[right, font=\scriptsize\bfseries] {$(M+m)g$};
+        
+        % Velocity = 0
+        \node[font=\scriptsize\bfseries, text=red] at (-1.2, -1.9) {$v = 0$};
+        
+        % Displacement marker y
+        \draw[<->, thick, purple] (1.2, 1.5) -- (1.2, -1.5) node[midway, right, font=\scriptsize\bfseries] {$y$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\noindent
+\textbf{ধাপ ৪: শক্তির সংরক্ষণশীলতা নীতি ও সর্বোচ্চ সরণ ($y$) নির্ণয়} \\
+ধরি, আদি সাম্যাবস্থান থেকে সম্মিলিত ব্যবস্থাটি সর্বোচ্চ $y$ দূরত্ব নিচে নেমে যাবে। আদি সাম্যাবস্থানকে অভিকর্ষজ বিভব শক্তির জন্য শূন্য রেফারেন্স তল (reference level) ধরলে:
+$$E_{\text{initial}} = E_{\text{final}}$$ 
+$$K + U_{\text{spring, initial}} = U_{\text{gravity, final}} + U_{\text{spring, final}}$$ 
+$$2.94 + \frac{1}{2} k x_0^2 = -(M + m)g y + \frac{1}{2} k (x_0 + y)^2$$ 
+$$2.94 + \frac{1}{2} k x_0^2 = -(M + m)g y + \frac{1}{2} k x_0^2 + k x_0 y + \frac{1}{2} k y^2$$
+উভয় পক্ষ থেকে $\frac{1}{2} k x_0^2$ বাদ দিয়ে এবং $k x_0 = M g$ (আদি সাম্যাবস্থার শর্ত) বসিয়ে পাই: 
+$$2.94 = -(M + m)g y + M g y + \frac{1}{2} k y^2 \implies 2.94 = -m g y + \frac{1}{2} k y^2$$
+
+সমীকরণটি সাজিয়ে লিখলে পাই:
+$$\frac{1}{2} k y^2 - m g y - K = 0$$
+প্রদত্ত সাংখ্যিক মানগুলো ($k=500, m=1, g=9.8, K=2.94$) বসিয়ে পাই: 
+$$\frac{1}{2} (500) y^2 - (1 \times 9.8) y - 2.94 = 0$$ 
+$$250 y^2 - 9.8 y - 2.94 = 0$$
+
+দ্বিঘাত সমীকরণটির ধনাত্মক মূলটি হিসাব করি: 
+$$y = \frac{9.8 + \sqrt{(-9.8)^2 - 4(250)(-2.94)}}{2(250)}$$ 
+$$y = \frac{9.8 + \sqrt{96.04 + 2940}}{500} = \frac{9.8 + \sqrt{3036.04}}{500} = \frac{9.8 + 55.10}{500} = \frac{64.90}{500} \approx \mathbf{0.1298\text{ m}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+স্প্রিংটি আদি সাম্যাবস্থান থেকে সর্বোচ্চ প্রায় $\mathbf{13.0\text{ cm}}$ (বা $0.13\text{ m}$) নিচে নেমে সংকুচিত হবে।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 33 - CONICAL ROTATION OF A HINGED ROD
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 7}]
+\noindent
+$M = 3\text{ kg}$ ভর এবং $L = 1.0\text{ m}$ দৈর্ঘ্যের একটি সুষম সরু দণ্ড (rod) একটি খাড়া উল্লম্ব অক্ষের সাথে তার এক প্রান্তে কব্জা (hinge) দিয়ে যুক্ত আছে [৪৭]। দণ্ডটি ঘূর্ণন অক্ষের সাথে সর্বদাই $\theta = 30^\circ$ কোণ বজায় রেখে অক্ষটির চারদিকে ধ্রুব কৌণিক বেগ $\omega = 10\text{ rad/s}$-এ শঙ্কু আকৃতিতে (conical rotation) ঘুরছে। 
+
+\vspace{0.3em}
+\noindent
+উক্ত ঘূর্ণন অক্ষের সাপেক্ষে দণ্ডটির জড়তার ভ্রামক (Moment of Inertia) এবং এই অক্ষ বরাবর দণ্ডটির কৌণিক ভরবেগ (Angular Momentum)-এর মান নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform thin rod of mass $M = 3\text{ kg}$ and length $L = 1.0\text{ m}$ is hinged at one end to a vertical rotating shaft. The rod rotates at a constant angular speed of $\omega = 10\text{ rad/s}$, maintaining a constant angle of $\theta = 30^\circ$ with the vertical axis. Calculate the moment of inertia of the rod about this rotating axis and its angular momentum along the axis of rotation.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 33A: SCENARIO
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Axis of Rotation ---
+    \draw[dash dot, ultra thick, darkgray] (0, -0.5) -- (0, 3.5);
+    \node[above, font=\footnotesize\bfseries, text=darkgray] at (0, 3.5) {ঘূর্ণন অক্ষ};
+
+    % --- Elliptical Path (Cone Base) ---
+    % Rod length L=3 (scaled visually), angle=30deg -> x = 3*sin(30)=1.5, y = 3*cos(30)=2.598
+    \draw[thick, dashed, blue!60] (0, 2.598) ellipse (1.5 and 0.4);
+
+    % --- Hinge ---
+    \fill[black] (0,0) circle (0.08);
+    \draw[thick, fill=gray!30] (-0.2, -0.2) rectangle (0.2, 0);
+    \node[below, font=\scriptsize\bfseries] at (0, -0.2) {কব্জা (Hinge)};
+
+    % --- Rod ---
+    \draw[line width=4pt, blue!80!black, line cap=round] (0,0) -- (1.5, 2.598);
+    \node[right, font=\footnotesize\bfseries, text=blue!80!black] at (0.75, 1.3) {দণ্ড ($M, L$)};
+
+    % --- Angle Theta ---
+    \draw[thick, red!80!black] (0, 0.8) arc (90:60:0.8);
+    \node[above right, font=\footnotesize\bfseries, text=red!80!black] at (0.1, 0.8) {$\theta = 30^\circ$};
+
+    % --- Rotation Indicator ---
+    \draw[->, ultra thick, green!60!black] (-0.4, 3.0) arc (180:360:0.4 and 0.15);
+    \draw[dashed, ultra thick, green!60!black] (0.4, 3.0) arc (0:180:0.4 and 0.15);
+    \node[right, font=\small\bfseries, text=green!60!black] at (0.5, 3.0) {$\omega = 10\text{ rad/s}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 33
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: আনত অক্ষের সাপেক্ষে জড়তার ভ্রামক ($I$) প্রতিপাদন ও নির্ণয়} \\
+দণ্ডের এক প্রান্ত (কব্জা) থেকে $r$ দূরত্বে $dr$ দৈর্ঘ্যের একটি ক্ষুদ্র অংশের ভর $dm$ বিবেচনা করি। যেহেতু দণ্ডটি সুষম, এর প্রতি একক দৈর্ঘ্যের ভর হবে $\frac{M}{L}$।
+সুতরাং, ক্ষুদ্র অংশের ভর: 
+$$dm = \frac{M}{L} dr$$
+
+% ------------------------------------------
+% TIKZ DIAGRAM 33B (FIXED & NON-OVERLAPPING INTEGRATION SETUP)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.4, text=black]
+
+    % --- Axis of Rotation ---
+    \draw[dash dot, thick, gray] (0, -0.5) -- (0, 3.5);
+    \node[above, font=\footnotesize\bfseries, text=darkgray] at (0, 3.5) {ঘূর্ণন অক্ষ};
+    \fill[black] (0,0) circle (0.05);
+
+    % --- Rod Guide (Faint & Wide) ---
+    \draw[line width=3pt, blue!20, line cap=round] (0,0) -- (1.5, 2.598);
+    \node[right, font=\footnotesize\bfseries, text=blue!80!black] at (0.75, 1.3) {দণ্ড ($M, L$)};
+
+    % --- Differential Element (dm) ---
+    % FIXED: 'rotate around' moved INSIDE the brackets
+    \draw[thick, fill=red!80!black, draw=red!80!black, rounded corners=1pt, rotate around={60:(0.9,1.559)}] (0.9, 1.559) rectangle (1.2, 1.639); 
+    \node[right, font=\footnotesize\bfseries, text=red!80!black] at (1.2, 1.6) {ভর $dm$};
+    
+    % --- Dimensions ---
+    \draw[<->, thin, darkgray] (0,0) -- ({1.8*cos(60)}, {1.8*sin(60)}) node[midway, left, font=\scriptsize\bfseries] {$r$};
+    
+    \draw[<->, thin, darkgray] ({1.65*cos(60)}, {1.65*sin(60)}) -- ({1.95*cos(60)}, {1.95*sin(60)}) node[midway, right, font=\scriptsize\bfseries] {$dr$};
+    
+    \draw[<->, thick, purple] (0, {1.8*sin(60)}) -- ({1.8*cos(60)}, {1.8*sin(60)}) node[midway, above, font=\scriptsize\bfseries] {$x = r \sin\theta$};
+
+    % --- Angle Theta ---
+    \draw[thick, gray] (0, 0.6) arc (90:60:0.6);
+    \node[above right, font=\scriptsize\bfseries] at (0.05, 0.6) {$\theta$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+ঘূর্ণন অক্ষ থেকে এই ক্ষুদ্র অংশটির লম্ব দূরত্ব হবে: 
+$$x = r \sin\theta$$
+সুতরাং, পুরো দণ্ডটির জন্য ঘূর্ণন অক্ষটির সাপেক্ষে জড়তার ভ্রামক ($I$) হবে:
+$$I = \int_0^L x^2 dm = \int_0^L (r \sin\theta)^2 \left( \frac{M}{L} dr \right)$$ 
+$$I = \frac{M \sin^2\theta}{L} \int_0^L r^2 dr$$ 
+$$I = \frac{M \sin^2\theta}{L} \left[ \frac{r^3}{3} \right]_0^L = \frac{M \sin^2\theta}{L} \cdot \frac{L^3}{3} = \frac{1}{3} M L^2 \sin^2\theta$$
+
+প্রদত্ত মানসমূহ ($M = 3\text{ kg}, L = 1.0\text{ m}, \theta = 30^\circ$) বসিয়ে পাই:
+$$I = \frac{1}{3} \times 3 \times (1.0)^2 \times (\sin 30^\circ)^2$$
+$$I = 1 \times 1 \times (0.5)^2 = 0.25\text{ kg}\cdot\text{m}^2$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: অক্ষ বরাবর কৌণিক ভরবেগ ($L_z$) নির্ণয়} \\
+কোনো নির্দিষ্ট অক্ষের সাপেক্ষে ঘূর্ণনশীল বস্তুর অক্ষীয় কৌণিক ভরবেগের মান হলো উক্ত অক্ষের সাপেক্ষে জড়তার ভ্রামক এবং কৌণিক বেগের গুণফল:
+$$L_z = I \omega$$
+মান বসিয়ে পাই:
+$$L_z = 0.25 \times 10 = 2.5\text{ kg}\cdot\text{m}^2/\text{s}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ঘূর্ণন অক্ষের সাপেক্ষে দণ্ডটির জড়তার ভ্রামক $\mathbf{0.25\text{ kg}\cdot\text{m}^2}$ এবং অক্ষীয় কৌণিক ভরবেগ $\mathbf{2.5\text{ kg}\cdot\text{m}^2/\text{s}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 37 - FALLING CHAIN ON A SCALE
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 8}]
+\noindent
+$L = 3.0\text{ m}$ দীর্ঘ এবং $M = 6.0\text{ kg}$ ভরের একটি সুষম নমনীয় শিকলকে (flexible uniform chain) উল্লম্বভাবে ঝুলিয়ে রাখা হয়েছে, যার নিচের প্রান্তটি একটি স্প্রিংবিহীন ওজন মাপক যন্ত্রের (weighing scale) প্যানকে স্পর্শ করে আছে [১৬]। এবার শিকলটিকে স্থির অবস্থা থেকে ছেড়ে দেওয়া হলো যাতে এটি মেঝের ওপর অবাধে পড়তে শুরু করে। যখন শিকলটির প্রথম $y = 1.0\text{ m}$ অংশ মেঝের ওজন মাপক যন্ত্রের ওপর এসে পড়বে, তখন যন্ত্রটির প্রদর্শিত বল বা আপাত ওজনের মান নির্ণয় করো। [$g = 9.8\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A flexible uniform chain of length $L = 3.0\text{ m}$ and mass $M = 6.0\text{ kg}$ is held suspended vertically so that its lower end just touches the pan of a weighing scale. The chain is released from rest and falls freely. Calculate the total force (apparent weight) read by the scale at the instant when a length $y = 1.0\text{ m}$ of the chain has fallen onto the scale. [Take $g = 9.8\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 37A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    % --- Background / Floor ---
+    \draw[thick, black!60] (-3, 0) -- (3, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-3, -0.2) rectangle (3, 0);
+
+    % --- Weighing Scale ---
+    \draw[thick, fill=gray!20, rounded corners=2pt] (-1.2, 0) rectangle (1.2, 0.4);
+    \draw[thick, fill=white] (-0.5, 0.1) rectangle (0.5, 0.3);
+    \node[font=\tiny\bfseries] at (0, 0.2) {SCALE};
+
+    % --- Chain Pile (Fallen length y) ---
+    \fill[blue!80!black, rounded corners=3pt] (-0.4, 0.4) rectangle (0.4, 0.65);
+    \fill[blue!80!black, rounded corners=3pt] (-0.2, 0.65) rectangle (0.2, 0.75);
+    \node[right, font=\scriptsize\bfseries, text=blue!80!black] at (0.5, 0.6) {জড় হওয়া অংশ ($y$)};
+
+    % --- Hanging Chain ---
+    % Drawing chain links vertically
+    \foreach \y in {0.85, 1.15, 1.45, 1.75, 2.05, 2.35, 2.65, 2.95} {
+        \draw[thick, blue!80!black, rounded corners=1pt] (-0.05, \y-0.15) rectangle (0.05, \y+0.15);
+    }
+    \node[left, font=\footnotesize\bfseries, text=blue!80!black] at (-0.2, 2.0) {পতনশীল শিকল};
+
+    % --- Dimensions ---
+    % Initial position indicator (faded)
+    \draw[dashed, gray] (0, 4.0) -- (1.5, 4.0);
+    \draw[<->, thick, darkgray] (1.3, 0.4) -- (1.3, 4.0) node[midway, right, font=\scriptsize\bfseries] {মোট দৈর্ঘ্য $L = 3.0\text{ m}$};
+    
+    % Fallen distance (y)
+    \draw[dashed, gray] (0, 3.0) -- (-1.2, 3.0);
+    \draw[<->, thick, purple] (-1.0, 3.0) -- (-1.0, 4.0) node[midway, left, font=\scriptsize\bfseries] {$y = 1.0\text{ m}$};
+    
+    % --- Velocity Indicator ---
+    \draw[->, ultra thick, red!80!black] (0.3, 1.6) -- (0.3, 0.9) node[midway, right, font=\small\bfseries] {$v = \sqrt{2gy}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 37
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+ওজন মাপক যন্ত্রটির ওপর মোট বল ($F_{\text{total}}$) দুটি উপাংশের সমষ্টির সমান হবে: 
+১. মেঝের ওপর ইতিমধ্যে স্থির হয়ে থাকা শিকলের অংশের প্রকৃত ওজন ($W$)। 
+২. শিকলের পতনশীল অংশের ওজন মাপক যন্ত্রে আঘাতের ফলে সৃষ্ট ঘাত বল ($F_{\text{impact}}$), যা মূলত ভরবেগ পরিবর্তনের হারের কারণে উৎপন্ন হয় [৯, ১৬]।
+
+\vspace{0.3em}
+\noindent
+শিকলের প্রতি একক দৈর্ঘ্যের ভর (linear density): 
+$$\lambda = \frac{M}{L} = \frac{6.0}{3.0} = 2.0\text{ kg/m}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{১. মেঝের ওপর থাকা অংশের ওজন ($W$):} \\
+যখন $y = 1.0\text{ m}$ দৈর্ঘ্যের শিকল মেঝেতে জমা হয়, তখন তার ওজন:
+$$W = (\lambda \cdot y)g = (2.0 \times 1.0) \times 9.8 = 19.6\text{ N}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{২. শিকলের পতনশীল অংশের ঘাত বল ($F_{\text{impact}}$):} \\
+যেহেতু শিকলটি অবাধে পড়ছে, তাই শিকলের যে অংশটি মেঝেকে আঘাত করছে তার পতন বেগ:
+$$v = \sqrt{2gy}$$
+একটি অত্যন্ত ক্ষুদ্র সময়ে $dt$-তে মেঝেতে পড়া শিকলের ক্ষুদ্র ভর $dm = \lambda \cdot dy$। আঘাতের ঠিক পরপরই এই অংশটি স্থির হয়ে যায় (শেষ বেগ শূন্য)। নিউটনের দ্বিতীয় সূত্র অনুযায়ী এই আঘাতের ফলে সৃষ্ট বল [১, ৯]:
+$$F_{\text{impact}} = \frac{dp}{dt} = v \frac{dm}{dt} = v \left( \lambda \frac{dy}{dt} \right) = \lambda v^2$$
+যেহেতু $v^2 = 2gy$, তাই:
+$$F_{\text{impact}} = \lambda (2gy) = 2\lambda yg$$ 
+$$F_{\text{impact}} = 2 \times 2.0 \times 1.0 \times 9.8 = 39.2\text{ N}$$
+
+% ------------------------------------------
+% TIKZ DIAGRAM 37B: FORCE VECTORS
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    % Scale surface
+    \draw[ultra thick, gray] (-2, 0) -- (2, 0);
+    \node[below, font=\scriptsize\bfseries, text=gray] at (0, 0) {ওজন মাপক যন্ত্র (Scale)};
+
+    % Fallen Chain Mass
+    \draw[thick, fill=blue!15, draw=blue!80!black, rounded corners=2pt] (-0.6, 0) rectangle (0.6, 0.4);
+    \node[font=\scriptsize\bfseries, text=blue!80!black] at (0, 0.2) {জমা হওয়া অংশ};
+
+    % Force W (Weight of rested part)
+    \draw[->, ultra thick, orange!90!black] (-0.3, 0.2) -- (-0.3, -1.2) node[left, font=\scriptsize\bfseries] {$W = \lambda yg$};
+    
+    % Force F_impact (Impact force)
+    \draw[->, ultra thick, red!80!black] (0.3, 1.2) -- (0.3, -1.2) node[right, font=\scriptsize\bfseries] {$F_{\text{impact}} = 2\lambda yg$};
+
+    % Combining Brace
+    \draw[decorate, decoration={brace, amplitude=5pt, mirror}, thick, darkgray] (-0.5, -1.3) -- (0.5, -1.3) node[midway, below=6pt, font=\small\bfseries] {$F_{\text{total}} = 3\lambda yg$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\noindent
+\textbf{৩. মোট প্রদর্শিত বল ($F_{\text{total}}$) ও আপাত ভর ($M_{\text{app}}$):} \\
+মাপক যন্ত্রের ওপর মোট নিম্নাভিমুখী বল:
+$$F_{\text{total}} = W + F_{\text{impact}} = \lambda yg + 2\lambda yg = 3\lambda yg$$ 
+$$F_{\text{total}} = 19.6\text{ N} + 39.2\text{ N} = \mathbf{58.8\text{ N}}$$
+
+\noindent
+আপাত ভর (Apparent Mass) রিডিং:
+$$M_{\text{app}} = \frac{F_{\text{total}}}{g} = \frac{58.8}{9.8} = \mathbf{6.0\text{ kg}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ওজন মাপক যন্ত্রটির প্রদর্শিত বলের মান $\mathbf{58.8\text{ N}}$ (যা $\mathbf{6.0\text{ kg}}$ আপাত ওজনের সমতুল্য, অর্থাৎ মেঝের ওপর থাকা শিকলের প্রকৃত ওজনের ঠিক ৩ গুণ)।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 40 - MOMENT OF INERTIA OF SQUARE FRAME
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 9}]
+\noindent
+প্রতিটি $M = 1.5\text{ kg}$ ভর এবং $L = 0.8\text{ m}$ দৈর্ঘ্যের চারটি অভিন্ন সরু সুষম দণ্ড (rod) জোড়া দিয়ে একটি বর্গাকার ফ্রেম তৈরি করা হলো । ফ্রেমটির চারটি কোণায় যথাক্রমে $m_0 = 0.5\text{ kg}$ ভরের চারটি অত্যন্ত ক্ষুদ্র গোলক (বিন্দু ভর) সংযুক্ত করা হলো। 
+
+\vspace{0.3em}
+\noindent
+এই সম্পূর্ণ ব্যবস্থার তলের সাথে লম্বভাবে এবং বর্গাকার ফ্রেমটির যেকোনো একটি কোণাগামী ঘূর্ণন অক্ষের সাপেক্ষে ব্যবস্থাটির মোট জড়তার ভ্রামক (Moment of Inertia) নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A square frame is constructed using four identical thin uniform rods, each of mass $M = 1.5\text{ kg}$ and length $L = 0.8\text{ m}$. Four small spheres (point masses), each of mass $m_0 = 0.5\text{ kg}$, are rigidly attached to the four corners of the frame. Calculate the total moment of inertia of this composite system about an axis passing through one of the corners and perpendicular to the plane of the square frame.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 40A: SCENARIO (SQUARE FRAME TOP VIEW)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Coordinate System & Grid Background ---
+    \fill[gray!10] (-0.5, -0.5) rectangle (3.5, 3.5);
+    \draw[thick, gray!40] (-0.5, -0.5) grid (3.5, 3.5);
+
+    % --- Square Frame Rods (Side L = 2 units on grid, let L = 2.5 cm visual) ---
+    % Origin (0,0) is bottom-left corner (Axis of rotation)
+    \draw[line width=3pt, blue!70!black] (0,0) -- (3,0) node[midway, below, font=\footnotesize] {দণ্ড ১ ($x$-অক্ষ)};
+    \draw[line width=3pt, blue!70!black] (0,0) -- (0,3) node[midway, left, font=\footnotesize] {দণ্ড ২ ($y$-অক্ষ)};
+    \draw[line width=3pt, blue!70!black] (0,3) -- (3,3) node[midway, above, font=\footnotesize] {দণ্ড ৩};
+    \draw[line width=3pt, blue!70!black] (3,0) -- (3,3) node[midway, right, font=\footnotesize] {দণ্ড ৪};
+
+    % --- Corner Masses (Point Masses m0) ---
+    \fill[orange!80!black] (0,0) circle (0.12);
+    \fill[orange!80!black] (3,0) circle (0.12);
+    \fill[orange!80!black] (0,3) circle (0.12);
+    \fill[orange!80!black] (3,3) circle (0.12);
+
+    % Labels for Masses
+    \node[below left, font=\scriptsize\bfseries] at (0,0) {$m_0$ (অক্ষ)};
+    \node[below right, font=\scriptsize\bfseries] at (3,0) {$m_0$};
+    \node[above left, font=\scriptsize\bfseries] at (0,3) {$m_0$};
+    \node[above right, font=\scriptsize\bfseries] at (3,3) {$m_0$};
+
+    % --- Axis Symbol at Origin ---
+    \draw[thick, fill=white] (0,0) circle (0.06);
+    \fill[black] (0,0) circle (0.02);
+    \node[above right, font=\tiny] at (0.05, 0.05) {$\odot$ (লম্ব অক্ষ)};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 40
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+ধরি, বর্গাকার ফ্রেমটির যে কোণাগামী অক্ষের সাপেক্ষে জড়তার ভ্রামক বের করতে হবে, তা মূলবিন্দু $(0,0)$-তে অবস্থিত। বর্গক্ষেত্রের বাহুগুলো অক্ষ বরাবর এবং সমান্তরালে রয়েছে।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: দণ্ডসমূহের জড়তার ভ্রামক ($I_{\text{rods}}$) নির্ণয়} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{দণ্ড ১ ($x$-অক্ষ বরাবর, $0$ থেকে $L$):} এক প্রান্তগামী লম্ব অক্ষের সাপেক্ষে দণ্ডের জড়তার ভ্রামক [০২.pdf]:
+    $$I_1 = \frac{1}{3} M L^2 = \frac{1}{3} \times 1.5 \times (0.8)^2 = 0.5 \times 0.64 = 0.32\text{ kg}\cdot\text{m}^2$$
+    \item \textbf{দণ্ড ২ ($y$-অক্ষ বরাবর, $0$ থেকে $L$):} একইভাবে, এরও এক প্রান্ত দিয়ে ঘূর্ণন অক্ষ যাওয়ায়:
+    $$I_2 = \frac{1}{3} M L^2 = 0.32\text{ kg}\cdot\text{m}^2$$
+    \item \textbf{দণ্ড ৩ ($y = L$ রেখায় সমান্তরাল দণ্ড):} এর ভরকেন্দ্র $(L/2, L)$ অবস্থানে রয়েছে। মূলবিন্দু থেকে এর লম্ব দূরত্ব $d_3 = \sqrt{(L/2)^2 + L^2} = \sqrt{\frac{5}{4}L^2} = \frac{\sqrt{5}}{2} L$। সমান্তরাল অক্ষ উপপাদ্য (Parallel Axis Theorem) প্রয়োগ করে :
+    $$I_3 = I_{\text{cm}} + M d_3^2 = \frac{1}{12} M L^2 + M \left(\frac{5}{4} L^2\right) = \left(\frac{1}{12} + \frac{5}{4}\right) M L^2 = \frac{4}{3} M L^2$$
+    $$I_3 = \frac{4}{3} \times 1.5 \times (0.8)^2 = 2.0 \times 0.64 = 1.28\text{ kg}\cdot\text{m}^2$$
+    \item \textbf{দণ্ড ৪ ($x = L$ রেখায় সমান্তরাল দণ্ড):} একইভাবে প্রতিসমতার কারণে:
+    $$I_4 = \frac{4}{3} M L^2 = 1.28\text{ kg}\cdot\text{m}^2$$
+\end{itemize}
+
+দণ্ডগুলোর মোট জড়তার ভ্রামক:
+$$I_{\text{rods}} = I_1 + I_2 + I_3 + I_4 = 0.32 + 0.32 + 1.28 + 1.28 = \mathbf{3.20\text{ kg}\cdot\text{m}^2}$$
+
+% ------------------------------------------
+% TIKZ DIAGRAM 40B: EXPLODED FBD (COMPONENT BREAKDOWN)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1, text=black]
+
+    \tikzset{
+        axis/.style={dashed, thick, gray},
+        dim/.style={<->, thick, purple}
+    }
+
+    % --- Corner Masses MOI setup ---
+    \node[above, font=\small\bfseries] at (2.5, 2.2) {কোণার বিন্দু ভরসমূহের বিন্যাস};
+
+    % Four corners diagram simplified
+    \draw[thin, gray] (0,0) -- (2,0) -- (2,2) -- (0,2) -- cycle;
+    \draw[thin, gray] (0,0) -- (2,2); % Diagonal root(2)L
+
+    \fill[black] (0,0) circle (0.08) node[below left, font=\scriptsize] {$0$};
+    \fill[orange!80!black] (2,0) circle (0.08) node[below right, font=\scriptsize] {$L$};
+    \fill[orange!80!black] (0,2) circle (0.08) node[above left, font=\scriptsize] {$L$};
+    \fill[orange!80!black] (2,2) circle (0.08) node[above right, font=\scriptsize] {$\sqrt{2}L$};
+
+    \node[below, font=\footnotesize] at (1, -0.5) {দূরত্বসমূহ: $0, L, L, \sqrt{2}L$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: কোণার বিন্দু ভরসমূহের জড়তার ভ্রামক ($I_{\text{masses}}$) নির্ণয়} \\
+মূলবিন্দু $(0,0)$ থেকে কোণাগুলোর দূরত্ব যথাক্রমে: $0$, $L$, $L$, এবং কর্ণ বরাবর $\sqrt{2}L$।
+$$I_{\text{masses}} = m_0 (0)^2 + m_0 (L)^2 + m_0 (L)^2 + m_0 (\sqrt{2}L)^2$$
+$$I_{\text{masses}} = m_0 (0 + L^2 + L^2 + 2L^2) = 4 m_0 L^2$$
+$$I_{\text{masses}} = 4 \times 0.5 \times (0.8)^2 = 2 \times 0.64 = \mathbf{1.28\text{ kg}\cdot\text{m}^2}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: ব্যবস্থার মোট জড়তার ভ্রামক ($I_{\text{total}}$)} \\
+$$I_{\text{total}} = I_{\text{rods}} + I_{\text{masses}} = 3.20 + 1.28 = \mathbf{4.48\text{ kg}\cdot\text{m}^2}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ঘূর্ণন অক্ষের সাপেক্ষে সম্মিলিত ব্যবস্থাটির মোট জড়তার ভ্রামক হলো $\mathbf{4.48\text{ kg}\cdot\text{m}^2}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 45 - ROTATIONAL COLLISION & ENERGY LOSS
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 10}]
+\noindent
+$M = 12.0\text{ kg}$ ভর এবং $R = 1.5\text{ m}$ ব্যাসার্ধের একটি সুষম অনুভূমিক বৃত্তাকার চাকতি (circular disc) তার কেন্দ্রগামী খাড়া উল্লম্ব অক্ষের সাপেক্ষে $\omega_0 = 5.0\text{ rad/s}$ ধ্রুব কৌণিক বেগে মুক্তভাবে ঘুরছে। একটি $m = 3.0\text{ kg}$ ভরের ক্ষুদ্র ব্লক চাকতিটির ঠিক উপর থেকে আলতোভাবে (gently) চাকতিটির কেন্দ্রের সাপেক্ষে $r = 1.0\text{ m}$ দূরত্বে স্পর্শকের ওপর ফেলা হলো। 
+
+\vspace{0.3em}
+\noindent
+চাকতি ও ব্লকের মধ্যকার ঘর্ষণের কারণে ব্লকটি পিছলে না গিয়ে অবশেষে চাকতিটির সাথে একই আবর্তনে ঘুরতে থাকে। এই সম্পূর্ণ প্রক্রিয়ায় ঘর্ষণ জনিত কারণে হারিয়ে যাওয়া তাপীয় বা যান্ত্রিক শক্তির (energy loss) পরিমাণ নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform horizontal circular disc of mass $M = 12.0\text{ kg}$ and radius $R = 1.5\text{ m}$ is rotating freely about a vertical frictionless axis passing through its center at an initial angular speed of $\omega_0 = 5.0\text{ rad/s}$. A small block of mass $m = 3.0\text{ kg}$ is gently dropped from a negligible height onto the upper surface of the disc at a radial distance of $r = 1.0\text{ m}$ from the center. Due to friction, the block eventually stops slipping and rotates together with the disc. Calculate the amount of mechanical energy lost (converted to thermal energy) during this process.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 45A: SCENARIO (PSEUDO-3D VIEW)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Axis of Rotation ---
+    \draw[dash dot, ultra thick, darkgray] (0, -1.0) -- (0, 3.5);
+    \node[above, font=\footnotesize\bfseries, text=darkgray] at (0, 3.5) {ঘূর্ণন অক্ষ};
+
+    % --- Rotating Disc (Pseudo-3D using Ellipse) ---
+    % Scale: 1 unit = 0.5m. So R = 1.5m -> 3 units.
+    \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) ellipse (3.0 and 1.0);
+    \fill[black] (0,0) circle (0.05);
+    \node[below left, font=\scriptsize\bfseries] at (0,0) {কেন্দ্র};
+
+    % --- Initial Rotation Indicator ---
+    \draw[->, ultra thick, green!60!black] (1.5, 0.4) arc (0:180:1.5 and 0.5) node[midway, above, font=\small\bfseries] {$\omega_0 = 5.0\text{ rad/s}$};
+
+    % --- Dimensions on Disc ---
+    \draw[<->, thick, purple] (0,0) -- (3.0, 0) node[midway, below, font=\scriptsize\bfseries] {$R = 1.5\text{ m}$};
+    
+    % --- Block dropping ---
+    % r = 1.0m -> 2 units. Place it on the right side.
+    \draw[dashed, ultra thick, orange!80!black] (2.0, 2.0) -- (2.0, 0.2);
+    \draw[thick, fill=orange!80!black] (1.7, 2.0) rectangle (2.3, 2.4);
+    \node[white, font=\footnotesize\bfseries] at (2.0, 2.2) {$m$};
+    \node[above right, font=\scriptsize\bfseries, text=orange!80!black] at (2.3, 2.1) {$3.0\text{ kg}$};
+    
+    % Position r marker
+    \draw[<->, thick, darkgray] (0,0) -- (2.0, -0.6) node[midway, below, font=\scriptsize\bfseries] {$r = 1.0\text{ m}$};
+    \draw[dashed, thin, gray] (2.0, 0) -- (2.0, -0.6);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 45
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+যেহেতু সিস্টেমে বাইরে থেকে কোনো বাহ্যিক ঘূর্ণন বল বা টর্ক প্রযুক্ত হয়নি, কেন্দ্রের সাপেক্ষে ঘূর্ণন অক্ষ বরাবর মোট কৌণিক ভরবেগ (Angular Momentum) সংরক্ষিত থাকবে:
+$$L_i = L_f$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: আদি ও চূড়ান্ত জড়তার ভ্রামক ($I$) নির্ণয়} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{আদি জড়তার ভ্রামক ($I_i$):} শুরুতে কেবল চাকতিটি ঘুরছিল।
+    $$I_i = I_{\text{disc}} = \frac{1}{2} M R^2 = \frac{1}{2} \times 12.0 \times (1.5)^2 = 6.0 \times 2.25 = \mathbf{13.5\text{ kg}\cdot\text{m}^2}$$
+    
+    \item \textbf{চূড়ান্ত জড়তার ভ্রামক ($I_f$):} ব্লকটি চাকতির ওপর আটকে যাওয়ার পর, এটি $r = 1.0\text{ m}$ দূরত্বে একটি বিন্দু ভর হিসেবে কাজ করে।
+    $$I_f = I_{\text{disc}} + m r^2 = 13.5 + 3.0 \times (1.0)^2 = 13.5 + 3.0 = \mathbf{16.5\text{ kg}\cdot\text{m}^2}$$
+\end{itemize}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 45B: EXPLODED FBD (TOP-DOWN VIEW & FRICTIONAL TORQUE)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0, text=black]
+
+    \tikzset{
+        fric/.style={->, ultra thick, red!80!black}
+    }
+
+    % --- STATE 1: INITIAL ---
+    \begin{scope}[shift={(0,0)}]
+        \node[above, font=\small\bfseries, text=darkgray] at (0, 2.5) {আদি অবস্থা ($L_i$)};
+        
+        % Disc Top View
+        \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) circle (2.0);
+        \fill[black] (0,0) circle (0.06);
+        
+        % Rotation
+        \draw[->, ultra thick, green!60!black] (1.0, 0) arc (0:120:1.0) node[midway, above right, font=\scriptsize\bfseries] {$\omega_0$};
+        \node[below, font=\scriptsize\bfseries] at (0, -2.2) {$I_i = 13.5\text{ kg}\cdot\text{m}^2$};
+    \end{scope}
+
+    % --- ARROW ---
+    \draw[->, ultra thick, darkgray] (2.5, 0) -- (3.5, 0) node[midway, above, font=\scriptsize\bfseries] {ব্লক পতন};
+
+    % --- STATE 2: SLIDING (FRICTION) ---
+    \begin{scope}[shift={(6.0,0)}]
+        \node[above, font=\small\bfseries, text=darkgray] at (0, 2.5) {চূড়ান্ত অবস্থা ($L_f$)};
+        
+        % Disc Top View
+        \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) circle (2.0);
+        \fill[black] (0,0) circle (0.06);
+        
+        % Block
+        \draw[thick, fill=orange!80!black, rounded corners=1pt] (1.2, -0.2) rectangle (1.6, 0.2);
+        
+        % Final Unified Rotation
+        \draw[->, ultra thick, purple!80!black] (1.4, 0.4) arc (20:140:1.5) node[midway, above, font=\scriptsize\bfseries] {যৌথ ঘূর্ণন $\omega_f$};
+
+        % Frictional Torque explanation
+        \draw[fric] (1.6, 0) arc (0:-60:1.4) node[midway, right, font=\tiny\bfseries] {চাকতির ওপর ঘর্ষণ (ব্রেক)};
+        \draw[fric] (1.4, 0.2) arc (10:70:1.4) node[midway, left, font=\tiny\bfseries] {ব্লকের ওপর ঘর্ষণ (ত্বরণ)};
+
+        \node[below, font=\scriptsize\bfseries] at (0, -2.2) {$I_f = 16.5\text{ kg}\cdot\text{m}^2$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: চূড়ান্ত কৌণিক বেগ ($\omega_f$) নির্ণয়} \\
+কৌণিক ভরবেগের সংরক্ষণ সূত্র ($L_i = L_f$) ব্যবহার করে:
+$$I_i \cdot \omega_0 = I_f \cdot \omega_f$$ 
+$$13.5 \times 5.0 = 16.5 \times \omega_f$$ 
+$$\omega_f = \frac{67.5}{16.5} \approx \mathbf{4.09\text{ rad/s}}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: যান্ত্রিক শক্তির রূপান্তর ও ক্ষয় ($\Delta E$) নির্ণয়} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{আদি ঘূর্ণন গতিশক্তি ($E_{ki}$):}
+    $$E_{ki} = \frac{1}{2} I_i \omega_0^2 = \frac{1}{2} \times 13.5 \times (5.0)^2 = \frac{1}{2} \times 13.5 \times 25 = \mathbf{168.75\text{ J}}$$
+    
+    \item \textbf{চূড়ান্ত ঘূর্ণন গতিশক্তি ($E_{kf}$):}
+    $$E_{kf} = \frac{1}{2} I_f \omega_f^2 = \frac{1}{2} \times 16.5 \times (4.0909)^2 \approx \frac{1}{2} \times 16.5 \times 16.7355 = \mathbf{138.07\text{ J}}$$
+\end{itemize}
+
+হারিয়ে যাওয়া শক্তির পরিমাণ (Loss of energy): 
+$$\Delta E = E_{ki} - E_{kf} = 168.75\text{ J} - 138.07\text{ J} = \mathbf{30.68\text{ J}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+পিছলে যাওয়া বন্ধ হতে ঘর্ষণের কারণে হারিয়ে যাওয়া যান্ত্রিক শক্তির পরিমাণ প্রায় $\mathbf{30.68\text{ J}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 48 - CYLINDER LIFTING OVER A STEP
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)11}]
+\noindent
+$M = 40\text{ kg}$ ভর এবং $R = 0.4\text{ m}$ ব্যাসার্ধের একটি সুষম নিরেট ভারী সিলিন্ডার (cylinder) একটি অনুভূমিক মেঝের ওপর রাখা আছে। সিলিন্ডারটির গতির সামনে $h = 0.1\text{ m}$ উচ্চতার একটি আয়তাকার উল্লম্ব ধাপ (step) বা বাধা রয়েছে। 
+
+\vspace{0.3em}
+\noindent
+সিলিন্ডারটিকে ধাপটির ওপর দিয়ে টেনে তোলার জন্য এর কেন্দ্রগামী অনুভূমিক অক্ষ বরাবর সোজা ডান দিকে একটি অনুভূমিক বল $F$ প্রয়োগ করা হলো। সিলিন্ডারটি মেঝের স্পর্শবিন্দু ছেড়ে যখন ধাপটির কোণার ওপর উঠতে শুরু করবে (just on the verge of lifting over the step), সেই মুহূর্তে প্রয়োজনীয় ন্যূনতম অনুভূমিক বল ($F$)-এর মান নির্ণয় করো। [$\text{Take } g = 9.8\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform solid cylinder of mass $M = 40\text{ kg}$ and radius $R = 0.4\text{ m}$ rests on a horizontal floor. A rectangular step of height $h = 0.1\text{ m}$ is placed in front of the cylinder. A horizontal pulling force $F$ is applied to the central axle of the cylinder to pull it over the step. Calculate the minimum value of $F$ required to just start rolling the cylinder over the step. [Take $g = 9.8\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 48A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.8, text=black]
+
+    % --- Scaling Note ---
+    % Real dimensions: R=0.4, h=0.1. Scaled by 10 for TikZ drawing.
+    % R = 4.0. h = 1.0.
+    % Pivot P coordinates if Center O is at (0,0):
+    % y_P = -3.0. x_P = sqrt(4^2 - 3^2) = sqrt(7) = 2.646
+
+    \coordinate (O) at (0,0);
+    \coordinate (P) at (2.646, -3.0);
+    \coordinate (FloorLeft) at (-4.5, -4.0);
+    \coordinate (FloorRight) at (2.646, -4.0);
+    \coordinate (StepTopRight) at (6.0, -3.0);
+
+    % --- Floor and Step ---
+    \draw[ultra thick, black!70] (FloorLeft) -- (FloorRight) -- (P) -- (StepTopRight);
+    
+    % Floor Shading
+    \fill[pattern=north east lines, pattern color=gray] (-4.5, -4.3) rectangle (2.646, -4.0);
+    % Step Shading
+    \fill[pattern=north east lines, pattern color=gray] (2.646, -4.3) rectangle (6.0, -3.0);
+
+    % --- Cylinder ---
+    \draw[thick, fill=blue!10, draw=blue!80!black] (O) circle (4.0);
+    \fill[black] (O) circle (0.08);
+    \node[above left, font=\footnotesize\bfseries] at (O) {কেন্দ্র ($O$)};
+
+    % --- Pivot Point P ---
+    \fill[red!80!black] (P) circle (0.12);
+    \node[below right, font=\footnotesize\bfseries, text=red!80!black] at (P) {ধাপের কোণা ($P$)};
+
+    % --- Force F ---
+    \draw[->, ultra thick, green!60!black] (O) -- (4.0, 0) node[right, font=\small\bfseries] {$F$};
+
+    % --- Dimensions ---
+    % Radius R
+    \draw[->, thick, darkgray] (O) -- (-2.828, 2.828) node[midway, below left, font=\scriptsize\bfseries] {$R = 0.4\text{ m}$};
+    
+    % Step Height h
+    \draw[<->, thick, purple] (6.5, -4.0) -- (6.5, -3.0) node[midway, right, font=\scriptsize\bfseries] {$h = 0.1\text{ m}$};
+    \draw[dashed, gray] (2.646, -4.0) -- (6.5, -4.0);
+    \draw[dashed, gray] (6.0, -3.0) -- (6.5, -3.0);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 48
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+সিলিন্ডারটি যখন মেঝে ছেড়ে ওপরে ওঠার উপক্রম হয়, তখন মেঝের ওপর এর অভিলম্ব প্রতিক্রিয়া বল শূন্য হয়ে যায়। এই অবস্থায় সিলিন্ডারটি কেবল ধাপের কোণা (ধরি, পিভট বিন্দু $P$)-এর সংস্পর্শে থাকে এবং ঘূর্ণনটি এই $P$ বিন্দুর সাপেক্ষেই ঘটে।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: জ্যামিতিক বিশ্লেষণ ও বলের লম্ব দূরত্ব (Moment Arm) নির্ণয়} \\
+ধাপের কোণা $P$-এর সাপেক্ষ ঘূর্ণন বিবেচনা করি:
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{ওজন $Mg$-এর ক্রিয়ারেখার লম্ব দূরত্ব ($d_g$):} 
+    সিলিন্ডারের কেন্দ্র $O$ থেকে পিভট বিন্দু $P$ এর উল্লম্ব উচ্চতা: $R - h = 0.4 - 0.1 = 0.3\text{ m}$। 
+    $O$ থেকে $P$-এর অনুভূমিক দূরত্ব (যা ওজনের ক্রিয়ারেখার লম্ব দূরত্ব):
+    $$d_g = \sqrt{R^2 - (R-h)^2} = \sqrt{0.4^2 - 0.3^2} = \sqrt{0.16 - 0.09} = \sqrt{0.07} \approx 0.2646\text{ m}$$
+    
+    \item \textbf{প্রযুক্ত বল $F$-এর ক্রিয়ারেখার লম্ব দূরত্ব ($d_F$):}
+    যেহেতু বল $F$ কেন্দ্র বরাবর অনুভূমিকভাবে কাজ করছে, পিভট বিন্দু $P$ থেকে এর লাইনের উল্লম্ব দূরত্ব হবে:
+    $$d_F = R - h = 0.3\text{ m}$$
+\end{itemize}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 48B: EXPLODED FBD & TORQUE GEOMETRY
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9, text=black]
+
+    \coordinate (O) at (0,0);
+    \coordinate (P) at (2.646, -3.0);
+
+    % --- Faint Cylinder Outline ---
+    \draw[thick, gray!30] (O) circle (4.0);
+    
+    % --- Step Corner ---
+    \draw[ultra thick, black] (2.646, -4.0) -- (P) -- (5.0, -3.0);
+    \fill[red!80!black] (P) circle (0.12) node[below right=8 pt, font=\footnotesize\bfseries] {$P$ (পিভট)};
+
+    % --- Forces ---
+    % Force F
+    \draw[->, ultra thick, green!60!black] (O) -- (4.0, 0) node[right, font=\small\bfseries] {$F$};
+    % Gravity Mg
+    \draw[->, ultra thick, darkgray] (O) -- (0, -4.5) node[below, font=\small\bfseries] {$Mg$};
+
+    % --- Moment Arms Geometry ---
+    \draw[dashed, thick, blue!60!black] (O) -- (0, -3.0) node[midway, left, font=\scriptsize\bfseries] {$d_F = R - h = 0.3\text{ m}$};
+    \draw[dashed, thick, blue!60!black] (0, -3.0) -- (P) node[midway, below, font=\scriptsize\bfseries] {$d_g = \sqrt{R^2 - (R-h)^2} = 0.265\text{ m}$};
+    \draw[dashed, thick, purple] (O) -- (P) node[midway, above right, font=\scriptsize\bfseries] {$R$};
+
+    % Center O
+    \fill[black] (O) circle (0.08) node[above left, font=\footnotesize\bfseries] {$O$};
+
+    % --- Torque Indicators ---
+    % Torque due to F (Clockwise)
+    \draw[->, ultra thick, green!60!black] (3.2, -2.5) arc (45:110:1.5) node[midway, above right, font=\scriptsize\bfseries] {$\tau_F$};
+    % Torque due to Mg (Counter-Clockwise)
+    \draw[->, ultra thick, darkgray] (1.0, -3.8) arc (-120:-45:1.2) node[midway, below, font=\scriptsize\bfseries] {$\tau_{Mg}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: টর্কের সাম্যাবস্থা প্রয়োগ ($\Sigma \tau_P = 0$)} \\
+সিলিন্ডারটি ধাপ পার হতে গেলে প্রযুক্ত বলের কারণে উৎপন্ন ঘূর্ণন টর্ককে অবশ্যই অভিকর্ষজ ওজনের জন্য উৎপন্ন প্রতিরোধী টর্কের সমান বা বেশি হতে হবে:
+$$F \cdot d_F = M g \cdot d_g$$ 
+$$F \times 0.3 = 40 \times 9.8 \times 0.2646$$ 
+$$F \times 0.3 = 392 \times 0.2646 = 103.72\text{ N}\cdot\text{m}$$ 
+$$F = \frac{103.72}{0.3} \approx \mathbf{345.71\text{ N}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+সিলিন্ডারটিকে ধাপের ওপর তুলতে প্রয়োজনীয় ন্যূনতম অনুভূমিক বলের মান প্রায় $\mathbf{345.71\text{ N}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 48 - VARIABLE MASS SYSTEM (ROCKET WITH TIME-VARYING EXHAUST)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)12}]
+\noindent
+$M_0 = 4000\text{ kg}$ আদি ভরসম্পন্ন (জ্বালানিসহ) একটি রকেট খাড়া ওপরের দিকে উৎক্ষেপণ করা হলো [৯, ১৬]। রকেটটির ইঞ্জিন থেকে $r = 40\text{ kg/s}$ ধ্রুব হারে গ্যাস নির্গত হয়। বায়ুমণ্ডলের ঘনত্ব কমে যাওয়ার সাথে সাথে নজেলের সম্প্রসারণের কারণে রকেটের সাপেক্ষে গ্যাসের আপেক্ষিক নিষ্কাশন বেগ (exhaust velocity) সময়ের সাথে রৈখিকভাবে বৃদ্ধি পায়, যার সমীকরণ: $u(t) = u_0 + c \cdot t$ (যেখানে, $u_0 = 2000\text{ m/s}$ এবং $c = 10\text{ m/s}^2$)। 
+
+\vspace{0.3em}
+\noindent
+বাতাসে অভিকর্ষজ ত্বরণ $g = 9.8\text{ m/s}^2$ ধ্রুব থাকলে এবং বায়ুর বাধা উপেক্ষণীয় হলে, উৎক্ষেপণের ঠিক $t = 50\text{ s}$ পর রকেটের ঊর্ধ্বমুখী বেগ ($v$) কত হবে তা সমাকলন পদ্ধতি ব্যবহার করে নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A sounding rocket of initial mass $M_0 = 4000\text{ kg}$ is launched vertically upwards. The engine ejects gas at a constant rate of $r = 40\text{ kg/s}$. Due to the thinning atmosphere, the relative exhaust velocity increases linearly with time as $u(t) = u_0 + c \cdot t$, where $u_0 = 2000\text{ m/s}$ and $c = 10\text{ m/s}^2$. Assuming constant gravity $g = 9.8\text{ m/s}^2$ and neglecting air resistance, use integration to calculate the upward velocity ($v$) of the rocket at exactly $t = 50\text{ s}$.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 48A: SCENARIO (ROCKET IN FLIGHT)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.0, text=black]
+
+    % --- Ground Level ---
+    \draw[ultra thick, black!70] (-3, 0) -- (3, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-3, -0.3) rectangle (3, 0);
+    \node[below, font=\scriptsize\bfseries] at (0, -0.3) {ভূপৃষ্ঠ};
+
+    % --- Altitude Indicator ---
+    \draw[->, dashed, thick, gray] (-2.5, 0) -- (-2.5, 6.0) node[above, font=\scriptsize\bfseries] {$y$ (উচ্চতা)};
+    
+    % --- Rocket Body (at t = 50s) ---
+    \begin{scope}[shift={(0, 3.5)}]
+        % Main Body
+        \draw[thick, fill=blue!15, draw=blue!80!black] (-0.4, 0) rectangle (0.4, 1.8);
+        % Nose Cone
+        \draw[thick, fill=red!70!black, draw=black] (-0.4, 1.8) -- (0, 2.6) -- (0.4, 1.8) -- cycle;
+        % Left Fin
+        \draw[thick, fill=gray!40, draw=black] (-0.4, 0) -- (-0.8, -0.6) -- (-0.4, -0.4) -- cycle;
+        % Right Fin
+        \draw[thick, fill=gray!40, draw=black] (0.4, 0) -- (0.8, -0.6) -- (0.4, -0.4) -- cycle;
+        
+        \node[font=\footnotesize\bfseries, text=blue!80!black, rotate=90] at (0, 0.9) {রকেট $M(t)$};
+
+        % --- Exhaust Plume ---
+        % Highly expanded plume to show thinning atmosphere effect
+        \draw[thick, fill=orange!40, draw=red!80!black, opacity=0.8] (-0.3, 0) -- (-1.2, -2.0) .. controls (0, -2.5) .. (1.2, -2.0) -- (0.3, 0) -- cycle;
+        \draw[thick, fill=yellow!60, draw=orange!90!black, opacity=0.9] (-0.15, 0) -- (-0.6, -1.2) .. controls (0, -1.5) .. (0.6, -1.2) -- (0.15, 0) -- cycle;
+
+        % --- Kinematic Vectors ---
+        % Upward Velocity
+        \draw[->, ultra thick, green!60!black] (1.0, 0.5) -- (1.0, 2.5) node[right, font=\small\bfseries] {$v(t)$};
+        % Downward Exhaust Velocity
+        \draw[->, ultra thick, red!80!black] (0, -0.5) -- (0, -2.5) node[below, font=\scriptsize\bfseries] {$u(t) = u_0 + ct$};
+    \end{scope}
+
+    % --- Free Body Diagram (Right Side) ---
+    \begin{scope}[shift={(4.5, 4.0)}]
+        \node[above, font=\scriptsize\bfseries, text=darkgray] at (0, 1.5) {ফ্রি বডি ডায়াগ্রাম};
+        \draw[thick, fill=blue!10, draw=blue!80!black, rounded corners=1pt] (-0.5, -0.5) rectangle (0.5, 0.5);
+        \node[font=\footnotesize\bfseries] at (0,0) {$M(t)$};
+        
+        % Thrust (Up)
+        \draw[->, ultra thick, blue!80!black] (0, 0.5) -- (0, 1.5) node[right, font=\scriptsize\bfseries] {$F_{\text{thrust}} = r u(t)$};
+        % Gravity (Down)
+        \draw[->, ultra thick, darkgray] (0, -0.5) -- (0, -1.5) node[right, font=\scriptsize\bfseries] {$M(t)g$};
+    \end{scope}
+
+    % --- Info Box (Left Side) ---
+    \node[draw, thick, rounded corners, fill=yellow!10, draw=orange, font=\scriptsize\bfseries, align=left] at (-3.5, 3.5) {
+        $t = 50\text{ s}$ \\
+        $M_0 = 4000\text{ kg}$ \\
+        $r = 40\text{ kg/s}$ \\
+        $u_0 = 2000\text{ m/s}$
+    };
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 48
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: মান প্রতিস্থাপন ও গতির সমীকরণ গঠন} \\
+প্রদত্ত মানসমূহ: $M_0 = 4000\text{ kg}$, $r = 40\text{ kg/s}$, $u_0 = 2000\text{ m/s}$, $c = 10\text{ m/s}^2$ এবং $g = 9.8\text{ m/s}^2$।
+
+যেকোনো $t$ সময়ে রকেটের তাৎক্ষণিক ভর: $M(t) = M_0 - rt = 4000 - 40t$ \\
+নিষ্কাশন বেগ: $u(t) = u_0 + ct = 2000 + 10t$
+
+পরিবর্তনশীল ভরের ক্ষেত্রে নিউটনের গতির সমীকরণ হতে পাই:
+$$\frac{dv}{dt} = \frac{r \cdot u(t)}{M(t)} - g$$
+মান বসিয়ে পাই:
+$$\frac{dv}{dt} = \frac{40(2000 + 10t)}{4000 - 40t} - 9.8$$ 
+লব ও হরকে $40$ দ্বারা ভাগ করে সরল করলে:
+$$\frac{dv}{dt} = \frac{2000 + 10t}{100 - t} - 9.8$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: সমাকলন (Integration)} \\
+উভয়পাশে $t=0$ থেকে $t=50$ সীমার মধ্যে সমাকলন করে পাই:
+$$v(50) = \int_{0}^{50} \frac{2000 + 10t}{100 - t} dt - \int_{0}^{50} 9.8 dt$$
+
+প্রথম অংশের সমাকলনের জন্য ধরি, $x = 100 - t \implies dt = -dx$। 
+সীমা পরিবর্তন: যখন $t = 0$, তখন $x = 100$; এবং যখন $t = 50$, তখন $x = 50$।
+লবের রাশিটিকে $x$ এর মাধ্যমে প্রকাশ করলে: 
+$$2000 + 10t = 2000 + 10(100 - x) = 2000 + 1000 - 10x = 3000 - 10x$$
+
+সুতরাং, প্রথম সমাকলনটি হবে:
+$$\int_{0}^{50} \frac{2000 + 10t}{100 - t} dt = \int_{100}^{50} \frac{3000 - 10x}{x} (-dx) = \int_{50}^{100} \left( \frac{3000}{x} - 10 \right) dx$$
+$$= \left[ 3000 \ln x - 10x \right]_{50}^{100}$$
+$$= (3000 \ln 100 - 1000) - (3000 \ln 50 - 500)$$
+$$= 3000 (\ln 100 - \ln 50) - 500 = 3000 \ln\left(\frac{100}{50}\right) - 500 = 3000 \ln 2 - 500$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: চূড়ান্ত বেগ নির্ণয়} \\
+দ্বিতীয় অংশের সমাকলন (অভিকর্ষের প্রভাব):
+$$\int_{0}^{50} 9.8 dt = \left[ 9.8t \right]_{0}^{50} = 9.8 \times 50 = 490$$
+
+অতএব, $t = 50\text{ s}$ মুহূর্তে রকেটের মোট বেগ:
+$$v(50) = (3000 \ln 2 - 500) - 490 = 3000 \ln 2 - 990$$ 
+মান বসিয়ে পাই [যেহেতু $\ln(2) \approx 0.69315$]:
+$$v(50) \approx 3000(0.69315) - 990 = 2079.45 - 990 = \mathbf{1089.45\text{ m/s}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+উৎক্ষেপণের ঠিক $t = 50\text{ s}$ পর রকেটের ঊর্ধ্বমুখী বেগ হবে প্রায় $\mathbf{1089.45\text{ m/s}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 49 - RELATIVE ROLLING MOTION (CYLINDER ON PLANK)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)13}]
+\noindent
+$m = 4.0\text{ kg}$ ভর এবং $R = 0.2\text{ m}$ ব্যাসার্ধের একটি নিরেট সিলিন্ডারকে (solid cylinder) একটি ভারী $M = 8.0\text{ kg}$ ভরের তক্তার (plank) ওপর রাখা আছে। তক্তাটি একটি অনুভূমিক মেঝের ওপর রাখা এবং মেঝে ও তক্তার মধ্যকার গতিশীল ঘর্ষণ গুণাঙ্ক $\mu_2 = 0.1$। সিলিন্ডার ও তক্তার মধ্যকার ঘর্ষণ গুণাঙ্ক $\mu_1 = 0.3$। 
+
+\vspace{0.3em}
+\noindent
+এবার তক্তাটিকে অনুভূমিকভাবে ডান দিকে $F = 68.0\text{ N}$ ধ্রুব বল দিয়ে টানা শুরু করা হলো। সিলিন্ডারটি তক্তার ওপর না পিছলে বিশুদ্ধ গড়ানে গতিতে চললে, তক্তাটির ত্বরণ ($a_{\text{plank}}$), সিলিন্ডারের ত্বরণ ($a_{\text{cylinder}}$) এবং তাদের মধ্যকার ঘর্ষণ বলের ($f_1$) মান নির্ণয় করো। [$\text{Take } g = 10\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform solid cylinder of mass $m = 4.0\text{ kg}$ and radius $R = 0.2\text{ m}$ is placed on a heavy plank of mass $M = 8.0\text{ kg}$. The plank rests on a rough horizontal floor with a kinetic friction coefficient of $\mu_2 = 0.1$. The coefficient of friction between the cylinder and the plank is $\mu_1 = 0.3$. A horizontal pulling force of $F = 68.0\text{ N}$ is applied to the plank to the right. Assuming the cylinder rolls without slipping on the plank, calculate the acceleration of the plank ($a_{\text{plank}}$), the acceleration of the cylinder ($a_{\text{cylinder}}$), and the friction force ($f_1$) between them. [Take $g = 10\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 49A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    % --- Floor ---
+    \draw[ultra thick, black!70] (-1, 0) -- (7, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-1, -0.2) rectangle (7, 0);
+    \node[below, font=\scriptsize\bfseries] at (3, -0.2) {মেঝে ($\mu_2 = 0.1$)};
+
+    % --- Plank ---
+    \draw[thick, fill=orange!25, draw=orange!80!black, rounded corners=1pt] (0, 0) rectangle (5.5, 0.5);
+    \node[font=\footnotesize\bfseries, text=orange!80!black] at (2.75, 0.25) {তক্তা ($M = 8.0\text{ kg}$)};
+
+    % --- Solid Cylinder ---
+    \begin{scope}[shift={(1.5, 1.3)}] % Center of cylinder at y = 0.5 + 0.8 = 1.3
+        \draw[thick, fill=blue!15, draw=blue!80!black] (0,0) circle (0.8);
+        \fill[black] (0,0) circle (0.05);
+        \node[above, font=\footnotesize\bfseries, text=blue!80!black] at (0, 1.2) {সিলিন্ডার ($m$)};
+        
+        % Radius
+        \draw[->, thick, darkgray] (0,0) -- (-0.565, 0.565) node[midway, below left, font=\scriptsize\bfseries] {$R$};
+        
+        % Angular acceleration (Counter-clockwise because it rolls backwards relative to the accelerating plank)
+        \draw[->, ultra thick, purple!80!black] (0, -0.5) arc (-90:0:0.5) node[midway, below right, font=\scriptsize\bfseries] {$\alpha$};
+    \end{scope}
+
+    % --- Forces & Accelerations ---
+    % Pulling Force F
+    \draw[->, ultra thick, green!60!black] (5.5, 0.25) -- (7.0, 0.25) node[right, font=\small\bfseries] {$F = 68\text{ N}$};
+    
+    % Friction f2 (Floor on Plank)
+    \draw[->, ultra thick, red!80!black] (2.5, 0) -- (1.0, 0) node[below, font=\scriptsize\bfseries] {$f_2$};
+    
+    % Friction f1 (Plank on Cylinder & Cylinder on Plank)
+    \draw[->, ultra thick, red!80!black] (1.5, 0.5) -- (2.5, 0.5) node[above right, font=\scriptsize\bfseries] {$f_1$ (সিলিন্ডারের ওপর)};
+    \draw[->, ultra thick, red!60!black, dashed] (1.5, 0.4) -- (0.5, 0.4) node[below left, font=\scriptsize\bfseries] {$f_1$ (তক্তার ওপর)};
+
+    % Accelerations
+    \draw[->, ultra thick, blue!80!black] (1.5, 2.3) -- (3.0, 2.3) node[above, font=\small\bfseries] {$a_{\text{cylinder}}$};
+    \draw[->, ultra thick, orange!80!black] (5.0, 0.7) -- (6.5, 0.7) node[above, font=\small\bfseries] {$a_{\text{plank}}$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 49
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: সমীকরণ ও বিশুদ্ধ গড়ানে গতির শর্ত (No-Slip Condition)} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{তক্তার ওপর মেঝের ঘর্ষণ বল ($f_2$):} 
+    $$f_2 = \mu_2 (M+m)g = 0.1 \times (8+4) \times 10 = \mathbf{12\text{ N}} \quad \text{(বাম দিকে)}$$
+    \item \textbf{তক্তার গতির সমীকরণ:} 
+    $$M a_{\text{plank}} = F - f_1 - f_2$$
+    $$8 a_{\text{plank}} = 68 - f_1 - 12 \implies 8 a_{\text{plank}} = 56 - f_1 \quad \text{--- (১)}$$
+    \item \textbf{সিলিন্ডারের গতির সমীকরণ:} 
+    $$m a_{\text{cylinder}} = f_1 \implies 4 a_{\text{cylinder}} = f_1 \quad \text{--- (২)}$$
+    \item \textbf{সিলিন্ডারের ঘূর্ণন সমীকরণ (ভরকেন্দ্রের সাপেক্ষে):} 
+    $$f_1 R = I \alpha = \left(\frac{1}{2} m R^2\right) \alpha \implies R \alpha = \frac{2 f_1}{m} = \frac{2(4 a_{\text{cylinder}})}{4} = 2 a_{\text{cylinder}}$$
+    \item \textbf{বিশুদ্ধ গড়ানে গতির শর্ত:} সিলিন্ডারটি তক্তার ওপর না পিছলে গড়িয়ে চলার জন্য, স্পর্শবিন্দুর রৈখিক ত্বরণ তক্তার ত্বরণের সমান হতে হবে:
+    $$a_{\text{cylinder}} + R \alpha = a_{\text{plank}}$$ 
+    $$a_{\text{cylinder}} + 2 a_{\text{cylinder}} = a_{\text{plank}} \implies a_{\text{plank}} = 3 a_{\text{cylinder}} \quad \text{--- (৩)}$$
+\end{itemize}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 49B: EXPLODED FBD (ISOLATED COMPONENTS)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1, text=black]
+
+    \tikzset{
+        force/.style={->, ultra thick, red!80!black},
+        accel/.style={->, ultra thick, blue!80!black}
+    }
+
+    % --- Isolated Cylinder ---
+    \begin{scope}[shift={(0, 1.5)}]
+        \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) circle (1.0);
+        \fill[black] (0,0) circle (0.05) node[above left, font=\scriptsize\bfseries] {CM};
+        
+        \draw[force] (0, -1.0) -- (1.5, -1.0) node[right, font=\scriptsize\bfseries] {$f_1$ (সামনে)};
+        \draw[->, ultra thick, purple] (0, -0.6) arc (-90:0:0.6) node[midway, below right, font=\scriptsize\bfseries] {$\alpha$};
+        
+        \draw[accel] (0, 1.2) -- (1.5, 1.2) node[right, font=\scriptsize\bfseries] {$a_{\text{cylinder}}$};
+        \node[left, font=\footnotesize\bfseries, text=blue!80!black] at (-1.2, 0) {সিলিন্ডার ($m$)};
+    \end{scope}
+
+    % --- Isolated Plank ---
+    \begin{scope}[shift={(5.0, 1.0)}]
+        \draw[thick, fill=orange!15, draw=orange!80!black, rounded corners=1pt] (-2.0, -0.4) rectangle (2.0, 0.4);
+        \node[font=\footnotesize\bfseries, text=orange!80!black] at (0, 0) {তক্তা ($M$)};
+        
+        \draw[->, ultra thick, green!60!black] (2.0, 0) -- (3.5, 0) node[right, font=\small\bfseries] {$F$};
+        \draw[force] (-0.5, 0.4) -- (-2.0, 0.4) node[left, font=\scriptsize\bfseries] {$f_1$};
+        \draw[force] (-0.5, -0.4) -- (-2.0, -0.4) node[left, font=\scriptsize\bfseries] {$f_2$};
+        
+        \draw[->, ultra thick, orange!80!black] (0, 0.7) -- (1.5, 0.7) node[right, font=\scriptsize\bfseries] {$a_{\text{plank}}$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: ত্বরণ ও ঘর্ষণ বল হিসাব} \\
+সমীকরণ (১), (২) ও (৩) থেকে পাই:
+$$8 (3 a_{\text{cylinder}}) = 56 - 4 a_{\text{cylinder}}$$ 
+$$24 a_{\text{cylinder}} + 4 a_{\text{cylinder}} = 56$$
+$$28 a_{\text{cylinder}} = 56 \implies \mathbf{a_{\text{cylinder}} = 2.0\text{ m/s}^2}$$
+
+তক্তার ত্বরণ: 
+$$a_{\text{plank}} = 3 \times 2.0 = \mathbf{6.0\text{ m/s}^2}$$
+
+সিলিন্ডার ও তক্তার মধ্যকার ঘর্ষণ বল: 
+$$f_1 = m a_{\text{cylinder}} = 4.0 \times 2.0 = \mathbf{8.0\text{ N}}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{স্থিতি ঘর্ষণ সীমা যাচাই:} 
+সিলিন্ডার ও তক্তার মধ্যকার সর্বোচ্চ স্থিতি ঘর্ষণ বল $f_{s,\text{max}} = \mu_1 m g = 0.3 \times 4.0 \times 10 = 12\text{ N}$। 
+যেহেতু প্রাপ্ত ঘর্ষণ বল $f_1 = 8.0\text{ N} \le 12\text{ N}$, তাই সিলিন্ডারটি সত্যিই না পিছলে বিশুদ্ধ গড়ানে গতি বজায় রাখবে।
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+তক্তার ত্বরণ $\mathbf{6.0\text{ m/s}^2}$, সিলিন্ডারের ত্বরণ $\mathbf{2.0\text{ m/s}^2}$ এবং তাদের মধ্যকার ঘর্ষণ বল $\mathbf{8.0\text{ N}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 50 - ELASTIC COLLISION & INSTANTANEOUS AXIS OF ROTATION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)14}]
+\noindent
+$M = 2.0\text{ kg}$ ভর এবং $L = 1.5\text{ m}$ দৈর্ঘ্যের একটি সুষম সরু কাঠের দণ্ড (rod) একটি মসৃণ অনুভূমিক টেবিলের ওপর স্থির অবস্থায় রাখা আছে। $m = 1.0\text{ kg}$ ভরের একটি ক্ষুদ্র কণা টেবিলের ওপর দিয়ে দণ্ডটির লম্ব অভিমুখে $u = 10.0\text{ m/s}$ বেগে ধাবিত হয়ে দণ্ডের কেন্দ্রবিন্দু থেকে $d = 0.5\text{ m}$ দূরে একটি বিন্দুতে স্থিতিস্থাপকভাবে (perfectly elastic, $e = 1.0$) ধাক্কা খায়। 
+
+\vspace{0.3em}
+\noindent
+সংঘাতের ঠিক পরপরই দণ্ডটির ভরকেন্দ্রের রৈখিক বেগ ($v_c$), দণ্ডটির কৌণিক বেগ ($\omega$) এবং দণ্ডটির তাৎক্ষণিক ঘূর্ণন অক্ষের (Instantaneous Axis of Rotation - IAOR) কেন্দ্র থেকে লম্ব দূরত্ব নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform thin rod of mass $M = 2.0\text{ kg}$ and length $L = 1.5\text{ m}$ lies at rest on a frictionless horizontal table. A particle of mass $m = 1.0\text{ kg}$ moving with velocity $u = 10.0\text{ m/s}$ perpendicular to the rod strikes it elastically ($e = 1.0$) at a distance $d = 0.5\text{ m}$ from its center. Calculate the final linear velocity of the rod's center of mass ($v_c$), the final angular velocity ($\omega$) of the rod, and the distance of the Instantaneous Axis of Rotation (IAOR) of the rod from its center immediately after the collision.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 50A: SCENARIO (TOP-DOWN VIEW)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    % --- General Settings ---
+    % Rod length L = 1.5m -> Scaled to 6 units (-3 to +3)
+    % Impact d = 0.5m -> Scaled to 2 units
+    % IAOR x = 0.375m -> Scaled to 1.5 units
+
+    % --- STATE 1: PRE-IMPACT (Left Side) ---
+    \begin{scope}[shift={(-4,0)}]
+        \node[above, font=\small\bfseries, text=darkgray] at (0, 1.5) {সংঘাতের পূর্বে};
+        
+        % Rod
+        \draw[line width=5pt, blue!70!black, line cap=round] (-3, 0) -- (3, 0);
+        \fill[white] (0,0) circle (0.05);
+        \node[above, font=\footnotesize\bfseries, text=blue!80!black] at (0, 0.2) {স্থির দণ্ড ($M$)};
+
+        % Particle
+        \draw[thick, fill=orange!80!black] (-2, -2.0) circle (0.12);
+        \node[left, font=\footnotesize\bfseries, text=orange!80!black] at (-2.2, -2.0) {$m$};
+        \draw[->, ultra thick, green!60!black] (-2, -1.8) -- (-2, -0.4) node[midway, right, font=\scriptsize\bfseries] {$u = 10\text{ m/s}$};
+        
+        % Dimensions
+        \draw[dashed, gray] (0, 0) -- (0, -1.0);
+        \draw[dashed, gray] (-2, 0) -- (-2, -1.0);
+        \draw[<->, thick, purple] (-2, -0.8) -- (0, -0.8) node[midway, below, font=\scriptsize\bfseries] {$d = 0.5\text{ m}$};
+    \end{scope}
+
+    % --- STATE 2: POST-IMPACT (Right Side) ---
+    \begin{scope}[shift={(3.5,0)}]
+        \node[above, font=\small\bfseries, text=darkgray] at (0, 2.5) {সংঘাতের ঠিক পরে};
+        
+        % Background reference line for IAOR
+        \draw[dashed, gray!50] (-3, 0) -- (3, 0);
+        
+        % Rod (Slightly translated and rotated for visual effect)
+        \begin{scope}[shift={(0, 0.5)}, rotate=-10]
+            \draw[line width=5pt, blue!70!black, line cap=round] (-3, 0) -- (3, 0);
+            \fill[white] (0,0) circle (0.05);
+            
+            % Kinematic vectors on COM
+            \draw[->, ultra thick, blue!80!black] (0, 0) -- (0, 1.5) node[above, font=\small\bfseries] {$v_c$};
+            \draw[->, ultra thick, red!80!black] (1.0, 0.5) arc (60:-60:0.6) node[midway, right, font=\small\bfseries] {$\omega$};
+        \end{scope}
+        
+        % Particle (rebounding or moving slower, actually v_p is +0.76 m/s, so moving up slowly)
+        \draw[thick, fill=orange!80!black] (-2, -0.5) circle (0.12);
+        \draw[->, thick, green!60!black] (-2, -0.3) -- (-2, 0.3) node[right, font=\scriptsize\bfseries] {$v_p$};
+
+        % IAOR Marker (Located at x = +0.375m on the rod's frame. Scaled to 1.5 units to the right)
+        \begin{scope}[shift={(0, 0.5)}, rotate=-10]
+            \draw[ultra thick, red] (1.4, -0.1) -- (1.6, 0.1);
+            \draw[ultra thick, red] (1.4, 0.1) -- (1.6, -0.1);
+            \node[below, font=\scriptsize\bfseries, text=red] at (1.5, -0.2) {IAOR};
+            
+            \draw[<->, thick, darkgray] (0, 0.3) -- (1.5, 0.3) node[midway, above, font=\scriptsize\bfseries] {$x$};
+            \draw[dashed, gray] (1.5, 0) -- (1.5, 0.4);
+            \draw[dashed, gray] (0, 0) -- (0, 0.4);
+        \end{scope}
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 50
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+ধরি, সংঘাতের পর কণার বেগ $v_p$। টেবিল মসৃণ হওয়ায় রৈখিক ভরবেগ এবং কৌণিক ভরবেগ উভয়ই সংরক্ষিত থাকবে।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: রৈখিক ও কৌণিক ভরবেগ সংরক্ষণ} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{রৈখিক ভরবেগ সংরক্ষণ:}
+    $$m u = m v_p + M v_c$$ 
+    $$1.0 \times 10.0 = 1.0 \times v_p + 2.0 v_c \implies v_p + 2 v_c = 10.0 \quad \text{--- (১)}$$
+    
+    \item \textbf{দণ্ডের ভরকেন্দ্রের (COM) সাপেক্ষে কৌণিক ভরবেগ সংরক্ষণ:} \\
+    দণ্ডের জড়তার ভ্রামক $I_c = \frac{1}{12} M L^2 = \frac{1}{12} \times 2.0 \times (1.5)^2 = 0.375\text{ kg}\cdot\text{m}^2$।
+    $$m u d = m v_p d + I_c \omega$$ 
+    $$1.0 \times 10 \times 0.5 = 1.0 \times v_p \times 0.5 + 0.375 \omega$$ 
+    $$5.0 = 0.5 v_p + 0.375 \omega \implies v_p + 0.75 \omega = 10.0 \quad \text{--- (২)}$$
+\end{itemize}
+
+সমীকরণ (১) এবং (২) তুলনা করে পাই: 
+$$2 v_c = 0.75 \omega \implies \omega = \frac{8}{3} v_c$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: স্থিতিস্থাপক সংঘাতের শর্ত প্রয়োগ ($e = 1.0$)} \\
+স্থিতিস্থাপক সংঘাতের ক্ষেত্রে, ধাক্কার বিন্দুতে দূরসরণ বেগ (Velocity of separation) = আপতন বেগ (Velocity of approach):
+$$(v_c + \omega d) - v_p = u$$ 
+$$v_c + 0.5 \omega - (10 - 2 v_c) = 10$$ 
+$$3 v_c + 0.5 \omega = 20$$
+
+এখানে $\omega = \frac{8}{3} v_c$ বসিয়ে পাই: 
+$$3 v_c + 0.5 \left(\frac{8}{3} v_c\right) = 20 \implies 3 v_c + \frac{4}{3} v_c = 20$$
+$$\frac{13}{3} v_c = 20 \implies \mathbf{v_c = \frac{60}{13} \approx 4.62\text{ m/s}}$$
+
+কৌণিক বেগ: 
+$$\omega = \frac{8}{3} \left(\frac{60}{13}\right) = \mathbf{\frac{160}{13} \approx 12.31\text{ rad/s}}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: তাৎক্ষণিক ঘূর্ণন অক্ষ (IAOR) নির্ণয়} \\
+যে বিন্দুতে রৈখিক বেগ ও আবর্তন বেগের লব্ধি শূন্য হয়, সেটিই হলো IAOR। ধরি, এটি ভরকেন্দ্র থেকে $x$ দূরত্বে অবস্থিত:
+$$v_{\text{net}} = v_c - \omega x = 0 \implies x = \frac{v_c}{\omega}$$
+$$x = \frac{60/13}{160/13} = \frac{60}{160} = \mathbf{0.375\text{ m}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+সংঘাতের পর দণ্ডের রৈখিক বেগ $\mathbf{4.62\text{ m/s}}$, কৌণিক বেগ $\mathbf{12.31\text{ rad/s}}$ এবং IAOR-এর দূরত্ব কেন্দ্র থেকে $\mathbf{0.375\text{ m}}$ (বা $\mathbf{37.5\text{ cm}}$)।
+\end{tcolorbox}
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION 51 - MOMENT OF INERTIA (DISC WITH SQUARE HOLE)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)15}]
+\noindent
+$R = 0.6\text{ m}$ ব্যাসার্ধের একটি সুষম পাতলা বৃত্তাকার পাত (disc) থেকে তার ভেতরে আঁকা যায় এমন সর্বোচ্চ ক্ষেত্রফলের একটি বর্গাকার অংশ (square hole) কেটে বাদ দেওয়া হলো। অবশিষ্ট ধাতব অংশের ভর যদি $M_{\text{remaining}} = 3.0\text{ kg}$ হয়, তবে মূল বৃত্তাকার পাতের কেন্দ্রগামী এবং তলের সাথে লম্বভাবে অবস্থিত ঘূর্ণন অক্ষের সাপেক্ষে অবশিষ্ট অংশটির মোট জড়তার ভ্রামক (Moment of Inertia) নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A square hole of the maximum possible size is cut out from a uniform thin circular disc of radius $R = 0.6\text{ m}$. If the mass of the remaining portion of the disc is $M_{\text{remaining}} = 3.0\text{ kg}$, calculate the total moment of inertia of this remaining portion about an axis passing through the center of the original disc and perpendicular to its plane.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 51A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Main Disc ---
+    \draw[thick, fill=blue!15, draw=blue!80!black] (0,0) circle (2.0);
+    
+    % --- Maximum Inscribed Square Hole ---
+    % Diagonal = 2R = 4.0. Side a = R*sqrt(2) = 2.0 * 1.414 = 2.828
+    % Coordinates: (-1.414, -1.414) to (1.414, 1.414)
+    \draw[thick, fill=white, draw=red!80!black, dashed] (-1.414, -1.414) rectangle (1.414, 1.414);
+    
+    % --- Center and Axis ---
+    \fill[black] (0,0) circle (0.05);
+    \node[above, font=\scriptsize\bfseries] at (0, 0.1) {কেন্দ্র};
+    \node[below right, font=\tiny] at (0,0) {$\odot$ অক্ষ};
+
+    % --- Dimensions ---
+    % Radius R
+    \draw[->, thick, darkgray] (0,0) -- (1.414, 1.414) node[midway, above left=-2pt, font=\scriptsize\bfseries] {$R = 0.6\text{ m}$};
+    
+    % Side a
+    \draw[<->, thick, purple] (-1.414, -1.6) -- (1.414, -1.6) node[midway, below, font=\scriptsize\bfseries] {$a = \sqrt{2}R$};
+    \draw[dashed, gray] (-1.414, -1.414) -- (-1.414, -1.7);
+    \draw[dashed, gray] (1.414, -1.414) -- (1.414, -1.7);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 51
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: জ্যামিতিক মাত্রা ও ক্ষেত্রফল হিসাব} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item সর্বোচ্চ ক্ষেত্রফলের বর্গটির কর্ণ হবে বৃত্তের ব্যাসের সমান: $\text{diagonal} = 2 R$।
+    \item বর্গক্ষেত্রের বাহুর দৈর্ঘ্য: $a = \sqrt{2} R$।
+    \item সম্পূর্ণ বৃত্তাকার পাতের আদি ক্ষেত্রফল: $A_{\text{disc}} = \pi R^2$।
+    \item কেটে নেওয়া বর্গাকার অংশের ক্ষেত্রফল: $A_{\text{sq}} = a^2 = (\sqrt{2} R)^2 = 2 R^2$।
+    \item অবশিষ্ট অংশের ক্ষেত্রফল: $A_{\text{rem}} = A_{\text{disc}} - A_{\text{sq}} = (\pi - 2) R^2$।
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: ভর বণ্টন হিসাব} \\
+যেহেতু পাতটি সুষম, তাই ক্ষেত্রফলের অনুপাতই হবে ভরের অনুপাত:
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item সম্পূর্ণ বৃত্তাকার পাতের আদি ভর: $M_{\text{disc}} = M_{\text{remaining}} \frac{A_{\text{disc}}}{A_{\text{rem}}} = M_{\text{remaining}} \frac{\pi}{\pi - 2}$
+    \item কেটে নেওয়া বর্গাকার অংশের ভর: $M_{\text{sq}} = M_{\text{remaining}} \frac{A_{\text{sq}}}{A_{\text{rem}}} = M_{\text{remaining}} \frac{2}{\pi - 2}$
+\end{itemize}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 51B: SUPERPOSITION PRINCIPLE
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=0.9, text=black]
+
+    % --- Full Disc ---
+    \begin{scope}[shift={(0,0)}]
+        \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) circle (1.5);
+        \node[font=\footnotesize\bfseries, align=center] at (0, -2.1) {সম্পূর্ণ পাত \\ $I_{\text{disc}} = \frac{1}{2} M_{\text{disc}} R^2$};
+    \end{scope}
+    
+    \node[font=\Large\bfseries] at (2.2, 0) {$-$};
+    
+    % --- Square Hole ---
+    \begin{scope}[shift={(4.4,0)}]
+        \draw[thick, fill=red!10, draw=red!80!black] (-1.06, -1.06) rectangle (1.06, 1.06);
+        \node[font=\footnotesize\bfseries, align=center] at (0, -2.1) {কেটে নেওয়া অংশ \\ $I_{\text{sq}} = \frac{1}{3} M_{\text{sq}} R^2$};
+    \end{scope}
+    
+    \node[font=\Large\bfseries] at (6.6, 0) {$=$};
+    
+    % --- Remaining Portion ---
+    \begin{scope}[shift={(8.8,0)}]
+        \draw[thick, fill=blue!10, draw=blue!80!black] (0,0) circle (1.5);
+        \draw[thick, fill=white, draw=red!80!black, dashed] (-1.06, -1.06) rectangle (1.06, 1.06);
+        \node[font=\footnotesize\bfseries, align=center] at (0, -2.1) {অবশিষ্ট অংশ \\ $I_{\text{remaining}}$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: জড়তার ভ্রামক হিসাব} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item সম্পূর্ণ পাতের কেন্দ্রগামী লম্ব অক্ষের সাপেক্ষে জড়তার ভ্রামক: 
+    $$I_{\text{disc}} = \frac{1}{2} M_{\text{disc}} R^2 = \frac{1}{2} \left( M_{\text{remaining}} \frac{\pi}{\pi - 2} \right) R^2$$
+    \item বর্গের কেন্দ্রগামী লম্ব অক্ষের সাপেক্ষে জড়তার ভ্রামক (যেখানে আয়তাকার পাতের $I = \frac{M}{12}(a^2+b^2)$): 
+    $$I_{\text{sq}} = \frac{1}{12} M_{\text{sq}} (a^2 + a^2) = \frac{1}{12} M_{\text{sq}} (4 R^2) = \frac{1}{3} M_{\text{sq}} R^2 = \frac{1}{3} \left( M_{\text{remaining}} \frac{2}{\pi - 2} \right) R^2$$
+\end{itemize}
+
+সুপারপজিশন নীতি অনুযায়ী অবশিষ্ট অংশের জড়তার ভ্রামক ($I_{\text{remaining}}$): 
+$$I_{\text{remaining}} = I_{\text{disc}} - I_{\text{sq}} = M_{\text{remaining}} R^2 \left[ \frac{\pi}{2(\pi - 2)} - \frac{2}{3(\pi - 2)} \right]$$
+$$I_{\text{remaining}} = M_{\text{remaining}} R^2 \frac{3\pi - 4}{6(\pi - 2)}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৪: মান বসিয়ে চূড়ান্ত হিসাব} \\
+প্রদত্ত মানসমূহ $M_{\text{remaining}} = 3.0\text{ kg}$, $R = 0.6\text{ m}$ এবং $\pi \approx 3.14159$ বসালে:
+$$I_{\text{remaining}} = 3.0 \times (0.6)^2 \times \frac{3(3.14159) - 4}{6(3.14159 - 2)}$$
+$$I_{\text{remaining}} = 1.08 \times \frac{9.42477 - 4}{6(1.14159)} = 1.08 \times \frac{5.42477}{6.84954}$$
+$$I_{\text{remaining}} \approx 1.08 \times 0.792 = \mathbf{0.855\text{ kg}\cdot\text{m}^2}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ঘূর্ণন অক্ষের সাপেক্ষে অবশিষ্ট অংশটির মোট জড়তার ভ্রামক হবে প্রায় $\mathbf{0.855\text{ kg}\cdot\text{m}^2}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 52 - MOMENT OF INERTIA OF A REGULAR HEXAGONAL FRAME
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)16}]
+\noindent
+$M = 3.6\text{ kg}$ মোট ভর এবং $L = 1.8\text{ m}$ মোট দৈর্ঘ্যের একটি সুষম সরু ধাতব দণ্ডকে বাঁকিয়ে একটি সুষম ষড়ভুজ (regular hexagon) আকৃতির ফ্রেম তৈরি করা হলো। 
+
+\vspace{0.3em}
+\noindent
+এই ষড়ভুজাকার ফ্রেমটির কেন্দ্রগামী এবং ফ্রেমের সমতলের সাথে লম্বভাবে অবস্থিত ঘূর্ণন অক্ষের সাপেক্ষে ষড়ভুজটির মোট জড়তার ভ্রামক (Moment of Inertia) নির্ণয় করো।
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform thin metal rod of total mass $M = 3.6\text{ kg}$ and total length $L = 1.8\text{ m}$ is bent to form a regular closed hexagonal frame. Calculate the total moment of inertia of this hexagonal frame about an axis passing through its center and perpendicular to its plane.
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 52A: SCENARIO (HEXAGONAL FRAME)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Define Radius for drawing ---
+    \def\R{2} % Circumradius for drawing scale
+
+    % --- Draw Hexagonal Frame ---
+    % Flat bottom hexagon: vertices at 30, 90, 150, 210, 270, 330 degrees
+    \draw[line width=4pt, blue!70!black, line cap=round, line join=round] 
+        (-30:\R) \foreach \x in {30,90,150,210,270,330} { -- (\x:\R) } -- cycle;
+
+    % --- Center and Axis ---
+    \fill[black] (0,0) circle (0.06);
+    \node[above, font=\scriptsize\bfseries] at (0, 0.1) {কেন্দ্র};
+    \node[below right, font=\tiny] at (0,0) {$\odot$ অক্ষ};
+
+    % --- Distance d (Apothem) ---
+    % Bottom side is at -90 degrees (270)
+    \draw[dashed, thick, darkgray] (0,0) -- (0, -1.732); % 1.732 is 2*cos(30)
+    \draw[<->, thick, purple] (0.15, 0) -- (0.15, -1.732) node[midway, right, font=\scriptsize\bfseries] {$d = \frac{\sqrt{3}}{2}l$};
+
+    % --- Side Dimensions ---
+    % Draw dimension line below the bottom side
+    \draw[<->, thick, darkgray] (210:\R |- 0, -2.0) -- (-30:\R |- 0, -2.0) node[midway, below, font=\scriptsize\bfseries] {$l = 0.3\text{ m}, m = 0.6\text{ kg}$};
+    \draw[dashed, gray] (210:\R) -- (210:\R |- 0, -2.1);
+    \draw[dashed, gray] (-30:\R) -- (-30:\R |- 0, -2.1);
+
+    % --- Geometric helpers (faint lines to vertices) ---
+    \draw[thin, gray!40, dashed] (0,0) -- (210:\R);
+    \draw[thin, gray!40, dashed] (0,0) -- (-30:\R);
+    \node[font=\tiny\bfseries, text=gray!80] at (0, -0.6) {$60^\circ$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 52
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+\textbf{ধাপ ১: একক বাহু বা দণ্ডের মাত্রা নির্ণয়} \\
+ষড়ভুজের মোট ৬টি অভিন্ন বাহু রয়েছে। সম্পূর্ণ দণ্ডটির ভর $M = 3.6\text{ kg}$ এবং দৈর্ঘ্য $L = 1.8\text{ m}$ হলে, প্রতিটি বাহুর ভর ও দৈর্ঘ্য হবে যথাক্রমে:
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item প্রতিটি বাহুর ভর: $m = \frac{M}{6} = \frac{3.6}{6} = \mathbf{0.6\text{ kg}}$
+    \item প্রতিটি বাহুর দৈর্ঘ্য: $l = \frac{L}{6} = \frac{1.8}{6} = \mathbf{0.3\text{ m}}$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: একক বাহুর জড়তার ভ্রামক ও সমান্তরাল অক্ষ উপপাদ্য} \\
+সুষম ষড়ভুজ ৬টি সমবাহু ত্রিভুজ নিয়ে গঠিত। ষড়ভুজের কেন্দ্র থেকে প্রতিটি বাহুর (যেমন: ভূমির) লম্ব দূরত্ব বা অ্যাপোথেম ($d$) হলো সমবাহু ত্রিভুজের উচ্চতা:
+$$d = l \cos 30^\circ = \frac{\sqrt{3}}{2} l$$
+
+% ------------------------------------------
+% TIKZ DIAGRAM 52B: EXPLODED FBD (SINGLE ROD)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    \tikzset{
+        axis/.style={dashed, thick, gray},
+        dim/.style={<->, thick, purple}
+    }
+
+    % --- Single Rod ---
+    \draw[line width=4pt, blue!70!black, line cap=round] (-1.5, 0) -- (1.5, 0);
+    \fill[black] (0, 0) circle (0.05) node[below, font=\scriptsize\bfseries] {CM ($I_{\text{cm}} = \frac{1}{12}ml^2$)};
+    
+    % --- Rotation Axis ---
+    \draw[axis] (0, 0) -- (0, 1.5);
+    \fill[black] (0, 1.5) circle (0.06) node[above, font=\scriptsize\bfseries] {ষড়ভুজের কেন্দ্র (ঘূর্ণন অক্ষ)};
+    
+    % --- Distance ---
+    \draw[dim] (-0.3, 0) -- (-0.3, 1.5) node[midway, left, font=\scriptsize\bfseries] {$d = \frac{\sqrt{3}}{2}l$};
+    \draw[<->, thick, darkgray] (-1.5, -0.6) -- (1.5, -0.6) node[midway, below, font=\scriptsize\bfseries] {$l = 0.3\text{ m}$};
+    \draw[dashed, gray] (-1.5, 0) -- (-1.5, -0.7);
+    \draw[dashed, gray] (1.5, 0) -- (1.5, -0.7);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+সমান্তরাল অক্ষ উপপাদ্য প্রয়োগ করে ষড়ভুজের কেন্দ্রের সাপেক্ষে একটিমাত্র বাহুর জড়তার ভ্রামক ($I_{\text{single}}$):
+$$I_{\text{single}} = I_{\text{cm}} + m d^2 = \frac{1}{12} m l^2 + m \left(\frac{\sqrt{3}}{2} l\right)^2$$
+$$I_{\text{single}} = \frac{1}{12} m l^2 + m \left(\frac{3}{4} l^2\right) = \frac{1}{12} m l^2 + \frac{9}{12} m l^2 = \frac{10}{12} m l^2 = \frac{5}{6} m l^2$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: ষড়ভুজের মোট জড়তার ভ্রামক ($I_{\text{total}}$)} \\
+যেহেতু ষড়ভুজে মোট ৬টি বাহু রয়েছে এবং প্রতিটি বাহু কেন্দ্র থেকে সমান দূরত্বে প্রতিসমভাবে অবস্থিত:
+$$I_{\text{total}} = 6 \times I_{\text{single}} = 6 \times \left(\frac{5}{6} m l^2\right) = 5 m l^2$$
+
+*(অতিরিক্ত তথ্য: $m = M/6$ এবং $l = L/6$ সমীকরণে বসিয়ে মূল ভর ও দৈর্ঘ্যের মাধ্যমে প্রতীকী সমীকরণ প্রতিপাদন করলে পাওয়া যায়: $I_{\text{total}} = 5 \left(\frac{M}{6}\right) \left(\frac{L}{6}\right)^2 = \frac{5}{216} M L^2$)*
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৪: মান বসিয়ে চূড়ান্ত হিসাব} \\
+আমাদের প্রাপ্ত সহজ সমীকরণ $I_{\text{total}} = 5 m l^2$-এ মান বসালে:
+$$I_{\text{total}} = 5 \times 0.6 \times (0.3)^2$$
+$$I_{\text{total}} = 3.0 \times 0.09 = \mathbf{0.27\text{ kg}\cdot\text{m}^2}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ষড়ভুজাকার ফ্রেমটির মোট জড়তার ভ্রামক হলো $\mathbf{0.27\text{ kg}\cdot\text{m}^2}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 54 - WEDGE AND BLOCK (RELATIVE MOTION & PSEUDO FORCE)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)17}]
+\noindent
+$M = 4.0\text{ kg}$ ভরের একটি মসৃণ তলযুক্ত ওয়েজ (wedge) একটি মসৃণ অনুভূমিক মেঝের ওপর রাখা আছে। ওয়েজটির আনত তলের কোণ $\theta = 30^\circ$। এবার ওয়েজটির আনত তলের ওপর $m = 2.0\text{ kg}$ ভরের একটি ব্লক রাখা হলো। ব্লক ও আনত তলের মধ্যবর্তী স্থিতি ও গতিশীল ঘর্ষণ গুণাঙ্ক যথাক্রমে $\mu_s = \mu_k = 0.2$। 
+
+\vspace{0.3em}
+\noindent
+সমগ্র ব্যবস্থাটিকে স্থির অবস্থা থেকে ছেড়ে দেওয়া হলে, ব্লকটি যখন ওয়েজের গায়ের ওপর পিছলে নিচের দিকে নামতে শুরু করবে, তখন ওয়েজের অনুভূমিক ত্বরণ ($a_w$), ওয়েজের সাপেক্ষে ব্লকের আপেক্ষিক ত্বরণ ($a_r$) এবং তাদের মধ্যকার অনুভূমিক ও উল্লম্ব ক্রিয়া-প্রতিক্রিয়া বলের লব্ধি বা স্পর্শকীয় বলের ($R_{\text{contact}}$) মান নির্ণয় করো। [$\text{Take } g = 9.8\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A wedge of mass $M = 4.0\text{ kg}$ with a rough inclined surface of angle $\theta = 30^\circ$ is placed on a frictionless horizontal floor. A block of mass $m = 2.0\text{ kg}$ is placed on the inclined plane. The coefficients of friction between the block and the wedge are $\mu_s = \mu_k = 0.2$. If the system is released from rest and the block slides down, calculate the horizontal acceleration of the wedge ($a_w$), the relative acceleration of the block down the incline ($a_r$), and the total magnitude of the action-reaction contact force ($R_{\text{contact}}$) between them. [Take $g = 9.8\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 54A: SCENARIO (DETAILED QUESTION SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.4, text=black]
+
+    \node[above, font=\small\bfseries, text=darkgray] at (2.5, 3.2) {ভৌত ব্যবস্থা (Physical Setup)};
+
+    % --- Floor ---
+    \draw[ultra thick, black!70] (-1, 0) -- (6, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-1, -0.25) rectangle (6, 0);
+    \node[below, font=\scriptsize\bfseries] at (2.5, -0.25) {মসৃণ অনুভূমিক মেঝে ($\mu = 0$)};
+
+    % --- Wedge ---
+    % Base length = 5. Height = 5 * tan(30) = 2.887
+    \coordinate (W_left) at (0, 0);
+    \coordinate (W_right) at (5.0, 0);
+    \coordinate (W_top) at (0, 2.887);
+    
+    \draw[thick, fill=blue!8, draw=blue!80!black] (W_left) -- (W_right) -- (W_top) -- cycle;
+    \node[font=\small\bfseries, text=blue!80!black] at (1.5, 0.8) {ওয়েজ ($M = 4.0\text{ kg}$)};
+
+    % --- Angle ---
+    \draw[thick, darkgray] (4.0, 0) arc (180:150:1.0);
+    \node[left, font=\small\bfseries] at (3.8, 0.3) {$\theta = 30^\circ$};
+
+    % --- Block ---
+    % Position on incline: moving it up a bit
+    \begin{scope}[shift={(1.5, 2.021)}, rotate=-30]
+        \draw[thick, fill=orange!25, draw=orange!80!black, rounded corners=1pt] (-0.7, 0) rectangle (0.7, 0.8);
+        \node[font=\small\bfseries, text=orange!80!black] at (0, 0.4) {ব্লক ($m$)};
+        \node[font=\scriptsize\bfseries, text=orange!80!black] at (0, 0.15) {$2.0\text{ kg}$};
+    \end{scope}
+
+    % --- Friction Info Box ---
+    \node[draw, dashed, rounded corners, fill=yellow!10, text=darkgray, font=\scriptsize\bfseries, align=left] at (4.5, 2.5) {
+        \textbf{তলের বৈশিষ্ট্য:}\\
+        $\mu_s = 0.2$\\
+        $\mu_k = 0.2$
+    };
+
+    % --- Acceleration Indicators (Expected Motion) ---
+    \draw[->, ultra thick, blue!80!black, dashed] (-0.3, 1.5) -- (-1.5, 1.5) node[above, font=\scriptsize\bfseries] {$a_w$ (ওয়েজের গতি)};
+    \begin{scope}[shift={(1.5, 2.021)}, rotate=-30]
+        \draw[->, ultra thick, purple!80!black, dashed] (0.9, 0.4) -- (2.0, 0.4) node[above right, font=\scriptsize\bfseries] {$a_r$ (আপেক্ষিক গতি)};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 54
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+ধরি, ওয়েজটি বাম দিকে $a_w$ ত্বরণে গতিশীল হয় এবং ব্লকটি ওয়েজের তলে অনুভূমিক থেকে $30^\circ$ নিচে $a_r$ আপেক্ষিক ত্বরণে পিছলে নামে।
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: ত্বরিত প্রসঙ্গ কাঠামো ও বলের বিশ্লেষণ (Free Body Diagram)} \\
+ওয়েজের গতির কারণে ব্লকের ওপর একটি ছদ্ম বল (Pseudo force) কাজ করবে।
+
+% ------------------------------------------
+% TIKZ DIAGRAM 54B: DETAILED EXPLODED FBD
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    \tikzset{
+        force/.style={->, ultra thick, red!80!black},
+        accel/.style={->, ultra thick, blue!80!black},
+        pseudo/.style={->, ultra thick, green!60!black},
+        comp/.style={->, thick, dashed, red!50!black}
+    }
+
+    \node[above, font=\small\bfseries, text=darkgray] at (2.5, 4.0) {ফ্রি-বডি ডায়াগ্রাম এবং বলের উপাংশ বিশ্লেষণ};
+
+    % ==========================================
+    % LEFT SIDE: ISOLATED WEDGE FBD
+    % ==========================================
+    \begin{scope}[shift={(-2.0, -0.5)}]
+        \node[above, font=\footnotesize\bfseries, text=blue!80!black] at (1.5, 2.8) {ওয়েজের FBD ($M$)};
+        
+        \draw[thick, fill=blue!5, draw=blue!40] (0, 0) -- (4, 0) -- (0, 2.309) -- cycle;
+        
+        \coordinate (P1) at (2.0, 1.155); % Point of contact on incline
+        
+        % Reaction Forces from Block onto Wedge
+        \draw[force] (P1) -- (1.134, -0.345) node[below left, font=\small\bfseries] {$N$};
+        \draw[force] (P1) -- (3.3, 1.9) node[right, font=\small\bfseries] {$f$};
+        
+        % Force Components (N)
+        \draw[comp] (P1) -- (1.134, 1.155) node[left, font=\scriptsize\bfseries] {$N\sin 30^\circ$};
+        \draw[comp] (1.134, 1.155) -- (1.134, -0.345);
+        
+        % Force Components (f)
+        \draw[comp] (P1) -- (3.3, 1.155) node[right, font=\scriptsize\bfseries] {$f\cos 30^\circ$};
+        \draw[comp] (3.3, 1.155) -- (3.3, 1.9);
+        
+        % Acceleration
+        \draw[accel] (0.5, 2.5) -- (-0.8, 2.5) node[above, font=\small\bfseries] {$a_w$};
+        
+        \node[font=\scriptsize\bfseries, text=darkgray, align=left] at (1.5, 0.4) {অনুভূমিক সমীকরণ:\\ $M a_w = N\sin 30^\circ - f\cos 30^\circ$};
+    \end{scope}
+
+    % ==========================================
+    % RIGHT SIDE: ISOLATED BLOCK FBD (in Wedge Frame)
+    % ==========================================
+    \begin{scope}[shift={(4.5, 1.0)}]
+        \node[above, font=\footnotesize\bfseries, text=orange!80!black] at (0, 2.5) {ব্লকের FBD (ওয়েজের কাঠামোতে)};
+        
+        % Draw tilted axes
+        \draw[dashed, gray!60] (-2, 0) -- (2, 0) node[right, font=\tiny] {$x'$ (তল বরাবর)};
+        \draw[dashed, gray!60] (0, -2) -- (0, 2) node[above, font=\tiny] {$y'$ (তলের লম্ব)};
+
+        % Block
+        \draw[thick, fill=orange!15, draw=orange!80!black, rotate=-30] (-0.6, -0.4) rectangle (0.6, 0.4);
+        \fill[black] (0,0) circle (0.05);
+
+        % --- Forces ---
+        % Normal (Up-Right along y')
+        \draw[force] (0, 0) -- (0, 1.5) node[above right, font=\small\bfseries] {$N$};
+        
+        % Friction (Up-Left along x')
+        \draw[force] (0, 0) -- (-1.2, 0) node[above left, font=\small\bfseries] {$f = \mu_k N$};
+        
+        % Gravity (Straight Down)
+        \draw[->, ultra thick, darkgray] (0, 0) -- (0, -1.8) node[below, font=\small\bfseries] {$mg$};
+        % Gravity Components
+        \draw[comp] (0,0) -- (0, -1.559) node[below right, font=\scriptsize\bfseries] {$mg\cos 30^\circ$};
+        \draw[comp] (0, -1.559) -- (0.9, -1.559) node[right, font=\scriptsize\bfseries] {$mg\sin 30^\circ$};
+        
+        % Pseudo Force (Straight Right)
+        \draw[pseudo] (0, 0) -- (1.8, 0) node[right, font=\small\bfseries] {$ma_w$};
+        % Pseudo Force Components
+        \draw[comp] (0,0) -- (1.559, 0) node[above, font=\scriptsize\bfseries] {$ma_w\cos 30^\circ$};
+        \draw[comp] (1.559, 0) -- (1.559, -0.9) node[right, font=\scriptsize\bfseries] {$ma_w\sin 30^\circ$};
+
+        % Angle indicators for components
+        \draw[thin, gray] (0, -0.5) arc (-90:-60:0.5);
+        \node[font=\tiny] at (0.2, -0.7) {$30^\circ$};
+        
+        \draw[thin, gray] (0.5, 0) arc (0:-30:0.5);
+        \node[font=\tiny] at (0.7, -0.2) {$30^\circ$};
+
+        % Relative Acceleration
+        \draw[accel] (0.8, -0.3) -- (2.0, -0.3) node[below, font=\small\bfseries] {$a_r$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{ওয়েজের অনুভূমিক গতির সমীকরণ:} \\
+    ওয়েজের ওপর ব্লকের অভিলম্ব প্রতিক্রিয়া বল $N$ (যা ওয়েজকে বামে ও নিচে ঠেলা দেয়) এবং ঘর্ষণ বল $f$ (যা ওয়েজকে ডানে ও নিচে টানে) ক্রিয়া করে। নিউটনের ৩য় সূত্রানুযায়ী ওয়েজের ওপর এদের অনুভূমিক লব্ধি:
+    $$M a_w = N \sin 30^\circ - f \cos 30^\circ \quad \text{--- (১)}$$
+    
+    \item \textbf{ব্লকের খাড়া আনত তলের লম্ব অভিমুখে গতি (Constraint relation):} \\
+    যেহেতু ওয়েজ বাম দিকে $a_w$ ত্বরণে যাচ্ছে, ব্লকটির ওপর ডান দিকে একটি ছদ্ম বল (pseudo force) $m a_w$ কাজ করে:
+    $$N = m (g \cos 30^\circ + a_w \sin 30^\circ) \quad \text{--- (২)}$$
+    
+    \item \textbf{ঘর্ষণ বলের সমীকরণ:} \\
+    যেহেতু ব্লকটি পিছলে নামছে:
+    $$f = \mu_k N = 0.2 N \quad \text{--- (৩)}$$
+    
+    \item \textbf{ব্লকের আনত তল বরাবর গতি:} \\
+    $$m a_r = m g \sin 30^\circ - f - m a_w \cos 30^\circ \quad \text{--- (৪)}$$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: সমীকরণ সমাধান} \\
+সমীকরণ (২) ও (৩)-এর মান সমীকরণ (১)-এ বসাই:
+$$4 a_w = N (0.5) - 0.2 N (0.8660)$$ 
+$$4 a_w = N (0.5 - 0.1732) = 0.3268 N$$
+
+সমীকরণ (২)-এ মান বসিয়ে পাই:
+$$N = 2 \left( 9.8 \times 0.8660 + a_w \times 0.5 \right) = 16.9736 + a_w$$ 
+এটিকে আগের সমীকরণে প্রতিস্থাপন করলে:
+$$4 a_w = 0.3268 (16.9736 + a_w) = 5.547 + 0.3268 a_w$$ 
+$$3.6732 a_w = 5.547 \implies a_w = \frac{5.547}{3.6732} \approx \mathbf{1.51\text{ m/s}^2}$$
+
+অভিলম্ব ও ঘর্ষণ বলের মান:
+$$N = 16.9736 + 1.51 = \mathbf{18.48\text{ N}}$$ 
+$$f = 0.2 \times 18.48 = \mathbf{3.70\text{ N}}$$
+
+মোট লব্ধি বা স্পর্শকীয় বল ($R_{\text{contact}}$):
+$$R_{\text{contact}} = \sqrt{N^2 + f^2} = \sqrt{18.48^2 + 3.70^2} = \sqrt{341.51 + 13.69} = \sqrt{355.2} \approx \mathbf{18.85\text{ N}}$$
+
+ব্লকের আপেক্ষিক ত্বরণ ($a_r$), সমীকরণ (৪) থেকে:
+$$2 a_r = 2 \times 9.8 \times 0.5 - 3.70 - 2 \times 1.51 \times 0.8660$$ 
+$$2 a_r = 9.8 - 3.70 - 2.615 = 3.485 \implies a_r = \frac{3.485}{2} \approx \mathbf{1.74\text{ m/s}^2}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ওয়েজের ত্বরণ $\mathbf{1.51\text{ m/s}^2}$, আপেক্ষিক ত্বরণ $\mathbf{1.74\text{ m/s}^2}$ এবং মোট স্পর্শকীয় লব্ধি বল প্রায় $\mathbf{18.85\text{ N}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 18 - TORQUE AND ROLLING (SOLID SPHERE)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন(Question) 18}]
+\noindent
+$M = 5.0\text{ kg}$ ভর এবং $R = 0.2\text{ m}$ ব্যাসার্ধের একটি সুষম নিরেট গোলককে (solid sphere) $\omega_0 = 35.0\text{ rad/s}$ আদি কৌণিক বেগে স্পিন (spin) করিয়ে একটি অমসৃণ অনুভূমিক মেঝের ওপর আস্তে করে ছেড়ে দেওয়া হলো। গোলক ও মেঝের মধ্যবর্তী গতিশীল ঘর্ষণ গুণাঙ্ক $\mu_k = 0.2$। 
+
+\vspace{0.3em}
+\noindent
+গোলকটি মেঝের ওপর কত সময় ($t_{\text{roll}}$) পিছলে চলার পর বিশুদ্ধ গড়ানে গতি (pure rolling) লাভ করবে এবং ছেড়ে দেওয়ার পর থেকে বিশুদ্ধ গড়ানে গতি অর্জন করা পর্যন্ত ঘর্ষণ বল দ্বারা কৃতকাজ বা শক্তি ক্ষয়ের পরিমাণ নির্ণয় করো। [$\text{Take } g = 10\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform solid sphere of mass $M = 5.0\text{ kg}$ and radius $R = 0.2\text{ m}$ is set spinning with an initial angular velocity $\omega_0 = 35.0\text{ rad/s}$ and then gently placed on a rough horizontal floor. The coefficient of kinetic friction between the sphere and the floor is $\mu_k = 0.2$. Calculate the time $t_{\text{roll}}$ for which the sphere slips before achieving pure rolling, and find the work done by friction (energy lost) during this slipping phase. [Take $g = 10\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 18A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    \node[above, font=\small\bfseries, text=darkgray] at (0, 2.5) {ভৌত ব্যবস্থা (Physical Setup)};
+    
+    % Floor
+    \draw[ultra thick, black!70] (-3, 0) -- (3, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-3, -0.25) rectangle (3, 0);
+    \node[below, font=\scriptsize\bfseries] at (1.5, -0.25) {অমসৃণ মেঝে ($\mu_k = 0.2$)};
+    
+    % Solid Sphere
+    \draw[thick, fill=blue!15, draw=blue!80!black] (0, 1.2) circle (1.2);
+    \fill[black] (0, 1.2) circle (0.05) node[above left, font=\scriptsize\bfseries] {CM};
+    
+    % Dimensions and Mass
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (-2.6, 1.5) {নিরেট গোলক ($M$)};
+    \draw[->, thick, darkgray] (0, 1.2) -- (0.848, 2.048) node[midway, below right, font=\scriptsize\bfseries] {$R = 0.2\text{ m}$};
+    
+    % Spin (Initial Angular Velocity) - Clockwise
+    \draw[->, ultra thick, purple!80!black] (-1.4, 1.2) arc (180:90:1.4) node[midway, above left, font=\small\bfseries] {$\omega_0 = 35\text{ rad/s}$};
+    
+    % Motion indicators
+    \draw[->, thick, dashed, green!60!black] (0, 1.2) -- (1.5, 1.2) node[right, font=\scriptsize\bfseries] {সামনের দিকে রৈখিক গতি};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 18
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+গোলকটিকে যখন ঘড়ির কাঁটার দিকে স্পিন করিয়ে মেঝেতে রাখা হয়, তখন স্পর্শবিন্দুতে মেঝের সাপেক্ষে গোলকটির গতি বাম দিকে থাকে। ফলে মেঝে গোলকের ওপর ডান দিকে ঘর্ষণ বল ($f_k$) প্রয়োগ করে।
+
+% ------------------------------------------
+% TIKZ DIAGRAM 18B: DETAILED FREE BODY DIAGRAM
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    \node[above, font=\small\bfseries, text=darkgray] at (0, 2.3) {ফ্রি-বডি ডায়াগ্রাম (FBD) এবং বলের বিশ্লেষণ};
+
+    % Sphere
+    \draw[thick, fill=blue!5, draw=blue!40] (0, 0) circle (1.5);
+    \fill[black] (0, 0) circle (0.05) node[above left, font=\scriptsize\bfseries] {CM};
+
+    % Floor line (dashed to show it's isolated but grounded)
+    \draw[ultra thick, black!70] (-2, -1.5) -- (2, -1.5);
+
+    % Forces
+    \draw[->, ultra thick, darkgray] (0, 0) -- (0, -1.5) node[midway, right, font=\small\bfseries] {$Mg$};
+    \draw[->, ultra thick, blue!80!black] (0, -1.5) -- (0, 1.0) node[right, font=\small\bfseries] {$N$};
+    
+    % Kinetic Friction (Rightward because contact point slips left)
+    \draw[->, ultra thick, red!80!black] (0, -1.5) -- (1.8, -1.5) node[below, font=\small\bfseries] {$f_k = \mu_k N$};
+
+    % Accelerations
+    \draw[->, ultra thick, green!60!black] (0, 1.8) -- (1.5, 1.8) node[right, font=\small\bfseries] {$a$ (রৈখিক ত্বরণ)};
+    
+    % Angular components
+    \draw[->, thick, purple!80!black] (1.6, 0.5) arc (20:-40:1.0) node[midway, right, font=\scriptsize\bfseries] {$\omega(t)$ (স্পিন)};
+    \draw[->, ultra thick, orange!90!black] (-1.2, -0.8) arc (225:135:1.2) node[midway, left, font=\scriptsize\bfseries] {$\alpha$ (কৌণিক মন্দন)}; 
+    % Alpha is counter-clockwise because friction at bottom creates CCW torque
+
+    % Contact point slip
+    \fill[red] (0, -1.5) circle (0.06);
+    \draw[->, thick, dashed, red!80!black] (0, -1.7) -- (-1.8, -1.7) node[below, font=\scriptsize\bfseries] {স্পর্শবিন্দুর পিছলে যাওয়ার বেগ ($v_{\text{slip}}$)};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ১: রৈখিক ও আবর্তন গতির ত্বরণ নির্ণয়} \\
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{ঘর্ষণ বল:} $f_k = \mu_k M g = 0.2 \times 5.0 \times 10 = \mathbf{10.0\text{ N}}$
+    \item \textbf{রৈখিক ত্বরণ (ডান দিকে):}
+    $$a = \frac{f_k}{M} = \frac{10.0}{5.0} = \mathbf{2.0\text{ m/s}^2}$$
+    \item \textbf{ঘূর্ণন টর্ক ও কৌণিক মন্দন:} \\
+    নিরেট গোলকের জড়তার ভ্রামক $I = \frac{2}{5} M R^2 = 0.4 \times 5.0 \times (0.2)^2 = 0.08\text{ kg}\cdot\text{m}^2$। 
+    ঘর্ষণ বলের জন্য সৃষ্ট টর্ক ঘূর্ণন গতিকে বাধা দেয় (এটি স্পিনের বিপরীতে কাজ করে):
+    $$\tau = -f_k R = -10.0 \times 0.2 = -2.0\text{ N}\cdot\text{m}$$ 
+    $$\alpha = \frac{\tau}{I} = \frac{-2.0}{0.08} = \mathbf{-25.0\text{ rad/s}^2}$$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ২: বিশুদ্ধ গড়ানে গতি (Pure Rolling) অর্জনের শর্ত} \\
+যেকোনো সময় $t$-তে রৈখিক বেগ $v(t) = a \cdot t = 2t$ এবং কৌণিক বেগ $\omega(t) = \omega_0 + \alpha t = 35 - 25t$। 
+বিশুদ্ধ গড়ানে গতির শর্তানুযায়ী ($v = \omega R$):
+$$v(t) = \omega(t) \cdot R$$ 
+$$2t = (35 - 25t) \times 0.2$$ 
+$$2t = 7 - 5t \implies 7t = 7 \implies \mathbf{t_{\text{roll}} = 1.0\text{ s}}$$
+
+এই মুহূর্তে বেগ ও কৌণিক বেগ:
+$$v_{\text{roll}} = 2 \times 1.0 = \mathbf{2.0\text{ m/s}}$$ 
+$$\omega_{\text{roll}} = 35 - 25(1.0) = \mathbf{10.0\text{ rad/s}}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{ধাপ ৩: ঘর্ষণ বল দ্বারা কৃতকাজ বা শক্তি ক্ষয় ($W_f$)} \\
+কাজ-শক্তি উপপাদ্য অনুযায়ী, ঘর্ষণ বল দ্বারা কৃতকাজ হলো যান্ত্রিক শক্তির পরিবর্তনের সমান:
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{আদি গতিশক্তি:} (শুরুতে রৈখিক বেগ শূন্য ছিল)
+    $$E_i = \frac{1}{2} I \omega_0^2 = \frac{1}{2} \times 0.08 \times (35)^2 = 0.04 \times 1225 = \mathbf{49.0\text{ J}}$$
+    \item \textbf{চূড়ান্ত গতিশক্তি (রৈখিক ও ঘূর্ণন গতিশক্তির যোগফল):}
+    $$E_f = \frac{1}{2} M v_{\text{roll}}^2 + \frac{1}{2} I \omega_{\text{roll}}^2 = \left(\frac{1}{2} \times 5 \times 2^2\right) + \left(\frac{1}{2} \times 0.08 \times 10^2\right) = 10.0 + 4.0 = \mathbf{14.0\text{ J}}$$
+\end{itemize}
+
+ঘর্ষণ বল দ্বারা কৃতকাজ (শক্তি ক্ষয়):
+$$W_{\text{friction}} = E_f - E_i = 14.0 - 49.0 = \mathbf{-35.0\text{ J}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+গোলকটি $\mathbf{1.0\text{ s}}$ পিছলানোর পর বিশুদ্ধ গড়ানে গতি লাভ করবে এবং ঘর্ষণের ফলে হারিয়ে যাওয়া যান্ত্রিক শক্তির পরিমাণ $\mathbf{35.0\text{ J}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 56 - NEWTON's 2ND LAW & INTEGRATION (SLIDING CHAIN)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question)19}]
+\noindent
+$L = 1.5\text{ m}$ দৈর্ঘ্য এবং $M = 3.0\text{ kg}$ ভরের একটি সুষম নমনীয় ধাতব শিকল (flexible metal chain) একটি খসখসে অনুভূমিক টেবিলের ওপর এমনভাবে রাখা আছে যাতে তার $y_0 = 0.9\text{ m}$ অংশ টেবিলের প্রান্ত দিয়ে খাড়া নিচে ঝুলতে থাকে। টেবিল ও শিকলের মধ্যকার ঘর্ষণ গুণাঙ্ক $\mu = 0.25$। সমগ্র শিকলটিকে স্থির অবস্থা থেকে ছেড়ে দেওয়া হলো যেন এটি পিছলে নিচে পড়তে শুরু করে। 
+
+\begin{enumerate}
+    \item শিকলটির ঝুলন্ত অংশের দৈর্ঘ্য যখন $y$ হয়, তখন শিকলটির ত্বরণ $a$-এর সমীকরণটি $y$-এর ফাংশন হিসেবে প্রতিপাদন করো। 
+    \item টেবিল থেকে সম্পূর্ণ শিকলটি পিছলে পড়ে যাওয়ার ঠিক পূর্ব মুহূর্তে শিকলটির গতিবেগ ($v$) নির্ণয় করো। [$\text{Take } g = 10\text{ m/s}^2$]
+\end{enumerate}
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A flexible uniform metal chain of length $L = 1.5\text{ m}$ and mass $M = 3.0\text{ kg}$ is kept on a rough horizontal table such that a portion of length $y_0 = 0.9\text{ m}$ hangs over the edge. The coefficient of friction between the chain and the table is $\mu = 0.25$. The chain is released from rest. 
+1. Derive the acceleration $a$ of the chain as a function of the hanging length $y$. 
+2. Calculate the velocity $v$ of the chain at the exact instant the entire chain just slides off the table. [Take $g = 10\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 56A: SCENARIO (CHAIN SLIDING OFF TABLE)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    % --- Table ---
+    \draw[line width=4pt, black!80] (-4, 0) -- (0, 0);
+    \fill[pattern=north east lines, pattern color=gray] (-4, -0.3) rectangle (0, 0);
+    \node[above, font=\footnotesize\bfseries, text=darkgray] at (-2, 1.2) {খসখসে টেবিল ($\mu = 0.25$)};
+
+    % --- Chain on Table ---
+    % Chain length is L-y. Total L=1.5. Let's represent it symbolically.
+    \draw[line width=4pt, blue!70!black, line cap=round] (-2.5, 0.08) -- (0, 0.08);
+    \node[above, font=\scriptsize\bfseries, text=blue!80!black] at (-1.25, 0.2) {দৈর্ঘ্য = $L - y$};
+
+    % --- Chain Hanging ---
+    \draw[line width=4pt, blue!70!black, line cap=round] (0, 0.08) -- (0, -2.5);
+    \node[right, font=\scriptsize\bfseries, text=blue!80!black] at (0.2, -1.25) {দৈর্ঘ্য = $y$};
+
+    % --- Forces on the Chain ---
+    % Kinetic friction (acting on the horizontal part)
+    \draw[->, ultra thick, red!80!black] (-2.25, 0.08) -- (-4.8, 0.08) node[left, font=\scriptsize\bfseries] {$F_{\text{friction}} = \mu \lambda (L-y) g$};
+    
+    % Gravity (acting on the hanging part)
+    \draw[->, ultra thick, green!60!black] (0, -1.25) -- (0, -2.8) node[below, font=\scriptsize\bfseries] {$F_{\text{drive}} = \lambda y g$};
+
+    % --- Kinematic Transitions (Integration Path) ---
+    \draw[->, thick, dashed, orange!90!black] (1.0, -1.5) -- (1.0, -3.0) node[midway, right, font=\scriptsize\bfseries, align=left] {সমাকলন (Integration):\\ $y = y_0 \rightarrow L$ \\ $y = 0.9\text{ m} \rightarrow 1.5\text{ m}$};
+    
+    % --- Initial condition marker ---
+    \draw[<->, thick, darkgray] (-0.8, 0) -- (-0.8, -1.5) node[midway, left, font=\scriptsize\bfseries] {$y_0 = 0.9\text{ m}$};
+    \draw[dashed, gray] (0, -1.5) -- (-0.9, -1.5);
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 56
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+শিকলের প্রতি একক দৈর্ঘ্যের ভর (linear density): $\lambda = \frac{M}{L} = \frac{3.0}{1.5} = \mathbf{2.0\text{ kg/m}}$। 
+যেকোনো মুহূর্তে টেবিল স্পর্শ করে থাকা শিকলের অংশটির দৈর্ঘ্য হবে $L - y$।
+
+\vspace{0.5em}
+\noindent
+\textbf{১. ত্বরণের সমীকরণ প্রতিপাদন ($a(y)$)} \\
+যেকোনো ঝুলন্ত দৈর্ঘ্য $y$-এর জন্য গতিশীল বলসমূহ হলো:
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{নিম্নমুখী চালিকা অভিকর্ষজ বল:} $F_{\text{drive}} = (\lambda \cdot y) g$
+    \item \textbf{টেবিলের ওপর থাকা শিকলের অংশের প্রতিরোধী ঘর্ষণ বল:} $F_{\text{friction}} = \mu (\lambda(L - y)) g$
+\end{itemize}
+
+নিউটনের দ্বিতীয় সূত্র অনুযায়ী সম্পূর্ণ শিকলটির (ভর $M$) গতির সমীকরণ:
+$$M \cdot a = F_{\text{drive}} - F_{\text{friction}}$$ 
+$$M \cdot a = \lambda g \left[ y - \mu (L - y) \right] = \lambda g \left[ y (1 + \mu) - \mu L \right]$$
+
+যেহেতু $M = \lambda L$, তাই ত্বরণ দাঁড়ায়:
+$$a = \frac{g}{L} \left[ y (1 + \mu) - \mu L \right]$$
+
+মানগুলো বসিয়ে পাই ($g = 10, L = 1.5, \mu = 0.25$):
+$$a(y) = \frac{10}{1.5} \left[ y(1 + 0.25) - 0.25 \times 1.5 \right] = \frac{20}{3} \left[ 1.25 y - 0.375 \right]$$
+$$a(y) = \frac{20}{3} \left[ \frac{5}{4} y - \frac{3}{8} \right] = \mathbf{\frac{25}{3} y - 2.5}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{২. সম্পূর্ণ পিছলে পড়ার মুহূর্তের গতিবেগ ($v$) নির্ণয়} \\
+আমরা জানি, $a = \frac{dv}{dt} = \frac{dv}{dy} \frac{dy}{dt} = v \frac{dv}{dy}$। 
+অতএব:
+$$v \frac{dv}{dy} = \frac{25}{3} y - 2.5$$ 
+$$\int_0^v v dv = \int_{y_0}^{L} \left( \frac{25}{3} y - 2.5 \right) dy$$
+
+$y_0 = 0.9\text{ m}$ (আদি ঝুলন্ত অংশ) থেকে $L = 1.5\text{ m}$ (সম্পূর্ণ দৈর্ঘ্য) সীমা নিয়ে সমাকলন করি:
+$$\frac{v^2}{2} = \left[ \frac{25}{6} y^2 - 2.5 y \right]_{0.9}^{1.5}$$
+
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{$y = 1.5$ বিন্দুতে মান (উচ্চসীমা):} 
+    $$\frac{25}{6} \times (1.5)^2 - (2.5 \times 1.5) = \frac{25}{6} \times 2.25 - 3.75 = 9.375 - 3.75 = \mathbf{5.625}$$
+    \item \textbf{$y = 0.9$ বিন্দুতে মান (নিম্নসীমা):} 
+    $$\frac{25}{6} \times (0.9)^2 - (2.5 \times 0.9) = \frac{25}{6} \times 0.81 - 2.25 = 3.375 - 2.25 = \mathbf{1.125}$$
+\end{itemize}
+
+মানগুলো বসিয়ে পাই:
+$$\frac{v^2}{2} = 5.625 - 1.125 = 4.5\text{ J/kg}$$ 
+$$v^2 = 9.0 \implies v = \mathbf{3.0\text{ m/s}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+১. ত্বরণের সমীকরণ: $a(y) = \mathbf{\frac{25}{3} y - 2.5}$ \\
+২. সম্পূর্ণ পিছলে পড়ার মুহূর্তে শিকলের বেগ হবে $\mathbf{3.0\text{ m/s}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% QUESTION SECTION 20 - DYNAMICS & ENERGY CONSERVATION (PULLEY SYSTEM)
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন(Question) 20}]
+\noindent
+$M = 4.0\text{ kg}$ ভর এবং $R = 0.2\text{ m}$ ব্যাসার্ধের একটি সুষম নিরেট সিলিন্ডার আকৃতির কপিকল (solid cylindrical pulley) তার অনুভূমিক অক্ষের সাপেক্ষে ঘর্ষণহীনভাবে ঘুরতে পারে [১৬, ১৮]। কপিকলটির ওপর একটি হালকা ও অপ্রসারণশীল সুতা জড়ানো আছে, যার মুক্ত প্রান্তে $m = 2.0\text{ kg}$ ভরের একটি ব্লক খাড়াভাবে ঝুলছে। 
+
+\vspace{0.3em}
+\noindent
+সম্পূর্ণ ব্যবস্থাটিকে স্থির অবস্থা থেকে ছেড়ে দেওয়া হলো। ব্লকটি যখন খাড়া নিচের দিকে $h = 1.6\text{ m}$ দূরত্ব অতিক্রম করবে, তখন ব্লকটির রৈখিক বেগ ($v$) এবং সুতার টান ($T$) কত হবে তা নির্ণয় করো। [$\text{Take } g = 10\text{ m/s}^2$]
+
+\vspace{0.8em}
+\begin{english}
+\noindent\textit{\color{darkgray}
+A uniform solid cylindrical pulley of mass $M = 4.0\text{ kg}$ and radius $R = 0.2\text{ m}$ is pivoted to rotate without friction about its horizontal axis. A light, inextensible string is wound around the pulley, and a block of mass $m = 2.0\text{ kg}$ is attached to its free end hanging vertically. The system is released from rest. Determine the linear velocity ($v$) of the block and the tension ($T$) in the string after the block has fallen a vertical distance of $h = 1.6\text{ m}$. [Take $g = 10\text{ m/s}^2$]
+}
+\end{english}
+\end{tcolorbox}
+
+
+% ------------------------------------------
+% TIKZ DIAGRAM 20A: SCENARIO (PHYSICAL SETUP)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3, text=black]
+
+    \node[above, font=\small\bfseries, text=darkgray] at (0, 2.5) {ভৌত ব্যবস্থা (Physical Setup)};
+
+    % --- Ceiling and Support ---
+    \draw[ultra thick, black!70] (-1.5, 2.0) -- (1.5, 2.0);
+    \fill[pattern=north east lines, pattern color=gray] (-1.5, 2.0) rectangle (1.5, 2.2);
+    \draw[thick, fill=gray!30] (-0.1, 2.0) rectangle (0.1, 0);
+
+    % --- Pulley ---
+    \draw[thick, fill=blue!15, draw=blue!80!black] (0,0) circle (1.0);
+    \fill[black] (0,0) circle (0.08) node[below left, font=\scriptsize\bfseries] {অক্ষ};
+    \node[font=\footnotesize\bfseries, text=blue!80!black] at (-0.4, 0.4) {কপিকল ($M$)};
+
+    % Radius
+    \draw[->, thick, darkgray] (0,0) -- (0.707, 0.707) node[midway, above left=-2pt, font=\scriptsize\bfseries] {$R$};
+
+    % --- String and Block ---
+    \draw[thick, red!80!black] (1.0, 0) -- (1.0, -2.0);
+    \draw[thick, fill=orange!25, draw=orange!80!black, rounded corners=1pt] (0.6, -2.0) rectangle (1.4, -2.8);
+    \node[font=\footnotesize\bfseries, text=orange!80!black] at (1.0, -2.4) {ব্লক ($m$)};
+
+    % --- Kinematics & Dimensions ---
+    % Height h
+    \draw[<->, thick, purple] (2.2, -2.4) -- (2.2, -4.0) node[midway, right, font=\scriptsize\bfseries] {$h = 1.6\text{ m}$};
+    \draw[dashed, gray] (1.4, -2.4) -- (2.3, -2.4);
+    \draw[dashed, gray] (1.4, -4.0) -- (2.3, -4.0);
+    
+    % Final Block (faded)
+    \draw[thick, fill=orange!10, draw=orange!40, rounded corners=1pt, dashed] (0.6, -3.6) rectangle (1.4, -4.4);
+    
+    % Accelerations
+    \draw[->, ultra thick, green!60!black] (1.8, -1.0) -- (1.8, -1.8) node[midway, right, font=\small\bfseries] {$a$};
+    \draw[->, ultra thick, purple!80!black] (0, 1.3) arc (90:0:1.3) node[midway, above right, font=\small\bfseries] {$\alpha$};
+    
+    % Final Velocity
+    \draw[->, ultra thick, blue!80!black] (1.0, -4.5) -- (1.0, -5.2) node[right, font=\small\bfseries] {$v$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+
+% ------------------------------------------
+% SOLUTION SECTION 20
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+\noindent
+এই সমস্যাটি বলবিদ্যা (Dynamics) এবং শক্তির সংরক্ষণশীলতা (Conservation of Energy)—উভয় পদ্ধতিতেই খুব সুন্দরভাবে সমাধান করা যায়। নিচে দুটি পদ্ধতিই দেখানো হলো:
+
+\vspace{0.8em}
+\noindent
+\textbf{পদ্ধতি ১: বলবিদ্যা বা গতিবিদ্যার সমীকরণ (Dynamics Method)}
+
+% ------------------------------------------
+% TIKZ DIAGRAM 20B: DETAILED FREE BODY DIAGRAM (FBD)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2, text=black]
+
+    \node[above, font=\small\bfseries, text=darkgray] at (2.5, 2.5) {ফ্রি-বডি ডায়াগ্রাম (FBD)};
+
+    \tikzset{
+        force/.style={->, ultra thick, red!80!black},
+        accel/.style={->, ultra thick, blue!80!black}
+    }
+
+    % --- Isolated Pulley FBD ---
+    \begin{scope}[shift={(0, 0)}]
+        \node[above, font=\footnotesize\bfseries, text=blue!80!black] at (0, 1.5) {কপিকলের FBD};
+        
+        \draw[thick, fill=blue!5, draw=blue!40] (0, 0) circle (1.2);
+        \fill[black] (0, 0) circle (0.05);
+        
+        % Forces
+        \draw[force] (1.2, 0) -- (1.2, -1.5) node[right, font=\small\bfseries] {$T$};
+        \draw[force] (0, 0) -- (0, -1.5) node[right, font=\scriptsize\bfseries] {$Mg$};
+        \draw[force, green!60!black] (0, 0) -- (0, 1.5) node[right, font=\scriptsize\bfseries] {$R_{\text{support}}$};
+        
+        % Torque & Alpha
+        \draw[->, ultra thick, purple!80!black] (0, 1.4) arc (90:-30:1.4) node[midway, right, font=\small\bfseries] {$\alpha$};
+    \end{scope}
+
+    % --- Isolated Block FBD ---
+    \begin{scope}[shift={(5.0, -0.5)}]
+        \node[above, font=\footnotesize\bfseries, text=orange!80!black] at (0, 1.2) {ব্লকের FBD};
+        
+        \draw[thick, fill=orange!15, draw=orange!80!black, rounded corners=1pt] (-0.6, -0.6) rectangle (0.6, 0.6);
+        \fill[black] (0, 0) circle (0.05);
+        
+        % Forces
+        \draw[force] (0, 0.6) -- (0, 1.8) node[right, font=\small\bfseries] {$T$};
+        \draw[force] (0, -0.6) -- (0, -1.8) node[right, font=\small\bfseries] {$mg$};
+        
+        % Acceleration
+        \draw[accel] (-1.0, 0.5) -- (-1.0, -1.0) node[midway, left, font=\small\bfseries] {$a$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+\vspace{0.5em}
+\noindent
+\textbf{১. গতির সমীকরণ প্রতিপাদন:}
+\begin{itemize}[leftmargin=*, parsep=0.4ex]
+    \item \textbf{ঝুলন্ত ব্লকের রৈখিক গতির জন্য (নিচের দিকে ত্বরণ $a$):} \\
+    নিউটনের ২য় সূত্রানুযায়ী:
+    $$m g - T = m a \implies (2.0 \times 10) - T = 2.0 a$$ 
+    $$20 - T = 2a \quad \text{--- (১)}$$
+    
+    \item \textbf{কপিকলের ঘূর্ণন গতির জন্য ($\tau = I\alpha$):} \\
+    নিরেট সিলিন্ডার আকৃতির কপিকলের জড়তার ভ্রামক: 
+    $$I = \frac{1}{2} M R^2 = \frac{1}{2} \times 4.0 \times R^2 = 2 R^2\text{ kg}\cdot\text{m}^2$$ 
+    সুতাটি পিছলে না গিয়ে কপিকলকে ঘোরালে, কৌণিক ত্বরণ $\alpha = \frac{a}{R}$। টর্কের সমীকরণ থেকে পাই: 
+    $$\tau = T \cdot R = I \cdot \alpha$$ 
+    $$T \cdot R = (2 R^2) \left(\frac{a}{R}\right) \implies T = 2a \quad \text{--- (২)}$$
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{২. ত্বরণ ($a$) ও টান বল ($T$) নির্ণয়:} \\
+সমীকরণ (২) থেকে $T$-এর মান সমীকরণ (১)-এ বসিয়ে পাই: 
+$$20 - 2a = 2a \implies 4a = 20 \implies \mathbf{a = 5.0\text{ m/s}^2}$$
+সুতার টান বল: 
+$$T = 2 \times 5.0 = \mathbf{10.0\text{ N}}$$
+
+\vspace{0.5em}
+\noindent
+\textbf{৩. রৈখিক গতিবেগ ($v$) নির্ণয়:} \\
+যেহেতু ত্বরণটি ধ্রুবক এবং ব্লকটি স্থির অবস্থা ($u = 0$) থেকে যাত্রা শুরু করেছে: 
+$$v^2 = u^2 + 2 a h$$ 
+$$v^2 = 0 + 2 \times 5.0 \times 1.6 = 16.0\text{ m}^2/\text{s}^2$$ 
+$$v = \sqrt{16.0} = \mathbf{4.0\text{ m/s}}$$
+
+\vspace{1.5em}
+\hrule
+\vspace{1.5em}
+
+\noindent
+\textbf{পদ্ধতি ২: শক্তির সংরক্ষণশীলতা নীতি (Energy Method - বিকল্প)}
+
+\vspace{0.5em}
+\noindent
+শুরুতে সম্পূর্ণ ব্যবস্থাটি স্থির থাকায় আদি মোট শক্তি শূন্য (যদি ঝুলন্ত ব্লকের শেষ অবস্থানকে বিভব শক্তির শূন্য রেফারেন্স তল ধরা হয়)। $h$ উচ্চতা পতনের পর বিভব শক্তির হ্রাস রৈখিক ও ঘূর্ণন গতিশক্তির বৃদ্ধিতে রূপান্তরিত হবে:
+$$m g h = \frac{1}{2} m v^2 + \frac{1}{2} I \omega^2$$
+
+যেহেতু কপিকলের পৃষ্ঠে সুতাটি পিছলে যায় না, তাই $\omega = \frac{v}{R}$ এবং $I = \frac{1}{2} M R^2$: 
+$$m g h = \frac{1}{2} m v^2 + \frac{1}{2} \left( \frac{1}{2} M R^2 \right) \left( \frac{v}{R} \right)^2$$ 
+$$m g h = \left( \frac{m}{2} + \frac{M}{4} \right) v^2$$
+
+মানগুলো বসিয়ে পাই: 
+$$2.0 \times 10 \times 1.6 = \left( \frac{2.0}{2} + \frac{4.0}{4} \right) v^2$$ 
+$$32.0 = (1.0 + 1.0) v^2 = 2.0 v^2$$ 
+$$v^2 = 16.0 \implies \mathbf{v = 4.0\text{ m/s}}$$
+
+\vspace{1em}
+\begin{tcolorbox}[answerbox]
+\textbf{চূড়ান্ত উত্তর:} \\
+ব্লকটি $1.6\text{ m}$ নিচে নামার পর এর গতিবেগ হবে $\mathbf{4.0\text{ m/s}}$ এবং সুতার টান হবে $\mathbf{10.0\text{ N}}$।
+\end{tcolorbox}
+\end{tcolorbox}
+\end{document}
+
+
+
