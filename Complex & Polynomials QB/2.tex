@@ -1,0 +1,3108 @@
+\documentclass[12pt, a4paper]{article}
+
+% ==========================================
+% 1. COMPILER, LANGUAGE & FONT SETUP
+% ==========================================
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage[protrusion=false]{microtype}
+\setmainlanguage{bengali}
+\setotherlanguage{english}
+\newfontfamily\bengalifont[Script=Bengali, AutoFakeBold=2.5, AutoFakeSlant=0.2]{Kalpurush}
+
+% ==========================================
+% 2. MATHEMATICS, UNITS & FORMATTING
+% ==========================================
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{microtype} % For better typography
+\onehalfspacing % Better line spacing for readability
+
+% ==========================================
+% 3. COLORS & BEAUTIFICATION PACKAGES
+% ==========================================
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[skins, breakable, theorems]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{shadows, arrows.meta, positioning, decorations.pathmorphing, calc, intersections, angles, quotes}
+\usepackage{enumitem}
+\setlist[itemize,1]{label=\textendash}
+
+% Define custom beautiful colors
+\definecolor{primary}{HTML}{0056b3}
+\definecolor{secondary}{HTML}{e7f1ff}
+\definecolor{success}{HTML}{198754}
+\definecolor{successbg}{HTML}{d1e7dd}
+\definecolor{accent}{HTML}{fd7e14}
+\definecolor{darkgray}{HTML}{343a40}
+
+% Custom Tcolorbox Styles
+\tcbset{
+    questionbox/.style={
+        enhanced, colback=secondary, colframe=primary, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\Large, title=#1,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top left={xshift=5mm, yshift=-3mm},
+        boxed title style={colback=primary, arc=1mm}
+    },
+    answerbox/.style={
+        enhanced, colback=successbg, colframe=success, arc=1.5mm, boxrule=1pt,
+        left=2mm, right=2mm, top=2mm, bottom=2mm,
+        drop fuzzy shadow=black!10
+    },
+    solutionbox/.style={
+        enhanced, colback=white, colframe=darkgray, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\large, title=#1, breakable,
+        coltitle=white, colbacktitle=darkgray,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top center={yshift=-3mm},
+        boxed title style={arc=1mm}
+    }
+}
+
+\begin{document}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 1}]
+    \noindent
+    যদি $\alpha$ এবং $\beta$ সমীকরণ $x^2 - x + 1 = 0$ এর দুটি মূল হয়, তবে $\alpha^{2009}$ এবং $\beta^{2009}$ মূলদ্বয় দ্বারা গঠিত দ্বিঘাত সমীকরণটি নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha$ and $\beta$ are the roots of the equation $x^2 - x + 1 = 0$, then the quadratic equation whose roots are $\alpha^{2009}$ and $\beta^{2009}$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x^2 + x + 1 = 0$
+    \item[\textbf{B)}] $x^2 - x + 1 = 0$
+    \item[\textbf{C)}] $x^2 - 2x + 1 = 0$
+    \item[\textbf{D)}] $x^2 + 2x + 1 = 0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $x^2 - x + 1 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণ $x^2 - x + 1 = 0$ এর মূলদ্বয় হলো:
+    \[ x = \frac{1 \pm i\sqrt{3}}{2} \]
+    আমরা জানি, এককের কাল্পনিক ঘনমূল $\omega = \frac{-1 + i\sqrt{3}}{2}$ এবং $\omega^2 = \frac{-1 - i\sqrt{3}}{2}$। অতএব, মূলদ্বয়কে লেখা যায়:
+    \[ \alpha = -\omega^2 \quad \text{এবং} \quad \beta = -\omega \]
+    
+    \vspace{0.5em}
+    \noindent এখন, এদের $2009$ তম ঘাত নির্ণয় করি:
+    \begin{align*}
+        \alpha^{2009} &= (-\omega^2)^{2009} = (-1)^{2009} \omega^{4018} = -\omega^{4018}
+    \end{align*}
+    যেহেতু $4018 = 3 \times 1339 + 1$, সেহেতু $\omega^{4018} = \omega^1 = \omega$।
+    \[ \Rightarrow \alpha^{2009} = -\omega = \beta \]
+    
+    \vspace{0.5em}
+    আবার,
+    \begin{align*}
+        \beta^{2009} &= (-\omega)^{2009} = (-1)^{2009} \omega^{2009} = -\omega^{2009}
+    \end{align*}
+    যেহেতু $2009 = 3 \times 669 + 2$, সেহেতু $\omega^{2009} = \omega^2$।
+    \[ \Rightarrow \beta^{2009} = -\omega^2 = \alpha \]
+    
+    \vspace{0.5em}
+    দেখা যাচ্ছে যে, নতুন মূলদ্বয় যথাক্রমে প্রথম সমীকরণের মূলদ্বয়ের সাথে হুবহু মিলে যায়। 
+    অতএব, নির্ণেয় সমীকরণটি হবে $x^2 - x + 1 = 0$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 2}]
+    \noindent
+    যদি $x = \frac{1}{2}(\sqrt{3} - i)$ হয়, তবে $(x^{101} + i^{101})^{124} = x^n$ সমীকরণটি সিদ্ধ করার জন্য $n$ এর ক্ষুদ্রতম ধনাত্মক পূর্ণসাংখ্যিক মান কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $x = \frac{1}{2}(\sqrt{3} - i)$, then what is the least positive integral value of $n$ for which $(x^{101} + i^{101})^{124} = x^n$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2$
+    \item[\textbf{B)}] $4$
+    \item[\textbf{C)}] $6$
+    \item[\textbf{D)}] $8$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $4$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    $x = \frac{\sqrt{3}}{2} - \frac{1}{2}i$ কে পোলার আকারে প্রকাশ করে পাই:
+    \[ x = \cos\left(-\frac{\pi}{6}\right) + i\sin\left(-\frac{\pi}{6}\right) = e^{-i\pi/6} \]
+    এখন, 
+    \[ x^{101} = e^{-i 101\pi/6} \]
+    যেহেতু $101\pi/6 = 16\pi + 5\pi/6$, তাই:
+    \[ x^{101} = e^{-i 5\pi/6} = \cos\left(-\frac{5\pi}{6}\right) + i\sin\left(-\frac{5\pi}{6}\right) = -\frac{\sqrt{3}}{2} - \frac{1}{2}i \]
+    
+    \vspace{0.5em}
+    আমরা জানি, $i^{101} = i^{4 \times 25 + 1} = i$। তাহলে:
+    \[ x^{101} + i^{101} = -\frac{\sqrt{3}}{2} - \frac{1}{2}i + i = -\frac{\sqrt{3}}{2} + \frac{1}{2}i \]
+    এটি পোলার আকারে $e^{i 5\pi/6}$। 
+    
+    \vspace{0.5em}
+    এখন ঘাত $124$ প্রয়োগ করে পাই:
+    \[ (x^{101} + i^{101})^{124} = (e^{i 5\pi/6})^{124} = e^{i (620\pi/6)} = e^{i 310\pi/3} \]
+    যেহেতু $\frac{310\pi}{3} = 102\pi + \frac{4\pi}{3}$, সেহেতু:
+    \[ e^{i 310\pi/3} = e^{i 4\pi/3} = e^{-i 2\pi/3} \]
+    
+    \vspace{0.5em}
+    আমরা চাই:
+    \[ x^n = e^{-in\pi/6} = e^{-i 2\pi/3} \]
+    \[ \Rightarrow \frac{n\pi}{6} = \frac{2\pi}{3} \pmod{2\pi} \]
+    \[ \Rightarrow n = 4 \pmod{12} \]
+    অতএব, $n$ এর ক্ষুদ্রতম ধনাত্মক পূর্ণসাংখ্যিক মান হলো $4$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 3}]
+    \noindent
+    যদি $\alpha, \beta, \gamma$ তিনটি জটিল সংখ্যা এমন হয় যে তারা একক বৃত্ত $|z| = 1$ এর উপর অবস্থিত এবং $\alpha\beta\gamma = \alpha + \beta + \gamma$ শর্তটি সিদ্ধ করে, তবে $\bar{\alpha}\bar{\beta} + \bar{\beta}\bar{\gamma} + \bar{\gamma}\bar{\alpha}$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha, \beta, \gamma$ are three complex numbers lying on the unit circle $|z| = 1$ such that $\alpha\beta\gamma = \alpha + \beta + \gamma$, then the value of $\bar{\alpha}\bar{\beta} + \bar{\beta}\bar{\gamma} + \bar{\gamma}\bar{\alpha}$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $0$
+    \item[\textbf{B)}] $1$
+    \item[\textbf{C)}] $-1$
+    \item[\textbf{D)}] $2$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $1$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু $\alpha, \beta, \gamma$ জটিল সংখ্যা তিনটি একক বৃত্তে অবস্থিত, তাই আমরা পাই:
+    \[ |\alpha| = |\beta| = |\gamma| = 1 \]
+    \[ \Rightarrow \bar{\alpha} = \frac{1}{\alpha}, \quad \bar{\beta} = \frac{1}{\beta}, \quad \bar{\gamma} = \frac{1}{\gamma} \]
+    
+    \vspace{0.5em}
+    এখন, নির্ণেয় রাশিটি হলো:
+    \begin{align*}
+        \bar{\alpha}\bar{\beta} + \bar{\beta}\bar{\gamma} + \bar{\gamma}\bar{\alpha} &= \frac{1}{\alpha}\frac{1}{\beta} + \frac{1}{\beta}\frac{1}{\gamma} + \frac{1}{\gamma}\frac{1}{\alpha} \\
+        &= \frac{\gamma + \alpha + \beta}{\alpha\beta\gamma} \\
+        &= \frac{\alpha + \beta + \gamma}{\alpha\beta\gamma}
+    \end{align*}
+    দেওয়া আছে, $\alpha + \beta + \gamma = \alpha\beta\gamma$। সুতরাং:
+    \[ \bar{\alpha}\bar{\beta} + \bar{\beta}\bar{\gamma} + \bar{\gamma}\bar{\alpha} = \frac{\alpha\beta\gamma}{\alpha\beta\gamma} = 1 \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 4}]
+    \noindent
+    দুটি বাস্তব সংখ্যা $a$ ও $b$ (যেখানে $0 < a, b < 1$) এমনভাবে সম্পর্কিত যে $Z_1 = a + i$, $Z_2 = 1 + bi$ এবং $Z_3 = 0$ আর্গন্ড চিত্রে একটি সমবাহু ত্রিভুজের তিনটি শীর্ষবিন্দু নির্দেশ করে। $a$ এবং $b$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Two real numbers $a$ and $b$ lying between $0$ and $1$ are such that $Z_1 = a + i$, $Z_2 = 1 + bi$, and $Z_3 = 0$ form an equilateral triangle in the Argand plane. What are the values of $a$ and $b$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $a = b = 2 - \sqrt{3}$
+    \item[\textbf{B)}] $a = b = 2 + \sqrt{3}$
+    \item[\textbf{C)}] $a = b = 4 - \sqrt{3}$
+    \item[\textbf{D)}] $a = 2 - \sqrt{3}, b = 2 + \sqrt{3}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $a = b = 2 - \sqrt{3}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যদি জটিল সমতলে $0$, $Z_1$, এবং $Z_2$ একটি সমবাহু ত্রিভুজ গঠন করে, তবে জটিল সমতার বিশেষ ধর্ম থেকে আমরা পাই:
+    \[ Z_1^2 + Z_2^2 - Z_1 Z_2 = 0 \]
+    প্রদত্ত মান বসিয়ে পাই:
+    \[ (a+i)^2 + (1+bi)^2 = (a+i)(1+bi) \]
+    \[ \Rightarrow (a^2 - 1 + 2ai) + (1 - b^2 + 2bi) = (a - b) + i(1 + ab) \]
+    \[ \Rightarrow (a^2 - b^2) + i(2a + 2b) = (a - b) + i(1 + ab) \]
+    
+    \vspace{0.5em}
+    বাস্তব ও কাল্পনিক অংশ সমীকৃত করে পাই:
+    \begin{itemize}[itemsep=0.3em]
+        \item বাস্তব অংশ হতে: $a^2 - b^2 = a - b \Rightarrow (a-b)(a+b-1) = 0$
+        \item কাল্পনিক অংশ হতে: $2a + 2b = 1 + ab$
+    \end{itemize}
+    
+    \vspace{0.5em}
+    যদি $a \neq b$ হয়, তবে $a+b = 1$। কাল্পনিক অংশের সমীকরণে বসালে পাই:
+    \[ 2(1) = 1 + a(1-a) \Rightarrow 2 = 1 + a - a^2 \Rightarrow a^2 - a + 1 = 0 \]
+    যার বাস্তব কোনো সমাধান নেই। সুতরাং, $a = b$ হতে হবে।
+    
+    \vspace{0.5em}
+    এবার কাল্পনিক অংশের সমীকরণে $a = b$ বসিয়ে পাই:
+    \[ 4a = 1 + a^2 \Rightarrow a^2 - 4a + 1 = 0 \]
+    দ্বিঘাত সমীকরণের সূত্র প্রয়োগ করে পাই:
+    \[ a = \frac{4 \pm \sqrt{16-4}}{2} = 2 \pm \sqrt{3} \]
+    যেহেতু শর্ত দেওয়া আছে $0 < a < 1$, এবং $2 + \sqrt{3} > 1$, সেহেতু গ্রহণযোগ্য মানটি হলো:
+    \[ a = b = 2 - \sqrt{3} \quad \text{(যা $0$ ও $1$ এর মধ্যবর্তী)} \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 5}]
+    \noindent
+    $z$ একটি জটিল সংখ্যা হলে, $\text{arg}(z+i) - \text{arg}(z-i) = \frac{\pi}{2}$ সমীকরণটি দ্বারা কার্তেসীয় সমতলে নির্দেশিত সঞ্চারপথের চাপের দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $z$ is a complex number, what is the arc length of the locus represented by the equation $\text{arg}(z+i) - \text{arg}(z-i) = \frac{\pi}{2}$ on the cartesian plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{\pi}{2}$ একক ($\frac{\pi}{2}$ units)
+    \item[\textbf{B)}] $\pi$ একক ($\pi$ units)
+    \item[\textbf{C)}] $2\pi$ একক ($2\pi$ units)
+    \item[\textbf{D)}] $4\pi$ একক ($4\pi$ units)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $\pi$ একক
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    জ্যামিতিক আর্গুমেন্টের ব্যাখ্যা হতে আমরা জানি, সমীকরণ $\text{arg}(z+i) - \text{arg}(z-i) = \frac{\pi}{2}$ দ্বারা একটি অর্ধবৃত্ত নির্দেশিত হয়, যার ব্যাস হলো $i(0, 1)$ এবং $-i(0, -1)$ বিন্দুদ্বয়ের সংযোজক রেখাংশ। 
+    
+    \vspace{0.5em}
+    ব্যাসটির দৈর্ঘ্য $d = 1 - (-1) = 2$ একক। 
+    অতএব, সঞ্চারপথ রূপী অর্ধবৃত্তের ব্যাসার্ধ $R = 1$ একক। 
+    
+    \vspace{0.5em}
+    আমরা জানি, অর্ধবৃত্তের চাপের দৈর্ঘ্য $L = \pi R$। 
+    সুতরাং, নির্ণেয় সঞ্চারপথের চাপের দৈর্ঘ্য হবে:
+    \[ L = \pi \times 1 = \pi \text{ একক} \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 6}]
+    \noindent
+    জটিল সমীকরণ $z^3 + i \frac{|z|^2}{\bar{z}} = 0$ এর সমাধান সংখ্যা কতটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    The number of solutions to the complex equation $z^3 + i \frac{|z|^2}{\bar{z}} = 0$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $1$
+    \item[\textbf{B)}] $2$
+    \item[\textbf{C)}] $3$
+    \item[\textbf{D)}] $4$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি হলো:
+    \[ z^3 + i \frac{|z|^2}{\bar{z}} = 0 \]
+    যেহেতু সমীকরণের হরে $\bar{z}$ রয়েছে, সেহেতু জটিল সংখ্যা $z$ অবশ্যই অশূন্য হতে হবে, অর্থাৎ $z \neq 0$। 
+    
+    \vspace{0.5em}
+    আমরা জানি, জটিল সংখ্যার ধর্ম থেকে: $|z|^2 = z \bar{z}$ 
+    অতএব:
+    \[ \frac{|z|^2}{\bar{z}} = \frac{z \bar{z}}{\bar{z}} = z \]
+    সমীকরণে এই মানটি বসিয়ে পাই:
+    \[ z^3 + i z = 0 \]
+    \[ \Rightarrow z(z^2 + i) = 0 \]
+    যেহেতু $z \neq 0$, সেহেতু আমরা লিখতে পারি:
+    \[ z^2 + i = 0 \]
+    \[ \Rightarrow z^2 = -i \]
+    
+    \vspace{0.5em}
+    এই দ্বিঘাত সমীকরণটির সমাধান করলে আমরা পাই:
+    \[ z = \pm \sqrt{-i} \]
+    আমরা জানি, $-i = \cos\left(-\frac{\pi}{2}\right) + i\sin\left(-\frac{\pi}{2}\right) = e^{-i\pi/2}$। সুতরাং:
+    \[ z = \pm e^{-i\pi/4} = \pm \left(\frac{1}{\sqrt{2}} - i\frac{1}{\sqrt{2}}\right) \]
+    যেহেতু সমীকরণটি অশূন্য $z$ এর জন্য সিদ্ধ হয়, তাই এর মোট সমাধান সংখ্যা হবে ঠিক $2$ টি।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 7}]
+    \noindent
+    যদি জটিল সংখ্যা $z$ অসমতা $|z - 2i| \leq 1$ সিদ্ধ করে এবং $|2z + 1|$ এর সর্বনিম্ন ও সর্বোচ্চ মান যথাক্রমে $m$ ও $M$ হয়, তবে $(M - m)^2$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the complex number $z$ satisfies the inequality $|z - 2i| \leq 1$, and $m$ and $M$ denote the minimum and maximum values of $|2z + 1|$ respectively, then the value of $(M - m)^2$ is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $16$
+    \item[\textbf{B)}] $17$
+    \item[\textbf{C)}] $34$
+    \item[\textbf{D)}] $51$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $16$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    দেওয়া আছে, $|z - 2i| \leq 1$। এটি কার্তেসীয় সমতলে $z_0 = 2i \equiv (0, 2)$ কেন্দ্র এবং $R = 1$ একক ব্যাসার্ধ বিশিষ্ট একটি বৃত্তাকার চাকতি নির্দেশ করে। 
+    
+    \vspace{0.5em}
+    আমরা $|2z + 1|$ এর মানকে লিখতে পারি:
+    \[ |2z + 1| = 2\left|z - \left(-\frac{1}{2}\right)\right| \]
+    ধরি, নির্দিষ্ট বিন্দু $a = -\frac{1}{2} \equiv \left(-\frac{1}{2}, 0\right)$। তাহলে $\left|z - a\right|$ হলো $a$ বিন্দু হতে চাকতির যেকোনো বিন্দু $z$ এর দূরত্ব। 
+    
+    \vspace{0.5em}
+    বিন্দু $a$ হতে বৃত্তের কেন্দ্র $z_0$ এর দূরত্ব $d$:
+    \[ d = |z_0 - a| = \left|2i - \left(-\frac{1}{2}\right)\right| = \left|\frac{1}{2} + 2i\right| = \sqrt{\left(\frac{1}{2}\right)^2 + 2^2} = \sqrt{\frac{17}{4}} = \frac{\sqrt{17}}{2} \]
+    
+    \vspace{0.5em}
+    বৃত্তাকার চাকতির ভিতরের যেকোনো বিন্দু $z$ এর জন্য, $a$ হতে দূরত্বের সর্বনিম্ন ও সর্বোচ্চ মান হবে যথাক্রমে:
+    \begin{align*}
+        \text{সর্বনিম্ন দূরত্ব} &= d - R = \frac{\sqrt{17}}{2} - 1 \\
+        \text{সর্বোচ্চ দূরত্ব} &= d + R = \frac{\sqrt{17}}{2} + 1
+    \end{align*}
+    
+    \vspace{0.5em}
+    অতএব, $|2z + 1|$ এর সর্বনিম্ন মান $m$ এবং সর্বোচ্চ মান $M$ হবে:
+    \begin{align*}
+        m &= 2 \times (d - R) = 2\left(\frac{\sqrt{17}}{2} - 1\right) = \sqrt{17} - 2 \\
+        M &= 2 \times (d + R) = 2\left(\frac{\sqrt{17}}{2} + 1\right) = \sqrt{17} + 2
+    \end{align*}
+    
+    \vspace{0.5em}
+    এখন, এদের পার্থক্য:
+    \[ M - m = (\sqrt{17} + 2) - (\sqrt{17} - 2) = 4 \]
+    অতএব:
+    \[ (M - m)^2 = 4^2 = 16 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 8}]
+    \noindent
+    যদি জটিল সংখ্যা $z_1$, $z_2$ এবং মূলবিন্দু $O(0)$ আর্গন্ড সমতলে একটি সমবাহু ত্রিভুজের তিনটি শীর্ষবিন্দু নির্দেশ করে, তবে $z_1^2 + z_2^2$ এর মান নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the complex numbers $z_1$, $z_2$ and the origin $O(0)$ form an equilateral triangle in the Argand plane, then $z_1^2 + z_2^2$ is equal to:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2 z_1 z_2$
+    \item[\textbf{B)}] $z_1 z_2$
+    \item[\textbf{C)}] $-z_1 z_2$
+    \item[\textbf{D)}] $0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $z_1 z_2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, জটিল সমতলে যেকোনো তিনটি শীর্ষবিন্দু $z_1$, $z_2$ এবং $z_3$ দ্বারা গঠিত ত্রিভুজটি সমবাহু হওয়ার শর্ত হলো:
+    \[ z_1^2 + z_2^2 + z_3^2 = z_1 z_2 + z_2 z_3 + z_3 z_1 \quad \text{--- (1)} \]
+    এখানে প্রদত্ত শীর্ষবিন্দু তিনটি হলো $z_1$, $z_2$ এবং মূলবিন্দু $z_3 = 0$। সমীকরণ (1) এ $z_3 = 0$ বসিয়ে পাই:
+    \[ z_1^2 + z_2^2 + 0^2 = z_1 z_2 + z_2(0) + (0)z_1 \]
+    \[ \Rightarrow z_1^2 + z_2^2 = z_1 z_2 \]
+    সুতরাং, $z_1^2 + z_2^2$ এর মান হবে $z_1 z_2$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 9}]
+    \noindent
+    জটিল সমতলে অশূন্য জটিল সংখ্যা $z$ এবং $w$ এমন যে $zw = |z|^2$ এবং $|z - \bar{z}| + |w - \bar{w}| = 4$। যদি $w$ পরিবর্তনশীল হয়, তবে $z$ এর সঞ্চারপথের সমীকরণ কার্তেসীয় সমতলে কীরূপ রেখা নির্দেশ করে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $z$ and $w$ be non-zero complex numbers such that $zw = |z|^2$ and $|z - \bar{z}| + |w - \bar{w}| = 4$. If $w$ varies, what kind of line does the equation of the locus of $z$ represent in the cartesian plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] এক জোড়া সমান্তরাল সরলরেখা (A pair of parallel straight lines)
+    \item[\textbf{B)}] মূলবিন্দুগামী একটি বৃত্ত (A circle passing through the origin)
+    \item[\textbf{C)}] একটি উপবৃত্ত যার বৃহৎ অক্ষ $y$-অক্ষ বরাবর (An ellipse with its major axis along the $y$-axis)
+    \item[\textbf{D)}] পরস্পর লম্ব দুটি সরলরেখা (Two mutually perpendicular straight lines)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) এক জোড়া সমান্তরাল সরলরেখা
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    দেওয়া আছে: 
+    \[ zw = |z|^2 \]
+    আমরা জানি, জটিল সংখ্যার ধর্ম থেকে: $|z|^2 = z \bar{z}$ 
+    অতএব:
+    \[ zw = z \bar{z} \]
+    যেহেতু $z \neq 0$, তাই উভয় পক্ষকে $z$ দ্বারা ভাগ করে পাই:
+    \[ w = \bar{z} \]
+    অনুরূপভাবে, $\bar{w} = z$ হবে। 
+    
+    \vspace{0.5em}
+    এখন দ্বিতীয় সমীকরণে মান বসিয়ে পাই:
+    \[ |z - \bar{z}| + |w - \bar{w}| = 4 \]
+    \[ \Rightarrow |z - \bar{z}| + |\bar{z} - z| = 4 \]
+    যেহেতু $|z - \bar{z}| = |\bar{z} - z|$, সেহেতু:
+    \[ 2 |z - \bar{z}| = 4 \Rightarrow |z - \bar{z}| = 2 \quad \text{--- (1)} \]
+    
+    \vspace{0.5em}
+    ধরি, $z = x + iy$। তাহলে $z - \bar{z} = (x + iy) - (x - iy) = 2iy$। সমীকরণ (1) এ মান বসিয়ে পাই:
+    \[ |2iy| = 2 \Rightarrow 2|y| = 2 \Rightarrow |y| = 1 \Rightarrow y = \pm 1 \]
+    এটি কার্তেসীয় সমতলে $y = 1$ এবং $y = -1$ নামক দুটি সমান্তরাল সরলরেখার সমীকরণ নির্দেশ করে। 
+    অতএব, সঞ্চারপথটি এক জোড়া সমান্তরাল সরলরেখা হবে।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 10}]
+    \noindent
+    যদি $a \neq 0$ হয়, তবে ত্রিঘাত সমীকরণ $(z + ab)^3 = a^3$ এর মূলত্রয় আর্গন্ড সমতলে যে সমবাহু ত্রিভুজ গঠন করে, তার বাহুর দৈর্ঘ্য কত একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $a \neq 0$, then the roots of the cubic equation $(z + ab)^3 = a^3$ represent the vertices of an equilateral triangle in the Argand plane of side length:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{1}{\sqrt{3}} |a|$
+    \item[\textbf{B)}] $\sqrt{3} |a|$
+    \item[\textbf{C)}] $\sqrt{3} |b|$
+    \item[\textbf{D)}] $\frac{1}{\sqrt{3}} |ab|$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $\sqrt{3} |a|$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি হলো:
+    \[ (z + ab)^3 = a^3 \]
+    যেহেতু $a \neq 0$, তাই সমীকরণটির উভয়পক্ষকে $a^3$ দ্বারা ভাগ করে পাই:
+    \[ \left(\frac{z + ab}{a}\right)^3 = 1 \]
+    ধরি, $W = \frac{z + ab}{a}$। তাহলে সমীকরণটি দাঁড়ায়:
+    \[ W^3 = 1 \]
+    আমরা জানি, এককের তিনটি ঘনমূল হলো $1, \omega, \omega^2$। সুতরাং, $W$ এর তিনটি মান হবে যথাক্রমে $1, \omega, \omega^2$। অতএব:
+    \begin{align*}
+        \frac{z + ab}{a} = 1 &\Rightarrow z_1 = a - ab \\
+        \frac{z + ab}{a} = \omega &\Rightarrow z_2 = a\omega - ab \\
+        \frac{z + ab}{a} = \omega^2 &\Rightarrow z_3 = a\omega^2 - ab
+    \end{align*}
+    
+    \vspace{0.5em}
+    এই তিনটি মূল জটিল সমতলে একটি সমবাহু ত্রিভুজের তিনটি শীর্ষবিন্দু নির্দেশ করে। ত্রিভুজটির যেকোনো একটি বাহুর দৈর্ঘ্য হবে শীর্ষবিন্দুদ্বয়ের মধ্যবর্তী দূরত্ব:
+    \[ L = |z_1 - z_2| = |(a - ab) - (a\omega - ab)| \]
+    \[ \Rightarrow L = |a - a\omega| = |a(1 - \omega)| = |a| |1 - \omega| \]
+    
+    \vspace{0.5em}
+    আমরা জানি, $\omega = -\frac{1}{2} + i\frac{\sqrt{3}}{2}$। সুতরাং:
+    \[ 1 - \omega = 1 - \left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = \frac{3}{2} - i\frac{\sqrt{3}}{2} \]
+    এর পরমমান:
+    \[ |1 - \omega| = \sqrt{\left(\frac{3}{2}\right)^2 + \left(-\frac{\sqrt{3}}{2}\right)^2} = \sqrt{\frac{9}{4} + \frac{3}{4}} = \sqrt{\frac{12}{4}} = \sqrt{3} \]
+    অতএব, বাহুর দৈর্ঘ্য:
+    \[ L = \sqrt{3} |a| \text{ একক} \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 11}]
+    \noindent
+    জটিল সংখ্যা $z_1, z_2, z_3$ যদি $\frac{z_1 - z_3}{z_2 - z_3} = \frac{1 - i\sqrt{3}}{2}$ সমীকরণটি সিদ্ধ করে, তবে জটিল সমতলে বিন্দু তিনটি দ্বারা গঠিত ত্রিভুজটি কেমন হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the complex numbers $z_1, z_2, z_3$ satisfy $\frac{z_1 - z_3}{z_2 - z_3} = \frac{1 - i\sqrt{3}}{2}$, then the triangle formed by these three points in the complex plane is:
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমদ্বিবাহু সমকোণী ত্রিভুজ (Right-angled isosceles triangle)
+    \item[\textbf{B)}] সমবাহু ত্রিভুজ (Equilateral triangle)
+    \item[\textbf{C)}] বিষমবাহু ত্রিভুজ (Scalene triangle)
+    \item[\textbf{D)}] স্থূলকোণী সমদ্বিবাহু ত্রিভুজ (Obtuse-angled isosceles triangle)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) সমবাহু ত্রিভুজ
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি হলো:
+    \[ \frac{z_1 - z_3}{z_2 - z_3} = \frac{1 - i\sqrt{3}}{2} \]
+    আমরা জানি, $\frac{1 - i\sqrt{3}}{2} = \cos\left(-\frac{\pi}{3}\right) + i\sin\left(-\frac{\pi}{3}\right) = e^{-i\pi/3}$। অতএব:
+    \[ \frac{z_1 - z_3}{z_2 - z_3} = e^{-i\pi/3} \]
+    
+    \vspace{0.5em}
+    উভয় পক্ষে মডুলাস নিয়ে পাই:
+    \[ \left|\frac{z_1 - z_3}{z_2 - z_3}\right| = \left|e^{-i\pi/3}\right| \]
+    \[ \Rightarrow \frac{|z_1 - z_3|}{|z_2 - z_3|} = 1 \Rightarrow |z_1 - z_3| = |z_2 - z_3| \]
+    ধরি, শীর্ষবিন্দু তিনটি হলো $A(z_1)$, $B(z_2)$ এবং সচিবিন্দু $C(z_3)$। অতএব, বাহুর দৈর্ঘ্য $CA = CB$। এটি একটি সমদ্বিবাহু ত্রিভুজ।
+    
+    \vspace{0.5em}
+    আবার, সমীকরণের আর্গুমেন্ট নিয়ে পাই:
+    \[ \arg\left(\frac{z_1 - z_3}{z_2 - z_3}\right) = \arg(e^{-i\pi/3}) = -\frac{\pi}{3} = -60^\circ \]
+    এটি নির্দেশ করে যে, $CA$ এবং $CB$ বাহুদ্বয়ের মধ্যবর্তী অন্তর্ভুক্ত কোণ $\angle C = 60^\circ$। 
+    
+    \vspace{0.5em}
+    যেহেতু $CA = CB$ এবং $\angle C = 60^\circ$, সেহেতু অপর কোণ দুটি হবে:
+    \[ \angle A = \angle B = \frac{180^\circ - 60^\circ}{2} = 60^\circ \]
+    যেহেতু ত্রিভুজটির তিনটি কোণই সমান (প্রতিটি $60^\circ$), সেহেতু ত্রিভুজটি একটি সমবাহু ত্রিভুজ।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 12}]
+    \noindent
+    জটিল সমীকরণ $\bar{z} = i z^2$ এর অশূন্য সমাধানগুলো নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What are the non-zero solutions to the complex equation $\bar{z} = i z^2$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $i, \pm \frac{\sqrt{3}}{2} - \frac{1}{2}i$
+    \item[\textbf{B)}] $-i, \pm \frac{\sqrt{3}}{2} + \frac{1}{2}i$
+    \item[\textbf{C)}] $i, \pm \frac{1}{2} - \frac{\sqrt{3}}{2}i$
+    \item[\textbf{D)}] $-i, \pm \frac{1}{2} + \frac{\sqrt{3}}{2}i$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $i, \pm \frac{\sqrt{3}}{2} - \frac{1}{2}i$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $z = x + iy$, যেখানে $x, y \in \mathbb{R}$। প্রদত্ত সমীকরণটি হলো:
+    \[ \bar{z} = i z^2 \]
+    \[ \Rightarrow x - iy = i(x + iy)^2 \]
+    \[ \Rightarrow x - iy = i(x^2 - y^2 + 2ixy) \]
+    \[ \Rightarrow x - iy = -2xy + i(x^2 - y^2) \]
+    
+    \vspace{0.5em}
+    উভয় পক্ষ হতে বাস্তব ও কাল্পনিক অংশ সমীকৃত করে পাই:
+    \begin{itemize}[itemsep=0.3em]
+        \item বাস্তব অংশ হতে: $x = -2xy \Rightarrow x(1 + 2y) = 0 \quad \text{--- (1)}$
+        \item কাল্পনিক অংশ হতে: $-y = x^2 - y^2 \Rightarrow x^2 - y^2 + y = 0 \quad \text{--- (2)}$
+    \end{itemize}
+    
+    \vspace{0.5em}
+    সমীকরণ (1) থেকে আমরা দুটি ক্ষেত্র পাই:
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{ক্ষেত্র-১:} যখন $x = 0$: \\
+        সমীকরণ (2) এ $x = 0$ বসিয়ে পাই:
+        \[ -y^2 + y = 0 \Rightarrow y(1 - y) = 0 \Rightarrow y = 0 \text{ অথবা } y = 1 \]
+        সুতরাং, জটিল সংখ্যা দুটি হলো: $z_1 = 0$ এবংঘাট $z_2 = i$।
+        
+        \item \textbf{ক্ষেত্র-২:} যখন $1 + 2y = 0 \Rightarrow y = -\frac{1}{2}$: \\
+        সমীকরণ (2) এ $y = -\frac{1}{2}$ বসিয়ে পাই:
+        \[ x^2 - \left(-\frac{1}{2}\right)^2 + \left(-\frac{1}{2}\right) = 0 \]
+        \[ \Rightarrow x^2 - \frac{1}{4} - \frac{1}{2} = 0 \Rightarrow x^2 = \frac{3}{4} \Rightarrow x = \pm \frac{\sqrt{3}}{2} \]
+        সুতরাং, জটিল সংখ্যা দুটি হলো: $z_3 = \frac{\sqrt{3}}{2} - \frac{1}{2}i$ এবং $z_4 = -\frac{\sqrt{3}}{2} - \frac{1}{2}i$।
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    অতএব, সমীকরণটির অশূন্য সমাধানগুলো হলো: $i$, $\frac{\sqrt{3}}{2} - \frac{1}{2}i$ এবং $-\frac{\sqrt{3}}{2} - \frac{1}{2}i$।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 13}]
+    \noindent
+    যদি সমীকরণ $z^2 + (\alpha + i\beta)z + \gamma + i\delta = 0$ (যেখানে $\alpha, \beta, \gamma, \delta \in \mathbb{R}$ এবং $\beta \neq 0$) এর একটি মূল সম্পূর্ণ বাস্তব হয়, তবে নিচের কোন শর্তটি সত্য?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the equation $z^2 + (\alpha + i\beta)z + \gamma + i\delta = 0$ (where $\alpha, \beta, \gamma, \delta \in \mathbb{R}$ and $\beta \neq 0$) has a purely real root, then which of the following conditions is true?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\beta^2\gamma - \alpha\beta\delta + \delta^2 = 0$
+    \item[\textbf{B)}] $\beta^2\gamma + \alpha\beta\delta - \delta^2 = 0$
+    \item[\textbf{C)}] $\beta^2\gamma - \alpha\beta\delta - \delta^2 = 0$
+    \item[\textbf{D)}] $\beta^2\gamma + \alpha\beta\delta + \delta^2 = 0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\beta^2\gamma - \alpha\beta\delta + \delta^2 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, প্রদত্ত সমীকরণের বাস্তব মূলটি হলো $x$ (যেখানে $x \in \mathbb{R}$)। সমীকরণে $z = x$ বসিয়ে পাই:
+    \[ x^2 + (\alpha + i\beta)x + \gamma + i\delta = 0 \]
+    \[ \Rightarrow (x^2 + \alpha x + \gamma) + i(\beta x + \delta) = 0 \]
+    যেহেতু $x, \alpha, \beta, \gamma, \delta$ বাস্তব সংখ্যা, সেহেতু বাস্তব ও কাল্পনিক অংশ আলাদাভাবে $0$ এর সমান হবে:
+    \begin{itemize}[itemsep=0.3em]
+        \item বাস্তব অংশ হতে: $x^2 + \alpha x + \gamma = 0 \quad \text{--- (1)}$
+        \item কাল্পনিক অংশ হতে: $\beta x + \delta = 0 \Rightarrow x = -\frac{\delta}{\beta}$ (যেহেতু $\beta \neq 0$)
+    \end{itemize}
+    
+    \vspace{0.5em}
+    এখন সমীকরণ (1) এ $x$ এর এই মানটি বসিয়ে পাই:
+    \[ \left(-\frac{\delta}{\beta}\right)^2 + \alpha\left(-\frac{\delta}{\beta}\right) + \gamma = 0 \]
+    \[ \Rightarrow \frac{\delta^2}{\beta^2} - \frac{\alpha\delta}{\beta} + \gamma = 0 \]
+    উভয় পক্ষকে $\beta^2$ দ্বারা গুণ করে পাই:
+    \[ \delta^2 - \alpha\beta\delta + \beta^2\gamma = 0 \]
+    \[ \Rightarrow \beta^2\gamma - \alpha\beta\delta + \delta^2 = 0 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 14}]
+    \noindent
+    যদি $\omega$ এককের একটি কাল্পনিক ঘনমূল হয়, তবে $S = \sum_{r=1}^{10} (r - \omega)(r - \omega^2)$ এর সরলীকৃত মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\omega$ is a non-real cube root of unity, then what is the simplified value of $S = \sum_{r=1}^{10} (r - \omega)(r - \omega^2)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $385$
+    \item[\textbf{B)}] $440$
+    \item[\textbf{C)}] $450$
+    \item[\textbf{D)}] $515$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $450$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, এককের কাল্পনিক ঘনমূলের ধর্মাবলি থেকে: $\omega + \omega^2 = -1$ এবং $\omega^3 = 1$। 
+    এখন প্রতিটি পদের গুণফল বের করি:
+    \[ (r - \omega)(r - \omega^2) = r^2 - r(\omega + \omega^2) + \omega^3 = r^2 + r + 1 \]
+    সুতরাং, সমষ্টিটিকে লেখা যায়:
+    \[ S = \sum_{r=1}^{10} (r^2 + r + 1) = \sum_{r=1}^{10} r^2 + \sum_{r=1}^{10} r + \sum_{r=1}^{10} 1 \]
+    
+    \vspace{0.5em}
+    আমরা জানি, স্বাভাবিক সংখ্যার বর্গের সমষ্টি এবং সাধারণ সমষ্টির সূত্রাবলি:
+    \[ \sum_{r=1}^{n} r^2 = \frac{n(n+1)(2n+1)}{6} \]
+    $n = 10$ এর জন্য:
+    \[ \sum_{r=1}^{10} r^2 = \frac{10 \times 11 \times 21}{6} = 385 \]
+    \[ \sum_{r=1}^{n} r = \frac{n(n+1)}{2} \]
+    $n = 10$ এর জন্য:
+    \[ \sum_{r=1}^{10} r = \frac{10 \times 11}{2} = 55 \]
+    এবং $\sum_{r=1}^{10} 1 = 10$। 
+    
+    \vspace{0.5em}
+    অতএব, মোট সমষ্টি:
+    \[ S = 385 + 55 + 10 = 450 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 15}]
+    \noindent
+    জটিল সমতলে $\text{arg}(z - 1) - \text{arg}(z + i) = \pi$ সমীকরণটি দ্বারা কার্তেসীয় সমতলে কীরূপ জ্যামিতিক চিত্র নির্দেশিত হয়?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What geometric figure does the equation $\text{arg}(z - 1) - \text{arg}(z + i) = \pi$ represent in the cartesian plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $(1, 0)$ এবং $(0, -1)$ বিন্দুর সংযোজক রেখাংশের মধ্যবর্তী অংশ (The line segment joining $(1, 0)$ and $(0, -1)$ excluding the endpoints)
+    \item[\textbf{B)}] $(1, 0)$ এবং $(0, -1)$ বিন্দুর সংযোজক রেখাংশের বাইরের বর্ধিতাংশ (The line segment joining $(1, 0)$ and $(0, -1)$ extended outwards)
+    \item[\textbf{C)}] একটি বৃত্ত যার ব্যাস $(1, 0)$ ও $(0, -1)$ বিন্দুগামী (A circle with diameter passing through $(1, 0)$ and $(0, -1)$)
+    \item[\textbf{D)}] মূলবিন্দুগামী একটি পরাবৃত্ত (A parabola passing through the origin)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $(1, 0)$ এবং $(0, -1)$ বিন্দুর সংযোজক রেখাংশের মধ্যবর্তী অংশ
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $z_1 = 1 \equiv (1, 0)$ এবং $z_2 = -i \equiv (0, -1)$ দুটি নির্দিষ্ট বিন্দু। প্রদত্ত সমীকরণটি হলো:
+    \[ \text{arg}\left(\frac{z - z_1}{z - z_2}\right) = \pi \]
+    আমরা জানি, কোনো জটিল অনুপাতের আর্গুমেন্ট $\pi$ হওয়ার অর্থ হলো লব ও হরের ভেক্টর দুটি পরস্পর বিপরীতমুখী। অর্থাৎ, ভেক্টর $(z - z_1)$ এবং $(z - z_2)$ একই সরলরেখায় কিন্তু বিপরীত অভিমুখে অবস্থান করে। 
+    
+    \vspace{0.5em}
+    এটি তখনই সম্ভব যখন চলমান বিন্দু $z$, $z_1(1, 0)$ এবং $z_2(0, -1)$ বিন্দুদ্বয়ের সংযোজক রেখাংশের মধ্যবর্তী অঞ্চলে অবস্থান করে (প্রান্তবিন্দুদ্বয় ব্যতীত, কারণ $z = z_1$ হলে আর্গুমেন্ট অসংজ্ঞায়িত হয়)। 
+    অতএব, সঞ্চারপথটি হবে $(1, 0)$ ও $(0, -1)$ বিন্দুদ্বয়ের সংযোগকারী উন্মুক্ত রেখাংশ।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 16}]
+    \noindent
+    যদি $z$ একটি জটিল সংখ্যা হয় যেন $|z - 3| + |z + 3| = 10$ হয়, তবে $|z|$ এর সর্বনিম্ন ও সর্বোচ্চ মানের গুণফল কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $z$ is a complex number satisfying $|z - 3| + |z + 3| = 10$, then what is the product of the minimum and maximum values of $|z|$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $12$
+    \item[\textbf{B)}] $20$
+    \item[\textbf{C)}] $15$
+    \item[\textbf{D)}] $25$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $20$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণ $|z - 3| + |z + 3| = 10$ একটি উপবৃত্তের সমীকরণ নির্দেশ করে যার উপকেন্দ্রদ্বয় (foci) $s_1 = 3 \equiv (3, 0)$ এবং সচিবিন্দু $s_2 = -3 \equiv (-3, 0)$ বিন্দুতে অবস্থিত। 
+    
+    \vspace{0.5em}
+    উপবৃত্তের সংজ্ঞা অনুসারে, উপকেন্দ্রদ্বয় হতে যেকোনো বিন্দুর দূরত্বের সমষ্টি বৃহৎ অক্ষের দৈর্ঘ্যের সমান:
+    \[ 2a = 10 \Rightarrow a = 5 \quad \text{(বৃহৎ অর্ধ-অক্ষ)} \]
+    উপকেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব:
+    \[ 2ae = |3 - (-3)| = 6 \Rightarrow ae = 3 \]
+    যেহেতু $a = 5$, সেহেতু উৎকেন্দ্রতা $e = \frac{3}{5}$। 
+    
+    \vspace{0.5em}
+    এখন, ক্ষুদ্র অর্ধ-অক্ষ $b$ নির্ণয় করি:
+    \[ b = a\sqrt{1 - e^2} = 5\sqrt{1 - \left(\frac{3}{5}\right)^2} = 5\sqrt{1 - \frac{9}{25}} = 5\sqrt{\frac{16}{25}} = 4 \]
+    মূলবিন্দু (যা উপবৃত্তের কেন্দ্র) হতে উপবৃত্তের যেকোনো বিন্দুর দূরত্ব $|z|$। মূলবিন্দু হতে উপবৃত্তের দূরত্বের সর্বোচ্চ মান হবে বৃহৎ অর্ধ-অক্ষ $a = 5$ এবং সর্বনিম্ন মান হবে ক্ষুদ্র অর্ধ-অক্ষ $b = 4$। 
+    
+    \vspace{0.5em}
+    অতএব, সর্বোচ্চ ও সর্বনিম্ন মানের গুণফল হবে:
+    \[ |z|_{\text{max}} \times |z|_{\text{min}} = 5 \times 4 = 20 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 17}]
+    \noindent
+    যদি সমীকরণ $(z + 1)^5 = z^5$ এর মূলগুলোর বাস্তব অংশের যোগফল $S$ হয়, তবে $S$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the sum of the real parts of the roots of the equation $(z + 1)^5 = z^5$ is $S$, then what is the value of $S$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $-2$
+    \item[\textbf{B)}] $-\frac{5}{2}$
+    \item[\textbf{C)}] $-1$
+    \item[\textbf{D)}] $-\frac{1}{2}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $-2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণটি হলো:
+    \[ (z + 1)^5 = z^5 \]
+    দ্বিপদী বিস্তৃতির মাধ্যমে বিস্তার করে পাই:
+    \[ z^5 + 5z^4 + 10z^3 + 10z^2 + 5z + 1 = z^5 \]
+    \[ \Rightarrow 5z^4 + 10z^3 + 10z^2 + 5z + 1 = 0 \]
+    এটি একটি $4$-ঘাতী সমীকরণ, যার $4$টি মূল রয়েছে। এখন মূলগুলো বের করার জন্য সমীকরণটিকে লিখতে পারি:
+    \[ \left(\frac{z + 1}{z}\right)^5 = 1 \]
+    \[ \Rightarrow 1 + \frac{1}{z} = e^{i 2k\pi/5} \quad (\text{যেখানে } k = 1, 2, 3, 4; \, k=0 \text{ এর জন্য কোনো সসীম সমাধান নেই}) \]
+    
+    \vspace{0.5em}
+    ধরি, $\alpha_k = e^{i 2k\pi/5} = \cos(2k\pi/5) + i\sin(2k\pi/5)$। তাহলে:
+    \[ \frac{1}{z} = \alpha_k - 1 \]
+    \[ \Rightarrow z = \frac{1}{\cos\theta - 1 + i\sin\theta} \quad (\text{যেখানে } \theta = 2k\pi/5) \]
+    লব ও হরকে অনুবন্ধী জটিল সংখ্যা দ্বারা গুণ করে পাই:
+    \[ z = \frac{(\cos\theta - 1) - i\sin\theta}{(\cos\theta - 1)^2 + \sin^2\theta} = \frac{(\cos\theta - 1) - i\sin\theta}{\cos^2\theta - 2\cos\theta + 1 + \sin^2\theta} \]
+    \[ z = \frac{(\cos\theta - 1) - i\sin\theta}{2(1 - \cos\theta)} \]
+    
+    \vspace{0.5em}
+    বাস্তব অংশ আলাদা করে পাই:
+    \[ \text{Re}(z) = \frac{\cos\theta - 1}{2(1 - \cos\theta)} = -\frac{1 - \cos\theta}{2(1 - \cos\theta)} = -\frac{1}{2} \]
+    দেখা যাচ্ছে যে, প্রতিটি মূলের বাস্তব অংশই ধ্রুবক এবং তা $-\frac{1}{2}$। যেহেতু সমীকরণটির মোট $4$টি মূল রয়েছে, সেহেতু মূলগুলোর বাস্তব অংশের যোগফল হবে:
+    \[ S = 4 \times \left(-\frac{1}{2}\right) = -2 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 18}]
+    \noindent
+    যদি $\omega$ এককের একটি কাল্পনিক ঘনমূল হয়, তবে $(1 - \omega + \omega^2)(1 - \omega^2 + \omega^4)(1 - \omega^4 + \omega^8)\dots$ ধারাটির $2n$ সংখ্যক উৎপাদকের গুণফল কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\omega$ is a non-real cube root of unity, then what is the product of $2n$ factors of the series $(1 - \omega + \omega^2)(1 - \omega^2 + \omega^4)(1 - \omega^4 + \omega^8)\dots$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2^{2n}$
+    \item[\textbf{B)}] $2^{n}$
+    \item[\textbf{C)}] $4^{n}$
+    \item[\textbf{D)}] $2^{3n}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $4^{n}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধারাটির প্রথম কয়েকটি উৎপাদককে এককের কাল্পনিক ঘনমূলের ধর্মাবলি ($1 + \omega + \omega^2 = 0$ এবং $\omega^3 = 1$) ব্যবহার করে সরল করি:
+    \begin{itemize}[itemsep=0.4em]
+        \item \textbf{১ম উৎপাদক:} $1 - \omega + \omega^2 = (1 + \omega^2) - \omega = -\omega - \omega = -2\omega$
+        \item \textbf{২য় উৎপাদক:} $1 - \omega^2 + \omega^4 = 1 - \omega^2 + \omega$ (যেহেতু $\omega^4 = \omega^3 \cdot \omega = \omega$) \\
+        $\Rightarrow (1 + \omega) - \omega^2 = -\omega^2 - \omega^2 = -2\omega^2$
+        \item \textbf{৩য় উৎপাদক:} $1 - \omega^4 + \omega^8 = 1 - \omega + \omega^2 = -2\omega$ (যেহেতু $\omega^8 = \omega^6 \cdot \omega^2 = \omega^2$)
+        \item \textbf{৪র্থ উৎপাদক:} $1 - \omega^8 + \omega^{16} = 1 - \omega^2 + \omega = -2\omega^2$
+    \end{itemize}
+    
+    \vspace{0.5em}
+    দেখা যাচ্ছে যে, উৎপাদকগুলো পর্যায়ক্রমে $-2\omega$ এবং $-2\omega^2$ হিসেবে পুনরাবৃত্ত হচ্ছে। যেহেতু মোট উৎপাদকের সংখ্যা $2n$ (যা একটি জোড় সংখ্যা), সেহেতু এখানে ঠিক $n$ সংখ্যক পদ $-2\omega$ এবং $n$ সংখ্যক পদ $-2\omega^2$ থাকবে। 
+    
+    \vspace{0.5em}
+    অতএব, নির্ণেয় গুণফল:
+    \[ P = (-2\omega)^n \cdot (-2\omega^2)^n = [(-2\omega)(-2\omega^2)]^n \]
+    \[ \Rightarrow P = [4\omega^3]^n \]
+    যেহেতু $\omega^3 = 1$, সেহেতু:
+    \[ P = [4(1)]^n = 4^n \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 19}]
+    \noindent
+    যদি অশূন্য জটিল সংখ্যা $z$ এর জন্য $\frac{z - i}{z + i}$ একটি সম্পূর্ণ বাস্তব সংখ্যা হয়, তবে জটিল সমতলে $z$ এর সঞ্চারপথ কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If for a non-zero complex number $z$, $\frac{z - i}{z + i}$ is a purely real number, then what is the locus of $z$ in the complex plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $x$-অক্ষ (The $x$-axis)
+    \item[\textbf{B)}] $y$-অক্ষ, কিন্তু $i(0, -1)$ বিন্দু ব্যতীত (The $y$-axis, excluding the point $i(0, -1)$)
+    \item[\textbf{C)}] একক বৃত্ত (The unit circle)
+    \item[\textbf{D)}] মূলবিন্দুগামী একটি সরলরেখা (A straight line passing through the origin)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $y$-অক্ষ, কিন্তু $i(0, -1)$ বিন্দু ব্যতীত
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $z = x + iy$। প্রদত্ত রাশি:
+    \[ \frac{z - i}{z + i} = \frac{x + i(y-1)}{x + i(y+1)} \]
+    লব ও হরকে হরের অনুবন্ধী দ্বারা গুণ করে পাই:
+    \[ \frac{z - i}{z + i} = \frac{[x + i(y-1)][x - i(y+1)]}{x^2 + (y+1)^2} = \frac{(x^2 + y^2 - 1) - 2ix}{x^2 + (y+1)^2} \]
+    যেহেতু এই রাশিটি সম্পূর্ণ বাস্তব, তাই এর কাল্পনিক অংশ অবশ্যই শূন্য হতে হবে:
+    \[ \frac{-2x}{x^2 + (y+1)^2} = 0 \Rightarrow x = 0 \]
+    শর্ত থাকে যে, হর শূন্য হতে পারবে না, অর্থাৎ $z \neq -i \equiv (0, -1)$। 
+    যেহেতু $x=0$ সমীকরণটি $y$-অক্ষ নির্দেশ করে, সেহেতু সঞ্চারপথটি হবে $y$-অক্ষ কিন্তু $i(0, -1)$ বিন্দু ব্যতীত।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 20}]
+    \noindent
+    $|z| + z = 3 + i$ সমীকরণটির সঠিক সমাধান নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the solution to the equation $|z| + z = 3 + i$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $z = \frac{4}{3} + i$
+    \item[\textbf{B)}] $z = \frac{4}{3} - i$
+    \item[\textbf{C)}] $z = \frac{3}{4} + i$
+    \item[\textbf{D)}] $z = \frac{8}{3} + i$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $z = \frac{4}{3} + i$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $z = x + iy$। প্রদত্ত সমীকরণ:
+    \[ \sqrt{x^2+y^2} + x + iy = 3 + i \]
+    উভয় পক্ষের বাস্তব ও কাল্পনিক অংশ সমীকৃত করে পাই:
+    \begin{itemize}[itemsep=0.3em]
+        \item কাল্পনিক অংশ হতে: $y = 1$
+        \item বাস্তব অংশ হতে: $\sqrt{x^2+y^2} + x = 3$
+    \end{itemize}
+    এখানে $y = 1$ বসিয়ে পাই:
+    \[ \sqrt{x^2+1} = 3 - x \]
+    উভয়পক্ষে বর্গ করে পাই:
+    \[ x^2 + 1 = (3-x)^2 = 9 - 6x + x^2 \]
+    \[ \Rightarrow 6x = 8 \Rightarrow x = \frac{4}{3} \]
+    অতএব, জটিল সংখ্যাটি হলো $z = \frac{4}{3} + i$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 21}]
+    \noindent
+    যদি দুটি অশূন্য জটিল সংখ্যা $z_1$ এবং $z_2$ এর জন্য $|z_1| = |z_2|$ এবং $\arg(z_1) + \arg(z_2) = 0$ হয়, তবে নিচের কোন সম্পর্কটি সত্য?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If for two non-zero complex numbers $z_1$ and $z_2$, $|z_1| = |z_2|$ and $\arg(z_1) + \arg(z_2) = 0$, then which of the following is true?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $z_1 = z_2$
+    \item[\textbf{B)}] $z_1 = -\bar{z}_2$
+    \item[\textbf{C)}] $z_1 = \bar{z}_2$
+    \item[\textbf{D)}] $z_1 z_2 = 1$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $z_1 = \bar{z}_2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, অয়লারের নিয়মানুযায়ী:
+    \[ z_1 = r_1 e^{i\theta_1} \quad \text{এবং} \quad z_2 = r_2 e^{i\theta_2} \]
+    প্রদত্ত শর্তানুসারে, $r_1 = r_2 = r$ এবং $\theta_1 + \theta_2 = 0 \Rightarrow \theta_2 = -\theta_1$। 
+    অতএব, আমরা লিখতে পারি:
+    \[ z_2 = r e^{-i\theta_1} \]
+    আমরা জানি, $z_1$ এর অনুবন্ধী জটিল সংখ্যা হলো $\bar{z}_1 = r e^{-i\theta_1}$। সুতরাং, $z_2 = \bar{z}_1$, যা নির্দেশ করে $z_1 = \bar{z}_2$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 22}]
+    \noindent
+    $z = -1 - i\sqrt{3}$ জটিল সংখ্যাটির মুখ্য আর্গুমেন্ট (principal argument) কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the principal argument of the complex number $z = -1 - i\sqrt{3}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{2\pi}{3}$
+    \item[\textbf{B)}] $-\frac{2\pi}{3}$
+    \item[\textbf{C)}] $-\frac{\pi}{3}$
+    \item[\textbf{D)}] $\frac{4\pi}{3}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $-\frac{2\pi}{3}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    $z = -1 - i\sqrt{3}$ জটিল সংখ্যাটির বাস্তব অংশ $x = -1 < 0$ এবং কাল্পনিক অংশ $y = -\sqrt{3} < 0$। যেহেতু এটি আর্গন্ড সমতলের ৩য় চতুর্ভাগে (third quadrant) অবস্থিত, সেহেতু এর মুখ্য আর্গুমেন্ট হবে:
+    \[ \theta = -\pi + \tan^{-1}\left|\frac{y}{x}\right| \]
+    \[ \theta = -\pi + \tan^{-1}\left|\frac{-\sqrt{3}}{-1}\right| = -\pi + \tan^{-1}(\sqrt{3}) \]
+    \[ \theta = -\pi + \frac{\pi}{3} = -\frac{2\pi}{3} \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 23}]
+    \noindent
+    যদি $\omega$ এককের একটি কাল্পনিক ঘনমূল হয়, তবে $(1 - \omega + \omega^2)^6$ এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\omega$ is a non-real cube root of unity, then what is the value of $(1 - \omega + \omega^2)^6$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $64$
+    \item[\textbf{B)}] $-64$
+    \item[\textbf{C)}] $128$
+    \item[\textbf{D)}] $0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $64$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, এককের কাল্পনিক ঘনমূলের ধর্ম থেকে: $1 + \omega + \omega^2 = 0 \Rightarrow 1 + \omega^2 = -\omega$। 
+    প্রদত্ত রাশিতে এই মানটি প্রতিস্থাপন করি:
+    \[ (1 - \omega + \omega^2)^6 = (1 + \omega^2 - \omega)^6 \]
+    \[ = (-\omega - \omega)^6 = (-2\omega)^6 \]
+    \[ = (-2)^6 \omega^6 = 64 (\omega^3)^2 \]
+    যেহেতু $\omega^3 = 1$, সেহেতু:
+    \[ 64 \times 1^2 = 64 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 24}]
+    \noindent
+    দ্বিঘাত সমীকরণ $z^2 - (3+i)z + (2+i) = 0$ এর মূলদ্বয় নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What are the roots of the quadratic equation $z^2 - (3+i)z + (2+i) = 0$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $1$ এবং $2-i$ ($1$ and $2-i$)
+    \item[\textbf{B)}] $1$ এবং $2+i$ ($1$ and $2+i$)
+    \item[\textbf{C)}] $-1$ and $2+i$ ($-1$ and $2+i$)
+    \item[\textbf{D)}] $i$ এবং $2+i$ ($i$ and $2+i$)
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $1$ এবং $2+i$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত দ্বিঘাত সমীকরণটি হলো:
+    \[ z^2 - (3+i)z + (2+i) = 0 \]
+    আমরা মাঝখানের পদটি বিশ্লেষণ (splitting the middle term) করে পাই:
+    \[ z^2 - z - (2+i)z + (2+i) = 0 \]
+    \[ \Rightarrow z(z - 1) - (2+i)(z - 1) = 0 \]
+    \[ \Rightarrow (z - 1)(z - (2+i)) = 0 \]
+    অতএব, সমীকরণটির সমাধান করলে মূলদ্বয় পাওয়া যায়:
+    \[ z = 1 \quad \text{অথবা} \quad z = 2+i \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 25}]
+    \noindent
+    আর্গন্ড সমতলে $z^6 = 1$ সমীকরণের মূলগুলো যে বহুভুজ গঠন করে, তার ক্ষেত্রফল কত বর্গ একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the area (in square units) of the polygon formed by the roots of the equation $z^6 = 1$ in the Argand plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\frac{3\sqrt{3}}{2}$
+    \item[\textbf{B)}] $3\sqrt{3}$
+    \item[\textbf{C)}] $\frac{\sqrt{3}}{2}$
+    \item[\textbf{D)}] $\frac{3\sqrt{3}}{4}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\frac{3\sqrt{3}}{2}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণ $z^6 = 1$ এর সমাধান করলে আমরা এককের ৬টি ষষ্ঠ মূল পাই, যা আর্গন্ড সমতলে একক ব্যাসার্ধের ($R=1$) বৃত্তে অন্তর্লিখিত একটি সুষম ষড়ভুজ (regular hexagon) গঠন করে। 
+    
+    \vspace{0.5em}
+    একটি সুষম ষড়ভুজকে তার কেন্দ্র হতে সংযুক্ত করে ৬টি সমান সমবাহু ত্রিভুজে বিভক্ত করা যায়, যার প্রতিটির বাহুর দৈর্ঘ্য বৃত্তের ব্যাসার্ধের সমান অর্থাৎ $1$ একক। 
+    একটি সমবাহু ত্রিভুজের ক্ষেত্রফল:
+    \[ \text{Area}_{\text{triangle}} = \frac{\sqrt{3}}{4} (1)^2 = \frac{\sqrt{3}}{4} \]
+    অতএব, সম্পূর্ণ সুষম ষড়ভুজের ক্ষেত্রফল হবে:
+    \[ \text{Area}_{\text{total}} = 6 \times \frac{\sqrt{3}}{4} = \frac{3\sqrt{3}}{2} \text{ বর্গ একক} \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 26}]
+    \noindent
+    দ্বিঘাত সমীকরণ $(c-5)x^2 - 2cx + (c-4) = 0$ ($c \ne 5$) বিবেচনা করো। সমীকরণটির একটি মূল $(0, 2)$ ব্যবধিতে এবং অপর মূলটি $(2, 3)$ ব্যবধিতে অবস্থান করলে, $c$-এর সম্ভাব্য পূর্ণসাংখ্যিক মানসমূহের সেট $S$-এর সদস্য সংখ্যা কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Consider the quadratic equation $(c-5)x^2 - 2cx + (c-4) = 0$, $c \ne 5$. If one root of the equation lies in the interval $(0, 2)$ and its other root lies in the interval $(2, 3)$, then what is the number of elements in the set $S$ of all integral values of $c$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সদস্য সংখ্যা $11$
+    \item[\textbf{B)}] সদস্য সংখ্যা $18$
+    \item[\textbf{C)}] সদস্য সংখ্যা $10$
+    \item[\textbf{D)}] সদস্য সংখ্যা $12$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সদস্য সংখ্যা $11$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $f(x) = (c-5)x^2 - 2cx + (c-4)$। মূলদ্বয় $\alpha$ এবং $\beta$ যথাক্রমে $(0, 2)$ এবং $(2, 3)$ ব্যবধিতে থাকলে, $x = 2$ বিন্দুটি মূলদ্বয়ের মাঝে অবস্থিত হবে। 
+    অতএব, মূলের অবস্থানের শর্তানুসারে:
+    \begin{enumerate}[itemsep=0.3em]
+        \item $(c-5) \cdot f(2) < 0$
+        \item $(c-5) \cdot f(0) > 0$
+        \item $(c-5) \cdot f(3) > 0$
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    এখন ফাংশনটির মানগুলো বের করি:
+    \begin{align*}
+        f(0) &= c - 4 \\
+        f(2) &= (c-5)(4) - 2c(2) + (c-4) = 4c - 20 - 4c + c - 4 = c - 24 \\
+        f(3) &= (c-5)(9) - 2c(3) + (c-4) = 9c - 45 - 6c + c - 4 = 4c - 49
+    \end{align*}
+    
+    \vspace{0.5em}
+    শর্ত প্রয়োগ করি:
+    \begin{itemize}[itemsep=0.4em]
+        \item প্রথম শর্ত থেকে: $(c-5)(c-24) < 0 \implies 5 < c < 24$
+        \item দ্বিতীয় শর্ত থেকে: $(c-5)(c-4) > 0 \implies c < 4$ অথবা $c > 5$ (যা $5 < c < 24$ ব্যবধিতে সর্বদা সত্য)
+        \item তৃতীয় শর্ত থেকে: $(c-5)(4c-49) > 0$ \\
+        যেহেতু $5 < c < 24$, তাই $c-5 > 0$। ফলে আমাদের প্রয়োজন $4c-49 > 0 \implies c > 12.25$।
+    \end{itemize}
+    
+    \vspace{0.5em}
+    সবগুলো শর্তের সাধারণ ব্যবধি হলো:
+    \[ 12.25 < c < 24 \]
+    যেহেতু $c$ একটি পূর্ণসংখ্যা, তাই সম্ভাব্য মানগুলি হলো: 
+    \[ \{13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23\} \]
+    সেট $S$-এর উপাদান সংখ্যা হলো $23 - 13 + 1 = 11$।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 27}]
+    \noindent
+    যদি $\alpha, \beta, \gamma$ একটি পরিবর্তনশীল গুণোত্তর প্রগমনের (non-constant G.P.) তিনটি ক্রমিক পদ হয় এবং সমীকরণদ্বয় $\alpha x^2 + 2\beta x + \gamma = 0$ এবং $x^2 + x - 1 = 0$-এর একটি সাধারণ মূল থাকে, তবে $\alpha(\beta+\gamma)$-এর মান নিচের কোনটির সমান?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha, \beta$ and $\gamma$ are three consecutive terms of a non-constant G.P. such that the equations $\alpha x^2 + 2\beta x + \gamma = 0$ and $x^2 + x - 1 = 0$ have a common root, then $\alpha(\beta+\gamma)$ is equal to?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\alpha\gamma$
+    \item[\textbf{B)}] $0$
+    \item[\textbf{C)}] $\alpha\beta$
+    \item[\textbf{D)}] $\beta\gamma$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} D) $\beta\gamma$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু $\alpha, \beta, \gamma$ গুণোত্তর প্রগমনে রয়েছে, তাই আমরা লিখতে পারি $\beta^2 = \alpha\gamma$।
+    প্রথম সমীকরণটি হলো: $\alpha x^2 + 2\beta x + \gamma = 0$। 
+    এর নিশ্চায়ক $D_1 = (2\beta)^2 - 4\alpha\gamma = 4\beta^2 - 4\alpha\gamma = 0$ (যেহেতু $\beta^2 = \alpha\gamma$)।
+    
+    \vspace{0.5em}
+    নিশ্চায়ক শূন্য হওয়ায় প্রথম সমীকরণটির দুটি মূলই বাস্তব ও সমান হবে এবং সমান মূলটি হলো:
+    \[ x = -\frac{2\beta}{2\alpha} = -\frac{\beta}{\alpha} \]
+    যেহেতু সমীকরণদ্বয়ের একটি সাধারণ মূল রয়েছে, তাই সাধারণ মূলটি অবশ্যই প্রথম সমীকরণের এই একমাত্র অনন্য মূল $x = -\frac{\beta}{\alpha}$ হতে হবে।
+    এই মূলটি দ্বিতীয় সমীকরণ $x^2 + x - 1 = 0$ কে সিদ্ধ করবে:
+    \[ \left(-\frac{\beta}{\alpha}\right)^2 + \left(-\frac{\beta}{\alpha}\right) - 1 = 0 \implies \frac{\beta^2}{\alpha^2} - \frac{\beta}{\alpha} - 1 = 0 \]
+    \[ \implies \beta^2 - \alpha\beta - \alpha^2 = 0 \implies \alpha^2 + \alpha\beta = \beta^2 \quad \text{--- (i)} \]
+    
+    \vspace{0.5em}
+    গুণোত্তর প্রগমন থেকে আমরা জানি $\beta^2 = \alpha\gamma$। সমীকরণ (i)-এ এটি বসালে পাই:
+    \[ \alpha^2 + \alpha\beta = \alpha\gamma \implies \alpha(\alpha+\beta-\gamma) = 0 \]
+    যেহেতু $\alpha \ne 0$ (গুণোত্তর প্রগমনের প্রথম পদ), সেহেতু:
+    \[ \alpha + \beta = \gamma \implies \alpha = \gamma - \beta \]
+    
+    \vspace{0.5em}
+    এখন আমাদের নির্ণেয় রাশিটির মান বের করতে হবে:
+    \[ \alpha(\beta+\gamma) = \alpha\beta + \alpha\gamma \]
+    $\alpha = \gamma - \beta$ বসিয়ে পাই:
+    \[ \alpha\beta + \alpha\gamma = (\gamma-\beta)\beta + (\gamma-\beta)\gamma = \beta\gamma - \beta^2 + \gamma^2 - \beta\gamma = \gamma^2 - \beta^2 \]
+    আবার, গুণোত্তর প্রগমনের শর্ত $\beta^2 = \alpha\gamma \implies \beta^2 = (\gamma-\beta)\gamma \implies \beta^2 = \gamma^2 - \beta\gamma \implies \gamma^2 - \beta^2 = \beta\gamma$।
+    অতএব, $\alpha(\beta+\gamma) = \beta\gamma$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 28}]
+    \noindent
+    যদি $\alpha$ এবং $\beta$ সমীকরণ $x^2 + \sqrt{6}x + 3 = 0$-এর মূলদ্বয় হয়, তবে $\frac{\alpha^{23} + \beta^{23} + \alpha^{14} + \beta^{14}}{\alpha^{15} + \beta^{15} + \alpha^{10} + \beta^{10}}$ রাশিটির মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha$ and $\beta$ are the roots of the quadratic equation $x^2 + \sqrt{6}x + 3 = 0$, then what is the value of $\frac{\alpha^{23} + \beta^{23} + \alpha^{14} + \beta^{14}}{\alpha^{15} + \beta^{15} + \alpha^{10} + \beta^{10}}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রাশিটির মান $729$
+    \item[\textbf{B)}] রাশিটির মান $72$
+    \item[\textbf{C)}] রাশিটির মান $81$
+    \item[\textbf{D)}] রাশিটির মান $9$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) রাশিটির মান $81$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণ $x^2 + \sqrt{6}x + 3 = 0$-এর মূল $\alpha$ ও $\beta$ হওয়ায় আমরা লিখতে পারি:
+    \[ \alpha^2 + 3 = -\sqrt{6}\alpha \]
+    উভয়পক্ষকে বর্গ করে পাই:
+    \[ (\alpha^2 + 3)^2 = 6\alpha^2 \implies \alpha^4 + 6\alpha^2 + 9 = 6\alpha^2 \implies \alpha^4 = -9 \]
+    একইভাবে, $\beta^4 = -9$।
+    
+    \vspace{0.5em}
+    এখন মূলদ্বয়ের বর্গের সমষ্টি বের করি:
+    \[ \alpha^2 + \beta^2 = (\alpha+\beta)^2 - 2\alpha\beta = (-\sqrt{6})^2 - 2(3) = 6 - 6 = 0 \]
+    যেহেতু $\alpha^2 + \beta^2 = 0$, আমাদের নির্ণেয় রাশিটি সরল করতে $\alpha^4 = -9$ ব্যবহার করে উচ্চতর ঘাতগুলোকে রূপান্তর করি:
+    \begin{align*}
+        \alpha^{23} &= (\alpha^4)^5 \alpha^3 = (-9)^5 \alpha^3 = -59049\alpha^3 \\
+        \alpha^{14} &= (\alpha^4)^3 \alpha^2 = (-9)^3 \alpha^2 = -729\alpha^2 \\
+        \alpha^{15} &= (\alpha^4)^3 \alpha^3 = (-9)^3 \alpha^3 = -729\alpha^3 \\
+        \alpha^{10} &= (\alpha^4)^2 \alpha^2 = (-9)^2 \alpha^2 = 81\alpha^2
+    \end{align*}
+    অনুরূপভাবে $\beta$-এর ক্ষেত্রেও একই রূপান্তর প্রযোজ্য হবে। 
+    
+    \vspace{0.5em}
+    এখন নির্ণেয় রাশিতে মানগুলো বসাই:
+    \[ \text{লব} = (\alpha^{23} + \beta^{23}) + (\alpha^{14} + \beta^{14}) = -59049(\alpha^3 + \beta^3) - 729(\alpha^2 + \beta^2) \]
+    যেহেতু $\alpha^2 + \beta^2 = 0$, লবটি হয়: $-59049(\alpha^3 + \beta^3)$।
+    \[ \text{হর} = (\alpha^{15} + \beta^{15}) + (\alpha^{10} + \beta^{10}) = -729(\alpha^3 + \beta^3) + 81(\alpha^2 + \beta^2) \]
+    যেহেতু $\alpha^2 + \beta^2 = 0$, হরটি হয়: $-729(\alpha^3 + \beta^3)$।
+    
+    \vspace{0.5em}
+    অতএব, নির্ণেয় রাশির মান:
+    \[ \frac{\text{লব}}{\text{হর}} = \frac{-59049(\alpha^3 + \beta^3)}{-729(\alpha^3 + \beta^3)} = \frac{59049}{729} = 81 \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 29}]
+    \noindent
+    যদি $x^3 + x^2 - 2x - 1 = 0$ সমীকরণের মূলত্রয় $\alpha, \beta, \gamma$ হয়, তবে $\alpha^5 + \beta^5 + \gamma^5$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha, \beta, \gamma$ are the roots of the equation $x^3 + x^2 - 2x - 1 = 0$, then what is the value of $\alpha^5 + \beta^5 + \gamma^5$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রাশিটির মান $-16$ হবে
+    \item[\textbf{B)}] রাশিটির মান $16$ হবে
+    \item[\textbf{C)}] রাশিটির মান $-12$ হবে
+    \item[\textbf{D)}] রাশিটির মান $12$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) রাশিটির মান $-16$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি হলো $x^3 + x^2 - 2x - 1 = 0$। এখানে সহগগুলো হলো:
+    \[ a_1 = 1, \quad a_2 = -2, \quad a_3 = -1 \]
+    নিউটন ও ওয়্যারিং-এর সমষ্টি সূত্র (Newton's Sums) অনুসারে, $S_k = \alpha^k + \beta^k + \gamma^k$ এর জন্য রিকারেন্স সম্পর্কটি হলো:
+    \[ S_k + a_1 S_{k-1} + a_2 S_{k-2} + a_3 S_{k-3} = 0 \quad (\text{যখন } k \ge 3) \]
+    এবং নিম্নতর ঘাতের জন্য:
+    \begin{align*}
+        S_1 + a_1 &= 0 \implies S_1 + 1 = 0 \implies S_1 = -1 \\
+        S_2 + a_1 S_1 + 2a_2 &= 0 \implies S_2 + 1(-1) + 2(-2) = 0 \implies S_2 - 1 - 4 = 0 \implies S_2 = 5 \\
+        S_3 + a_1 S_2 + a_2 S_1 + 3a_3 &= 0 \implies S_3 + 1(5) - 2(-1) + 3(-1) = 0 \implies S_3 + 5 + 2 - 3 = 0 \implies S_3 = -4
+    \end{align*}
+    
+    \vspace{0.5em}
+    এখন রিকারেন্স সম্পর্ক ব্যবহার করে উচ্চতর ঘাতগুলোর মান বের করি:
+    \begin{itemize}[itemsep=0.4em]
+        \item \textbf{$k=4$ এর জন্য:} 
+        \[ S_4 + a_1 S_3 + a_2 S_2 + a_3 S_1 = 0 \implies S_4 + 1(-4) - 2(5) - 1(-1) = 0 \]
+        \[ \implies S_4 - 4 - 10 + 1 = 0 \implies S_4 = 13 \]
+        
+        \item \textbf{$k=5$ এর জন্য:} 
+        \[ S_5 + a_1 S_4 + a_2 S_3 + a_3 S_2 = 0 \implies S_5 + 1(13) - 2(-4) - 1(5) = 0 \]
+        \[ \implies S_5 + 13 + 8 - 5 = 0 \implies S_5 = -16 \]
+    \end{itemize}
+    অতএব, $\alpha^5 + \beta^5 + \gamma^5 = -16$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 30}]
+    \noindent
+    যদি $x^2 - 2ax + a^2 - a = 0$ সমীকরণের মূলদ্বয় $[0, 4]$ ব্যবধিতে থাকে, তবে $a$-এর পূর্ণসাংখ্যিক মানের সমষ্টি কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the roots of the equation $x^2 - 2ax + a^2 - a = 0$ lie in the interval $[0, 4]$, then what is the sum of the integral values of $a$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমষ্টির মান $3$ হবে
+    \item[\textbf{B)}] সমষ্টির মান $1$ হবে
+    \item[\textbf{C)}] সমষ্টির মান $2$ হবে
+    \item[\textbf{D)}] সমষ্টির মান $0$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সমষ্টির মান $3$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত দ্বিঘাত সমীকরণটি হলো $x^2 - 2ax + a^2 - a = 0$। শ্রীধর আচার্যের সূত্র ব্যবহার করে মূলদ্বয় বের করি:
+    \[ x = \frac{2a \pm \sqrt{(-2a)^2 - 4(1)(a^2-a)}}{2} = \frac{2a \pm \sqrt{4a^2 - 4a^2 + 4a}}{2} = a \pm \sqrt{a} \]
+    মূলদ্বয় বাস্তব হওয়ার জন্য শর্ত হলো: $a \ge 0$।
+    
+    \vspace{0.5em}
+    যেহেতু মূলদ্বয় $[0, 4]$ ব্যবধিতে থাকে, তাই আমাদের নিচের অসমতা দুটি সিদ্ধ হতে হবে:
+    \begin{enumerate}[itemsep=0.4em]
+        \item $a - \sqrt{a} \ge 0 \implies \sqrt{a}(\sqrt{a}-1) \ge 0 \implies \sqrt{a} \ge 1 \text{ অথবা } \sqrt{a} = 0$ \\
+        অতএব, $a \ge 1$ অথবা $a = 0$।
+        
+        \item $a + \sqrt{a} \le 4$ \\
+        ধরি,ভূমির চলক পরিবর্তন করে $u = \sqrt{a}$ ধরি। তাহলে অসমতাটি হয় $u^2 + u - 4 \le 0$। 
+        দ্বিঘাত সমীকরণ $u^2+u-4=0$ এর সমাধান হলো: $u = \frac{-1 \pm \sqrt{17}}{2}$। 
+        যেহেতু $u \ge 0$, তাই $u \le \frac{\sqrt{17}-1}{2}$। 
+        $\sqrt{17} \approx 4.123$ ব্যবহার করে পাই: $u \le \frac{4.123-1}{2} = 1.56 \implies a \le (1.56)^2 \approx 2.44$।
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    এখন উভয় শর্তের সাধারণ ব্যবধি হলো: $a \in [1, 2.44] \cup \{0\}$।
+    এর মধ্যে থাকা $a$-এর পূর্ণসাংখ্যিক মানগুলি হলো: $a = 0, 1, 2$।
+    পূর্ণসাংখ্যিক মানসমূহের সমষ্টি: $0 + 1 + 2 = 3$।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 31}]
+    \noindent
+    বাস্তব চলক $x$-এর জন্য, $x^4 - 2x^2 \sin^2\left(\frac{\pi x}{2}\right) + 1 = 0$ সমীকরণটির কতটি বাস্তব সমাধান রয়েছে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    For a real variable $x$, how many real solutions does the equation $x^4 - 2x^2 \sin^2\left(\frac{\pi x}{2}\right) + 1 = 0$ have?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] বাস্তব সমাধানের সংখ্যা $0$
+    \item[\textbf{B)}] বাস্তব সমাধানের সংখ্যা $1$
+    \item[\textbf{C)}] বাস্তব সমাধানের সংখ্যা $2$
+    \item[\textbf{D)}] বাস্তব সমাধানের সংখ্যা $4$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) বাস্তব সমাধানের সংখ্যা $2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি পূর্ণবর্গ আকারে সাজানোর চেষ্টা করি:
+    \[ x^4 - 2x^2 \sin^2\left(\frac{\pi x}{2}\right) + \sin^4\left(\frac{\pi x}{2}\right) + 1 - \sin^4\left(\frac{\pi x}{2}\right) = 0 \]
+    \[ \implies \left(x^2 - \sin^2\left(\frac{\pi x}{2}\right)\right)^2 + (1 - \sin^2\left(\frac{\pi x}{2}\right))(1 + \sin^2\left(\frac{\pi x}{2}\right)) = 0 \]
+    \[ \implies \left(x^2 - \sin^2\left(\frac{\pi x}{2}\right)\right)^2 + \cos^2\left(\frac{\pi x}{2}\right) (1 + \sin^2\left(\frac{\pi x}{2}\right)) = 0 \]
+    
+    \vspace{0.5em}
+    যেহেতু বাস্তব সংখ্যার বর্গের যোগফল শূন্য হতে হলে প্রতিটি পদকে পৃথকভাবে শূন্য হতে হবে:
+    \begin{itemize}[itemsep=0.4em]
+        \item দ্বিতীয় পদ থেকে: $\cos^2\left(\frac{\pi x}{2}\right) (1 + \sin^2\left(\frac{\pi x}{2}\right)) = 0$ \\
+        যেহেতু $1 + \sin^2\left(\frac{\pi x}{2}\right) \ge 1 > 0$, তাই অবশ্যই:
+        \[ \cos\left(\frac{\pi x}{2}\right) = 0 \implies \frac{\pi x}{2} = (2k+1)\frac{\pi}{2} \implies x = 2k+1 \quad (\text{যেখানে } k \in \mathbb{Z}) \]
+        
+        \item প্রথম পদ থেকে: $x^2 - \sin^2\left(\frac{\pi x}{2}\right) = 0 \implies x^2 = \sin^2\left(\frac{(2k+1)\pi}{2}\right)$ \\
+        যেহেতু $2k+1$ একটি বিজোড় সংখ্যা, তাই $\sin^2\left(\frac{(2k+1)\pi}{2}\right) = 1$। 
+        অতএব, $x^2 = 1 \implies x = \pm 1$।
+    \end{itemize}
+    যেহেতু $1$ এবং $-1$ উভয়ই বিজোড় পূর্ণসংখ্যা, তাই এরা উভয় শর্তই সিদ্ধ করে। 
+    সুতরাং সমীকরণটির বাস্তব সমাধান কেবল $2$ টি (যথাক্রমে $1$ এবং $-1$)।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 32}]
+    \noindent
+    $P(x) = ax^2 + bx + c$ একটি পূর্ণসাংখ্যিক সহগবিশিষ্ট দ্বিঘাত বহুপদী (যেখানে $a > 0$ এবং $a, b, c \in \mathbb{Z}$)। যদি $P(1) = 0$, $50 < P(7) < 60$ এবং $70 < P(8) < 80$ হয়, তবে $P(10)$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $P(x) = ax^2 + bx + c$ be a quadratic polynomial with integer coefficients where $a > 0$ and $a, b, c \in \mathbb{Z}$. If $P(1) = 0$, $50 < P(7) < 60$, and $70 < P(8) < 80$, then what is the value of $P(10)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রাশিটির মান $120$ হবে
+    \item[\textbf{B)}] রাশিটির মান $135$ হবে
+    \item[\textbf{C)}] রাশিটির মান $150$ হবে
+    \item[\textbf{D)}] রাশিটির মান $165$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) রাশিটির মান $135$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু $P(1) = a(1)^2 + b(1) + c = 0 \implies c = -a-b$। 
+    বহুপদীটিকে আমরা লিখতে পারি:
+    \[ P(x) = ax^2 + bx - a - b = a(x^2-1) + b(x-1) = (x-1)(a(x+1) + b) \]
+    
+    \vspace{0.5em}
+    এখন প্রদত্ত মানগুলো বসাই:
+    \begin{itemize}[itemsep=0.4em]
+        \item $P(7) = (7-1)(a(7+1) + b) = 6(8a + b)$ \\
+        শর্তানুসারে: $50 < 6(8a + b) < 60 \implies \frac{50}{6} < 8a+b < \frac{60}{6} \implies 8.33 < 8a+b < 10$ \\
+        যেহেতু $a$ এবং $b$ পূর্ণসংখ্যা, তাই $8a+b$ অবশ্যই একটি পূর্ণসংখ্যা হতে হবে। অতএব, $8a+b = 9 \quad \text{--- (i)}$।
+        
+        \item $P(8) = (8-1)(a(8+1) + b) = 7(9a + b)$ \\
+        শর্তানুসারে: $70 < 7(9a + b) < 80 \implies \frac{70}{7} < 9a+b < \frac{80}{7} \implies 10 < 9a+b < 11.43$ \\
+        যেহেতু $9a+b$ একটি পূর্ণসংখ্যা, তাই $9a+b = 11 \quad \text{--- (ii)}$।
+    \end{itemize}
+    
+    \vspace{0.5em}
+    এখন সমীকরণ (ii) থেকে সমীকরণ (i) বিয়োগ করে পাই:
+    \[ (9a+b) - (8a+b) = 11 - 9 \implies a = 2 \]
+    $a$-এর মান সমীকরণ (i) এ বসিয়ে পাই:
+    \[ 8(2) + b = 9 \implies 16 + b = 9 \implies b = -7 \]
+    তাহলে $c = -a-b = -2 - (-7) = 5$। 
+    সুতরাং বহুপদীটি হলো:
+    \[ P(x) = 2x^2 - 7x + 5 \]
+    
+    \vspace{0.5em}
+    এখন $P(10)$ নির্ণয় করি:
+    \[ P(10) = 2(10)^2 - 7(10) + 5 = 200 - 70 + 5 = 135 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 33}]
+    \noindent
+    যদি $z^2 + z + 1 = 0$ হয়, তবে $\sum_{k=1}^{24} \left(z^k + \frac{1}{z^k}\right)^2$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $z^2 + z + 1 = 0$, then what is the value of $\sum_{k=1}^{24} \left(z^k + \frac{1}{z^k}\right)^2$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমষ্টির মান $48$ হবে
+    \item[\textbf{B)}] সমষ্টির মান $36$ হবে
+    \item[\textbf{C)}] সমষ্টির মান $24$ হবে
+    \item[\textbf{D)}] সমষ্টির মান $72$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সমষ্টির মান $48$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    দেওয়া আছে $z^2 + z + 1 = 0$। এর মূলগুলো হলো এককের কাল্পনিক ঘনমূল $\omega$ এবং $\omega^2$। 
+    ধরি, $z = \omega$। তাহলে আমাদের বের করতে হবে:
+    \[ S = \sum_{k=1}^{24} \left(\omega^k + \frac{1}{\omega^k}\right)^2 = \sum_{k=1}^{24} \left(\omega^k + \omega^{-k}\right)^2 \]
+    যেহেতু $\omega^3 = 1$, তাই আমরা দুটি Case বিবেচনা করতে পারি:
+    
+    \vspace{0.5em}
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{$k$ যদি $3$ এর গুণিতক হয় (অর্থাৎ $k = 3m$):} \\
+        \[ \omega^k + \omega^{-k} = \omega^{3m} + \omega^{-3m} = 1 + 1 = 2 \]
+        অতএব, $\left(\omega^k + \frac{1}{\omega^k}\right)^2 = 2^2 = 4$। 
+        $1$ থেকে $24$ এর মধ্যে $3$ এর গুণিতক সংখ্যা রয়েছে মোট $\frac{24}{3} = 8$ টি।
+        
+        \item \textbf{$k$ যদি $3$ এর গুণিতক না হয়:} \\
+        সেক্ষেত্রে $\omega^k + \omega^{-k} = \omega^k + \omega^{2k}$ (যেহেতু $\omega^3 = 1 \implies \omega^{-k} = \omega^{2k}$)। 
+        আমরা জানি, $1 + \omega^k + \omega^{2k} = 0 \implies \omega^k + \omega^{2k} = -1$। 
+        অতএব, $\left(\omega^k + \frac{1}{\omega^k}\right)^2 = (-1)^2 = 1$। 
+        মোট $24$ টি পদের মধ্যে $3$ এর গুণিতক নয় এমন পদ সংখ্যা হলো $24 - 8 = 16$ টি।
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    সুতরাং সম্পূর্ণ সমষ্টি:
+    \[ S = (8 \times 4) + (16 \times 1) = 32 + 16 = 48 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 34}]
+    \noindent
+    যদি $a, b, c$ তিনটি বাস্তব সংখ্যা হয় যেখানে $a+b+c = 2$, $a^2+b^2+c^2 = 6$, এবং $a^3+b^3+c^3 = 8$ হয়, তবে $a^4+b^4+c^4$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $a, b, c$ are three real numbers such that $a+b+c = 2$, $a^2+b^2+c^2 = 6$, and $a^3+b^3+c^3 = 8$, then what is the value of $a^4+b^4+c^4$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রাশিটির মান $18$ হবে
+    \item[\textbf{B)}] রাশিটির মান $12$ হবে
+    \item[\textbf{C)}] রাশিটির মান $15$ হবে
+    \item[\textbf{D)}] রাশিটির মান $20$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) রাশিটির মান $18$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $a, b, c$ হলো একটি ত্রিঘাত সমীকরণ $x^3 - e_1 x^2 + e_2 x - e_3 = 0$ এর মূলত্রয়। 
+    যেখানে $e_1, e_2, e_3$ হলো প্রতিসম সহগ এবং $S_n = a^n + b^n + c^n$। 
+    দেওয়া আছে: 
+    \[ S_1 = 2, \quad S_2 = 6, \quad S_3 = 8 \]
+    
+    \vspace{0.5em}
+    নিউটন ও ওয়্যারিং-এর সূত্র ব্যবহার করে পাই:
+    \begin{itemize}[itemsep=0.4em]
+        \item $e_1 = S_1 = 2$
+        \item $S_2 - e_1 S_1 + 2e_2 = 0 \implies 6 - 2(2) + 2e_2 = 0 \implies 2 + 2e_2 = 0 \implies e_2 = -1$
+        \item $S_3 - e_1 S_2 + e_2 S_1 - 3e_3 = 0 \implies 8 - 2(6) + (-1)(2) - 3e_3 = 0$ \\
+        $\implies 8 - 12 - 2 - 3e_3 = 0 \implies -6 - 3e_3 = 0 \implies e_3 = -2$
+    \end{itemize}
+    
+    \vspace{0.5em}
+    এখন $S_4$ এর জন্য সমীকরণটি হবে:
+    \[ S_4 - e_1 S_3 + e_2 S_2 - e_3 S_1 = 0 \]
+    \[ \implies S_4 - 2(8) + (-1)(6) - (-2)(2) = 0 \]
+    \[ \implies S_4 - 16 - 6 + 4 = 0 \implies S_4 - 18 = 0 \implies S_4 = 18 \]
+    অতএব, $a^4+b^4+c^4 = 18$।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 35}]
+    \noindent
+    ধরি, $\lambda \ne 0$ একটি বাস্তব সংখ্যা। যদি $14x^2 - 31x + 3\lambda = 0$ সমীকরণের মূলদ্বয় $\alpha$ ও $\beta$ হয় এবং $35x^2 - 53x + 4\lambda = 0$ সমীকরণের মূলদ্বয় $\alpha$ ও $\gamma$ হয়, তবে $\frac{3\alpha}{\beta}$ এবং $\frac{4\alpha}{\gamma}$ মূলবিশিষ্ট দ্বিঘাত সমীকরণটি নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $\lambda \ne 0$ be a real number. If $\alpha, \beta$ are the roots of the equation $14x^2 - 31x + 3\lambda = 0$ and $\alpha, \gamma$ are the roots of the equation $35x^2 - 53x + 4\lambda = 0$, then what is the quadratic equation whose roots are $\frac{3\alpha}{\beta}$ and $\frac{4\alpha}{\gamma}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $7x^2 + 245x - 250 = 0$
+    \item[\textbf{B)}] $49x^2 + 245x + 250 = 0$
+    \item[\textbf{C)}] $49x^2 - 245x + 250 = 0$
+    \item[\textbf{D)}] $7x^2 - 245x + 250 = 0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $49x^2 - 245x + 250 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণদ্বয়ের সাধারণ মূল $\alpha$। সুতরাং, আমরা পাই:
+    \begin{align*}
+        14\alpha^2 - 31\alpha + 3\lambda &= 0 \quad \text{--- (i)} \\
+        35\alpha^2 - 53\alpha + 4\lambda &= 0 \quad \text{--- (ii)}
+    \end{align*}
+    $\lambda$ অপনয়ন করার জন্য সমীকরণ (i) কে $4$ দ্বারা এবং (ii) কে $3$ দ্বারা গুণ করি:
+    \begin{align*}
+        56\alpha^2 - 124\alpha + 12\lambda &= 0 \\
+        105\alpha^2 - 159\alpha + 12\lambda &= 0
+    \end{align*}
+    বিয়োগ করে পাই:
+    \[ 49\alpha^2 - 35\alpha = 0 \]
+    যেহেতু $\lambda \ne 0$, তাই $\alpha \ne 0$। অতএব:
+    \[ 49\alpha = 35 \implies \alpha = \frac{5}{7} \]
+    
+    \vspace{0.5em}
+    এখন $\alpha$-এর মান সমীকরণ (i) এ বসিয়ে পাই:
+    \[ 14\left(\frac{5}{7}\right)^2 - 31\left(\frac{5}{7}\right) + 3\lambda = 0 \implies 14\left(\frac{25}{49}\right) - \frac{155}{7} + 3\lambda = 0 \]
+    \[ \implies \frac{50}{7} - \frac{155}{7} + 3\lambda = 0 \implies -\frac{105}{7} + 3\lambda = 0 \implies -15 + 3\lambda = 0 \implies \lambda = 5 \]
+    
+    \vspace{0.5em}
+    সমীকরণ (i)-এ $\lambda = 5$ বসিয়ে পাই $14x^2 - 31x + 15 = 0$। মূলদ্বয়ের গুণফল:
+    \[ \alpha\beta = \frac{15}{14} \implies \frac{5}{7}\beta = \frac{15}{14} \implies \beta = \frac{3}{2} \]
+    সমীকরণ (ii)-এ $\lambda = 5$ বসিয়ে পাই $35x^2 - 53x + 20 = 0$। মূলদ্বয়ের গুণফল:
+    \[ \alpha\gamma = \frac{20}{35} = \frac{4}{7} \implies \frac{5}{7}\gamma = \frac{4}{7} \implies \gamma = \frac{4}{5} \]
+    
+    \vspace{0.5em}
+    এখন নির্ণেয় সমীকরণের মূলদ্বয়:
+    \begin{align*}
+        x_1 &= \frac{3\alpha}{\beta} = \frac{3(5/7)}{3/2} = \frac{15/7}{3/2} = \frac{10}{7} \\
+        x_2 &= \frac{4\alpha}{\gamma} = \frac{4(5/7)}{4/5} = \frac{20/7}{4/5} = \frac{25}{7}
+    \end{align*}
+    মূলদ্বয়ের সমষ্টি: 
+    \[ x_1 + x_2 = \frac{10}{7} + \frac{25}{7} = 5 \]
+    মূলদ্বয়ের গুণফল: 
+    \[ x_1 x_2 = \frac{10}{7} \times \frac{25}{7} = \frac{250}{49} \]
+    নির্ণেয় সমীকরণ: 
+    \[ x^2 - 5x + \frac{250}{49} = 0 \implies 49x^2 - 245x + 250 = 0 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 36}]
+    \noindent
+    ধরি, $p$ একটি পূর্ণসংখ্যা। যদি $x^2 - px + \frac{5}{4}p = 0$ সমীকরণের মূলগুলো মূলদ সংখ্যা হয়, তবে $p$-এর সকল সম্ভাব্য মানের সমষ্টি কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Let $p$ be an integer. If the roots of the equation $x^2 - px + \frac{5}{4}p = 0$ are rational numbers, then what is the sum of all possible values of $p$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমষ্টির মান $14$ হবে
+    \item[\textbf{B)}] সমষ্টির মান $9$ হবে
+    \item[\textbf{C)}] সমষ্টির মান $15$ হবে
+    \item[\textbf{D)}] সমষ্টির মান $5$ হবে
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সমষ্টির মান $14$ হবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণটির মূলগুলো মূলদ হওয়ার জন্য এর নিশ্চয়ক $D$ অবশ্যই একটি পূর্ণবর্গ সংখ্যা হতে হবে। 
+    এখানে, 
+    \[ D = (-p)^2 - 4(1)\left(\frac{5}{4}p\right) = p^2 - 5p \]
+    ধরি, $p^2 - 5p = k^2$ (যেখানে $k \in \mathbb{Z}$)। 
+    উভয়পক্ষকে $4$ দ্বারা গুণ করে পূর্ণবর্গ আকারে সাজাই:
+    \[ 4p^2 - 20p = 4k^2 \implies (2p-5)^2 - 25 = 4k^2 \implies (2p-5)^2 - (2k)^2 = 25 \]
+    \[ \implies (2p-5-2k)(2p-5+2k) = 25 \]
+    যেহেতু $p$ এবং $k$ পূর্ণসংখ্যা, তাই উৎপাদকগুলো অবশ্যই $25$-এর উৎপাদক হবে। $25$-এর উৎপাদক জোড়াগুলো বিবেচনা করি:
+    \begin{enumerate}[itemsep=0.3em]
+        \item $2p-5-2k = 1$ এবং $2p-5+2k = 25$ \\
+        যোগ করে পাই: $4p-10 = 26 \implies 4p = 36 \implies p = 9$।
+        \item $2p-5-2k = -1$ এবং $2p-5+2k = -25$ \\
+        যোগ করে পাই: $4p-10 = -26 \implies 4p = -16 \implies p = -4$ (গ্রহণযোগ্য নয়)।
+        \item $2p-5-2k = 5$ এবং $2p-5+2k = 5$ \\
+        যোগ করে পাই: $4p-10 = 10 \implies 4p = 20 \implies p = 5$।
+        \item $2p-5-2k = -5$ এবং $2p-5+2k = -5$ \\
+        যোগ করে পাই: $4p-10 = -10 \implies 4p = 0 \implies p = 0$।
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    অতএব, $p$-এর সম্ভাব্য পূর্ণসাংখ্যিক মানগুলো হলো: $p = 0, 5, 9$। 
+    পরামিতি $p$-এর সম্ভাব্য মানসমূহের সমষ্টি:
+    \[ 0 + 5 + 9 = 14 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 37}]
+    \noindent
+    $b$-এর কোন অবাস্তব মানের জন্য $x^2 + bx - 1 = 0$ এবং $x^2 + x + b = 0$ সমীকরণদ্বয়ের একটি সাধারণ মূল থাকবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    For which non-real value of $b$ will the equations $x^2 + bx - 1 = 0$ and $x^2 + x + b = 0$ have a common root?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $b = -i\sqrt{5}$
+    \item[\textbf{B)}] $b = -i\sqrt{3}$
+    \item[\textbf{C)}] $b = i\sqrt{2}$
+    \item[\textbf{D)}] $b = \sqrt{2}$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $b = -i\sqrt{3}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, সমীকরণ দুটির সাধারণ মূলটি হলো $\alpha$। 
+    তাহলে মূলটি দ্বারা সমীকরণ দুটি সিদ্ধ হবে:
+    \begin{align*}
+        \alpha^2 + b\alpha - 1 &= 0 \quad \text{--- (i)} \\
+        \alpha^2 + \alpha + b &= 0 \quad \text{--- (ii)}
+    \end{align*}
+    সমীকরণ (i) থেকে (ii) বিয়োগ করে পাই:
+    \[ (b-1)\alpha - (1+b) = 0 \implies (b-1)\alpha = b+1 \implies \alpha = \frac{b+1}{b-1} \quad (\text{যেহেতু } b \ne 1) \]
+    
+    \vspace{0.5em}
+    এখন $\alpha$-এর এই মানটি সমীকরণ (ii) এ বসিয়ে পাই:
+    \[ \left(\frac{b+1}{b-1}\right)^2 + \frac{b+1}{b-1} + b = 0 \]
+    উভয়পক্ষকে $(b-1)^2$ দ্বারা গুণ করি:
+    \[ (b+1)^2 + (b+1)(b-1) + b(b-1)^2 = 0 \]
+    \[ \implies (b^2 + 2b + 1) + (b^2 - 1) + b(b^2 - 2b + 1) = 0 \]
+    \[ \implies 2b^2 + 2b + b^3 - 2b^2 + b = 0 \]
+    \[ \implies b^3 + 3b = 0 \implies b(b^2 + 3) = 0 \]
+    
+    \vspace{0.5em}
+    যেহেতু আমাদের অবাস্তব (non-real) মান প্রয়োজন, তাই $b \ne 0$। 
+    অতএব:
+    \[ b^2 + 3 = 0 \implies b^2 = -3 \implies b = \pm i\sqrt{3} \]
+    বিকল্পগুলোর মধ্যে সঠিক উত্তর হলো $b = -i\sqrt{3}$।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 38}]
+    \noindent
+    যদি $\alpha$ এবং $\beta$ সমীকরণ $x^2 - (5 + 3^{\log_3 5} - 5^{\log_5 5})x + 3(3^{\log_3 2} - 1) = 0$-এর মূলদ্বয় হয়, তবে $\alpha + \frac{1}{\beta}$ এবং $\beta + \frac{1}{\alpha}$ মূলবিশিষ্ট সমীকরণটি নিচের কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha$ and $\beta$ are the roots of the equation $x^2 - (5 + 3^{\log_3 5} - 5^{\log_5 5})x + 3(3^{\log_3 2} - 1) = 0$, then which of the following is the equation whose roots are $\alpha + \frac{1}{\beta}$ and $\beta + \frac{1}{\alpha}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $3x^2 - 20x - 12 = 0$
+    \item[\textbf{B)}] $3x^2 - 10x - 4 = 0$
+    \item[\textbf{C)}] $3x^2 - 10x + 2 = 0$
+    \item[\textbf{D)}] $3x^2 - 20x + 16 = 0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} D) $3x^2 - 20x + 16 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রথমে সমীকরণের সহগগুলোকে সরল করি:
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{$x$-এর সহগ:} $5 + 3^{\log_3 5} - 5^{\log_5 5}$ \\
+        আমরা জানি, $3^{\log_3 5} = 5$ এবং $5^{\log_5 5} = 5^1 = 5$। 
+        অতএব, সহগটি হলো: $5 + 5 - 5 = 5$।
+        \item \textbf{ধ্রুবক পদ:} $3(3^{\log_3 2} - 1)$ \\
+        আমরা জানি, $3^{\log_3 2} = 2$। 
+        অতএব, ধ্রুবক পদটি হলো: $3(2 - 1) = 3$।
+    \end{enumerate}
+    সুতরাং, সমীকরণটি দাঁড়ায়:
+    \[ x^2 - 5x + 3 = 0 \]
+    যেহেতু $\alpha$ ও $\beta$ এই সমীকরণের মূল, তাই:
+    \[ S = \alpha+\beta = 5 \quad \text{এবং} \quad P = \alpha\beta = 3 \]
+    
+    \vspace{0.5em}
+    এখন, নির্ণেয় সমীকরণের মূলদ্বয় হলো $u = \alpha + \frac{1}{\beta}$ এবং $v = \beta + \frac{1}{\alpha}$।
+    \begin{itemize}[itemsep=0.4em]
+        \item \textbf{নতুন মূলদ্বয়ের সমষ্টি:} 
+        \[ u + v = \alpha + \beta + \frac{1}{\alpha} + \frac{1}{\beta} = (\alpha+\beta) + \frac{\alpha+\beta}{\alpha\beta} = S + \frac{S}{P} = 5 + \frac{5}{3} = \frac{20}{3} \]
+        \item \textbf{নতুন মূলদ্বয়ের গুণফল:} 
+        \[ uv = \left(\alpha + \frac{1}{\beta}\right)\left(\beta + \frac{1}{\alpha}\right) = \alpha\beta + 1 + 1 + \frac{1}{\alpha\beta} = P + 2 + \frac{1}{P} = 3 + 2 + \frac{1}{3} = \frac{16}{3} \]
+    \end{itemize}
+    
+    \vspace{0.5em}
+    সুতরাং, নির্ণেয় সমীকরণটি হবে:
+    \[ x^2 - (u+v)x + uv = 0 \implies x^2 - \frac{20}{3}x + \frac{16}{3} = 0 \implies 3x^2 - 20x + 16 = 0 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 39}]
+    \noindent
+    যদি $3x^2 + \lambda x - 1 = 0$ সমীকরণের মূলদ্বয় $\alpha$ ও $\beta$ হয় এবং তাদের গুণাত্মক বিপরীতের বর্গের সমষ্টি $\frac{1}{\alpha^2} + \frac{1}{\beta^2} = 15$ হয়, তবে $6(\alpha^3 + \beta^3)^2$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha$ and $\beta$ are the roots of the equation $3x^2 + \lambda x - 1 = 0$ and the sum of the squares of their reciprocals is $\frac{1}{\alpha^2} + \frac{1}{\beta^2} = 15$, then what is the value of $6(\alpha^3 + \beta^3)^2$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $18$
+    \item[\textbf{B)}] $24$
+    \item[\textbf{C)}] $36$
+    \item[\textbf{D)}] $96$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $24$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণ: $3x^2 + \lambda x - 1 = 0$। 
+    সহগ ও মূলের সম্পর্ক থেকে পাই:
+    \[ \alpha+\beta = -\frac{\lambda}{3} \quad \text{এবং} \quad \alpha\beta = -\frac{1}{3} \]
+    দেওয়া আছে, মূলদ্বয়ের গুণাত্মক বিপরীতের বর্গের সমষ্টি $15$:
+    \[ \frac{1}{\alpha^2} + \frac{1}{\beta^2} = 15 \implies \frac{\alpha^2+\beta^2}{\alpha^2\beta^2} = 15 \implies \frac{(\alpha+\beta)^2 - 2\alpha\beta}{(\alpha\beta)^2} = 15 \]
+    
+    \vspace{0.5em}
+    মানগুলো সমীকরণে বসিয়ে পাই:
+    \[ \frac{\left(-\frac{\lambda}{3}\right)^2 - 2\left(-\frac{1}{3}\right)}{\left(-\frac{1}{3}\right)^2} = 15 \implies \frac{\frac{\lambda^2}{9} + \frac{2}{3}}{\frac{1}{9}} = 15 \]
+    \[ \implies \lambda^2 + 6 = 15 \implies \lambda^2 = 9 \]
+    
+    \vspace{0.5em}
+    এখন আমাদের $6(\alpha^3 + \beta^3)^2$-এর মান বের করতে হবে। প্রথমে $\alpha^3 + \beta^3$ নির্ণয় করি:
+    \[ \alpha^3 + \beta^3 = (\alpha+\beta)^3 - 3\alpha\beta(\alpha+\beta) \]
+    \[ \implies \alpha^3 + \beta^3 = \left(-\frac{\lambda}{3}\right)^3 - 3\left(-\frac{1}{3}\right)\left(-\frac{\lambda}{3}\right) = -\frac{\lambda^3}{27} - \frac{\lambda}{3} \]
+    যেহেতু $\lambda^2 = 9$, তাই $\lambda = \pm 3$।
+    \begin{enumerate}[itemsep=0.3em]
+        \item যদি $\lambda = 3$ হয়: 
+        \[ \alpha^3 + \beta^3 = -\frac{27}{27} - \frac{3}{3} = -1 - 1 = -2 \]
+        \item যদি $\lambda = -3$ হয়: 
+        \[ \alpha^3 + \beta^3 = -\frac{-27}{27} - \frac{-3}{3} = 1 + 1 = 2 \]
+    \end{enumerate}
+    উভয় ক্ষেত্রেই, $(\alpha^3 + \beta^3)^2 = (\pm 2)^2 = 4$। 
+    
+    \vspace{0.5em}
+    সুতরাং:
+    \[ 6(\alpha^3 + \beta^3)^2 = 6 \times 4 = 24 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 40}]
+    \noindent
+    ব্যবধি $[0, \pi]$-এর মধ্যে $(81)^{\sin^2 x} + (81)^{\cos^2 x} = 30$ সমীকরণটির মোট কতটি বাস্তব সমাধান রয়েছে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the total number of real solutions to the equation $(81)^{\sin^2 x} + (81)^{\cos^2 x} = 30$ in the interval $[0, \pi]$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2$ টি
+    \item[\textbf{B)}] $4$ টি
+    \item[\textbf{C)}] $8$ টি
+    \item[\textbf{D)}] $6$ টি
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $4$ টি
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $y = (81)^{\sin^2 x}$। 
+    আমরা জানি, $\cos^2 x = 1 - \sin^2 x$। অতএব:
+    \[ (81)^{\cos^2 x} = (81)^{1-\sin^2 x} = \frac{81}{(81)^{\sin^2 x}} = \frac{81}{y} \]
+    প্রদত্ত সমীকরণে এটি বসিয়ে পাই:
+    \[ y + \frac{81}{y} = 30 \implies y^2 - 30y + 81 = 0 \]
+    এই দ্বিঘাত সমীকরণটি সমাধান করি:
+    \[ y^2 - 27y - 3y + 81 = 0 \implies y(y-27) - 3(y-27) = 0 \implies (y-27)(y-3) = 0 \]
+    অতএব, $y = 3$ অথবা $y = 27$।
+    
+    \vspace{0.5em}
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{কেস ১: $y = 3$} \\
+        \[ (81)^{\sin^2 x} = 3 \implies (3^4)^{\sin^2 x} = 3^1 \implies 4\sin^2 x = 1 \implies \sin^2 x = \frac{1}{4} \]
+        \[ \implies \sin x = \pm \frac{1}{2} \]
+        যেহেতু ব্যবধিটি হলো $[0, \pi]$, তাই $\sin x$ ঋণাত্মক হতে পারে না। অতএব:
+        \[ \sin x = \frac{1}{2} \implies x = \frac{\pi}{6} \text{ এবং } x = \frac{5\pi}{6} \quad (\text{২টি বাস্তব সমাধান}) \]
+        
+        \item \textbf{কেস ২: $y = 27$} \\
+        \[ (81)^{\sin^2 x} = 27 \implies (3^4)^{\sin^2 x} = 3^3 \implies 4\sin^2 x = 3 \implies \sin^2 x = \frac{3}{4} \]
+        \[ \implies \sin x = \pm \frac{\sqrt{3}}{2} \]
+        ব্যবধি $[0, \pi]$-এ $\sin x \ge 0$ হওয়ায়:
+        \[ \sin x = \frac{\sqrt{3}}{2} \implies x = \frac{\pi}{3} \text{ এবং } x = \frac{2\pi}{3} \quad (\text{২টি বাস্তব সমাধান}) \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    সুতরাং, ব্যবধি $[0, \pi]$-এর মধ্যে প্রদত্ত সমীকরণটির মোট বাস্তব সমাধান সংখ্যা হলো $2 + 2 = 4$ টি।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 41}]
+    \noindent
+    চলক $x$-এর সমীকরণ $\frac{2}{x-1} - \frac{1}{x-2} = \frac{2}{k}$-এর কোনো বাস্তব মূল না থাকলে, $k$ (যেখানে $k \ne 0$)-এর সকল সম্ভাব্য পূর্ণসাংখ্যিক মানের সমষ্টি কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the equation $\frac{2}{x-1} - \frac{1}{x-2} = \frac{2}{k}$ in $x$ has no real roots, then what is the sum of all possible integral values of $k$ (where $k \ne 0$)?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $55$
+    \item[\textbf{B)}] $66$
+    \item[\textbf{C)}] $78$
+    \item[\textbf{D)}] $45$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $66$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রথমে প্রদত্ত ভগ্নাংশ সমীকরণটি সরল করি:
+    \[ \frac{2(x-2) - (x-1)}{(x-1)(x-2)} = \frac{2}{k} \implies \frac{2x - 4 - x + 1}{x^2 - 3x + 2} = \frac{2}{k} \]
+    \[ \implies \frac{x-3}{x^2 - 3x + 2} = \frac{2}{k} \]
+    বজ্রগুণন করে পাই:
+    \[ 2(x^2 - 3x + 2) = k(x-3) \implies 2x^2 - 6x + 4 = kx - 3k \]
+    \[ \implies 2x^2 - (k+6)x + (3k+4) = 0 \]
+    
+    \vspace{0.5em}
+    সমীকরণটির কোনো বাস্তব মূল না থাকার শর্ত হলো এর নিশ্চয়ক $D < 0$ হতে হবে:
+    \[ D = [-(k+6)]^2 - 4(2)(3k+4) < 0 \]
+    \[ \implies (k^2 + 12k + 36) - 8(3k+4) < 0 \]
+    \[ \implies k^2 + 12k + 36 - 24k - 32 < 0 \]
+    \[ \implies k^2 - 12k + 4 < 0 \]
+    
+    \vspace{0.5em}
+    দ্বিঘাত সমীকরণ $k^2 - 12k + 4 = 0$ সমাধান করে এর মূলদ্বয় বের করি:
+    \[ k = \frac{12 \pm \sqrt{(-12)^2 - 4(1)(4)}}{2} = \frac{12 \pm \sqrt{128}}{2} = 6 \pm 4\sqrt{2} \]
+    যেহেতু $\sqrt{2} \approx 1.414$, তাই $4\sqrt{2} \approx 5.656$। 
+    অতএব, অসমতাটির সমাধান ব্যবধি হলো:
+    \[ 6 - 5.656 < k < 6 + 5.656 \implies 0.344 < k < 11.656 \]
+    যেহেতু $k$ একটি অশূন্য পূর্ণসংখ্যা, তাই $k$-এর সম্ভাব্য মানগুলো হলো:
+    \[ k \in \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\} \]
+    সম্ভাব্য মানসমূহের সমষ্টি:
+    \[ S = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 = \frac{11 \times 12}{2} = 66 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 42}]
+    \noindent
+    $\theta \in [0, 2\pi]$ এর কোন মানসমূহের জন্য $x^2 - 2x\cos\theta + \sin^2\theta = 0$ সমীকরণের উভয় মূলই বাস্তব হবে এবং $[-1, 2]$ ব্যবধিতে অবস্থান করবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    For what values of $\theta \in [0, 2\pi]$ are both roots of the equation $x^2 - 2x\cos\theta + \sin^2\theta = 0$ real and lie in the interval $[-1, 2]$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\theta \in [0, \pi/4] \cup [7\pi/4, 2\pi]$
+    \item[\textbf{B)}] $\theta \in [0, \pi/4] \cup [3\pi/4, \arccos(1-\sqrt{3})] \cup [2\pi-\arccos(1-\sqrt{3}), 5\pi/4] \cup [7\pi/4, 2\pi]$
+    \item[\textbf{C)}] $\theta \in [0, \pi/4] \cup [3\pi/4, 5\pi/4] \cup [7\pi/4, 2\pi]$
+    \item[\textbf{D)}] $\theta \in [0, \pi/2] \cup [3\pi/2, 2\pi]$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} B) $\theta \in [0, \pi/4] \cup [3\pi/4, \arccos(1-\sqrt{3})] \cup [2\pi-\arccos(1-\sqrt{3}), 5\pi/4] \cup [7\pi/4, 2\pi]$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $f(x) = x^2 - 2x\cos\theta + \sin^2\theta$। উভয় মূল $[-1, 2]$ ব্যবধিতে বাস্তব থাকার জন্য প্রয়োজনীয় শর্তসমূহ:
+    
+    \vspace{0.5em}
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{নিশ্চয়ক $D \ge 0$:} \\
+        \[ (-2\cos\theta)^2 - 4(1)(\sin^2\theta) \ge 0 \implies 4\cos^2\theta - 4\sin^2\theta \ge 0 \implies \cos^2\theta \ge \sin^2\theta \]
+        \[ \implies \tan^2\theta \le 1 \implies \theta \in [0, \pi/4] \cup [3\pi/4, 5\pi/4] \cup [7\pi/4, 2\pi] \]
+        
+        \item \textbf{শীর্ষবিন্দু $-\frac{b}{2a} \in [-1, 2]$:} \\
+        \[ \frac{2\cos\theta}{2} \in [-1, 2] \implies \cos\theta \in [-1, 1] \quad (\text{যা সকল বাস্তব } \theta \text{ এর জন্য সর্বদা সত্য}) \]
+        
+        \item \textbf{$f(-1) \ge 0$:} \\
+        \[ (-1)^2 - 2(-1)\cos\theta + \sin^2\theta \ge 0 \implies 1 + 2\cos\theta + 1 - \cos^2\theta \ge 0 \]
+        \[ \implies \cos^2\theta - 2\cos\theta - 2 \le 0 \]
+        ধরি, $u = \cos\theta$। সমীকরণ $u^2 - 2u - 2 \le 0$ এর সমাধান হলো: $1-\sqrt{3} \le \cos\theta \le 1+\sqrt{3}$। 
+        যেহেতু $\cos\theta \le 1$, আমাদের শুধুমাত্র নিম্নসীমা প্রয়োজন: $\cos\theta \ge 1-\sqrt{3} \approx -0.732$।
+        
+        \item \textbf{$f(2) \ge 0$:} \\
+        \[ 2^2 - 2(2)\cos\theta + \sin^2\theta \ge 0 \implies 4 - 4\cos\theta + 1 - \cos^2\theta \ge 0 \]
+        \[ \implies \cos^2\theta + 4\cos\theta - 5 \le 0 \implies (\cos\theta+5)(\cos\theta-1) \le 0 \]
+        \[ \implies -5 \le \cos\theta \le 1 \quad (\text{যা সর্বদা সত্য}) \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    এখন ১ এবং ৩ নং শর্তের ছেদ সেট (Intersection) নির্ণয় করি: 
+    $\cos\theta \ge 1-\sqrt{3}$ শর্তের জন্য $\theta$ এর ব্যবধি হবে $[0, \arccos(1-\sqrt{3})] \cup [2\pi-\arccos(1-\sqrt{3}), 2\pi]$। 
+    যেহেতু $1-\sqrt{3} \approx -0.732$, তাই $\arccos(1-\sqrt{3}) \approx 137^\circ \approx 2.39$ rad (যা $3\pi/4 \approx 2.35$ rad এর চেয়ে সামান্য বড়)। 
+    উভয় ব্যবধির সাধারণ অংশ হলো:
+    \[ \theta \in [0, \pi/4] \cup [3\pi/4, \arccos(1-\sqrt{3})] \cup [2\pi-\arccos(1-\sqrt{3}), 5\pi/4] \cup [7\pi/4, 2\pi] \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 43}]
+    \noindent
+    চতুর্ঘাত সমীকরণ $x^4 - 10x^3 + 35x^2 - 50x + k = 0$-এর মূল চারটি সমান্তর প্রগমনে (A.P.) থাকলে, $k$-এর সঠিক মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the four roots of the quartic equation $x^4 - 10x^3 + 35x^2 - 50x + k = 0$ are in Arithmetic Progression (A.P.), then what is the correct value of $k$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $k = 24$
+    \item[\textbf{B)}] $k = 16$
+    \item[\textbf{C)}] $k = -24$
+    \item[\textbf{D)}] $k = 9$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $k = 24$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, সমান্তর প্রগমনে থাকা মূল চারটি হলো যথাক্রমে $a-3d, a-d, a+d, a+3d$ (যার সাধারণ অন্তর $2d$)। 
+    সহগ ও মূলের সম্পর্ক থেকে পাই:
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{মূলগুলোর সমষ্টি:} 
+        \[ (a-3d) + (a-d) + (a+d) + (a+3d) = 10 \implies 4a = 10 \implies a = 2.5 \]
+        \item \textbf{দুটি করে মূলের গুণফলের সমষ্টি:} 
+        \[ \sum \alpha\beta = 6a^2 - 10d^2 = 35 \]
+        এখানে $a = 2.5 = 5/2$ বসিয়ে পাই:
+        \[ 6\left(\frac{25}{4}\right) - 10d^2 = 35 \implies \frac{75}{2} - 10d^2 = 35 \]
+        \[ \implies 37.5 - 10d^2 = 35 \implies 10d^2 = 2.5 \implies d^2 = 0.25 \implies d = \pm 0.5 \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    অতএব, মূল চারটি হলো:
+    \begin{align*}
+        x_1 &= 2.5 - 3(0.5) = 1 \\
+        x_2 &= 2.5 - 0.5 = 2 \\
+        x_3 &= 2.5 + 0.5 = 3 \\
+        x_4 &= 2.5 + 3(0.5) = 4
+    \end{align*}
+    যেহেতু $k$ হলো মূল চারটির গুণফল:
+    \[ k = x_1 x_2 x_3 x_4 = 1 \times 2 \times 3 \times 4 = 24 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 44}]
+    \noindent
+    যদি $x^3 - 14x^2 + kx - 64 = 0$ ত্রিঘাত সমীকরণের মূলত্রয় গুণোত্তর প্রগমনে (G.P.) থাকে, তবে বাস্তব পরামিতি $k$-এর সঠিক মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the roots of the cubic equation $x^3 - 14x^2 + kx - 64 = 0$ are in Geometric Progression (G.P.), then what is the correct value of the real parameter $k$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $k = 36$
+    \item[\textbf{B)}] $k = 48$
+    \item[\textbf{C)}] $k = 56$
+    \item[\textbf{D)}] $k = 64$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) $k = 56$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, গুণোত্তর প্রগমনে থাকা মূলত্রয় হলো যথাক্রমে $\frac{a}{r}, a, ar$। 
+    মূল ও সহগের সম্পর্ক থেকে মূলত্রয়ের গুণফল:
+    \[ \left(\frac{a}{r}\right) \cdot a \cdot (ar) = 64 \implies a^3 = 64 \implies a = 4 \]
+    যেহেতু $a = 4$ সমীকরণটির একটি বাস্তব মূল, তাই এটি সমীকরণটিকে সিদ্ধ করবে:
+    \[ 4^3 - 14(4^2) + k(4) - 64 = 0 \]
+    \[ \implies 64 - 224 + 4k - 64 = 0 \]
+    \[ \implies 4k = 224 \implies k = 56 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 45}]
+    \noindent
+    যদি $ax^3 + bx^2 + cx + d = 0$ সমীকরণের মূলত্রয় বিপরীত প্রগমনে (H.P.) থাকে, তবে সহগসমূহের মধ্যে সঠিক সম্পর্কটি কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the roots of the cubic equation $ax^3 + bx^2 + cx + d = 0$ are in Harmonic Progression (H.P.), then what is the correct relation among the coefficients?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $2c^3 - 9bcd + 27ad^2 = 0$
+    \item[\textbf{B)}] $2b^3 - 9abc + 27a^2 d = 0$
+    \item[\textbf{C)}] $c^3 - 9bcd + 27ad^2 = 0$
+    \item[\textbf{D)}] $2c^3 - 9bcd + 27a^2 d = 0$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $2c^3 - 9bcd + 27ad^2 = 0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু মূলত্রয় বিপরীত প্রগমনে রয়েছে, তাই $x = \frac{1}{y}$ বসালে নতুন সমীকরণ $dy^3 + cy^2 + by + a = 0$ এর মূলগুলো সমান্তর প্রগমনে (A.P.) থাকবে। 
+    ধরি, এই সমান্তর প্রগমনে থাকা মূলত্রয় হলো $u-v, u, u+v$। 
+    মূলসমূহের সমষ্টি থেকে পাই:
+    \[ 3u = -\frac{c}{d} \implies u = -\frac{c}{3d} \]
+    যেহেতু $u$ সমীকরণটির একটি মূল, তাই এটি সমীকরণটিকে সিদ্ধ করবে:
+    \[ d\left(-\frac{c}{3d}\right)^3 + c\left(-\frac{c}{3d}\right)^2 + b\left(-\frac{c}{3d}\right) + a = 0 \]
+    \[ \implies -d\left(\frac{c^3}{27d^3}\right) + c\left(\frac{c^2}{9d^2}\right) - \frac{bc}{3d} + a = 0 \]
+    \[ \implies -\frac{c^3}{27d^2} + \frac{c^3}{9d^2} - \frac{bc}{3d} + a = 0 \]
+    উভয়পক্ষকে $27d^2$ দ্বারা গুণ করে পাই:
+    \[ -c^3 + 3c^3 - 9bcd + 27ad^2 = 0 \implies 2c^3 - 9bcd + 27ad^2 = 0 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 46}]
+    \noindent
+    $a$-এর কোন বাস্তব মানসমূহের জন্য চতুর্ঘাত সমীকরণ $x^4 - 4x^3 + ax^2 - 4x + 1 = 0$-এর চারটি মূলই বাস্তব হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    For what real values of $a$ are all four roots of the quartic equation $x^4 - 4x^3 + ax^2 - 4x + 1 = 0$ real?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $a \in (-\infty, -10] \cup \{6\}$
+    \item[\textbf{B)}] $a \le 6$
+    \item[\textbf{C)}] $a \ge -10$
+    \item[\textbf{D)}] $a \in [-10, 6]$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $a \in (-\infty, -10] \cup \{6\}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    প্রদত্ত সমীকরণটি একটি প্রতিসম সমীকরণ। উভয়পক্ষকে $x^2$ দ্বারা ভাগ করে পাই:
+    \[ x^2 - 4x + a - \frac{4}{x} + \frac{1}{x^2} = 0 \implies \left(x^2 + \frac{1}{x^2}\right) - 4\left(x + \frac{1}{x}\right) + a = 0 \]
+    ধরি, $t = x + \frac{1}{x}$। যেহেতু $x$ বাস্তব, তাই বাস্তব $x$ এর জন্য $|t| \ge 2$ হতে হবে। 
+    সমীকরণটি রূপান্তর করে পাই:
+    \[ (t^2 - 2) - 4t + a = 0 \implies t^2 - 4t + a - 2 = 0 \]
+    $x$-এর চারটি মূলই বাস্তব হতে হলে, $t$-এর এই সমীকরণটির দুটি বাস্তব মূল থাকতে হবে এবং উভয় মূলেরই পরম মান $2$-এর সমান বা বড় হতে হবে ($|t| \ge 2$)। 
+    সমীকরণের মূলদ্বয়:
+    \[ t = \frac{4 \pm \sqrt{16 - 4(a-2)}}{2} = 2 \pm \sqrt{6-a} \]
+    বাস্তব মূলের জন্য প্রথম শর্ত: $6-a \ge 0 \implies a \le 6$।
+    
+    \vspace{0.5em}
+    এখন মূলদ্বয়ের ওপর শর্ত $|t| \ge 2$ প্রয়োগ করি:
+    \begin{enumerate}[itemsep=0.3em]
+        \item বড় মূলটি $t_2 = 2 + \sqrt{6-a}$ সর্বদা $2$-এর সমান বা বড় (যেহেতু $\sqrt{6-a} \ge 0$)।
+        \item ছোট মূলটি $t_1 = 2 - \sqrt{6-a}$ এর পরম মানও $2$-এর সমান বা বড় হতে হবে:
+        \[ 2 - \sqrt{6-a} \ge 2 \implies \sqrt{6-a} \le 0 \implies a = 6 \]
+        অথবা,
+        \[ 2 - \sqrt{6-a} \le -2 \implies \sqrt{6-a} \ge 4 \implies 6-a \ge 16 \implies a \le -10 \]
+    \end{enumerate}
+    সুতরাং, $a$-এর সম্ভাব্য বাস্তব মানসমূহ হলো: $a \in (-\infty, -10] \cup \{6\}$।
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 47}]
+    \noindent
+    যদি $x^2 + x + 1 = 0$ সমীকরণের একটি মূল $x$ হয়, তবে $\sum_{r=1}^{30} \left(x^r + \frac{1}{x^r}\right)^2$ রাশিটির মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $x$ is a root of the equation $x^2 + x + 1 = 0$, then what is the value of the sum $\sum_{r=1}^{30} \left(x^r + \frac{1}{x^r}\right)^2$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমষ্টির মান $60$
+    \item[\textbf{B)}] সমষ্টির মান $30$
+    \item[\textbf{C)}] সমষ্টির মান $90$
+    \item[\textbf{D)}] সমষ্টির মান $45$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সমষ্টির মান $60$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমীকরণ $x^2 + x + 1 = 0$ এর মূলদ্বয় হলো এককের কাল্পনিক ঘনমূল $\omega$ এবং $\omega^2$। 
+    ধরি, $x = \omega$। তাহলে আমাদের বের করতে হবে:
+    \[ S = \sum_{r=1}^{30} \left(\omega^r + \omega^{-r}\right)^2 \]
+    এখানে দুটি কেস হতে পারে:
+    
+    \vspace{0.5em}
+    \begin{enumerate}[itemsep=0.4em]
+        \item \textbf{যদি $r$ সংখ্যাটি $3$ দ্বারা বিভাজ্য হয় (অর্থাৎ $r = 3k$):} \\
+        \[ \omega^r + \omega^{-r} = \omega^{3k} + \omega^{-3k} = 1 + 1 = 2 \]
+        অতএব, $(\omega^r + \omega^{-r})^2 = 2^2 = 4$। 
+        $1$ থেকে $30$ এর মধ্যে $3$ এর গুণিতক সংখ্যা হলো $\frac{30}{3} = 10$ টি।
+        
+        \item \textbf{যদি $r$ সংখ্যাটি $3$ দ্বারা বিভাজ্য না হয়:} \\
+        \[ \omega^r + \omega^{-r} = \omega^r + \omega^{2r} = -1 \quad (\text{যেহেতু } 1 + \omega^r + \omega^{2r} = 0) \]
+        অতএব, $(\omega^r + \omega^{-r})^2 = (-1)^2 = 1$। 
+        এরকম পদের সংখ্যা হলো $30 - 10 = 20$ টি।
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    সুতরাং মোট সমষ্টি:
+    \[ S = (10 \times 4) + (20 \times 1) = 40 + 20 = 60 \]
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 48}]
+    \noindent
+    জটিল সমতলে $x^3 - 3x^2 + 3x + 7 = 0$ সমীকরণের মূলত্রয় দ্বারা গঠিত ত্রিভুজের ক্ষেত্রফল কত বর্গ একক?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the area (in square units) of the triangle formed by the roots of the equation $x^3 - 3x^2 + 3x + 7 = 0$ in the complex plane?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ক্ষেত্রফল $3\sqrt{3}$ বর্গ একক
+    \item[\textbf{B)}] ক্ষেত্রফল $\frac{3\sqrt{3}}{2}$ বর্গ একক
+    \item[\textbf{C)}] ক্ষেত্রফল $6\sqrt{3}$ বর্গ একক
+    \item[\textbf{D)}] ক্ষেত্রফল $4\sqrt{3}$ বর্গ একক
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ক্ষেত্রফল $3\sqrt{3}$ বর্গ একক
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    ধরি, $w = x - 1 \implies x = w + 1$। 
+    সমীকরণটি দাঁড়ায়:
+    \[ (w+1)^3 - 3(w+1)^2 + 3(w+1) + 7 = 0 \]
+    \[ \implies (w^3 + 3w^2 + 3w + 1) - 3(w^2 + 2w + 1) + (3w + 3) + 7 = 0 \]
+    \[ \implies w^3 + 8 = 0 \implies w^3 = -8 \]
+    এই সমীকরণের মূল তিনটি হলো $-8$ এর তিনটি ঘনমূল। 
+    যেহেতু মূলগুলো হলো $w_1, w_2, w_3$, এরা জটিল সমতলে মূলবিন্দুকে কেন্দ্র করে $2$ ব্যাসার্ধের বৃত্তে একটি সমবাহু ত্রিভুজ গঠন করে। 
+    
+    \vspace{0.5em}
+    একটি বৃত্তে অন্তর্লিখিত সমবাহু ত্রিভুজের ক্ষেত্রফলের সূত্র:
+    \[ A = \frac{3\sqrt{3}}{4} R^2 \]
+    এখানে ব্যাসার্ধ $R = 2$, তাই ক্ষেত্রফল:
+    \[ A = \frac{3\sqrt{3}}{4} (2)^2 = 3\sqrt{3} \]
+    যেহেতু $x = w + 1$, মূল ত্রিভুজটি কেবল জটিল সমতলে স্থানান্তরিত (translated) হয়েছে, যার ফলে এর ক্ষেত্রফল অপরিবর্তিত থাকবে। 
+    সুতরাং ক্ষেত্রফল $3\sqrt{3}$ বর্গ একক।
+\end{tcolorbox}
+
+\vspace{1.5em}
+
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 49}]
+    \noindent
+    বাস্তব সহগবিশিষ্ট একটি চতুর্ঘাত সমীকরণ $x^4 + ax^3 + bx^2 + cx + d = 0$-এর একটি দ্বিশ্রেণির পুনরাবৃত্ত মূল (root of multiplicity 2) $1+i$ হলে, সহগসমূহের সমষ্টি $a+b+c+d$-এর মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $1+i$ is a repeated root of multiplicity 2 of the quartic equation with real coefficients $x^4 + ax^3 + bx^2 + cx + d = 0$, then what is the sum of the coefficients $a+b+c+d$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সমষ্টির মান $0$
+    \item[\textbf{B)}] সমষ্টির মান $4$
+    \item[\textbf{C)}] সমষ্টির মান $-4$
+    \item[\textbf{D)}] সমষ্টির মান $2$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সমষ্টির মান $0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    যেহেতু সমীকরণের সহগসমূহ বাস্তব, তাই জটিল মূলগুলো অনুবন্ধী জোড়া হিসেবে থাকবে এবং তাদের পুনরাবৃত্তির সংখ্যাও সমান হবে। 
+    যেহেতু $1+i$ মূলটির পুনরাবৃত্তি সংখ্যা $2$, তাই অপর মূল $1-i$ এর পুনরাবৃত্তি সংখ্যাও অবশ্যই $2$ হবে। 
+    অতএব, চতুর্ঘাত সমীকরণটি হবে:
+    \[ P(x) = ((x - (1+i))(x - (1-i)))^2 = 0 \]
+    \[ \implies P(x) = (x^2 - 2x + 2)^2 = x^4 - 4x^3 + 8x^2 - 8x + 4 = 0 \]
+    প্রদত্ত সমীকরণ $x^4 + ax^3 + bx^2 + cx + d = 0$ এর সাথে তুলনা করে পাই:
+    \[ a = -4, \quad b = 8, \quad c = -8, \quad d = 4 \]
+    সহগসমূহের সমষ্টি:
+    \[ a + b + c + d = -4 + 8 - 8 + 4 = 0 \]
+\end{tcolorbox}
+% ------------------------------------------
+% QUESTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 50}]
+    \noindent
+    যদি $x^5 - 1 = 0$ সমীকরণের এককের কাল্পনিক মূলগুলো $\alpha, \beta, \gamma, \delta$ হয়, তবে $(2-\alpha)(2-\beta)(2-\gamma)(2-\delta)$ রাশিটির মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If $\alpha, \beta, \gamma, \delta$ are the non-real roots of the equation $x^5 - 1 = 0$, then what is the value of the expression $(2-\alpha)(2-\beta)(2-\gamma)(2-\delta)$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% OPTIONS SECTION
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রাশিটির মান $31$
+    \item[\textbf{B)}] রাশিটির মান $15$
+    \item[\textbf{C)}] রাশিটির মান $5$
+    \item[\textbf{D)}] রাশিটির মান $33$
+\end{itemize}
+
+% ------------------------------------------
+% ANSWER HIGHLIGHT
+% ------------------------------------------
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) রাশিটির মান $31$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    আমরা জানি, 
+    \[ x^5 - 1 = (x-1)(x-\alpha)(x-\beta)(x-\gamma)(x-\delta) \]
+    অতএব, 
+    \[ \frac{x^5 - 1}{x - 1} = x^4 + x^3 + x^2 + x + 1 = (x-\alpha)(x-\beta)(x-\gamma)(x-\delta) \]
+    এই অভেদটিতে $x = 2$ বসিয়ে পাই:
+    \[ (2-\alpha)(2-\beta)(2-\gamma)(2-\delta) = 2^4 + 2^3 + 2^2 + 2 + 1 \]
+    \[ \implies 16 + 8 + 4 + 2 + 1 = 31 \]
+    অতএব, রাশিটির মান $31$।
+\end{tcolorbox}
+\end{document}
