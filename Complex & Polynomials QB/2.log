@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.1)  8 SEP 2026 06:08
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.9.1)  8 SEP 2026 06:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1019,12 +1019,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2940--2941
 
  []
 
-[54] [55]
-Missing character: There is no स in font Kalpurush/OT:script=bng2;language=dflt
-;!
-Missing character: There is no ह in font Kalpurush/OT:script=bng2;language=dflt
-;!
-[56] [57] [58] (2.aux)
+[54] [55] [56] [57] [58] (2.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
