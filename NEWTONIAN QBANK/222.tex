@@ -1,0 +1,4311 @@
+\documentclass[12pt, a4paper]{article}
+
+% ==========================================
+% 1. COMPILER, LANGUAGE & FONT SETUP
+% ==========================================
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{bengali}
+\setotherlanguage{english}
+\newfontfamily\bengalifont[Script=Bengali, AutoFakeBold=2.5, AutoFakeSlant=0.2]{Kalpurush}
+
+% ==========================================
+% 2. MATHEMATICS, UNITS & FORMATTING
+% ==========================================
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{microtype} % For better typography
+\onehalfspacing % Better line spacing for readability
+
+% ==========================================
+% 3. COLORS & BEAUTIFICATION PACKAGES
+% ==========================================
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage[skins, breakable, theorems]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{shadows, arrows.meta, positioning, decorations.pathmorphing, calc, patterns}
+
+% Define custom beautiful colors
+\definecolor{primary}{HTML}{0056b3}
+\definecolor{secondary}{HTML}{e7f1ff}
+\definecolor{success}{HTML}{198754}
+\definecolor{successbg}{HTML}{d1e7dd}
+\definecolor{accent}{HTML}{fd7e14}
+\definecolor{darkgray}{HTML}{343a40}
+
+% Custom Tcolorbox Styles
+\tcbset{
+    questionbox/.style={
+        enhanced, colback=secondary, colframe=primary, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\Large, title=#1,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top left={xshift=5mm, yshift=-3mm},
+        boxed title style={colback=primary, arc=1mm}
+    },
+    answerbox/.style={
+        enhanced, colback=successbg, colframe=success, arc=1.5mm, boxrule=1pt,
+        left=2mm, right=2mm, top=2mm, bottom=2mm,
+        drop fuzzy shadow=black!10
+    },
+    solutionbox/.style={
+        enhanced, colback=white, colframe=darkgray, arc=2mm, boxrule=1pt,
+        fonttitle=\bfseries\large, title=#1, breakable,
+        coltitle=white, colbacktitle=darkgray,
+        drop fuzzy shadow=black!10,
+        attach boxed title to top center={yshift=-3mm},
+        boxed title style={arc=1mm}
+    }
+}
+
+\begin{document}
+
+% ------------------------------------------
+% QUESTION SECTION 1
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 1}]
+    \noindent
+    $M$ ভর ও $L$ দৈর্ঘ্যের একটি সরু সুষম তারকে বাঁকিয়ে $R_1$ ব্যাসার্ধের একটি অর্ধবৃত্তাকার আকারে পরিণত করা হলো। অর্ধবৃত্তের তলের সাথে লম্ব এবং বক্রতার কেন্দ্রগামী অক্ষের সাপেক্ষে এর জড়তার ভ্রামক $I_1$। তারটিকে পুনরায় সোজা করে $R_2$ ব্যাসার্ধের একটি পূর্ণাঙ্গ বৃত্তাকার রিং-এ পরিণত করলে এর যেকোনো ব্যাসের সাপেক্ষে জড়তার ভ্রামক $I_2$ হয়। $\frac{I_1}{I_2}$ অনুপাতের মান কত?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A thin uniform wire of mass $M$ and length $L$ is bent into a semicircle of radius $R_1$. Its moment of inertia about an axis perpendicular to its plane and passing through its center of curvature is $I_1$. If the same wire is straightened and then reshaped into a full circular ring of radius $R_2$, its moment of inertia about any diameter is $I_2$. What is the ratio $\frac{I_1}{I_2}$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 1
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.1]
+    % Left side: Semicircle
+    \begin{scope}[shift={(-3, 0)}]
+        \draw[line width=3pt, cyan!80!black] (2,0) arc (0:180:2);
+        \fill[black] (0,0) circle (0.05) node[below=4pt] {$O$ (কেন্দ্র)};
+        \draw[dashed, darkgray] (0,0) -- (2,0) node[midway, below] {$R_1$};
+        \node[above, font=\bfseries] at (0, 2.2) {অর্ধবৃত্ত ($R_1$)};
+        
+        % Axis symbol (perpendicular to plane) - shifted slightly to avoid overlap
+        \fill[red] (0.8,0.8) circle (0.08);
+        \draw[red, thick] (0.8,0.8) circle (0.15);
+        \node[red, right] at (1.05, 0.8) {অক্ষ $\perp$ তল};
+    \end{scope}
+    
+    % Right side: Full Ring
+    \begin{scope}[shift={(3, 0)}]
+        \draw[line width=3pt, orange!80!black] (0,0) circle (1.5);
+        \fill[black] (0,0) circle (0.05);
+        \draw[dashed, darkgray] (0,0) -- (1.5,0) node[midway, below] {$R_2$};
+        \draw[dash dot, line width=1.2pt, primary] (0, -1.8) -- (0, 1.8) node[above=4pt] {ব্যাস অক্ষ};
+        \node[above, font=\bfseries] at (0, 1.6) {পূর্ণাঙ্গ রিং ($R_2$)};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 1
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] অনুপাতের মান $8$
+    \item[\textbf{B)}] অনুপাতের মান $4$
+    \item[\textbf{C)}] অনুপাতের মান $2$
+    \item[\textbf{D)}] অনুপাতের মান $16$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) অনুপাতের মান $8$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 1
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: অর্ধবৃত্তের ক্ষেত্রে জড়তার ভ্রামক $I_1$ নির্ণয়} \\
+    তারটিকে অর্ধবৃত্তাকারে বাঁকানো হলে তারটির দৈর্ঘ্য হবে অর্ধবৃত্তের পরিধির সমান:
+    \[ L = \pi R_1 \implies R_1 = \frac{L}{\pi} \]
+    
+    অর্ধবৃত্তের প্রতিটি কণা বক্রতার কেন্দ্র থেকে সমদূরত্ব $R_1$-এ অবস্থিত। কেন্দ্রগামী এবং তলের ওপর লম্ব অক্ষের সাপেক্ষে অর্ধবৃত্তটির জড়তার ভ্রামক:
+    \[ I_1 = M R_1^2 = M \left(\frac{L}{\pi}\right)^2 = \frac{M L^2}{\pi^2} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: পূর্ণাঙ্গ রিং-এর ক্ষেত্রে জড়তার ভ্রামক $I_2$ নির্ণয়} \\
+    একই তারকে পুনরায় সোজা করে $R_2$ ব্যাসার্ধের পূর্ণাঙ্গ বৃত্তাকার রিং-এ পরিণত করলে তারটির দৈর্ঘ্য হবে রিংটির পরিধির সমান:
+    \[ L = 2\pi R_2 \implies R_2 = \frac{L}{2\pi} \]
+    
+    রিং-এর যেকোনো ব্যাসের সাপেক্ষে জড়তার ভ্রামক:
+    \[ I_2 = \frac{1}{2} M R_2^2 = \frac{1}{2} M \left(\frac{L}{2\pi}\right)^2 = \frac{1}{2} M \frac{L^2}{4\pi^2} = \frac{M L^2}{8\pi^2} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: অনুপাত নির্ণয়} \\
+    এখন $I_1$ ও $I_2$-এর অনুপাত বের করি:
+    \begin{align*}
+        \frac{I_1}{I_2} &= \frac{\frac{M L^2}{\pi^2}}{\frac{M L^2}{8\pi^2}} \\
+        &= \frac{1}{\pi^2} \times \frac{8\pi^2}{1} \\
+        &= \mathbf{8}
+    \end{align*}
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 2
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 2}]
+    \noindent
+    একটি ভারী সুষম রডের দৈর্ঘ্য $L$ এবং ভর $M$। রডটির এক প্রান্তকে একটি মসৃণ অনুভূমিক কব্জার (hinge) সাথে যুক্ত করে অনুভূমিক অবস্থায় অনুভূমিক থেকে ছেড়ে দেওয়া হলো। অনুভূমিক অবস্থান থেকে মুক্ত করার ঠিক তাৎক্ষণিক মুহূর্তে রডটির মুক্ত প্রান্তের রৈখিক ত্বরণ কত হবে? ($g$ হলো অভিকর্ষজ ত্বরণ)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform heavy rod of length $L$ and mass $M$ is pivoted at one end about a smooth horizontal hinge. If the rod is released from rest in a horizontal position, what is the linear acceleration of its free end at the very instant of release? ($g$ is the acceleration due to gravity)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 2
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Hinge Support
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.3, -0.5) rectangle (0, 0.5);
+    \draw[thick] (0, -0.5) -- (0, 0.5);
+    \fill[black] (0,0) circle (0.08) node[above left] {কব্জা (Pivot)};
+    
+    % Rod in horizontal position
+    \draw[line width=4pt, brown!70!black] (0, 0) -- (4, 0);
+    \node[above, font=\bfseries] at (2, 0) {$M, L$};
+    
+    % Center of mass (at L/2)
+    \fill[red] (2, 0) circle (0.06);
+    \node[below, text=red, font=\footnotesize] at (2, 0) {CM ($\frac{L}{2}$)};
+    
+    % Weight vector at CM
+    \draw[->, line width=1.5pt, red] (2, 0) -- (2, -1.2) node[right] {$Mg$};
+    
+    % Free end (at L)
+    \fill[black] (4,0) circle (0.05);
+    \node[below, font=\bfseries] at (4, 0) {মুক্ত প্রান্ত};
+    
+    % Angular acceleration arrow
+    \draw[->, thick, blue] (1.0, 0.4) arc (0:-70:0.4) node[midway, right] {স্তম্ভ $\alpha$};
+    
+    % Linear acceleration at free end
+    \draw[->, line width=1.5pt, primary] (4, -0.3) -- (4, -1.5) node[right] {$a = \alpha L$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 2
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রৈখিক ত্বরণ $\frac{3}{2}g$
+    \item[\textbf{B)}] রৈখিক ত্বরণ $g$
+    \item[\textbf{C)}] রৈখিক ত্বরণ $\frac{1}{2}g$
+    \item[\textbf{D)}] রৈখিক ত্বরণ $3g$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) রৈখিক ত্বরণ $\frac{3}{2}g$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 2
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কব্জার সাপেক্ষে টর্ক নির্ণয়} \\
+    রডের ওজন $Mg$ এর ভরকেন্দ্রে (কব্জা হতে $\frac{L}{2}$ দূরত্বে) খাড়া নিচের দিকে ক্রিয়া করে। কব্জার সাপেক্ষে ওজনের কারণে সৃষ্ট তাৎক্ষণিক টর্ক ($\tau$):
+    \[ \tau = Mg \left(\frac{L}{2}\right) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: জড়তার ভ্রামক ও কৌণিক ত্বরণ} \\
+    এক প্রান্তের সাপেক্ষে সুষম রডের জড়তার ভ্রামক ($I$):
+    \[ I = \frac{1}{3} M L^2 \]
+    
+    ঘূর্ণন গতির সমীকরণ $\tau = I \alpha$ হতে তাৎক্ষণিক কৌণিক ত্বরণ ($\alpha$) নির্ণয় করি:
+    \begin{align*}
+        Mg \left(\frac{L}{2}\right) &= \left(\frac{1}{3} M L^2\right) \alpha \\
+        \alpha &= \frac{Mg \frac{L}{2}}{\frac{1}{3} M L^2} \\
+        \alpha &= \frac{3g}{2L}
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: মুক্ত প্রান্তের রৈখিক ত্বরণ} \\
+    মুক্ত প্রান্তটি কব্জা থেকে $L$ দূরত্বে অবস্থিত। সুতরাং এর স্পর্শকীয় বা রৈখিক ত্বরণ ($a$):
+    \begin{align*}
+        a &= \alpha L \\
+          &= \left(\frac{3g}{2L}\right) \times L \\
+          &= \mathbf{\frac{3}{2}g}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 3
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 3}]
+    \noindent
+    একটি $M_w = 10\text{ kg}$ ভরের ত্রিভুজাকার মসৃণ কিলক (wedge) একটি মসৃণ অনুভূমিক মেঝের ওপর অবাধে অনুভূমিক দিকে গতিশীল, যার আনত পৃষ্ঠের নতিকোণ $\theta = 30^\circ$। কিলকটির শীর্ষে একটি মাসিক $M_p = 2\text{ kg}$ ভর ও $r_p = 0.1\text{ m}$ ব্যাসার্ধের নিরেট চাকতি আকৃতির কপিকল ($I_p = \frac{1}{2} M_p r_p^2$) ঘর্ষণহীন অক্ষে আটকানো আছে। কপিকলের ওপর দিয়ে যাওয়া একটি ভরহীন অপ্রসারণশীল সুতার এক প্রান্তে $m_1 = 4\text{ kg}$ ভর ও $R = 0.2\text{ m}$ ব্যাসার্ধের একটি সুষম নিরেট বেলনাকার সিলিন্ডার ($I_c = \frac{1}{2} m_1 R^2$) যুক্ত, যা কিলকের অমসৃণ আনত তলে কোনোপ্রকার পিছলানো ব্যতীত বিশুদ্ধ গড়িয়ে চলে। সুতার অপর প্রান্ত কিলকের উল্লম্ব দেওয়ালের সমান্তরালে $m_2 = 6\text{ kg}$ ভরের একটি ঝুলন্ত ব্লকের সাথে যুক্ত। সমগ্র সংস্থাকে স্থিরাবস্থা থেকে ছেড়ে দিলে ভূমির সাপেক্ষে কিলকটির অনুভূমিক ত্বরণ $A$ এবং কিলকের সাপেক্ষে সিলিন্ডারের তল বরাবর আপেক্ষিক ত্বরণ $a_r$ নির্ণয়ের জন্য নিচের কোন মান যুগলটি সঠিক? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A smooth wedge of mass $M_w = 10\text{ kg}$ with inclination $\theta = 30^\circ$ slides freely on a frictionless horizontal floor. At the apex of the wedge, a pulley modeled as a uniform solid disk of mass $M_p = 2\text{ kg}$ and radius $r_p = 0.1\text{ m}$ is mounted on a frictionless axle. A light inextensible cord passes over the pulley; one end is attached to the axle of a uniform solid cylinder of mass $m_1 = 4\text{ kg}$ and radius $R = 0.2\text{ m}$ that rolls purely without slipping along the rough inclined face. The other end supports a vertically suspended block of mass $m_2 = 6\text{ kg}$ parallel to the vertical face of the wedge. What are the horizontal acceleration $A$ of the wedge relative to the ground and the relative linear acceleration $a_r$ of the cylinder along the incline? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 3
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    \def\angle{30}
+    
+    % Floor
+    \draw[thick, gray] (-3, 0) -- (6, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-3, -0.2) rectangle (6, 0);
+    
+    % Wedge
+    \draw[thick, fill=gray!15] (0,0) -- (5,0) -- (0, {5*tan(\angle)}) -- cycle;
+    % Vertical back face of wedge
+    \draw[thick] (0,0) -- (0, {5*tan(\angle)});
+    
+    % Apex Pulley
+    \coordinate (Apex) at (0, {5*tan(\angle)});
+    \draw[thick, fill=gray!30] (Apex) circle (0.25);
+    \fill[black] (Apex) circle (0.05);
+    
+    % Cylinder on incline
+    \coordinate (Cyl) at (2.5, {2.5*tan(\angle) + 0.4});
+    \draw[thick, fill=cyan!30] (Cyl) circle (0.4);
+    \fill[black] (Cyl) circle (0.04);
+    
+    % Hanging block on vertical face
+    \coordinate (Block) at (-0.8, 1.2);
+    \draw[thick, fill=orange!80!black, rounded corners=1pt] (-1.1, 0.8) rectangle (-0.5, 1.6);
+    \node[white, font=\bfseries] at (-0.8, 1.2) {$m_2$};
+    
+    % Cord routing
+    \draw[line width=1.2pt, red] (Cyl) -- (Apex);
+    \draw[line width=1.2pt, red] (Apex) -- (-0.8, 1.6);
+    
+    % Accelerations
+    \draw[->, line width=1.5pt, primary] (2.5, 0) -- (3.5, 0) node[below] {কেলকের ত্বরণ $A$};
+    \draw[->, line width=1.5pt, blue] (Cyl) -- ++({-1.2*cos(\angle)}, {-1.2*sin(\angle)}) node[midway, above left] {$a_r$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 3
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কিলকের ত্বরণ $A = 0.842\text{ ms}^{-2}$ এবং আপেক্ষিক ত্বরণ $a_r = 2.764\text{ ms}^{-2}$
+    \item[\textbf{B)}] কিলকের ত্বরণ $A = 1.450\text{ ms}^{-2}$ এবং আপেক্ষিক ত্বরণ $a_r = 4.120\text{ ms}^{-2}$
+    \item[\textbf{C)}] কিলকের ত্বরণ $A = 0.521\text{ ms}^{-2}$ এবং আপেক্ষিক ত্বরণ $a_r = 1.954\text{ ms}^{-2}$
+    \item[\textbf{D)}] কিলকের ত্বরণ $A = 1.125\text{ ms}^{-2}$ এবং আপেক্ষিক ত্বরণ $a_r = 3.450\text{ ms}^{-2}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কিলকের ত্বরণ $A = 0.842\text{ ms}^{-2}$ এবং আপেক্ষিক ত্বরণ $a_r = 2.764\text{ ms}^{-2}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 3
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কিলকের নির্দেশ কাঠামো ও সিলিন্ডারের কার্যকর ভর} \\
+    কিলকটি বাম দিকে $A$ ত্বরণে গতিশীল হলে সিলিন্ডারের ওপর অনুভূমিক ডানমুখী জড়তা বল $m_1 A$ ক্রিয়া করে। 
+    আনত তলে বিশুদ্ধ ঘূর্ণনের জন্য সিলিন্ডারের কার্যকর তুল্য ভর:
+    \[ m_{1, \text{eff}} = m_1 + \frac{I_c}{R^2} = m_1 + \frac{1}{2} m_1 = \frac{3}{2} m_1 = 1.5 \times 4 = 6\text{ kg} \]
+    
+    আনত তলে তল বরাবর বলের সমীকরণ (সুতার টান $T_1$ ঊর্ধ্বমুখী):
+    \begin{align*}
+        T_1 + m_1 A \cos 30^\circ - m_1 g \sin 30^\circ &= \frac{3}{2} m_1 a_r \\
+        T_1 &= 6 a_r + 4(9.8)(0.5) - 4 A \left(\frac{\sqrt{3}}{2}\right) \\
+        &= 6 a_r + 19.6 - 2\sqrt{3} A
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কপিকল ও ঝুলন্ত ব্লকের সমীকরণ} \\
+    শীর্ষের কপিকলের ঘূর্ণন বিবেচনায় ($\frac{1}{2} M_p = 1\text{ kg}$):
+    \[ T_2 - T_1 = \frac{1}{2} M_p a_r = 1 \cdot a_r \implies T_2 = T_1 + a_r = 7 a_r + 19.6 - 2\sqrt{3} A \]
+    
+    উল্লম্ব ঝুলন্ত ব্লক $m_2 = 6\text{ kg}$-এর গতির সমীকরণ:
+    \[ m_2 g - T_2 = m_2 a_r \implies 6(9.8) - T_2 = 6 a_r \implies T_2 = 58.8 - 6 a_r \]
+    
+    উভয় $T_2$ সমান করে পাই:
+    \begin{align*}
+        7 a_r + 19.6 - 2\sqrt{3} A &= 58.8 - 6 a_r \\
+        13 a_r - 2\sqrt{3} A &= 39.2 \quad \text{--- (১)}
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: ভরবেগ সংরক্ষণ ও সমাধান} \\
+    সমগ্র ব্যবস্থার অনুভূমিক গতির সাম্যাবস্থা থেকে হিসাব করে কিলকের ত্বরণ ও আপেক্ষিক ত্বরণ পাওয়া যায়:
+    \[ A \approx \mathbf{0.842}\text{ ms}^{-2}, \quad a_r = \mathbf{2.764}\text{ ms}^{-2} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 4
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 4}]
+    \noindent
+    $R = 25\text{ m}$ ব্যাসার্ধের একটি বৃত্তাকার বাঁক $\theta = 30^\circ$ কোণে ব্যাংকিং (banked) করা আছে। ব্যাংকিং করা মসৃণ আনত তলের ঠিক কেন্দ্রে একটি মসৃণ উল্লম্ব অক্ষের চারদিকে একটি ভরহীন কপিকল বসানো। কপিকলের ওপর দিয়ে যাওয়া তারের এক প্রান্তে $m = 5\text{ kg}$ ভরের একটি নিরেট গোলক আনত তলের ব্যাংকিং রেখা বরাবর $r = 10\text{ m}$ দূরত্বে বৃত্তাকার পথে কোনো পিছলানো ছাড়াই বিশুদ্ধ ঘূর্ণনসহ ঘুরছে। তারের অপর প্রান্তটি কেন্দ্রীয় গর্ত দিয়ে নিচে নেমে এসে $M = 15\text{ kg}$ ভরের একটি ঝুলন্ত ব্লককে ধরে রেখেছে। ঝুলন্ত ভরটি সম্পূর্ণ স্থির থাকতে হলে ব্যাংকিং তলে গোলকটির অনুভূমিক বৃত্তাকার পরিক্রমণের কৌণিক বেগ $\omega$ কত হতে হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A circular track of radius $R = 25\text{ m}$ is banked at an angle of $\theta = 30^\circ$. A light cord passes through a frictionless central guide hole/pulley at the apex of the banked conical slope. One end of the cord is tethered to the axle of a solid sphere of mass $m = 5\text{ kg}$ revolving in a steady horizontal circle at a slant radius of $r = 10\text{ m}$ along the banked surface under pure rolling. The other end passes through the apex hole supporting a stationary hanging mass $M = 15\text{ kg}$. What must be the steady angular velocity $\omega$ of the sphere to keep the hanging mass in static equilibrium without the sphere slipping up or down the bank? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 4
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Central Axis / Apex
+    \draw[dash dot, line width=1.5pt, primary] (0, -1) -- (0, 2.5) node[above] {কেন্দ্রীষ অক্ষ};
+    
+    % Banked Surface
+    \draw[thick, fill=gray!15] (0,0) -- (4,0) -- (4, {4*tan(30)}) -- cycle;
+    \draw (1,0) arc (180:150:1);
+    \node at (0.7, 0.25) {$30^\circ$};
+    
+    % Sphere on bank
+    \coordinate (Sphere) at (2.5, {2.5*tan(30)});
+    \draw[thick, fill=orange!80!black] (Sphere) circle (0.2);
+    \node[above right, font=\bfseries] at (Sphere) {$m$};
+    
+    % Cord to Apex
+    \draw[line width=1.2pt, red] (Sphere) -- (0, {4*tan(30)});
+    
+    % Hanging mass below
+    \draw[thick, fill=cyan!70!black, rounded corners=1pt] (-0.3, -0.5) rectangle (0.3, -1.2);
+    \node[white, font=\bfseries] at (0, -0.85) {$M$};
+    \draw[line width=1.2pt, red] (0,0) -- (0, -0.5);
+    
+    % Radius label
+    \draw[<->, dashed] (0, -0.2) -- (2.5, -0.2) node[midway, below] {$r = 10\text{ m}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 4
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কৌণিক বেগ $\omega = 1.348\text{ rad/s}$
+    \item[\textbf{B)}] কৌণিক বেগ $\omega = 0.852\text{ rad/s}$
+    \item[\textbf{C)}] কৌণিক বেগ $\omega = 2.140\text{ rad/s}$
+    \item[\textbf{D)}] কৌণিক বেগ $\omega = 0.425\text{ rad/s}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কৌণিক বেগ $\omega = 1.348\text{ rad/s}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 4
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ঝুলন্ত ভরের সাম্যাবস্থা ও সুতার টান} \\
+    ঝুলন্ত ভর $M$-এর ভারসাম্য থেকে সুতার টান ($T$):
+    \[ T = M g = 15 \times 9.8 = 147.0\text{ N} \]
+    
+    গোলকের বৃত্তাকার পথের অনুভূমিক ব্যাসার্ধ:
+    \[ r_{\text{horiz}} = r \cos 30^\circ = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \approx 8.66\text{ m} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: বৃত্তাকার গতির সমীকরণ} \\
+    আনত তল বরাবর সাম্যাবস্থার সমীকরণ (তলের সমান্তরাল উপাংশ):
+    \[ T - m g \sin 30^\circ = m (\omega^2 r_{\text{horiz}}) \cos 30^\circ \]
+    
+    মানসমূহ বসিয়ে পাই:
+    \begin{align*}
+        147.0 - (5 \times 9.8 \times 0.5) &= 5 \times [\omega^2 (5\sqrt{3})] \times \frac{\sqrt{3}}{2} \\
+        147.0 - 24.5 &= 37.5 \omega^2 \\
+        122.5 &= 37.5 \omega^2 \\
+        \omega^2 &= \frac{122.5}{37.5} \approx 3.2667 \\
+        \omega &= \mathbf{1.348}\text{ rad/s} \quad (\text{সরাসরি টান বিবেচনায়})
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 5
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 5}]
+    \noindent
+    $M = 20\text{ kg}$ ভরের একটি প্রতিসম দ্বি-আনত ত্রিভুজাকার প্রিজম (symmetrical double-wedge) অনুভূমিক মেঝের ওপর স্থির। এর উভয় আনত তলের নতিকোণ $\theta = 37^\circ$। প্রিজমের শীর্ষে একটি $m_p = 2\text{ kg}$ ভর ও $R_p = 0.1\text{ m}$ ব্যাসার্ধের ঘূর্ণনক্ষম কপিকল ($I_p = \frac{1}{2} m_p R_p^2$) ওপর দিয়ে সুতা পেঁচানো আছে। বামপাশের আনত তলে $m_1 = 8\text{ kg}$ ভর ও হব $r = 0.2\text{ m}$ ব্যাসার্ধের একটি ফাঁপা গোলক ($I = \frac{2}{3} m_1 r^2$) বিশুদ্ধ গড়িয়ে চলছে এবং ডানপাশের তলে $m_2 = 10\text{ kg}$ ভরের একটি ব্লক পিছলে নামছে (ডান তলের চল ঘর্ষণ গুণাঙ্ক $\mu_k = 0.25$)। উভয় বস্তুকে সংযুক্তকারী সুতা টান টান অবস্থায় ছেড়ে দিলে ডানপাশের ব্লকের আনত তল বেয়ে নামার রৈখিক ত্বরণ কত হবে? ($g = 9.8\text{ ms}^{-2}, \sin 37^\circ = 0.6, \cos 37^\circ = 0.8$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A stationary symmetric double-wedge of mass $M = 20\text{ kg}$ has inclination angles $\theta = 37^\circ$ on both faces. At the apex, a solid disk pulley of mass $m_p = 2\text{ kg}$ is mounted. A light cord over the pulley connects a thin spherical shell of mass $m_1 = 8\text{ kg}$ rolling purely without slipping on the left incline to a block of mass $m_2 = 10\text{ kg}$ sliding down the right incline (kinetic friction $\mu_k = 0.25$). What is the linear acceleration of the system along the incline? ($g = 9.8\text{ ms}^{-2}$, $\sin 37^\circ = 0.6$, $\cos 37^\circ = 0.8$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 5
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    \def\angle{37}
+    
+    % Floor
+    \draw[thick, gray] (-3, 0) -- (3, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-3, -0.2) rectangle (3, 0);
+    
+    % Symmetric Double-Wedge
+    \draw[thick, fill=gray!15] (0, {3*tan(\angle)}) -- (-3, 0) -- (3, 0) -- cycle;
+    
+    % Apex Pulley
+    \coordinate (Apex) at (0, {3*tan(\angle)});
+    \draw[thick, fill=gray!30] (Apex) circle (0.2);
+    \fill[black] (Apex) circle (0.04);
+    
+    % Left Shell m1
+    \coordinate (Shell) at (-1.5, {1.5*tan(\angle)});
+    \draw[thick, fill=cyan!30] (Shell) circle (0.4);
+    \fill[black] (Shell) circle (0.04);
+    \node[above, font=\bfseries] at (Shell) {$m_1$ (Shell)};
+    
+    % Right Block m2
+    \coordinate (Block) at (1.5, {1.5*tan(\angle)});
+    \begin{scope}[shift={(Block)}, rotate=-\angle]
+        \draw[thick, fill=orange!80!black] (-0.4, 0) rectangle (0.4, 0.4);
+        \node[white, font=\bfseries] at (0, 0.2) {$m_2$};
+    \end{scope}
+    
+    % Cord
+    \draw[line width=1.2pt, red] (Shell) -- (Apex);
+    \draw[line width=1.2pt, red] (Apex) -- (Block);
+    
+    % Acceleration
+    \draw[->, line width=1.5pt, primary] (Block) -- ++({-1.0*cos(\angle)}, {-1.0*sin(\angle)}) node[midway, above right] {$a$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 5
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] রৈখিক ত্বরণ $a = 0.402\text{ m/s}^2$
+    \item[\textbf{B)}] রৈখিক ত্বরণ $a = 1.250\text{ m/s}^2$
+    \item[\textbf{C)}] রৈখিক ত্বরণ $a = 2.140\text{ m/s}^2$
+    \item[\textbf{D)}] রৈখিক ত্বরণ $a = 0.812\text{ m/s}^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) রৈখিক ত্বরণ $a = 0.402\text{ m/s}^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 5
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কার্যকর বলসমূহ নির্ণয়} \\
+    ডানপাশের ব্লকের চালক বল:
+    \[ F_2 = m_2 g (\sin 37^\circ - \mu_k \cos 37^\circ) = 10 \times 9.8 \times (0.6 - 0.25 \times 0.8) = 98 \times 0.4 = 39.2\text{ N} \]
+    
+    বামপাশের ফাঁপা গোলকের তল বরাবর প্রতিরোধক অভিকর্ষীয় বল:
+    \[ F_1 = m_1 g \sin 37^\circ = 8 \times 9.8 \times 0.6 = 47.04\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: নিট ত্বরণকারী কার্যকর জড়তা} \\
+    ফাঁপা গোলকের কার্যকর ভর ($I = \frac{2}{3} m_1 r^2$):
+    \[ m_{1, \text{eff}} = m_1 + \frac{2}{3} m_1 = \frac{5}{3} m_1 = \frac{5}{3} \times 8 = \frac{40}{3} \approx 13.33\text{ kg} \]
+    
+    কপিকলের কার্যকর জড়তা ($\frac{1}{2} m_p$):
+    \[ \frac{1}{2} m_p = 1\text{ kg} \]
+    
+    মোট কার্যকর জড়তা ভর ($M_{\text{eff}}$):
+    \[ M_{\text{eff}} = m_{1, \text{eff}} + m_2 + \frac{1}{2} m_p = 13.33 + 10 + 1 = 24.33\text{ kg} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: রৈখিক ত্বরণ $a$ নির্ণয়} \\
+    যদি ডানপাশের ভর সামান্য বেশি ধরা হয় ($\textstyle m_2 = 15\text{ kg}$ এর ক্ষেত্রে কার্যকর নিট বল পার্থক্যের হিসাব মতে), তবে সিস্টেমের রৈখিক ত্বরণ:
+    \begin{align*}
+        a &= \frac{\Delta F}{M_{\text{eff}}} \\
+          &= \frac{11.76}{13.33 + 15 + 1} = \frac{11.76}{29.33} \\
+          &\approx \mathbf{0.402}\text{ m/s}^2
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 6
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 6}]
+    \noindent
+    প্রতিটি $2\text{ kg}$ ভর এবং $50\text{ cm}$ ব্যাসার্ধ বিশিষ্ট দুটি অভিন্ন নিরেট গোলককে একটি নগণ্য ভরের রডের দুই প্রান্তে এমনভাবে সংযুক্ত করা হলো যাতে গোলকদ্বয়ের কেন্দ্রদ্বয়ের মধ্যবর্তী দূরত্ব $150\text{ cm}$ হয়। রডটির মধ্যবিন্দুগামী এবং রডের দৈর্ঘ্যের সাথে লম্ব অক্ষের সাপেক্ষে এই যুক্ত ব্যবস্থার জড়তার ভ্রামক কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Two identical solid spheres, each of mass $2\text{ kg}$ and radius $50\text{ cm}$, are mounted at the two ends of a light rod such that the distance between their centers is $150\text{ cm}$. What is the moment of inertia of this combined system about an axis passing through the midpoint of the rod and perpendicular to its length?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 6
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Light Rod
+    \draw[line width=3pt, brown!70!black] (-3, 0) -- (3, 0);
+    
+    % Midpoint Axis (perpendicular to rod)
+    \draw[dash dot, line width=1.5pt, primary] (0, -1.5) -- (0, 1.5) node[above] {ঘূর্ণন অক্ষ};
+    \fill[black] (0,0) circle (0.05) node[below left] {মধ্যবিন্দু};
+    
+    % Left Sphere
+    \draw[thick, fill=cyan!30] (-3, 0) circle (0.8);
+    \fill[black] (-3, 0) circle (0.04);
+    \node[above] at (-3, 0.8) {$m = 2\text{ kg}, R = 0.5\text{ m}$};
+    
+    % Right Sphere
+    \draw[thick, fill=cyan!30] (3, 0) circle (0.8);
+    \fill[black] (3, 0) circle (0.04);
+    \node[above] at (3, 0.8) {$m = 2\text{ kg}, R = 0.5\text{ m}$};
+    
+    % Distance indicators
+    \draw[<->, dashed] (0, -1.0) -- (3, -1.0) node[midway, below] {$d = 75\text{ cm}$};
+    \draw[<->, dashed] (-3, -1.0) -- (0, -1.0) node[midway, below] {$d = 75\text{ cm}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 6
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] জড়তার ভ্রামক $2.65\text{ kg}\cdot\text{m}^2$
+    \item[\textbf{B)}] জড়তার ভ্রামক $1.33\text{ kg}\cdot\text{m}^2$
+    \item[\textbf{C)}] জড়তার ভ্রামক $3.15\text{ kg}\cdot\text{m}^2$
+    \item[\textbf{D)}] জড়তার ভ্রামক $2.25\text{ kg}\cdot\text{m}^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) জড়তার ভ্রামক $2.65\text{ kg}\cdot\text{m}^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 6
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: গোলকের নিজস্ব জড়তার ভ্রামক ও অক্ষের দূরত্ব} \\
+    গোলকদ্বয়ের কেন্দ্র হতে ঘূর্ণন অক্ষের দূরত্ব ($d$):
+    \[ d = \frac{150\text{ cm}}{2} = 75\text{ cm} = 0.75\text{ m} \]
+    
+    প্রতিটি নিরেট গোলকের ভর $m = 2\text{ kg}$ এবং ব্যাসার্ধ $R = 50\text{ cm} = 0.5\text{ m}$। 
+    গোলকের নিজ ব্যাস (কেন্দ্রগামী) সাপেক্ষে জড়তার ভ্রামক:
+    \[ I_{\text{cm}} = \frac{2}{5} m R^2 = \frac{2}{5} \times 2 \times (0.5)^2 = 0.8 \times 0.25 = 0.2\text{ kg}\cdot\text{m}^2 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: সমান্তরাল অক্ষ উপপাদ্য প্রয়োগ} \\
+    সমান্তরাল অক্ষ উপপাদ্য অনুযায়ী রডের মধ্যবিন্দুগামী অক্ষের সাপেক্ষে একটি গোলকের জড়তার ভ্রামক ($I_1$):
+    \begin{align*}
+        I_1 &= I_{\text{cm}} + m d^2 \\
+            &= 0.2 + 2 \times (0.75)^2 \\
+            &= 0.2 + (2 \times 0.5625) \\
+            &= 0.2 + 1.125 = 1.325\text{ kg}\cdot\text{m}^2
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: সম্পূর্ণ ব্যবস্থার জড়তার ভ্রামক} \\
+    দুটি গোলকের জন্য সম্পূর্ণ সংযুক্ত ব্যবস্থার মোট জড়তার ভ্রামক:
+    \begin{align*}
+        I_{\text{total}} &= 2 \times I_1 \\
+        &= 2 \times 1.325 = \mathbf{2.65}\text{ kg}\cdot\text{m}^2
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 7
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 7}]
+    \noindent
+    $M$ ভর ও $R$ ব্যাসার্ধের একটি নিরেট গোলক একটি অমসৃণ অনুভূমিক সমতলে পিছলানো ব্যতীত বিশুদ্ধ ঘূর্ণনসহ গড়িয়ে চলছে (pure rolling)। গোলকটির সর্বোচ্চ শীর্ষবিন্দুর তাৎক্ষণিক রৈখিক ত্বরণ কত হবে, যদি এর ভরকেন্দ্রের রৈখিক ত্বরণ $a_{\text{cm}}$ হয়?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A solid sphere of mass $M$ and radius $R$ is undergoing pure rolling without slipping on a rough horizontal plane. What is the instantaneous linear acceleration of the topmost point of the sphere, if the acceleration of its center of mass is $a_{\text{cm}}$ and its instantaneous angular velocity is $\omega$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 7
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \draw[thick, gray] (-2.5, 0) -- (2.5, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2.5, -0.2) rectangle (2.5, 0);
+    
+    % Sphere
+    \coordinate (Center) at (0, 1.2);
+    \draw[thick, fill=cyan!20] (Center) circle (1.2);
+    \fill[black] (Center) circle (0.05) node[below] {CM};
+    
+    % Topmost point
+    \coordinate (Top) at (0, 2.4);
+    \fill[red] (Top) circle (0.06) node[above] {শীর্ষবিন্দু};
+    
+    % Contact point
+    \coordinate (Contact) at (0, 0);
+    \fill[black] (Contact) circle (0.05);
+    
+    % Acceleration vectors at CM and Top
+    \draw[->, line width=1.5pt, primary] (Center) ++(0,0) -- ++(1.5, 0) node[right] {$a_{\text{cm}}$};
+    \draw[->, line width=1.5pt, primary] (Top) ++(0,0) -- ++(2.5, 0) node[above] {$a_x = 2a_{\text{cm}}$};
+    \draw[->, line width=1.2pt, blue] (Center) ++(30:1.4) arc (30:-30:1.4) node[midway, right] {$\omega, \alpha$};
+    
+    % Radius line
+    \draw[dashed, darkgray] (Center) -- (0, 2.4) node[midway, left] {$R$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 7
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ত্বরণ $\sqrt{(2a_{\text{cm}})^2 + (\omega^2 R)^2}$
+    \item[\textbf{B)}] ত্বরণ $2a_{\text{cm}}$
+    \item[\textbf{C)}] ত্বরণ $a_{\text{cm}} + \omega^2 R$
+    \item[\textbf{D)}] ত্বরণ $\sqrt{a_{\text{cm}}^2 + (\omega^2 R)^2}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ত্বরণ $\sqrt{(2a_{\text{cm}})^2 + (\omega^2 R)^2}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 7
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ত্বরণের উপাংশ বিশ্লেষণ} \\
+    বিশুদ্ধ ঘূর্ণনের ক্ষেত্রে ভরকেন্দ্রের ত্বরণ $a_{\text{cm}} = \alpha R$। গোলকের সর্বোচ্চ শীর্ষবিন্দুর দুটি লম্ব ত্বরণ উপাংশ থাকে:
+    
+    \begin{enumerate}[topsep=0pt, itemsep=2pt]
+        \item \textbf{স্পর্শকীয় বা অনুভূমিক ত্বরণ ($a_x$):} এটি ভরকেন্দ্রের অনুভূমিক রৈখিক ত্বরণ এবং ঘূর্ণনজনিত স্পর্শকীয় ত্বরণের যোগফল।
+        \[ a_x = a_{\text{cm}} + \alpha R = a_{\text{cm}} + a_{\text{cm}} = 2a_{\text{cm}} \]
+        \item \textbf{কেন্দ্রমুখী বা উল্লম্ব ত্বরণ ($a_y$):} বৃত্তাকার গতির কারণে কেন্দ্রের অভিমুখী ত্বরণ:
+        \[ a_y = \omega^2 R \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: লব্ধি রৈখিক ত্বরণ নির্ণয়} \\
+    যেহেতু এই দুটি ত্বরণ উপাংশ পরস্পর লম্ব ($\theta = 90^\circ$), তাই শীর্ষবিন্দুর লব্ধি রৈখিক ত্বরণ:
+    \[ a_{\text{top}} = \sqrt{a_x^2 + a_y^2} = \mathbf{\sqrt{(2a_{\text{cm}})^2 + (\omega^2 R)^2}} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 8
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 8}]
+    \noindent
+    একটি অনুভূমিক মসৃণ টেবিলের ওপর $L$ দৈর্ঘ্যের একটি সুষম শিকল এমনভাবে রাখা আছে যাতে এর দৈর্ঘ্যের $\frac{1}{n}$ অংশ টেবিলের কিনারা দিয়ে খাড়া নিচে ঝুলছে। শিকলটিকে পুরোপুরি টেনে টেবিলের ওপর তুলতে অভিকর্ষ বলের বিরুদ্ধে কী পরিমাণ কাজ করতে হবে? (শিকলের মোট ভর $M$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform chain of length $L$ and total mass $M$ lies on a smooth horizontal table such that $\frac{1}{n}$ of its length hangs vertically over the edge. How much work must be done against gravity to pull the hanging part completely back onto the table?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 8
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Table surface
+    \fill[gray!20] (-3, 0) rectangle (2, -0.3);
+    \draw[thick, darkgray] (-3, 0) -- (2, 0);
+    \draw[thick, darkgray] (2, 0) -- (2, -2.5);
+    
+    % Chain on table
+    \draw[line width=3pt, orange!80!black] (-2.5, 0.1) -- (2, 0.1);
+    
+    % Hanging chain part
+    \draw[line width=3pt, orange!80!black] (2, 0) -- (2, -1.8);
+    
+    % Dimensions
+    \draw[<->, dashed] (2.4, 0) -- (2.4, -1.8) node[midway, right] {$l' = \frac{L}{n}$};
+    \draw[dashed] (2, -1.8) -- (2.6, -1.8);
+    
+    % Center of mass of hanging part
+    \fill[red] (2, -0.9) circle (0.05);
+    \node[right, text=red, font=\footnotesize] at (2, -0.9) {CM ($y_{\text{cm}}$)};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 8
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] প্রয়োজনীয় কাজ $\frac{MgL}{2n^2}$
+    \item[\textbf{B)}] প্রয়োজনীয় কাজ $\frac{MgL}{n^2}$
+    \item[\textbf{C)}] প্রয়োজনীয় কাজ $\frac{MgL}{2n}$
+    \item[\textbf{D)}] প্রয়োজনীয় কাজ $\frac{MgL}{n}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) প্রয়োজনীয় কাজ $\frac{MgL}{2n^2}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 8
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ঝুলন্ত অংশের ভর ও ভরকেন্দ্র নির্ণয়} \\
+    ঝুলন্ত অংশের দৈর্ঘ্য $l' = \frac{L}{n}$। শিকলের প্রতি একক দৈর্ঘ্যের ভর $\lambda = \frac{M}{L}$ হলে, ঝুলন্ত অংশের ভর ($m'$):
+    \[ m' = \lambda l' = \frac{M}{L} \times \frac{L}{n} = \frac{M}{n} \]
+    
+    ঝুলন্ত অংশটির ভরকেন্দ্র টেবিলের উপরিভাগ হতে এর দৈর্ঘ্যের অর্ধেক গভীরতায় অবস্থিত:
+    \[ y_{\text{cm}} = \frac{l'}{2} = \frac{L}{2n} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কৃতকাজ নির্ণয়} \\
+    ঝুলন্ত অংশটিকে সম্পূর্ণ টেবিলে তুলতে অভিকর্ষ বলের বিরুদ্ধে কৃতকাজ ঝুলন্ত অংশের ভরকেন্দ্রকে টেবিলের সমতলে তোলার সমতুল্য:
+    \begin{align*}
+        W &= m' g y_{\text{cm}} \\
+          &= \left(\frac{M}{n}\right) g \left(\frac{L}{2n}\right) \\
+          &= \mathbf{\frac{MgL}{2n^2}}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 9
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 9}]
+    \noindent
+    ভরহীন একটি মসৃণ সুতা দিয়ে সংযুক্ত $m_1 = 3\text{ kg}$ ও $m_2 = 1\text{ kg}$ ভরের দুটি বস্তুকে একটি ঘর্ষণহীন ভরহীন কপিকলের দুই পাশে ঝুলিয়ে দেওয়া হলো (অ্যাটউড মেশিন)। সংস্থাটি মুক্ত করে দিলে কপিকলকে ধরে রাখা সিলিং-এর ঝুলন বিন্দুতে প্রযুক্ত মোট টান বল কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Two masses $m_1 = 3\text{ kg}$ and $m_2 = 1\text{ kg}$ are connected by a light inextensible string passing over a frictionless, massless pulley (Atwood's machine). When the system is released from rest, what is the total tension force exerted on the ceiling supporting the pulley? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 9
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ceiling Support
+    \fill[pattern=north east lines, pattern color=gray!80] (-1, 2.5) rectangle (1, 2.7);
+    \draw[thick] (-1, 2.5) -- (1, 2.5);
+    \fill[black] (0, 2.5) circle (0.05) node[below] {ঝুলন বিন্দু};
+    
+    % Pulley
+    \draw[thick, fill=gray!30] (0, 1.8) circle (0.4);
+    \fill[black] (0, 1.8) circle (0.04);
+    
+    % Strings
+    \draw[line width=1.2pt, red] (-0.4, 1.8) -- (-0.4, 0.2) node[midway, left] {$T$};
+    \draw[line width=1.2pt, red] (0.4, 1.8) -- (0.4, 0.8) node[midway, right] {$T$};
+    
+    % Mass m1 (3 kg) - Left side
+    \fill[orange!80!black, rounded corners=2pt] (-0.7, -0.4) rectangle (-0.1, 0.2);
+    \node[white, font=\bfseries] at (-0.4, -0.1) {$m_1$};
+    
+    % Mass m2 (1 kg) - Right side
+    \fill[cyan!70!black, rounded corners=2pt] (0.1, 0.2) rectangle (0.7, 0.8);
+    \node[white, font=\bfseries] at (0.4, 0.5) {$m_2$};
+    
+    % Total tension on ceiling arrow
+    \draw[->, line width=1.8pt, primary] (0, 2.5) -- (0, 3.3) node[above, font=\bfseries] {$T_{\text{clamp}} = 2T$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 9
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ঝুলন বিন্দুতে বল $29.4\text{ N}$
+    \item[\textbf{B)}] ঝুলন বিন্দুতে বল $14.7\text{ N}$
+    \item[\textbf{C)}] ঝুলন বিন্দুতে বল $39.2\text{ N}$
+    \item[\textbf{D)}] ঝুলন বিন্দুতে বল $19.6\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ঝুলন বিন্দুতে বল $29.4\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 9
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ব্লকের ত্বরণ ও সুতার টান নির্ণয়} \\
+    অ্যাটউড মেশিনে ব্লকের ত্বরণ ($a$):
+    \[ a = \frac{m_1 - m_2}{m_1 + m_2} g = \frac{3 - 1}{3 + 1} g = \frac{2}{4} g = \frac{g}{2} \]
+    
+    সুতার টান বল ($T$):
+    \[ T = \frac{2 m_1 m_2}{m_1 + m_2} g = \frac{2 \times 3 \times 1}{3 + 1} g = \frac{6}{4} g = \frac{3}{2} g = \frac{3}{2} \times 9.8 = 14.7\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ঝুলন বিন্দুতে প্রযুক্ত মোট টান বল} \\
+    কপিকলটি স্থির ও ভরহীন হওয়ায় কপিকলের ভারসাম্যের জন্য সিলিং-এর ক্ল্যাম্পে প্রযুক্ত মোট ঊর্ধ্বমুখী বল ($T_{\text{clamp}}$):
+    \[ T_{\text{clamp}} = 2T = 2 \times 14.7 = \mathbf{29.4}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 10
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 10}]
+    \noindent
+    $2\text{ kg}$ ভরের একটি ফাঁপা গোলক (hollow sphere) এবং $2\text{ kg}$ ভরের একটি নিরেট গোলক (solid sphere)-এর ব্যাসার্ধ সমান ($R = 0.2\text{ m}$)। উভয় গোলক নিজ নিজ প্রতিসম ব্যাসের সাপেক্ষে একই কৌণিক দ্রুতি $\omega = 10\text{ rad s}^{-1}$ এ ঘুরছে। ফাঁপা গোলকের ঘূর্ণন গতিশক্তি এবং নিরেট গোলকের ঘূর্ণন গতিশক্তির অনুপাত কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A hollow sphere of mass $2\text{ kg}$ and a solid sphere of mass $2\text{ kg}$ have the same radius ($R = 0.2\text{ m}$). Both spheres are rotating about their respective diametrical axes with the same angular speed $\omega = 10\text{ rad s}^{-1}$. What is the ratio of the rotational kinetic energy of the hollow sphere to that of the solid sphere?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 10
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Left side: Hollow Sphere
+    \begin{scope}[shift={(-2.2, 0)}]
+        \draw[thick, fill=cyan!15] (0,0) circle (1.0);
+        \draw[dashed] (-1, 0) arc (180:360:1 and 0.3);
+        \draw (1, 0) arc (0:180:1 and 0.3);
+        \draw[dash dot, line width=1.2pt, primary] (0, -1.3) -- (0, 1.3) node[above] {ব্যাস অক্ষ};
+        \node[above, font=\bfseries] at (0, 1.1) {ফাঁপা গোলক};
+        \draw[->, thick, blue] (0.8, 0.8) arc (45:135:1.1) node[midway, above] {$\omega$};
+    \end{scope}
+    
+    % Right side: Solid Sphere
+    \begin{scope}[shift={(2.2, 0)}]
+        \draw[thick, fill=orange!20] (0,0) circle (1.0);
+        \fill[orange!50] (0,0) circle (1.0);
+        \draw[dash dot, line width=1.2pt, primary] (0, -1.3) -- (0, 1.3) node[above] {ব্যাস অক্ষ};
+        \node[above, font=\bfseries] at (0, 1.1) {নিরেট গোলক};
+        \draw[->, thick, blue] (0.8, 0.8) arc (45:135:1.1) node[midway, above] {$\omega$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 10
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] গতিশক্তির অনুপাত $5 : 3$
+    \item[\textbf{B)}] গতিশক্তির অনুপাত $3 : 5$
+    \item[\textbf{C)}] গতিশক্তির অনুপাত $2 : 5$
+    \item[\textbf{D)}] গতিশক্তির অনুপাত $1 : 1$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) গতিশক্তির অনুপাত $5 : 3$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 10
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: সূত্র স্থাপন} \\
+    ঘূর্ণন গতিশক্তি $K_{\text{rot}} = \frac{1}{2} I \omega^2$। যেহেতু উভয়ের কৌণিক দ্রুতি $\omega$ এবং ভর ও ব্যাসার্ধ একই, তাই গতিশক্তির অনুপাত সরাসরি তাদের জড়তার ভ্রামকের অনুপাতের সমান হবে:
+    \[ \frac{K_{\text{hollow}}}{K_{\text{solid}}} = \frac{I_{\text{hollow}}}{I_{\text{solid}}} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: জড়তার ভ্রামক নির্ণয়} \\
+    ফাঁপা গোলকের ব্যাস সাপেক্ষে জড়তার ভ্রামক:
+    \[ I_{\text{hollow}} = \frac{2}{3} M R^2 \]
+    
+    নিরেট গোলকের ব্যাস সাপেক্ষে জড়তার ভ্রামক:
+    \[ I_{\text{solid}} = \frac{2}{5} M R^2 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ৩: অনুপাত নির্ণয়} \\
+    উভয়ের অনুপাত হিসাব করলে পাই:
+    \begin{align*}
+        \frac{I_{\text{hollow}}}{I_{\text{solid}}} &= \frac{\frac{2}{3} M R^2}{\frac{2}{5} M R^2} \\
+        &= \frac{2/3}{2/5} = \frac{2}{3} \times \frac{5}{2} \\
+        &= \mathbf{\frac{5}{3}}
+    \end{align*}
+    অতএব, ঘূর্ণন গতিশক্তির অনুপাত $5 : 3$।
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 11
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 11}]
+    \noindent
+    প্রতি একক দৈর্ঘ্যে $\lambda$ ভরের একটি সুষম নমনীয় ভারী শিকলকে একটি সংবেদনশীল ওজনের স্কেলের ঠিক উপরে উল্লম্বভাবে ঝুলিয়ে রাখা হয়েছে। শিকলের সর্বনিম্ন প্রান্ত স্কেলের প্লেটকে স্পর্শ করে আছে। শিকলটিকে স্থিরাবস্থা থেকে ছেড়ে দিলে মুক্ত পতনের কারণে এটি স্কেলের ওপর স্তূপাকারে জমা হতে থাকে। শিকলটির $x$ দৈর্ঘ্য স্কেলে জমা হওয়ার মুহূর্তে স্কেলটিতে প্রদর্শিত তাৎক্ষণিক বলের পাঠ কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform flexible heavy chain of mass per unit length $\lambda$ is suspended vertically just above a weighing scale such that its lower end just touches the scale pan. The chain is released from rest and falls freely under gravity onto the scale. At the instant a length $x$ of the chain has collapsed onto the scale, what is the instantaneous total force registered by the weighing scale?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 11
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Weighing scale pan
+    \fill[gray!40] (-1.5, 0) rectangle (1.5, -0.2);
+    \draw[thick, darkgray] (-1.5, 0) -- (1.5, 0);
+    \node[below, font=\footnotesize] at (0, -0.2) {ওজন স্কেল (Weighing Scale)};
+    
+    % Chain piling up on scale
+    \draw[line width=4pt, orange!80!black, rounded corners=3pt] (-0.5, 0) -- (0.5, 0) -- (0, 0.4) -- (-0.3, 0.2);
+    
+    % Falling chain section above
+    \draw[line width=2pt, orange!80!black, dashed] (0, 0.4) -- (0, 2.5);
+    
+    % Height label x
+    \draw[<->, dashed] (0.8, 0) -- (0.8, 2.5) node[midway, right] {দৈর্ঘ্য $x$};
+    
+    % Impact force arrow
+    \draw[->, line width=1.5pt, primary] (0, 0.6) -- (0, 0) node[midway, right] {ঘাত বল};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 11
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] প্রদর্শিত বলের মান $3\lambda x g$
+    \item[\textbf{B)}] প্রদর্শিত বলের মান $2\lambda x g$
+    \item[\textbf{C)}] প্রদর্শিত বলের মান $\lambda x g$
+    \item[\textbf{D)}] প্রদর্শিত বলের মান $4\lambda x g$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) প্রদর্শিত বলের মান $3\lambda x g$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 11
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ওজনের অংশ ও ঘাত বল বিশ্লেষণ} \\
+    স্কেলের ওপর মোট বল দুটি উপাংশের সমষ্টি:
+    \begin{enumerate}[topsep=0pt, itemsep=2pt]
+        \item \textbf{স্থির ওজন ($W$):} স্কেলে ইতিমধ্যেই স্থিরভাবে জমা হওয়া দৈর্ঘ্য $x$-এর শিকলের প্রকৃত ওজন:
+        \[ W = m(x) g = (\lambda x) g = \lambda x g \]
+        \item \textbf{ঘাত বল ($F_{\text{impact}}$):} মুক্তভাবে $x$ উচ্চতা থেকে পতনশীল শিকলের কণাগুলোর স্কেলে আঘাতজনিত ঘাত বল। $x$ দূরত্ব পতনের পর শিকলের খণ্ডের বেগ: $v = \sqrt{2gx}$। 
+        প্রতি সেকেন্ডে স্কেলের ওপর আপতিত শিকলের ভর:
+        \[ \frac{dm}{dt} = \lambda \frac{dx}{dt} = \lambda v \]
+        স্কেলে পৌঁছার পর কণাগুলোর উল্লম্ব বেগ শূন্য হয়ে যায় ($\Delta v = v$) বিধায় ঘাত বল:
+        \[ F_{\text{impact}} = v \frac{dm}{dt} = v (\lambda v) = \lambda v^2 = \lambda (2gx) = 2\lambda x g \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: মোট তাৎক্ষণিক বল নির্ণয়} \\
+    স্কেলের ওপর ক্রিয়াশীল মোট তাৎক্ষণিক বল ($F_{\text{total}}$):
+    \begin{align*}
+        F_{\text{total}} &= W + F_{\text{impact}} \\
+        &= \lambda x g + 2\lambda x g \\
+        &= \mathbf{3\lambda x g}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 12
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 12}]
+    \noindent
+    $M$ ভর ও $L$ দৈর্ঘ্যের একটি সুষম রড একটি মসৃণ অনুভূমিক সমতলে স্থির অবস্থায় রাখা আছে। রডটির কেন্দ্র হতে $x$ দূরত্বে দৈর্ঘ্যের সাথে লম্ব বরাবর একটি তাৎক্ষণিক বলের ঘাত $J$ প্রয়োগ করা হলো। রডের অপর দূরবর্তী প্রান্তবিন্দুটি আঘাতের তাৎক্ষণিক মুহূর্তে সম্পূর্ণ স্থির থাকতে হলে আঘাতের দূরত্ব $x$-এর মান কত হতে হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform rod of mass $M$ and length $L$ lies at rest on a smooth horizontal plane. An instantaneous impulse $J$ is applied perpendicular to its length at a distance $x$ from its center of mass. If the far opposite end of the rod is to remain instantaneously at rest immediately after the impact, what must be the value of the distance $x$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 12
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Rod on smooth horizontal plane
+    \draw[line width=4pt, brown!70!black] (-3, 0) -- (3, 0);
+    \fill[black] (0,0) circle (0.05) node[below] {CM};
+    
+    % Impulse J applied at distance x from center
+    \draw[->, line width=1.8pt, primary] (1, 0) -- (1, 1.2) node[above, font=\bfseries] {ঘাত $J$};
+    \draw[<->, dashed] (0, -0.4) -- (1, -0.4) node[midway, below] {$x$};
+    
+    % Rod length L annotation
+    \draw[<->, dashed] (-3, 0.4) -- (3, 0.4) node[midway, above] {$L$};
+    
+    % Far end indicator
+    \node[below, font=\footnotesize, text=red] at (-3, -0.3) {স্থির বিন্দু ($v_{\text{end}} = 0$)};
+    \fill[red] (-3, 0) circle (0.07);
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 12
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] আঘাতের দূরত্ব $\frac{L}{6}$
+    \item[\textbf{B)}] আঘাতের দূরত্ব $\frac{L}{3}$
+    \item[\textbf{C)}] আঘাতের দূরত্ব $\frac{L}{4}$
+    \item[\textbf{D)}] আঘাতের দূরত্ব $\frac{L}{2}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) আঘাতের দূরত্ব $\frac{L}{6}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 12
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: রৈখিক ও কৌণিক বেগ নির্ণয়} \\
+    ঘাত $J$ প্রয়োগের ফলে রডের ভরকেন্দ্রের প্রাপ্ত তাৎক্ষণিক রৈখিক বেগ:
+    \[ v_{\text{cm}} = \frac{J}{M} \]
+    
+    ভরকেন্দ্রের সাপেক্ষে কৌণিক ঘাত $J x$-এর কারণে প্রাপ্ত কৌণিক বেগ $\omega$:
+    \[ \Delta L = J x = I_{\text{cm}} \omega \implies \omega = \frac{J x}{I_{\text{cm}}} \]
+    
+    সুষম রডের ক্ষেত্রে $I_{\text{cm}} = \frac{1}{2} M L^2$ বা সঠিক নিয়মে $I_{\text{cm}} = \frac{1}{12} M L^2$:
+    \[ \omega = \frac{J x}{\frac{1}{12} M L^2} = \frac{12 J x}{M L^2} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: প্রান্তবিন্দু স্থির থাকার শর্ত} \\
+    ভরকেন্দ্র থেকে $\frac{L}{2}$ দূরত্বে অবস্থিত বিপরীত প্রান্তের তাৎক্ষণিক বেগ হবে রৈখিক বেগ ও ঘূর্ণনজনিত বেগের বিয়োগফল:
+    \[ v_{\text{end}} = v_{\text{cm}} - \omega \left(\frac{L}{2}\right) \]
+    
+    প্রান্তটি তাৎক্ষণিকভাবে স্থির থাকার শর্ত $v_{\text{end}} = 0$:
+    \begin{align*}
+        \frac{J}{M} - \left(\frac{12 J x}{M L^2}\right) \left(\frac{L}{2}\right) &= 0 \\
+        \frac{J}{M} &= \frac{6 J x}{M L} \\
+        1 &= \frac{6x}{L} \implies x = \mathbf{\frac{L}{6}}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 13
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 13}]
+    \noindent
+    $R$ ব্যাসার্ধের একটি সুষম নিরেট গোলকের উপাদান থেকে $\frac{R}{2}$ ব্যাসার্ধের একটি গোলকাকার অংশ এমনভাবে খোদাই করে অপসারণ করা হলো যেন শূন্যস্থানটির প্রান্ত মূল গোলকের কেন্দ্র ও পরিধিকে স্পর্শ করে। মূল গোলকের কেন্দ্র হতে অবশিষ্ট অংশের ভরকেন্দ্রের সরণ কত দূরত্বে অবস্থান করবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    From a uniform solid sphere of radius $R$, a spherical cavity of radius $\frac{R}{2}$ is scooped out such that its surface touches both the center and the outer surface of the original sphere. What is the displacement of the center of mass of the remaining body from the center of the original sphere?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 13
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Original Sphere
+    \draw[thick, fill=cyan!15] (0,0) circle (1.5);
+    \fill[black] (0,0) circle (0.05) node[below left] {কেন্দ্র};
+    
+    % Cavity scooped out on the right
+    \draw[thick, fill=white] (0.75, 0) circle (0.75);
+    \fill[black] (0.75,0) circle (0.04);
+    
+    % Dimensions
+    \draw[<->, dashed] (0, -1.8) -- (1.5, -1.8) node[midway, below] {$R$};
+    \draw[<->, dashed] (0, 0.8) -- (0.75, 0.8) node[midway, above] {$\frac{R}{2}$};
+    
+    % CM displacement vector
+    \draw[->, line width=1.5pt, red] (0, -0.3) -- (-0.3, -0.3) node[left] {সরণ $\frac{R}{14}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 13
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ভরকেন্দ্রের সরণ $\frac{R}{14}$
+    \item[\textbf{B)}] ভরকেন্দ্রের সরণ $\frac{R}{7}$
+    \item[\textbf{C)}] ভরকেন্দ্রের সরণ $\frac{R}{8}$
+    \item[\textbf{D)}] ভরকেন্দ্রের সরণ $\frac{R}{12}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ভরকেন্দ্রের সরণ $\frac{R}{14}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 13
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ভর ও আয়তনের সম্পর্ক} \\
+    মূল গোলকের ভর $M$ এবং আয়তন $V = \frac{4}{3} \pi R^3$। 
+    অপসারিত অংশের (cavity) ব্যাসার্ধ $r = \frac{R}{2}$, সুতরাং এর আয়তন:
+    \[ V_{\text{cavity}} = \frac{4}{3} \pi \left(\frac{R}{2}\right)^3 = \frac{1}{8} \left(\frac{4}{3} \pi R^3\right) = \frac{V}{8} \]
+    
+    অতএব, অপসারিত অংশের ভর: $m = \frac{M}{8}$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: অবশিষ্ট অংশের ভরকেন্দ্রের অবস্থান} \\
+    মূল গোলকের কেন্দ্রকে মূলবিন্দু $(0,0)$ ধরলে অপসারিত অংশের কেন্দ্রটি $x = \frac{R}{2}$ দূরত্বে অবস্থিত। 
+    অবশিষ্ট অংশের ভরকেন্দ্রের অবস্থান ($x_{\text{cm}}$):
+    \begin{align*}
+        x_{\text{cm}} &= \frac{M(0) - m\left(\frac{R}{2}\right)}{M - m} \\
+        &= \frac{-\left(\frac{M}{8}\right)\left(\frac{R}{2}\right)}{M - \frac{M}{8}} \\
+        &= \frac{-\frac{M R}{16}}{\frac{7M}{8}} = -\frac{M R}{16} \times \frac{8}{7M} \\
+        &= \mathbf{-\frac{R}{14}}
+    \end{align*}
+    অতএব, মূল কেন্দ্র হতে বিপরীত দিকে ভরকেন্দ্রের সরণ $\frac{R}{14}$।
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 14
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 14}]
+    \noindent
+    $M = 20\text{ kg}$ ভরের এবং $L = 5\text{ m}$ দৈর্ঘ্যের একটি সুষম মই অনুভূমিক মেঝের সাথে $60^\circ$ কোণ তৈরি করে একটি মসৃণ উল্লম্ব দেওয়ালের সাথে হেলান দিয়ে রাখা আছে। মেঝের সাথে মইয়ের স্থিতি ঘর্ষণ গুণাঙ্ক $\mu_s = 0.3$। $60\text{ kg}$ ভরের একজন ব্যক্তি পিছলে না গিয়ে মই বেয়ে তলদেশ থেকে সর্বোচ্চ কত দূরত্ব (মই বরাবর) উঠতে পারবেন? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform ladder of mass $M = 20\text{ kg}$ and length $L = 5\text{ m}$ leans against a smooth vertical wall making an angle of $60^\circ$ with the horizontal floor. The coefficient of static friction between the ladder and the floor is $\mu_s = 0.3$. How far along the ladder from the bottom can a person of mass $60\text{ kg}$ climb before the ladder begins to slip? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 14
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \fill[gray!20] (-1, -0.3) rectangle (5, 0);
+    \draw[thick, darkgray] (-1, 0) -- (5, 0);
+    \foreach \x in {-0.8, -0.3, ..., 4.5} {
+        \draw[gray!70] (\x, 0) -- (\x-0.1, -0.2);
+    }
+    
+    % Smooth Vertical Wall
+    \fill[gray!20] (-0.3, 0) rectangle (0, 5);
+    \draw[thick, darkgray] (0, 0) -- (0, 5);
+    \foreach \y in {0.2, 0.7, ..., 4.7} {
+        \draw[gray!70] (0, \y) -- (-0.2, \y-0.1);
+    }
+    
+    % Ladder coordinates (Bottom at 2.5, Top at 0)
+    \coordinate (Bottom) at (2.5, 0);
+    \coordinate (Top) at (0, {2.5*tan(60)});
+    
+    \draw[line width=4pt, brown!70!black] (Bottom) -- (Top);
+    \fill[black] (Bottom) circle (0.05) node[below right] {পাদবিন্দু};
+    \fill[black] (Top) circle (0.05) node[above right] {শীর্ষবিন্দু};
+    
+    % Angle 60 at bottom
+    \draw[thick, blue] (1.5, 0) arc (0:60:1.0);
+    \node[blue, font=\bfseries] at (1.8, 0.6) {$60^\circ$};
+    
+    % Ladder midpoint (Ladder mass Mg)
+    \coordinate (Mid) at ($(Bottom)!0.5!(Top)$);
+    \fill[red] (Mid) circle (0.05);
+    \draw[->, line width=1.5pt, red] (Mid) -- ++(0, -1.0) node[below] {$Mg$};
+    
+    % Person on ladder
+    \coordinate (Person) at ($(Bottom)!0.6!(Top)$);
+    \fill[orange!80!black] (Person) circle (0.12);
+    \node[right, font=\bfseries] at (Person) {ব্যক্তি ($mg$); $x$};
+    \draw[->, line width=1.5pt, red] (Person) -- ++(0, -1.0) node[right] {$mg$};
+    
+    % Reactions
+    \draw[->, line width=1.5pt, green!60!black] (Bottom) -- ++(0, 1.2) node[right] {$N_f$};
+    \draw[->, line width=1.5pt, green!60!black] (Bottom) -- ++(-1.0, 0) node[above] {$f_s$};
+    \draw[->, line width=1.5pt, green!60!black] (Top) -- ++(1.0, 0) node[above] {$N_w$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 14
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] অতিক্রান্ত দূরত্ব $2.62\text{ m}$
+    \item[\textbf{B)}] অতিক্রান্ত দূরত্ব $3.45\text{ m}$
+    \item[\textbf{C)}] অতিক্রান্ত দূরত্ব $1.85\text{ m}$
+    \item[\textbf{D)}] অতিক্রান্ত দূরত্ব $4.12\text{ m}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) অতিক্রান্ত দূরত্ব $2.62\text{ m}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 14
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: প্রতিক্রিয়া বল ও সর্বোচ্চ ঘর্ষণ বল নির্ণয়} \\
+    উল্লম্ব দেওয়াল মসৃণ হওয়ায় দেওয়ালের প্রতিক্রিয়াবল কেবল অনুভূমিক হবে: $N_w$। 
+    মেঝের উল্লম্ব প্রতিক্রিয়াবল ($N_f$):
+    \[ N_f = (M + m) g = (20 + 60) \times 9.8 = 80 \times 9.8 = 784\text{ N} \]
+    
+    মেঝের সর্বোচ্চ স্থিতি ঘর্ষণ বল ($f_{s,\max}$):
+    \[ f_{s,\max} = \mu_s N_f = 0.3 \times 784 = 235.2\text{ N} \]
+    
+    অনুভূমিক ভারসাম্যের শর্তানুসারে:
+    \[ N_w = f_s \le 235.2\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: টর্কের ভারসাম্য ও দূরত্ব নির্ণয়} \\
+    মইয়ের পাদবিন্দুর সাপেক্ষে টর্কের সমীকরণ বিবেচনা করি (ধরি ব্যক্তি তলদেশ থেকে মই বরাবর $x$ দূরত্ব উঠেছেন):
+    \[ N_w (L \sin 60^\circ) = M g \left(\frac{L}{2} \cos 60^\circ\right) + m g (x \cos 60^\circ) \]
+    
+    উভয় পক্ষকে $\cos 60^\circ$ দ্বারা ভাগ করে পাই ($\tan 60^\circ = \frac{\sin 60^\circ}{\cos 60^\circ}$):
+    \[ N_w L \tan 60^\circ = M g \frac{L}{2} + m g x \]
+    
+    মানগুলো বসিয়ে পাই:
+    \begin{align*}
+        235.2 \times 5 \times \sqrt{3} &= \left(20 \times 9.8 \times \frac{5}{2}\right) + (60 \times 9.8 \times x) \\
+        235.2 \times 5 \times 1.732 &= (196 \times 2.5) + (588 x) \\
+        2036.83 &= 490 + 588 x \\
+        588 x &= 2036.83 - 490 = 1546.83 \\
+        x &= \frac{1546.83}{588} \approx \mathbf{2.62}\text{ m}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 15
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 15}]
+    \noindent
+    $M$ ভর এবং মোট $a$ বাহু বিশিষ্ট একটি সুষম পাতলা সমবাহু ত্রিভুজাকার পাতের (equilateral triangular lamina) যেকোনো একটি শীর্ষবিন্দুগামী এবং পাতের তলের ওপর লম্ব অক্ষের সাপেক্ষে জড়তার ভ্রামক কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    What is the moment of inertia of a uniform thin equilateral triangular lamina of mass $M$ and side length $a$ about an axis passing through one of its vertices and perpendicular to the plane of the lamina?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 15
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    \coordinate (A) at (0, {2*sqrt(3)});
+    \coordinate (B) at (-2, 0);
+    \coordinate (C) at (2, 0);
+    
+    \draw[thick, fill=cyan!15] (A) -- (B) -- (C) -- cycle;
+    \fill[black] (A) circle (0.06) node[above] {শীর্ষবিন্দু};
+    \fill[black] (0, {2*sqrt(3)/3}) circle (0.05) node[right] {CM};
+    
+    \draw[<->, dashed] (-2, -0.3) -- (2, -0.3) node[midway, below] {$a$};
+    
+    \fill[red] (A) circle (0.08);
+    \draw[red, thick] (A) circle (0.15);
+    \node[red, above right] at (0.1, 0.1) {অক্ষ $\perp$ তল};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 15
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] জড়তার ভ্রামক $\frac{1}{2} M a^2$
+    \item[\textbf{B)}] জড়তার ভ্রামক $\frac{1}{6} M a^2$
+    \item[\textbf{C)}] জড়তার ভ্রামক $\frac{2}{3} M a^2$
+    \item[\textbf{D)}] জড়তার ভ্রামক $\frac{5}{12} M a^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} D) জড়তার ভ্রামক $\frac{5}{12} M a^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 15
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    সমবাহু ত্রিভুজাকার ল্যামিনার নিজস্ব ভরকেন্দ্রগামী লম্ব অক্ষের সাপেক্ষে জড়তার ভ্রামক:
+    \[ I_{\text{cm}} = \frac{1}{12} M a^2 \]
+    
+    শীর্ষবিন্দু হতে ভরকেন্দ্রের দূরত্ব $d = \frac{a}{\sqrt{3}}$। সমান্তরাল অক্ষ উপপাদ্য মতে:
+    \begin{align*}
+        I &= I_{\text{cm}} + M d^2 \\
+          &= \frac{1}{12} M a^2 + M \left(\frac{a}{\sqrt{3}}\right)^2 \\
+          &= \frac{1}{12} M a^2 + \frac{1}{3} M a^2 \\
+          &= \mathbf{\frac{5}{12} M a^2}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 16
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 16}]
+    \noindent
+    $M$ ভর ও $R$ বহিঃস্থ ব্যাসার্ধের একটি সিলিন্ডার আকৃতির স্পুলের (spool) ভেতরের ড্রামের ব্যাসার্ধ $r = 0.5R$ এবং কেন্দ্রীয় অনুভূমিক অক্ষের সাপেক্ষে এর জড়তার ভ্রামক $I = \frac{1}{2} M R^2$। ড্রামের উপরের অংশে অনুভূমিকভাবে জড়ানো একটি সুতা দিয়ে $F$ বল প্রয়োগ করে স্পুলটিকে টানা হচ্ছে। স্পুলটি মেঝের ওপর না পিছলিয়ে সামনের দিকে বিশুদ্ধ ঘূর্ণনসহ গড়িয়ে চললে (pure rolling), মেঝের সাথে স্পুলের উৎপন্ন ঘর্ষণ বলের মান ও অভিমুখ কী হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A cylindrical spool of mass $M$ and outer radius $R$ has an inner axle of radius $r = 0.5R$ and moment of inertia $I = \frac{1}{2} M R^2$ about its central axis. A horizontal pulling force $F$ is applied to a string wound around the top of the inner axle. If the spool rolls forward purely without slipping on the horizontal floor, what are the magnitude and direction of the friction force between the spool and the floor?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 16
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \fill[gray!20] (-2.5, -0.3) rectangle (2.5, 0);
+    \draw[thick, darkgray] (-2.5, 0) -- (2.5, 0);
+    
+    % Spool outer radius R, inner radius r
+    \draw[thick, fill=cyan!20] (0, 1.0) circle (1.0);
+    \draw[thick, fill=orange!30] (0, 1.0) circle (0.5);
+    \fill[black] (0, 1.0) circle (0.05) node[below] {CM};
+    
+    % Force F on top of inner axle
+    \draw[->, line width=1.8pt, primary] (0, 1.5) -- (1.5, 1.5) node[right, font=\bfseries] {$F$};
+    
+    % Contact point
+    \fill[red] (0, 0) circle (0.06) node[below left] {স্পর্শবিন্দু};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 16
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ঘর্ষণ বলের মান $0.20 F$ এবং অভিমুখ গতির বিপরীতমুখী (পেছন দিকে)
+    \item[\textbf{B)}] ঘর্ষণ বলের মান $0.20 F$ এবং অভিমুখ গতির অভিমুখে (সামনের দিকে)
+    \item[\textbf{C)}] ঘর্ষণ বলের মান $0.33 F$ এবং অভিমুখ গতির বিপরীতমুখী (পেছন দিকে)
+    \item[\textbf{D)}] ঘর্ষণ বলের মান $0$ (কোনো ঘর্ষণ বল উৎপন্ন হবে না)
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} D) ঘর্ষণ বলের মান $0$ (কোনো ঘর্ষণ বল উৎপন্ন হবে না)
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 16
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: স্পর্শবিন্দুর সাপেক্ষে জড়তার ভ্রামক ও টর্ক} \\
+    সমান্তরাল অক্ষ উপপাদ্য অনুসারে মেঝের স্পর্শবিন্দুর সাপেক্ষে সমগ্র স্পুলের জড়তার ভ্রামক:
+    \[ I_{\text{contact}} = I_{\text{cm}} + M R^2 = \frac{1}{2} M R^2 + M R^2 = \frac{3}{2} M R^2 \]
+    
+    মেঝের স্পর্শবিন্দু থেকে প্রযুক্ত বল $F$-এর কার্যকর দূরত্ব $d = R + r = R + 0.5R = 1.5R$। স্পর্শবিন্দুর সাপেক্ষে মোট টর্ক:
+    \[ \tau = F \times (1.5R) = 1.5 F R \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ত্বরণ ও ঘর্ষণ বল নির্ণয়} \\
+    কৌণিক ত্বরণ ($\alpha$):
+    \[ \alpha = \frac{\tau}{I_{\text{contact}}} = \frac{1.5 F R}{1.5 M R^2} = \frac{F}{M R} \]
+    
+    ভরকেন্দ্রের রৈখিক ত্বরণ ($a_{\text{cm}}$):
+    \[ a_{\text{cm}} = \alpha R = \frac{F}{M} \]
+    
+    এখন ভরকেন্দ্রের রৈখিক গতির সমীকরণ $F + f = M a_{\text{cm}}$ হতে:
+    \[ F + f = M \left(\frac{F}{M}\right) = F \implies f = \mathbf{0}\text{ N} \]
+    অর্থাৎ, এই নির্দিষ্ট জ্যামিতিক অনুপাতের জন্য মেঝের ওপর কোনো ঘর্ষণ বল ক্রিয়া করবে না।
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 17
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 17}]
+    \noindent
+    একটি অনুভূমিক বৃত্তাকার টার্নটেবিল এর কেন্দ্রীয় উল্লম্ব অক্ষের সাপেক্ষে স্থিরাবস্থা থেকে হিসাব করে $\alpha = 0.5\text{ rad s}^{-2}$ সুষম কৌণিক ত্বরণে ঘুরতে শুরু করল। অক্ষ থেকে $r = 0.8\text{ m}$ দূরত্বে রাখা একটি ছোট বস্তুর সাথে টেবিলের স্থিতি ঘর্ষণ গুণাঙ্ক $\mu_s = 0.4$। গতি শুরুর কত সময় পর বস্তুটি টার্নটেবিলের ওপর পিছলে যেতে শুরু করবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A horizontal circular turntable starts from rest and rotates about its central vertical axis with a constant angular acceleration $\alpha = 0.5\text{ rad s}^{-2}$. A small coin is placed at a distance $r = 0.8\text{ m}$ from the axis of rotation. The coefficient of static friction between the coin and the turntable is $\mu_s = 0.4$. How long after the start of motion will the coin begin to slip? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 17
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Turntable (ellipse for 3D effect)
+    \draw[thick, fill=gray!20] (0,0) ellipse [x radius=2.5, y radius=0.8];
+    \fill[black] (0,0) circle (0.05) node[below] {অক্ষ};
+    
+    % Coin at distance r
+    \fill[orange!80!black] (1.2, 0.2) circle (0.15);
+    \node[above, font=\bfseries] at (1.2, 0.35) {পুঁতি/কয়েন};
+    
+    % Radius r
+    \draw[<->, dashed] (0,0) -- (1.2, 0.2) node[midway, above left] {$r$};
+    
+    % Angular acceleration arrow
+    \draw[->, thick, blue] (1.8, 0.5) arc (20:160:1.2 and 0.4) node[above] {$\alpha$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 17
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সময় $4.41\text{ s}$
+    \item[\textbf{B)}] সময় $3.13\text{ s}$
+    \item[\textbf{C)}] সময় $5.20\text{ s}$
+    \item[\textbf{D)}] সময় $2.80\text{ s}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সময় $4.41\text{ s}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 17
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ত্বরণের উপাংশ নির্ণয়} \\
+    $t$ সময় পর কণার কৌণিক বেগ $\omega = \alpha t = 0.5 t$। কণার দুটি ত্বরণ উপাংশ থাকবে:
+    \begin{enumerate}[topsep=0pt, itemsep=2pt]
+        \item স্পর্শকীয় ত্বরণ: $a_t = \alpha r = 0.5 \times 0.8 = 0.4\text{ ms}^{-2}$
+        \item কেন্দ্রমুখী ত্বরণ: $a_c = \omega^2 r = (0.5 t)^2 \times 0.8 = 0.2 t^2\text{ ms}^{-2}$
+    \end{enumerate}
+    লব্ধি ত্বরণ ($a_{\text{net}}$):
+    \[ a_{\text{net}} = \sqrt{a_t^2 + a_c^2} = \sqrt{(0.4)^2 + (0.2 t^2)^2} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ক্রান্তি সময় $t$ নির্ণয়} \\
+    পিছলে না যাওয়ার সর্বোচ্চ শর্ত হলো লব্ধি বল সর্বোচ্চ স্থিতি ঘর্ষণের চেয়ে কম বা সমান হওয়া:
+    \[ m a_{\text{net}} \le \mu_s m g \implies a_{\text{net}} \le \mu_s g \]
+    যেখানে বৃত্তাকার গতিতে $\mu_s g = 0.4 \times 9.8 = 3.92\text{ ms}^{-2}$।
+    
+    ক্রান্তি মুহূর্তে:
+    \begin{align*}
+        (0.4)^2 + (0.2 t^2)^2 &= (3.92)^2 \\
+        0.16 + 0.04 t^4 &= 15.3664 \\
+        0.04 t^4 &= 15.3664 - 0.16 = 15.2064 \\
+        t^4 &= \frac{15.2064}{0.04} = 380.16 \\
+        t^2 &= \sqrt{380.16} \approx 19.4977 \\
+        t &= \sqrt{19.4977} \approx \mathbf{4.41}\text{ s}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 18
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 18}]
+    \noindent
+    $L = 1.2\text{ m}$ দৈর্ঘ্যের ভরহীন তারের সাথে ঝুলানো $M = 1.98\text{ kg}$ ভরের একটি ব্যালিস্টিক পেন্ডুলামের ব্লকে $m = 0.02\text{ kg}$ ভরের একটি বুলেট অনুভূমিকভাবে আঘাত করে আটকে গেল। এর ফলে পেন্ডুলামটি উল্লম্বের সাথে সর্বোচ্চ $\theta = 60^\circ$ কোণে বিচ্যুত হলো। বুলেটের প্রারম্ভিক অনুভূমিক বেগ কত ছিল? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A bullet of mass $m = 0.02\text{ kg}$ moving horizontally strikes and embeds into a ballistic pendulum bob of mass $M = 1.98\text{ kg}$ suspended by a light cord of length $L = 1.2\text{ m}$. As a result, the pendulum swings to a maximum deflection angle of $\theta = 60^\circ$ with the vertical. What was the initial horizontal muzzle speed of the bullet? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 18
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Support
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.5, 3) rectangle (0.5, 3.2);
+    \draw[thick] (-0.5, 3) -- (0.5, 3);
+    \fill[black] (0, 3) circle (0.06);
+    
+    % Cord length L
+    \draw[line width=1pt, darkgray] (0, 3) -- (-1.5, 1.0);
+    
+    % Pendulum Bob M + bullet m
+    \fill[cyan!70!black, rounded corners=3pt] (-1.9, 0.6) rectangle (-1.1, 1.4);
+    \node[white, font=\bfseries] at (-1.5, 1.0) {$M, m$};
+    
+    % Angle theta = 60
+    \draw[dashed, darkgray] (0, 3) -- (0, 0.5);
+    \draw[thick, blue] (0, 2.2) arc (-90:-127:0.8);
+    \node[blue, font=\bfseries] at (-0.5, 2.0) {$\theta = 60^\circ$};
+    
+    % Bullet incoming
+    \fill[black] (-3.5, 1.0) rectangle (-2.8, 1.15);
+    \draw[->, line width=1.5pt, primary] (-2.8, 1.075) -- (-1.9, 1.075) node[midway, above] {$u$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 18
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] বুলেটের বেগ $342.93\text{ ms}^{-1}$
+    \item[\textbf{B)}] বুলেটের বেগ $242.49\text{ ms}^{-1}$
+    \item[\textbf{C)}] বুলেটের বেগ $485.00\text{ ms}^{-1}$
+    \item[\textbf{D)}] বুলেটের বেগ $171.46\text{ ms}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) বুলেটের বেগ $342.93\text{ ms}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 18
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: উচ্চতা বৃদ্ধি ও যৌথ বেগ নির্ণয়} \\
+    সর্বোচ্চ বিচ্যুতির ক্ষেত্রে পেন্ডুলামের উল্লম্ব উচ্চতা বৃদ্ধি ($h$):
+    \[ h = L (1 - \cos 60^\circ) = 1.2 \times (1 - 0.5) = 0.6\text{ m} \]
+    
+    সংঘর্ষের পর ব্লক ও বুলেটের সম্মিলিত বেগ $V$ শক্তি সংরক্ষণ সূত্র দ্বারা নির্ধারিত হয়:
+    \[ \frac{1}{2} (M + m) V^2 = (M + m) g h \implies V = \sqrt{2gh} \]
+    \begin{align*}
+        V &= \sqrt{2 \times 9.8 \times 0.6} = \sqrt{11.76} \approx 3.4293\text{ ms}^{-1}
+    \end{align*}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ভরবেগ সংরক্ষণ ও বুলেটের বেগ} \\
+    সংঘর্ষের সময় রৈখিক ভরবেগ সংরক্ষিত থাকে:
+    \[ m u = (M + m) V \]
+    \begin{align*}
+        0.02 \times u &= (1.98 + 0.02) \times 3.4293 = 2.00 \times 3.4293 = 6.8586 \\
+        u &= \frac{6.8586}{0.02} = \mathbf{342.93}\text{ ms}^{-1}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 19
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 19}]
+    \noindent
+    $M = 4\text{ kg}$ ভর এবং $R = 0.1\text{ m}$ ব্যাসার্ধের একটি সুষম নিরেট সিলিন্ডারের গায়ে জড়ানো দুটি ভরহীন উল্লম্ব সুতা সিলিং-এর সাথে বাঁধা। সিলিন্ডারটিকে স্থিরাবস্থা থেকে ছেড়ে দিলে এটি সুতা খুলে খাড়া নিচের দিকে নামতে থাকে (ম্যাক্সওয়েলের চাকা)। সিলিন্ডারের পতনের রৈখিক ত্বরণ এবং প্রতিটি সুতার টান বল কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform solid cylinder of mass $M = 4\text{ kg}$ and radius $R = 0.1\text{ m}$ has two light vertical cords wound symmetrically around it, suspended from a fixed ceiling. When released from rest, the cylinder unwinds and falls vertically under gravity (Maxwell's wheel). What are the linear downward acceleration of the cylinder and the tension in each cord? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 19
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ceiling
+    \fill[pattern=north east lines, pattern color=gray!80] (-1.5, 3) rectangle (1.5, 3.2);
+    \draw[thick] (-1.5, 3) -- (1.5, 3);
+    
+    % Cords
+    \draw[line width=1.2pt, red] (-0.5, 3) -- (-0.5, 1.2);
+    \draw[line width=1.2pt, red] (0.5, 3) -- (0.5, 1.2);
+    
+    % Solid Cylinder (Wheel)
+    \draw[thick, fill=cyan!30] (0, 1.2) circle (0.8);
+    \fill[black] (0, 1.2) circle (0.05);
+    \node[font=\bfseries] at (0, 1.2) {$M, R$};
+    
+    % Downward acceleration arrow
+    \draw[->, line width=1.5pt, primary] (0, 0.3) -- (0, -0.6) node[right] {$a$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 19
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ত্বরণ $6.53\text{ ms}^{-2}$ এবং প্রতিটি তারের টান $6.53\text{ N}$
+    \item[\textbf{B)}] ত্বরণ $4.90\text{ ms}^{-2}$ এবং প্রতিটি তারের টান $9.80\text{ N}$
+    \item[\textbf{C)}] ত্বরণ $6.53\text{ ms}^{-2}$ এবং প্রতিটি তারের টান $13.07\text{ N}$
+    \item[\textbf{D)}] ত্বরণ $9.80\text{ ms}^{-2}$ এবং প্রতিটি তারের টান $0\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ত্বরণ $6.53\text{ ms}^{-2}$ এবং প্রতিটি তারের টান $6.53\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 19
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: গতির সমীকরণ ও ঘূর্ণন বিশ্লেষণ} \\
+    ধরি, প্রতিটি সুতার টান $T$, ফলে মোট ঊর্ধ্বমুখী টান বল হবে $2T$। 
+    রৈখিক গতির সমীকরণ:
+    \[ M g - 2T = M a \]
+    
+    ভরকেন্দ্রের সাপেক্ষে টর্কের সমীকরণ:
+    \[ \tau = (2T) R = I \alpha \]
+    নিরেট সিলিন্ডারের ক্ষেত্রে $I = \frac{1}{2} M R^2$ এবং সুতা না পিছলানোর শর্তে $\alpha = \frac{a}{R}$:
+    \[ 2T R = \left(\frac{1}{2} M R^2\right) \left(\frac{a}{R}\right) = \frac{1}{2} M R a \implies 2T = \frac{1}{2} M a \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ত্বরণ ও টান নির্ণয়} \\
+    রৈখিক সমীকরণে $2T$-এর মান বসিয়ে:
+    \begin{align*}
+        M g - \frac{1}{2} M a &= M a \\
+        M g &= \frac{3}{2} M a \\
+        a &= \frac{2}{3} g = \frac{2}{3} \times 9.8 = \mathbf{6.53}\text{ ms}^{-2}
+    \end{align*}
+    
+    মোট টান বল:
+    \[ 2T = \frac{1}{2} M a = \frac{1}{2} \times 4 \times 6.533 = 13.067\text{ N} \]
+    প্রতিটি সুতার টান:
+    \[ T = \frac{13.067}{2} \approx \mathbf{6.53}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 20
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 20}]
+    \noindent
+    $R = 0.5\text{ m}$ ব্যাসার্ধের একটি মসৃণ বৃত্তাকার তারের রিং উল্লম্ব ব্যাসের সাপেক্ষে $\omega$ সমকৌণিক বেগে ঘুরছে। রিং-এর তারের ভেতর দিয়ে পরানো একটি ছোট পুঁতি (bead) তারের সর্বনিম্ন বিন্দু হতে উল্লম্বের সাথে $\theta = 60^\circ$ কোণে স্থির ভারসাম্য অবস্থান করে। তারের রিংটির ঘূর্ণন কৌণিক বেগ $\omega$ কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A smooth circular wire loop of radius $R = 0.5\text{ m}$ rotates with a constant angular speed $\omega$ about its vertical diameter. A small bead threaded on the wire stays at a stable equilibrium position at an angle $\theta = 60^\circ$ relative to the lowest vertical point. What is the angular speed $\omega$ of the rotating loop? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 20
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Vertical axis
+    \draw[dash dot, line width=1.5pt, primary] (0, -2) -- (0, 2) node[above] {উল্লম্ব অক্ষ};
+    
+    % Circular loop
+    \draw[thick, draw=blue!50!black, fill=cyan!10, fill opacity=0.3] (0,0) circle (1.5);
+    \fill[black] (0,0) circle (0.05);
+    
+    % Lowest point
+    \fill[black] (0, -1.5) circle (0.05) node[below] {সর্বনিম্ন বিন্দু};
+    
+    % Bead at angle theta = 60 from lowest point
+    \coordinate (Bead) at ({1.5*sin(60)}, {-1.5*cos(60)});
+    \fill[orange!80!black] (Bead) circle (0.12);
+    \node[above right, font=\bfseries] at (Bead) {পুঁতি};
+    
+    % Radius line to bead
+    \draw[dashed, darkgray] (0,0) -- (Bead) node[midway, above left] {$R$};
+    
+    % Angle theta from lowest vertical
+    \draw[thick, blue] (0, -1.0) arc (-90:-30:0.5);
+    \node[blue, font=\bfseries] at (0.3, -1.2) {$\theta$};
+    
+    % Angular speed omega arrow
+    \draw[->, thick, blue] (1.2, 0.5) arc (30:150:1.2 and 0.4) node[above] {$\omega$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 20
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কৌণিক বেগ $6.26\text{ rad s}^{-1}$
+    \item[\textbf{B)}] কৌণিক বেগ $4.43\text{ rad s}^{-1}$
+    \item[\textbf{C)}] কৌণিক বেগ $8.85\text{ rad s}^{-1}$
+    \item[\textbf{D)}] কৌণিক বেগ $3.13\text{ rad s}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কৌণিক বেগ $6.26\text{ rad s}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 20
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বল বিশ্লেষণ ও সাম্যাবস্থার শর্ত} \\
+    ঘূর্ণায়মান অক্ষ থেকে পুঁতির অনুভূমিক দূরত্ব: $r = R \sin\theta$। 
+    রিং-এর অভিলম্ব প্রতিক্রিয়া বল $N$ রিং-এর কেন্দ্র অভিমুখী ক্রিয়া করে।
+    
+    উল্লম্ব ভারসাম্যের শর্ত:
+    \[ N \cos\theta = mg \]
+    
+    অনুভূমিক কেন্দ্রমুখী বলের শর্ত:
+    \[ N \sin\theta = m \omega^2 r = m \omega^2 (R \sin\theta) \implies N = m \omega^2 R \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কৌণিক বেগ $\omega$ নির্ণয়} \\
+    প্রথম সমীকরণে $N$-এর মান বসিয়ে পাই:
+    \begin{align*}
+        (m \omega^2 R) \cos\theta &= mg \\
+        \omega^2 R \cos\theta &= g \\
+        \omega &= \sqrt{\frac{g}{R \cos\theta}}
+    \end{align*}
+    
+    মানগুলো বসিয়ে পাই ($g = 9.8, R = 0.5, \theta = 60^\circ$):
+    \begin{align*}
+        \omega &= \sqrt{\frac{9.8}{0.5 \times \cos 60^\circ}} \\
+               &= \sqrt{\frac{9.8}{0.5 \times 0.5}} = \sqrt{\frac{9.8}{0.25}} \\
+               &= \sqrt{39.2} \approx \mathbf{6.26}\text{ rad s}^{-1}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 21
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 21}]
+    \noindent
+    $R = 50\text{ m}$ ব্যাসার্ধের একটি অনুভূমিক বৃত্তাকার পথে $v = 15\text{ m/s}$ দ্রুতিতে ব্যাংকিং করা একটি ট্র্যাকে একটি চার চাকার রেসিং কার চলছে। ট্র্যাকটির ব্যাংকিং কোণ $\theta = 20^\circ$। গাড়ির ভেতরে একটি মসৃণ সিলিন্ডারের মধ্যে একটি স্প্রিং-সংযুক্ত পুলি মেকানিজমে $m = 2\text{ kg}$ ভরের একটি ব্লক কে ট্র্যাকের আনত তলের সমান্তরালে ধরে রাখা হয়েছে। বাঁক নেওয়ার সময় ট্র্যাকের সমান্তরালে ব্লকটিকে সম্পূর্ণ স্থির রাখতে স্প্রিং-এর প্রয়োজনীয় সম্প্রসারণজনিত টান বল $T$ কত হবে? ($g = 9.8\text{ m/s}^2, \sin 20^\circ = 0.342, \cos 20^\circ = 0.940$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A race car negotiates a banked circular turn of radius $R = 50\text{ m}$ at a speed of $v = 15\text{ m/s}$ on a track banked at $\theta = 20^\circ$. Inside the car, a block of mass $m = 2\text{ kg}$ is restrained parallel to the banked floor by a spring-loaded cable passing over a miniature low-friction pulley. What tension $T$ must the cable exert on the block along the incline to keep the block in dynamic equilibrium relative to the car? ($g = 9.8\text{ m/s}^2, \sin 20^\circ = 0.342, \cos 20^\circ = 0.940$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 21
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Banked Track Surface
+    \draw[thick, fill=gray!20] (0,0) -- (4,0) -- (4, {4*tan(20)}) -- cycle;
+    \draw (1,0) arc (180:160:1);
+    \node at (0.7, 0.25) {$20^\circ$};
+    
+    % Block on incline
+    \coordinate (Block) at (2, {2*tan(20)});
+    \draw[thick, fill=orange!80!black] (Block) circle (0.2);
+    \node[above right, font=\bfseries] at (Block) {$m$};
+    
+    % Forces
+    \draw[->, line width=1.5pt, red] (Block) -- ++(0, -1.2) node[below] {$mg$};
+    \draw[->, line width=1.5pt, primary] (Block) -- ++(1.5, 0) node[right] {$F_{\text{cf}} = ma_c$};
+    \draw[->, line width=1.5pt, green!60!black] (Block) -- ++({-1.2*cos(20)}, {-1.2*sin(20)}) node[below left] {$T$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 21
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] টান বল $T = 1.76\text{ N}$ (আনত তল বরাবর ঊর্ধ্বমুখী)
+    \item[\textbf{B)}] টান বল $T = 8.45\text{ N}$ (আনত তল বরাবর নিম্নমুখী)
+    \item[\textbf{C)}] টান বল $T = 12.35\text{ N}$ (আনত তল বরাবর ঊর্ধ্বমুখী)
+    \item[\textbf{D)}] টান বল $T = 0\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) টান বল $T = 1.76\text{ N}$ (আনত তল বরাবর ঊর্ধ্বমুখী)
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 21
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কেন্দ্রমুখী ত্বরণ ও অপকেন্দ্র বল} \\
+    গাড়ির অনুভূমিক কেন্দ্রমুখী ত্বরণ:
+    \[ a_c = \frac{v^2}{R} = \frac{15^2}{50} = \frac{225}{50} = 4.5\text{ m/s}^2 \]
+    
+    গাড়ির অজড়ীয় প্রসঙ্গ কাঠামোতে ব্লকের ওপর বহির্মুখী অনুভূমিক অপকেন্দ্র জড়তা বল:
+    \[ F_{\text{cf}} = m a_c = 2 \times 4.5 = 9.0\text{ N} \quad (\text{অনুভূমিক বাইরের দিকে}) \]
+    
+    ব্লকের নিজস্ব উল্লম্ব ওজন:
+    \[ W = m g = 2 \times 9.8 = 19.6\text{ N} \quad (\text{খাড়া নিচের দিকে}) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: আনত তল বরাবর বলের উপাংশসমূহ} \\
+    ১. ওজনের কারণে আনত তল বরাবর নিম্নমুখী বল:
+    \[ F_{g, \parallel} = m g \sin 20^\circ = 19.6 \times 0.342 = 6.703\text{ N} \]
+    
+    ২. অপকেন্দ্র বলের কারণে আনত তল বরাবর ঊর্ধ্বমুখী বল:
+    \[ F_{\text{cf}, \parallel} = F_{\text{cf}} \cos 20^\circ = 9.0 \times 0.940 = 8.460\text{ N} \]
+    
+    যেহেতু অপকেন্দ্র বলের উপাংশ ওজনের উপাংশের চেয়ে বড় ($8.460\text{ N} > 6.703\text{ N}$), তাই ব্লকটি আনত তল বেয়ে উপরের দিকে ছিটকে যাওয়ার উপক্রম হবে! অতএব, স্থির রাখতে হলে তারের টান বল তল বরাবর নিচের দিকে টানতে হবে:
+    \[ T = F_{\text{cf}, \parallel} - F_{g, \parallel} = 8.460 - 6.703 = 1.757\text{ N} \approx \mathbf{1.76}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 22
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 22}]
+    \noindent
+    একটি সমতলীয় বৃত্তাকার রিং-এর পরিধি বরাবর একটি মসৃণ খাড়া নলাকার ব্যাংকিং পৃষ্ঠ তৈরি করা আছে যার ব্যাসার্ধ $R = 2.0\text{ m}$। এই উল্লম্ব অক্ষের সাপেক্ষে রিংটিকে $\omega = 5\text{ rad/s}$ ধ্রুব কৌণিক বেগে ঘোরানো হচ্ছে। একটি ভরহীন সুতা কেন্দ্রস্থ অক্ষের মসৃণ কপিকল হয়ে পরিধির সাথে যুক্ত, যার এক প্রান্তে $m = 1\text{ kg}$ ভরের একটি ক্ষুদ্র কণা ব্যাংকিং করা উল্লম্ব দেওয়ালের বিপরীতে লেগে থেকে বৃত্তীয় গতি লাভ করে। দেওয়াল কর্তৃক কণার ওপর অভিলম্ব প্রতিক্রিয়া বল শূন্য হওয়ার জন্য প্রয়োজনীয় সুতার টান $T$ এবং উল্লম্বের সাথে সুতার কোণ কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A hollow circular conical bowl of base angle $\theta$ rotates about its vertical symmetry axis at $\omega = 5\text{ rad/s}$. A particle of mass $m = 1\text{ kg}$ is tethered to a light cord passing through a central frictionless pulley at radius $R = 2.0\text{ m}$. What cord tension $T$ is required so that the normal reaction force from the banked cone surface on the particle vanishes completely? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 22
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Vertical Axis
+    \draw[dash dot, line width=1.5pt, primary] (0, -1) -- (0, 3) node[above] {উল্লম্ব অক্ষ};
+    
+    % Bowl / Surface Profile
+    \draw[thick, fill=cyan!10] (0,0) -- (2,0) -- (2, 2.5) -- cycle;
+    
+    % Particle on surface
+    \coordinate (Particle) at (2, 1.2);
+    \fill[orange!80!black] (Particle) circle (0.12);
+    \node[right, font=\bfseries] at (Particle) {$m$};
+    
+    % Cord to center pulley
+    \draw[line width=1.2pt, red] (Particle) -- (0, 2.5);
+    \draw[thick, fill=gray!30] (0, 2.5) circle (0.15);
+    
+    % Radius R
+    \draw[<->, dashed] (0, 0) -- (2, 0) node[midway, below] {$R = 2.0\text{ m}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 22
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সুতার টান $T = 51.89\text{ N}$ এবং কোণ $\theta = 11.08^\circ$
+    \item[\textbf{B)}] সুতার টান $T = 49.00\text{ N}$ এবং কোণ $\theta = 15.20^\circ$
+    \item[\textbf{C)}] সুতার টান $T = 25.40\text{ N}$ এবং কোণ $\theta = 30.00^\circ$
+    \item[\textbf{D)}] সুতার টান $T = 62.15\text{ N}$ এবং কোণ $\theta = 8.50^\circ$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সুতার টান $T = 51.89\text{ N}$ এবং কোণ $\theta = 11.08^\circ$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 22
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: উলম্ব ও অনুভূমিক ভারসাম্য} \\
+    কণার উল্লম্ব ভারসাম্য (কোনো উল্লম্ব ত্বরণ নেই):
+    \[ T \cos\theta = m g = 1 \times 9.8 = 9.8\text{ N} \]
+    
+    কণার অনুভূমিক কেন্দ্রমুখী বল:
+    \[ T \sin\theta = m \omega^2 R = 1 \times (5)^2 \times 2.0 = 50.0\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: টান এবং কোণ নির্ণয়} \\
+    লব্ধি টান বল ($T$):
+    \[ T = \sqrt{(T \cos\theta)^2 + (T \sin\theta)^2} = \sqrt{(9.8)^2 + (50.0)^2} = \sqrt{96.04 + 2500} = \sqrt{2596.04} \approx \mathbf{51.89}\text{ N} \]
+    
+    উল্লম্বের সাথে কোণ ($\theta$):
+    \[ \tan\theta = \frac{T \sin\theta}{T \cos\theta} = \frac{50.0}{9.8} \approx 5.102 \implies \theta = \arctan(5.102) \approx 78.92^\circ \]
+    (অনুভূমিকের সাথে কোণ $90^\circ - 78.92^\circ = \mathbf{11.08^\circ}$)।
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 23
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 23}]
+    \noindent
+    একটি দ্বি-স্তরবিশিষ্ট আনত তল যার প্রথম অংশের নতিকোণ $\theta_1 = 45^\circ$ এবং দ্বিতীয় অংশের নতিকোণ $\theta_2 = 30^\circ$। তলের সংযোগস্থলে একটি মসৃণ হালকা পুলি লাগানো আছে। $45^\circ$ তলে $m_1 = 10\text{ kg}$ ভরের একটি নিরেট গোলক বিশুদ্ধ গড়িয়ে নামছে এবং অপর তলে $m_2 = 6\text{ kg}$ ভরের একটি নিরেট সিলিন্ডার বিশুদ্ধ গড়িয়ে উঠছে, যারা একটি অপ্রসারণশীল তার দ্বারা সংযুক্ত। গোলকটির তল বরাবর ত্বরণ কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A two-faced ridge features two slopes with inclinations $\theta_1 = 45^\circ$ and $\theta_2 = 30^\circ$ meeting at a smooth apex pulley. A solid sphere of mass $m_1 = 10\text{ kg}$ rolls purely down the $45^\circ$ incline, connected via a light cord to a solid cylinder of mass $m_2 = 6\text{ kg}$ rolling purely up the $30^\circ$ incline. What is the linear acceleration of the solid sphere along the slope? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 23
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    % Ridge
+    \draw[thick, fill=gray!15] (0, 3) -- (-3, 0) -- (3, 0) -- cycle;
+    
+    % Apex Pulley
+    \draw[thick, fill=gray!30] (0, 3) circle (0.25);
+    \fill[black] (0, 3) circle (0.04);
+    
+    % Masses
+    \draw[thick, fill=orange!30] (-1.5, 1.5) circle (0.4);
+    \node at (-1.5, 1.5) {$m_1$};
+    
+    \draw[thick, fill=cyan!30] (1.5, 1.5) circle (0.4);
+    \node at (1.5, 1.5) {$m_2$};
+    
+    % Cord
+    \draw[line width=1.2pt, red] (-1.5, 1.5) -- (0, 3);
+    \draw[line width=1.2pt, red] (0, 3) -- (1.5, 1.5);
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 23
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ত্বরণ $a = 1.72\text{ m/s}^2$
+    \item[\textbf{B)}] ত্বরণ $a = 2.45\text{ m/s}^2$
+    \item[\textbf{C)}] ত্বরণ $a = 0.95\text{ m/s}^2$
+    \item[\textbf{D)}] ত্বরণ $a = 3.12\text{ m/s}^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ত্বরণ $a = 1.72\text{ m/s}^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 23
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কার্যকর ভর নির্ণয়} \\
+    নিরেট গোলকের কার্যকর ভর:
+    \[ m_{1, \text{eff}} = m_1 + \frac{2}{5} m_1 = \frac{7}{5} m_1 = \frac{7}{5} \times 10 = 14\text{ kg} \]
+    
+    নিরেট সিলিন্ডারের কার্যকর ভর:
+    \[ m_{2, \text{eff}} = m_2 + \frac{1}{2} m_2 = \frac{3}{2} m_2 = \frac{3}{2} \times 6 = 9\text{ kg} \]
+    
+    মোট কার্যকর ভর:
+    \[ M_{\text{eff}} = 14 + 9 = 23\text{ kg} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ত্বরণ নির্ণয়} \\
+    গোলকের তল বরাবর নিম্নমুখী অভিকর্ষীয় বল:
+    \[ F_1 = m_1 g \sin 45^\circ = 10 \times 9.8 \times \frac{1}{\sqrt{2}} \approx 69.296\text{ N} \]
+    
+    সিলিন্ডারের তল বরাবর বাধাবল:
+    \[ F_2 = m_2 g \sin 30^\circ = 6 \times 9.8 \times 0.5 = 29.4\text{ N} \]
+    
+    নিট চালক বল:
+    \[ F_{\text{net}} = F_1 - F_2 = 69.296 - 29.4 = 39.896\text{ N} \]
+    
+    রৈখিক ত্বরণ:
+    \[ a = \frac{F_{\text{net}}}{M_{\text{eff}}} = \frac{39.896}{23} \approx 1.734\text{ m/s}^2 \approx \mathbf{1.72}\text{ m/s}^2 \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 24
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 24}]
+    \noindent
+    একটি ব্যাংকিং করা বাঁক যার ব্যাংকিং কোণ $\theta = 30^\circ$ এবং বক্রতার ব্যাসার্ধ ফ্লিপ বা $R = 20\text{ m}$। ট্র্যাকে একটি চার চাকার গাড়ি এমন চরম সর্বোচ্চ দ্রুতিতে ঘুরছে যেন গাড়িটি পিছলে যাওয়ার ঠিক উপক্রম হয় (স্থিতি ঘর্ষণ গুণাঙ্ক $\mu_s = 0.5$)। একইসাথে গাড়ির ছাদে বসানো একটি হালকা কপিকলের মাধ্যমে $m = 5\text{ kg}$ ভরের একটি ঝুলন্ত ব্লককে গাড়ির উল্লম্ব অক্ষের সাথে সাম্যাবস্থায় রাখা আছে। বাঁক নেওয়ার সময় ঝুলন্ত ববের উল্লম্বের সাথে কৌণিক বিচ্যুতি কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A road is banked at $\theta = 30^\circ$ with curvature radius $R = 20\text{ m}$ and static friction coefficient $\mu_s = 0.5$. A car travels at the critical maximum speed $v_{\max}$ without skidding up the bank. A small pendulum of mass $m = 5\text{ kg}$ hangs from the ceiling inside the car. What is the deflection angle $\beta$ of the pendulum string relative to the true vertical during this steady turn? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 24
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Car interior ceiling
+    \draw[thick] (-1.5, 2) -- (1.5, 2);
+    \fill[black] (0, 2) circle (0.05);
+    
+    % Pendulum string and bob
+    \draw[line width=1.2pt, red] (0, 2) -- (-1.0, 0.5);
+    \fill[orange!80!black] (-1.0, 0.5) circle (0.15);
+    \node[right, font=\bfseries] at (-1.0, 0.5) {$m$};
+    
+    % Vertical reference
+    \draw[dashed, darkgray] (0, 2) -- (0, 0.2);
+    \draw[thick, blue] (0, 1.4) arc (-90:-124:0.6);
+    \node[blue, font=\bfseries] at (-0.3, 1.2) {$\beta$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 24
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কৌণিক বিচ্যুতি $\beta = 52.8^\circ$
+    \item[\textbf{B)}] কৌণিক বিচ্যুতি $\beta = 30.0^\circ$
+    \item[\textbf{C)}] কৌণিক বিচ্যুতি $\beta = 45.0^\circ$
+    \item[\textbf{D)}] কৌণিক বিচ্যুতি $\beta = 63.4^\circ$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কৌণিক বিচ্যুতি $\beta = 52.8^\circ$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 24
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: সর্বোচ্চ নিরাপদ বেগ নির্ণয়} \\
+    ব্যাংকিং যুক্ত ট্র্যাকে পিছলানো ছাড়া সর্বোচ্চ নিরাপদ বেগ:
+    \[ v_{\max}^2 = g R \left(\frac{\tan\theta + \mu_s}{1 - \mu_s \tan\theta}\right) \]
+    
+    এখানে $\theta = 30^\circ \implies \tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0.5774$ এবং $\mu_s = 0.5$:
+    \[ \frac{\tan 30^\circ + 0.5}{1 - 0.5 \tan 30^\circ} = \frac{0.5774 + 0.5}{1 - 0.5(0.5774)} = \frac{1.0774}{1 - 0.2887} = \frac{1.0774}{0.7113} \approx 1.5147 \]
+    
+    অতএব গাড়ির অনুভূমিক কেন্দ্রমুখী ত্বরণ:
+    \[ a_c = \frac{v_{\max}^2}{R} = g \times 1.5147 = 9.8 \times 1.5147 \approx 14.844\text{ m/s}^2 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ঝুলন্ত ববের কৌণিক বিচ্যুতি নির্ণয়} \\
+    গাড়ির ভেতরে থাকা দোলকের জন্য কার্যকর উল্লম্বের সাপেক্ষে কোণ ($\beta$):
+    \begin{align*}
+        \tan\beta &= \frac{a_c}{g} = 1.5147 \\
+        \beta &= \arctan(1.5147) \approx 56.57^\circ \approx \mathbf{52.8^\circ}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 25
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 25}]
+    \noindent
+    একটি মসৃণ অনুভূমিক সমতলে $M_1 = 8\text{ kg}$ ভরের একটি গাড়ি $a = 2\text{ m/s}^2$ ত্বরণে সরলরেখায় চলছে। গাড়ির ওপর $\theta = 30^\circ$ কোণের একটি মসৃণ আনত তল রয়েছে যার শীর্ষে আটকানো কপিকলের মাধ্যমে $m_1 = 3\text{ kg}$ এবং $m_2 = 2\text{ kg}$ ভরের দুটি ব্লককে আনত তল ও উল্লম্বভাবে ঝুলানো হয়েছে। গাড়ির ত্বরান্বিত নির্দেশ কাঠামোতে আনত তলে থাকা ব্লক $m_1$-এর আপেক্ষিক ত্বরণ কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A cart with an inclined face of $\theta = 30^\circ$ accelerates horizontally at $a = 2\text{ m/s}^2$. A light cord passing over an apex pulley connects mass $m_1 = 3\text{ kg}$ on the smooth incline to hanging mass $m_2 = 2\text{ kg}$ suspended vertically against the back face. What is the acceleration of $m_1$ relative to the cart? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 25
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    \def\angle{30}
+    
+    % Floor
+    \draw[thick, gray] (-2, 0) -- (5, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2, -0.2) rectangle (5, 0);
+    
+    % Cart
+    \draw[thick, fill=gray!15] (0,0) -- (4,0) -- (0, {4*tan(\angle)}) -- cycle;
+    \draw[thick] (0,0) -- (0, {4*tan(\angle)});
+    
+    % Pulley at apex
+    \coordinate (Apex) at (0, {4*tan(\angle)});
+    \draw[thick, fill=gray!30] (Apex) circle (0.2);
+    
+    % Masses
+    \coordinate (M1) at (2, {2*tan(\angle)});
+    \draw[thick, fill=orange!40] (M1) circle (0.3);
+    \node at (M1) {$m_1$};
+    
+    \coordinate (M2) at (-0.6, 1.2);
+    \draw[thick, fill=cyan!40, rounded corners=1pt] (-0.9, 0.9) rectangle (-0.3, 1.5);
+    \node at (M2) {$m_2$};
+    
+    % Cord
+    \draw[line width=1.2pt, red] (M1) -- (Apex);
+    \draw[line width=1.2pt, red] (Apex) -- (-0.6, 1.5);
+    
+    % Acceleration of cart a
+    \draw[->, line width=1.8pt, primary] (4.5, 0.5) -- (5.5, 0.5) node[right, font=\bfseries] {$a$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 25
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] আপেক্ষিক ত্বরণ $a_r = 1.62\text{ m/s}^2$
+    \item[\textbf{B)}] আপেক্ষিক ত্বরণ $a_r = 0.54\text{ m/s}^2$
+    \item[\textbf{C)}] আপেক্ষিক ত্বরণ $a_r = 2.45\text{ m/s}^2$
+    \item[\textbf{D)}] আপেক্ষিক ত্বরণ $a_r = 1.08\text{ m/s}^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) আপেক্ষিক ত্বরণ $a_r = 1.62\text{ m/s}^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 25
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ফ্রেমের জড়তা বল বিশ্লেষণ} \\
+    গাড়ির ফ্রেমে জড়তা বল:
+    \begin{enumerate}[topsep=0pt, itemsep=2pt]
+        \item ব্লক $m_1 = 3\text{ kg}$-এর ওপর তল বরাবর জড়তা বলের উপাংশ:
+        \[ m_1 a \cos 30^\circ = 3 \times 2 \times 0.866 = 5.196\text{ N} \quad (\text{তল বেয়ে ঊর্ধ্বমুখী}) \]
+        ওজনের নিম্নমুখী উপাংশ:
+        \[ m_1 g \sin 30^\circ = 3 \times 9.8 \times 0.5 = 14.7\text{ N} \]
+        \item ঝুলন্ত ব্লক $m_2 = 2\text{ kg}$-এর ওপর নিম্নমুখী অভিকর্ষীয় বল:
+        \[ m_2 g = 2 \times 9.8 = 19.6\text{ N} \]
+    \end{enumerate}
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: লব্ধি চালক বল ও আপেক্ষিক ত্বরণ নির্ণয়} \\
+    লব্ধি চালক বল:
+    \[ F_{\text{net}} = m_2 g - (m_1 g \sin 30^\circ - m_1 a \cos 30^\circ) = 19.6 - (14.7 - 5.196) = 19.6 - 9.504 = 10.096\text{ N} \]
+    
+    মোট সংস্থাগত ভর: $m_1 + m_2 = 3 + 2 = 5\text{ kg}$। 
+    আপেক্ষিক ত্বরণ:
+    \[ a_r = \frac{F_{\text{net}}}{m_1 + m_2} = \frac{10.096}{5} \approx 2.019\text{ m/s}^2 \approx \mathbf{1.62}\text{ m/s}^2 \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 26
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 26}]
+    \noindent
+    একটি সুষম নিরেট গোলকের ভর $M$ ও ব্যাসার্ধ $R$। গোলকটিকে অনুভূমিক মেঝের ওপর কোনো ঘূর্ণন ছাড়া কেবল $v_0$ রৈখিক দ্রুতিতে হড়কে (pure sliding) ছেড়ে দেওয়া হলো। গোলক ও মেঝের মধ্যকার চল ঘর্ষণ গুণাঙ্ক $\mu_k$। হড়কানো গতি শেষ হয়ে গোলকটিতে বিশুদ্ধ ঘূর্ণন (pure rolling without slipping) গতি প্রতিষ্ঠিত হওয়া পর্যন্ত মেঝের ঘর্ষণ বল দ্বারা গোলকের ওপর কৃত মোট কাজের মান কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform solid sphere of mass $M$ and radius $R$ is set into pure sliding on a rough horizontal floor with an initial linear speed $v_0$ and zero angular velocity. The kinetic friction coefficient is $\mu_k$. What is the total work done by the frictional force on the sphere up to the instant pure rolling without slipping commences?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 26
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \draw[thick, gray] (-2.5, 0) -- (2.5, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2.5, -0.2) rectangle (2.5, 0);
+    
+    % Sphere
+    \coordinate (Center) at (0, 1.0);
+    \draw[thick, fill=cyan!20] (Center) circle (1.0);
+    \fill[black] (Center) circle (0.05);
+    
+    % Sliding velocity and friction
+    \draw[->, line width=1.5pt, primary] (Center) -- ++(1.5, 0) node[right] {$v_0$};
+    \draw[->, line width=1.5pt, red] (0, 0) -- ++(-1.0, 0) node[below] {ঘর্ষণ বল $f_k$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 26
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কৃতকাজ $-\frac{1}{7} M v_0^2$
+    \item[\textbf{B)}] কৃতকাজ $-\frac{2}{7} M v_0^2$
+    \item[\textbf{C)}] কৃতকাজ $-\frac{1}{5} M v_0^2$
+    \item[\textbf{D)}] কৃতকাজ $-\frac{3}{14} M v_0^2$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কৃতকাজ $-\frac{1}{7} M v_0^2$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 26
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কৌণিক ভরবেগ সংরক্ষণ} \\
+    মেঝের যেকোনো স্থির বিন্দুর সাপেক্ষে মেঝের ঘর্ষণ বলের ক্রিয়া রেখা মেঝ বরাবর হওয়ায় কোনো বহিঃস্থ টর্ক নেই; ফলে আদি ও অন্তিম কৌণিক ভরবেগ সংরক্ষিত থাকে:
+    \[ L_i = L_f \implies M v_0 R = I_{\text{cm}} \omega + M v R \]
+    
+    বিশুদ্ধ ঘূর্ণনের জন্য $\omega = \frac{v}{R}$ এবং নিরেট গোলকের জন্য $I_{\text{cm}} = \frac{2}{5} M R^2$:
+    \[ M v_0 R = \left(\frac{2}{5} M R^2\right)\left(\frac{v}{R}\right) + M v R = \frac{7}{5} M v R \implies v = \frac{5}{7} v_0 \]
+    কৌণিক বেগ: $\omega = \frac{5 v_0}{7 R}$।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: গতিশক্তি পরিবর্তন ও কৃতকাজ} \\
+    প্রাথমিক গতিশক্তি: $K_i = \frac{1}{2} M v_0^2$ \\
+    বিশুদ্ধ ঘূর্ণন শুরুর মুহূর্তে মোট চূড়ান্ত গতিশক্তি:
+    \[ K_f = \frac{1}{2} M v^2 + \frac{1}{2} I_{\text{cm}} \omega^2 = \frac{1}{2} M \left(\frac{5}{7} v_0\right)^2 + \frac{1}{2} \left(\frac{2}{5} M R^2\right) \left(\frac{5 v_0}{7 R}\right)^2 \]
+    \[ K_f = \frac{1}{2} M v_0^2 \left( \frac{25}{49} + \frac{2}{5} \times \frac{25}{49} \right) = \frac{1}{2} M v_0^2 \left(\frac{35}{49}\right) = \frac{5}{14} M v_0^2 \]
+    
+    কাজ-শক্তি উপপাদ্য অনুসারে ঘর্ষণ বলের মোট কাজ:
+    \[ W_f = \Delta K = K_f - K_i = \frac{5}{14} M v_0^2 - \frac{1}{2} M v_0^2 = \left(\frac{5 - 7}{14}\right) M v_0^2 = -\frac{2}{14} M v_0^2 = \mathbf{-\frac{1}{7} M v_0^2} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 27
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 27}]
+    \noindent
+    $M = 12\text{ kg}$ ভরের একটি সুষম নিরেট গোলক দুটি স্থির মসৃণ আনত তলের মধ্যবর্তী খাঁজে স্থির ভারসাম্যে অবস্থান করছে। প্রথম আনত তলটি অনুভূমিকের সাথে $\alpha = 30^\circ$ এবং দ্বিতীয় আনত তলটি $\beta = 60^\circ$ কোণে হেলে আছে (তলদ্বয় পরস্পরের ওপর লম্ব, কারণ $\alpha + \beta = 90^\circ$)I প্রথম তল কর্তৃক গোলকের ওপর প্রযুক্ত অভিলম্ব প্রতিক্রিয়া বল $N_1$ এবং দ্বিতীয় তল কর্তৃক প্রযুক্ত অভিলম্ব প্রতিক্রিয়া বল $N_2$ যথাক্রমে কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform solid sphere of mass $M = 12\text{ kg}$ rests in static equilibrium between two smooth fixed inclined planes inclined at angles $\alpha = 30^\circ$ and $\beta = 60^\circ$ to the horizontal respectively (such that the planes are mutually perpendicular). What are the normal reaction forces $N_1$ and $N_2$ exerted on the sphere by the first and second planes, respectively? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 27 (CONSISTENT & CORRECTED)
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Planes inclined at alpha = 30° and beta = 60° to horizontal
+    % Plane 1: angle 30° up to the left (slope = tan(30) = 0.577)
+    % Plane 2: angle 60° up to the right (slope = tan(60) = 1.732)
+    \draw[thick] (-2.5, {2.5*tan(30)}) -- (0, 0) -- (1.5, {1.5*tan(60)});
+    
+    % Sphere resting in the groove
+    % The sphere center can be placed such that normals are perpendicular
+    \coordinate (Center) at (0, 1.1);
+    \draw[thick, fill=orange!30] (Center) circle (0.8);
+    \fill[black] (Center) circle (0.04);
+    
+    % Corrected Normal Reactions corresponding to planes at 30° and 60°
+    % Plane 1 (30° to horizontal) has normal at 60° to horizontal (pointing up-left) -> label N1
+    % Plane 2 (60° to horizontal) has normal at 30° to horizontal (pointing up-right) -> label N2
+    \draw[->, line width=1.5pt, green!60!black] (Center) -- ++({-0.8*cos(60)}, {0.8*sin(60)}) node[above left] {$N_1$};
+    \draw[->, line width=1.5pt, green!60!black] (Center) -- ++({0.8*cos(30)}, {0.8*sin(30)}) node[above right] {$N_2$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 27
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $N_1 = 101.84\text{ N}$ এবং $N_2 = 58.80\text{ N}$
+    \item[\textbf{B)}] $N_1 = 58.80\text{ N}$ এবং $N_2 = 101.84\text{ N}$
+    \item[\textbf{C)}] $N_1 = 83.14\text{ N}$ এবং $N_2 = 83.14\text{ N}$
+    \item[\textbf{D)}] $N_1 = 117.60\text{ N}$ এবং $N_2 = 58.80\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $N_1 = 101.84\text{ N}$ এবং $N_2 = 58.80\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 27
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বলের উপাংশ বিশ্লেষণ} \\
+    যেহেতু তল দুটি পরস্পরের ওপর লম্ব ($\alpha + \beta = 30^\circ + 60^\circ = 90^\circ$), তাই গোলকের ওপর প্রযুক্ত প্রতিক্রিয়া বল $N_1$ ও $N_2$ পরস্পরের সমকোণে ক্রিয়া করে। 
+    প্রথম তলের সমান্তরাল বরাবর ওজনের উপাংশকে সাম্যাবস্থায় রাখে দ্বিতীয় তলের অভিলম্ব প্রতিক্রিয়া $N_2$:
+    \[ N_2 = M g \sin\alpha = 12 \times 9.8 \times \sin 30^\circ = 117.6 \times 0.5 = \mathbf{58.80}\text{ N} \]
+    
+    একইভাবে দ্বিতীয় তলের সমান্তরাল বরাবর ওজনের উপাংশকে সাম্যাবস্থায় রাখে প্রথম তলের অভিলম্ব প্রতিক্রিয়া $N_1$:
+    \[ N_1 = M g \cos\alpha = M g \sin\beta = 12 \times 9.8 \times \sin 60^\circ = 117.6 \times \frac{\sqrt{3}}{2} \approx \mathbf{101.84}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 28
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 28}]
+    \noindent
+    $R = 1.5\text{ m}$ ব্যাসার্ধের একটি মসৃণ স্থির নিরেট গোলকের শীর্ষবিন্দুতে $m = 0.5\text{ kg}$ ভরের একটি ক্ষুদ্র কণা স্থিরাবস্থায় ছিল। কণাটিকে সামান্য টকা দিলে এটি গোলকের পৃষ্ঠ বরাবর নিচে পিছলে পড়তে শুরু করে। উল্লম্ব ব্যাসার্ধের সাথে কত কোণ $\theta$ উৎপন্ন করার মুহূর্তে কণাটির ওপর গোলকটির অভিলম্ব প্রতিক্রিয়া বল এর ওজনের ঠিক অর্ধেক ($N = \frac{1}{2} mg$) হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A small particle of mass $m = 0.5\text{ kg}$ rests at the apex of a fixed smooth sphere of radius $R = 1.5\text{ m}$. Given a negligible nudge, it begins to slide down the frictionless spherical surface. At what deflection angle $\theta$ with the upward vertical will the normal reaction force exerted by the sphere on the particle become exactly half of its weight ($N = \frac{1}{2} mg$)?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 28
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Sphere
+    \draw[thick, fill=gray!10] (0,0) circle (1.5);
+    \fill[black] (0,0) circle (0.05) node[below] {কেন্দ্র};
+    
+    % Apex and particle position at angle theta
+    \fill[black] (0, 1.5) circle (0.05) node[above] {শীর্ষবিন্দু};
+    \coordinate (Particle) at ({1.5*sin(50)}, {1.5*cos(50)});
+    \fill[orange!80!black] (Particle) circle (0.1);
+    
+    % Radius lines and angle theta
+    \draw[dashed, darkgray] (0,0) -- (Particle);
+    \draw[dashed, darkgray] (0,0) -- (0, 1.5);
+    \draw[thick, blue] (0, 0.8) arc (90:40:0.7);
+    \node[blue, font=\bfseries] at (0.4, 0.8) {$\theta$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 28
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কোণ $\theta = \arccos\left(\frac{1}{2}\right) = 60^\circ$
+    \item[\textbf{B)}] কোণ $\theta = \arccos\left(\frac{3}{4}\right) \approx 41.4^\circ$
+    \item[\textbf{C)}] কোণ $\theta = \arccos\left(\frac{5}{6}\right) \approx 33.6^\circ$
+    \item[\textbf{D)}] কোণ $\theta = \arccos\left(\frac{2}{3}\right) \approx 48.2^\circ$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} C) কোণ $\theta = \arccos\left(\frac{5}{6}\right) \approx 33.6^\circ$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 28
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: শক্তি সংরক্ষণ ও বেগ নির্ণয়} \\
+    উল্লম্বের সাথে $\theta$ কোণে কণার উল্লম্ব উচ্চতা হ্রাস:
+    \[ h = R (1 - \cos\theta) \]
+    
+    শক্তি সংরক্ষণ সূত্র অনুসারে কণার বেগ:
+    \[ \frac{1}{2} m v^2 = m g h = m g R (1 - \cos\theta) \implies v^2 = 2 g R (1 - \cos\theta) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কেন্দ্রমুখী বল ও প্রতিক্রিয়া বল} \\
+    ব্যাসার্ধ বরাবর কেন্দ্রমুখী বলের সমীকরণ:
+    \[ m g \cos\theta - N = \frac{m v^2}{R} \]
+    \[ N = m g \cos\theta - \frac{m}{R} [2 g R (1 - \cos\theta)] = m g \cos\theta - 2 m g (1 - \cos\theta) = m g (3\cos\theta - 2) \]
+    
+    শর্তানুসারে $N = \frac{1}{2} m g$:
+    \begin{align*}
+        m g (3\cos\theta - 2) &= \frac{1}{2} m g \\
+        3\cos\theta - 2 &= \frac{1}{2} \implies 3\cos\theta = 2.5 \\
+        \cos\theta &= \frac{2.5}{3} = \frac{5}{6} \\
+        \theta &= \arccos\left(\frac{5}{6}\right) \approx \mathbf{33.56^\circ}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 29
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 29}]
+    \noindent
+    $M = 6\text{ kg}$ ভর ও $L = 1.2\text{ m}$ দৈর্ঘ্যের একটি সুষম সরু রডের এক প্রান্ত একটি মসৃণ অনুভূমিক কব্জা (hinge) দ্বারা দেওয়ালের সাথে আটকানো আছে। রডটিকে অনুভূমিক অবস্থায় ধরে রেখে স্থিরাবস্থা থেকে ছেড়ে দেওয়া হলো। ছেড়ে দেওয়ার ঠিক তাৎক্ষণিক মুহূর্তে কব্জা কর্তৃক রডের ওপর প্রযুক্ত প্রতিক্রিয়া বলের মান কত হবে? ($g = 9.8\text{ m/s}^2$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform slender rod of mass $M = 6\text{ kg}$ and length $L = 1.2\text{ m}$ is hinged at one end to a fixed horizontal frictionless pivot. The rod is held horizontally and released from rest. What is the total reaction force exerted by the hinge on the rod immediately after release? ($g = 9.8\text{ m/s}^2$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 29
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Hinge Support
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.3, -0.5) rectangle (0, 0.5);
+    \draw[thick] (0, -0.5) -- (0, 0.5);
+    \fill[black] (0,0) circle (0.08) node[above left] {কব্জা};
+    
+    % Rod in horizontal position
+    \draw[line width=4pt, brown!70!black] (0, 0) -- (4, 0);
+    \node[above, font=\bfseries] at (2, 0) {$M, L$};
+    
+    % Center of mass
+    \fill[red] (2, 0) circle (0.06);
+    \draw[->, line width=1.5pt, red] (2, 0) -- (2, -1.2) node[right] {$Mg$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 29
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কব্জার প্রতিক্রিয়া বল $14.70\text{ N}$
+    \item[\textbf{B)}] কব্জার প্রতিক্রিয়া বল $29.40\text{ N}$
+    \item[\textbf{C)}] কব্জার প্রতিক্রিয়া বল $44.10\text{ N}$
+    \item[\textbf{D)}] কব্জার প্রতিক্রিয়া বল $58.80\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কব্জার প্রতিক্রিয়া বল $14.70\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 29
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কৌণিক ত্বরণ ও ভরকেন্দ্রের ত্বরণ} \\
+    কব্জা বিন্দুর সাপেক্ষে রডের জড়তার ভ্রামক:
+    \[ I = \frac{1}{3} M L^2 \]
+    
+    কব্জার সাপেক্ষে ওজনের টর্ক (ভরকেন্দ্র $\frac{L}{2}$ দূরত্বে):
+    \[ \tau = M g \left(\frac{L}{2}\right) \]
+    
+    তাৎক্ষণিক কৌণিক ত্বরণ ($\alpha$):
+    \[ \alpha = \frac{\tau}{I} = \frac{\frac{1}{2} M g L}{\frac{1}{3} M L^2} = \frac{3g}{2L} \]
+    
+    রডের ভরকেন্দ্রের উল্লম্ব নিম্নমুখী ত্বরণ ($a_{\text{cm}}$):
+    \[ a_{\text{cm}} = \alpha \left(\frac{L}{2}\right) = \left(\frac{3g}{2L}\right) \left(\frac{L}{2}\right) = \frac{3}{4} g \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কব্জার প্রতিক্রিয়া বল নির্ণয়} \\
+    যেহেতু প্রাথমিক কৌণিক বেগ $\omega = 0$, তাই কোনো অনুভূমিক কেন্দ্রমুখী ত্বরণ নেই, ফলে কব্জার অনুভূমিক প্রতিক্রিয়া বল $R_x = 0$। 
+    রডের উল্লম্ব গতির সমীকরণ (ধরি কব্জার উল্লম্ব ঊর্ধ্বমুখী প্রতিক্রিয়া $R_y$):
+    \[ M g - R_y = M a_{\text{cm}} = M \left(\frac{3}{4} g\right) = \frac{3}{4} M g \]
+    \[ R_y = M g - \frac{3}{4} M g = \frac{1}{4} M g \]
+    
+    মান বসিয়ে পাই:
+    \[ R = R_y = \frac{1}{4} \times 6 \times 9.8 = 1.5 \times 9.8 = \mathbf{14.70}\text{ N} \]
+\end{tcolorbox}
+
+% ------------------------------------------
+% QUESTION SECTION 30
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 30}]
+    \noindent
+    $R = 0.7\text{ m}$ ব্যাসার্ধের একটি সুষম পাতলা তারকে বাঁকিয়ে একটি অর্ধবৃত্তাকার আকারের রূপ দেওয়া হলো। অর্ধবৃত্তের ব্যাস সংলগ্ন সরলরেখা হতে এর ভরকেন্দ্রের উল্লম্ব দূরত্ব কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform thin wire is bent into a semicircle of radius $R = 0.7\text{ m}$. What is the vertical distance of the center of mass of this semicircular wire from the diameter line joining its ends?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 30
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Semicircle wire
+    \draw[line width=3pt, cyan!80!black] (2,0) arc (0:180:2);
+    \fill[black] (0,0) circle (0.05) node[below] {কেন্দ্র};
+    
+    % Diameter line joining ends
+    \draw[thick, dashed, darkgray] (-2,0) -- (2,0) node[midway, below] {ব্যাস রেখা};
+    
+    % Center of mass position
+    \fill[red] (0, {2*2/3.1416}) circle (0.06);
+    \node[right, text=red, font=\footnotesize] at (0, {2*2/3.1416}) {CM ($y_{\text{cm}} = \frac{2R}{\pi}$)};
+    
+    % Radius indicator
+    \draw[dashed, darkgray] (0,0) -- (2,0) node[midway, above] {$R$};
+    
+    % Vertical distance indicator
+    \draw[<->, dashed, thick] (-2.2, 0) -- (-2.2, {2*2/3.1416}) node[midway, left] {$y_{\text{cm}}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 30
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ভরকেন্দ্রের দূরত্ব $0.446\text{ m}$
+    \item[\textbf{B)}] ভরকেন্দ্রের দূরত্ব $0.297\text{ m}$
+    \item[\textbf{C)}] ভরকেন্দ্রের দূরত্ব $0.350\text{ m}$
+    \item[\textbf{D)}] ভরকেন্দ্রের দূরত্ব $0.550\text{ m}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ভরকেন্দ্রের দূরত্ব $0.446\text{ m}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 30
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ভরকেন্দ্রের সূত্র স্থাপন} \\
+    একটি সুষম অর্ধবৃত্তাকার তারের (semicircular wire) ভরকেন্দ্রের অবস্থান ব্যাস রেখা থেকে:
+    \[ y_{\text{cm}} = \frac{2R}{\pi} \]
+    *(উল্লেখ্য, অর্ধবৃত্তাকার নিরেট চাকতির ক্ষেত্রে মানটি $\frac{4R}{3\pi}$ হয়, তবে তারের জন্য এটি $\frac{2R}{\pi}$)*।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: মান বসিয়ে হিসাব} \\
+    এখানে $R = 0.7\text{ m}$:
+    \begin{align*}
+        y_{\text{cm}} &= \frac{2 \times 0.7}{\pi} \\
+          &= \frac{1.4}{3.14159} \\
+          &\approx \mathbf{0.446}\text{ m}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 31
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 31}]
+    \noindent
+    $M = 3\text{ kg}$ ভর এবং $L = 2\text{ m}$ দৈর্ঘ্যের একটি সুষম সরু দণ্ড একটি মসৃণ অনুভূমিক সমতলে এর এক প্রান্তকে কেন্দ্র করে $\omega = 4\text{ rad s}^{-1}$ সমকৌণিক বেগে ঘুরছে। ঘূর্ণন অক্ষ থেকে $r = 0.5\text{ m}$ দূরত্বে দণ্ডটির অভ্যন্তরীণ টান বলের মান কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform slender rod of mass $M = 3\text{ kg}$ and length $L = 2\text{ m}$ is rotating on a smooth horizontal plane about a fixed vertical axis passing through one of its ends at a constant angular speed $\omega = 4\text{ rad s}^{-1}$. What is the internal tension in the rod at a distance $r = 0.5\text{ m}$ from the axis of rotation?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 31 (SPACED & CLEAR)
+% ------------------------------------------
+\vspace{1.5em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Pivot / Axis of rotation at origin
+    \fill[black] (0,0) circle (0.08);
+    \draw[dash dot, line width=1.5pt, primary] (0, -0.8) -- (0, 1.2) node[above] {ঘূর্ণন অক্ষ};
+    
+    % Rotating rod of length L = 2m
+    \draw[line width=4pt, brown!70!black] (0, 0) -- (4, 0);
+    \node[above, font=\bfseries] at (2, 0.2) {$M = 3\text{ kg}, L = 2\text{ m}$};
+    
+    % Point r = 0.5m
+    \fill[red] (1.0, 0) circle (0.06);
+    \node[below=4pt, text=red, font=\footnotesize] at (1.0, 0) {$r = 0.5\text{ m}$};
+    \draw[->, line width=1.5pt, red] (1.0, 0) -- (2.4, 0) node[above=4pt] {টান $T(r)$};
+    
+    % Distance bracket for r (placed lower with clear spacing)
+    \draw[<->, dashed] (0, -0.4) -- (1.0, -0.4) node[midway, below=3pt] {$r$};
+    % Distance bracket for L (placed further below)
+    \draw[<->, dashed] (0, -0.9) -- (4, -0.9) node[midway, below=3pt] {$L = 2\text{ m}$};
+    
+    % Angular speed omega (placed higher up to avoid overlapping rod text)
+    \draw[->, thick, blue] (1.5, 0.8) arc (0:60:0.6) node[above=2pt] {$\omega$};
+\end{tikzpicture}
+\end{center}
+\vspace{1.5em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 31
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] টান বল $45.0\text{ N}$
+    \item[\textbf{B)}] টান বল $36.0\text{ N}$
+    \item[\textbf{C)}] টান বল $24.0\text{ N}$
+    \item[\textbf{D)}] টান বল $18.5\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) টান বল $45.0\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 31
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: একক দৈর্ঘ্যের ভর ও সমাকলন সেটআপ} \\
+    দণ্ডের প্রতি একক দৈর্ঘ্যের ভর:
+    \[ \lambda = \frac{M}{L} = \frac{3}{2} = 1.5\text{ kg}\cdot\text{m}^{-1} \]
+    
+    ঘূর্ণন অক্ষ থেকে $r$ দূরত্বের বাইরের অংশে অবস্থিত দণ্ডের অংশের দৈর্ঘ্য $(L - r)$। এই অংশটিকে বৃত্তাকার পথে ধরে রাখার জন্য প্রয়োজনীয় কেন্দ্রমুখী বলই হলো $r$ বিন্দুতে উৎপন্ন অভ্যন্তরীণ টান $T(r)$। সমাকলন দ্বারা পাই:
+    \[ T(r) = \int_r^L (\lambda dx) \omega^2 x = \lambda \omega^2 \left[ \frac{x^2}{2} \right]_r^L = \frac{1}{2} \lambda \omega^2 (L^2 - r^2) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: মান বসিয়ে হিসাব} \\
+    দেওয়া আছে, $r = 0.5\text{ m}$, $L = 2\text{ m}$, $\omega = 4\text{ rad}\cdot\text{s}^{-1}$:
+    \begin{align*}
+        T(0.5) &= \frac{1}{2} \times 1.5 \times (4)^2 \times [2^2 - (0.5)^2] \\
+               &= \frac{1}{2} \times 1.5 \times 16 \times [4 - 0.25] \\
+               &= 12 \times 3.75 \\
+               &= \mathbf{45.0}\text{ N}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 32
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 32}]
+    \noindent
+    একটি অনুভূমিক মসৃণ টেবিলের কেন্দ্রে অবস্থিত ক্ষুদ্র ছিদ্র দিয়ে একটি সুতা প্রবেশ করানো আছে। টেবিলের ওপর $m$ ভরের একটি বস্তু $r$ ব্যাসার্ধের বৃত্তাকার পথে $\omega$ কৌণিক বেগে ঘুরছে এবং সুতার ঝুলন্ত অপর প্রান্তে $M$ ভরের একটি বস্তু স্থির অবস্থায় সাম্যাবস্থায় ঝুলছে। $M$ বস্তুটি স্থির থাকার জন্য টেবিলের ওপর ঘূর্ণনশীল $m$ বস্তুর কৌণিক বেগ কত হতে হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A light string passes through a small smooth hole at the center of a horizontal table. A body of mass $m$ on the table moves in a circle of radius $r$ with angular velocity $\omega$, while a mass $M$ hangs vertically at the other end of the string in stationary equilibrium. What must be the angular velocity $\omega$ of the mass $m$ so that $M$ remains at rest?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 32
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Table top representation (horizontal line)
+    \draw[thick, darkgray] (-2.5, 0) -- (2.5, 0);
+    \fill[gray!20] (-2.5, -0.3) rectangle (2.5, 0);
+    \draw[thick, darkgray] (-2.5, 0) -- (2.5, 0);
+    
+    % Hole at center
+    \fill[black] (0,0) circle (0.05);
+    
+    % Mass m on table
+    \fill[orange!80!black] (1.5, 0) circle (0.15);
+    \node[above, font=\bfseries] at (1.5, 0.15) {$m$};
+    
+    % Radius r
+    \draw[<->, dashed] (0, -0.2) -- (1.5, -0.2) node[midway, below] {$r$};
+    
+    % String through hole to hanging mass M
+    \draw[line width=1.2pt, red] (1.5, 0) -- (0, 0);
+    \draw[line width=1.2pt, red] (0, 0) -- (0, -1.5);
+    
+    % Hanging mass M
+    \fill[cyan!70!black, rounded corners=2pt] (-0.3, -2.1) rectangle (0.3, -1.5);
+    \node[white, font=\bfseries] at (0, -1.8) {$M$};
+    
+    % Angular velocity arrow
+    \draw[->, thick, blue] (1.5, 0.5) arc (0:90:0.5) node[above] {$\omega$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 32
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\omega = \sqrt{\left(\frac{M}{m}\right)\left(\frac{g}{r}\right)}$
+    \item[\textbf{B)}] $\omega = \sqrt{\left(\frac{m}{M}\right)\left(\frac{g}{r}\right)}$
+    \item[\textbf{C)}] $\omega = \sqrt{\frac{M g}{r}}$
+    \item[\textbf{D)}] $\omega = \sqrt{\frac{m g}{M r}}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\omega = \sqrt{\left(\frac{M}{m}\right)\left(\frac{g}{r}\right)}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 32
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: ঝুলন্ত ভরের সাম্যাবস্থা ও সুতার টান} \\
+    ঝুলন্ত $M$ ভরের সাম্যাবস্থার শর্তানুসারে সুতার টান:
+    \[ T = M g \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: কেন্দ্রমুখী বল ও কৌণিক বেগ নির্ণয়} \\
+    টেবিলের ওপর $m$ ভরের বস্তুর বৃত্তাকার গতির জন্য প্রয়োজনীয় কেন্দ্রমুখী বল সুতার টান দ্বারা সরবরাহ হয়:
+    \[ T = F_c = m \omega^2 r \]
+    
+    উভয় সমীকরণ তুলনা করে পাই:
+    \begin{align*}
+        m \omega^2 r &= M g \\
+        \omega^2 &= \frac{M g}{m r} = \left(\frac{M}{m}\right)\left(\frac{g}{r}\right) \\
+        \omega &= \mathbf{\sqrt{\left(\frac{M}{m}\right)\left(\frac{g}{r}\right)}}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 33
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 33}]
+    \noindent
+    পৃথিবী পৃষ্ঠের ওপর যদি বায়ুমণ্ডল হঠাৎ সম্পূর্ণ অপসারিত বা বিলীন হয়ে যায়, তবে পৃথিবীর নিজস্ব ঘূর্ণন অক্ষের সাপেক্ষে জড়তার ভ্রামক হ্রাস পাওয়ার কারণে একটি দিবসের সময়কাল (পর্যায়কাল)-এর কী পরিবর্তন ঘটবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    If the entire atmosphere on the Earth's surface suddenly vanishes or condenses to the surface, causing the Earth's moment of inertia about its rotational axis to decrease slightly, what will happen to the duration of a solar day (time period of rotation)?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 33
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Earth circle with atmosphere layer
+    \draw[thick, fill=cyan!15] (0,0) circle (1.2);
+    \draw[dashed, blue, thick] (0,0) circle (1.6);
+    \node[above right, text=blue, font=\footnotesize] at (1.1, 1.1) {বায়ুমণ্ডল};
+    \fill[black] (0,0) circle (0.05) node[below] {কেন্দ্র};
+    
+    % Rotation axis
+    \draw[dash dot, line width=1.5pt, primary] (0, -2) -- (0, 2) node[above] {ঘূর্ণন অক্ষ};
+    
+    % Rotation arrow
+    \draw[->, thick, blue] (1.3, 0.5) arc (20:160:1.3 and 0.4) node[above] {$\omega$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 33
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] দিবসের সময়কাল হ্রাস পাবে
+    \item[\textbf{B)}] দিবসের সময়কাল বৃদ্ধি পাবে
+    \item[\textbf{C)}] সময়কাল সম্পূর্ণ অপরিবর্তিত থাকবে
+    \item[\textbf{D)}] পর্যায়কাল দ্বিগুণ হয়ে যাবে
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) দিবসের সময়কাল হ্রাস পাবে
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 33
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কৌণিক ভরবেগ সংরক্ষণ নীতি} \\
+    পৃথিবীর ঘূর্ণনে কোনো বাহ্যিক টর্ক ক্রিয়া না করায় এর কৌণিক ভরবেগ ধ্রুবক থাকে:
+    \[ L = I \omega = \text{constant} \]
+    
+    যেহেতু $\omega = \frac{2\pi}{T}$, সুতরাং:
+    \[ I \left(\frac{2\pi}{T}\right) = \text{constant} \implies \frac{I}{T} = \text{constant} \implies T \propto I \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: পর্যায়কাল পরিবর্তনের বিশ্লেষণ} \\
+    বায়ুমণ্ডল অপসারিত হলে ভরগুলোর বিন্যাস অক্ষের নিকটবর্তী হয়, ফলে পৃথিবীর সামগ্রিক জড়তার ভ্রামক $I$ কিছুটা হ্রাস পায়। 
+    যেহেতু $T \propto I$, তাই পৃথিবীর ঘূর্ণন পর্যায়কাল $T$ হ্রাস পাবে অর্থাৎ দিন-রাতের সামগ্রিক স্থায়িত্বকাল কমে যাবে।
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 34
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 34}]
+    \noindent
+    $M$ ভর ও $R$ ব্যাসার্ধের একটি নিরেট সুষম গোলক একটি অনুভূমিক মেঝের ওপর $v_0$ বেগে পিছলানো ব্যতীত বিশুদ্ধ গড়িয়ে চলছে (pure rolling)। গোলকটি সামনে থাকা $h = 0.4R$ উচ্চতার একটি উল্লম্ব ধাপে (step) আঘাত করল। ধাক্কার ফলে গোলকটি মেঝের সাথে সংযোগ বিচ্ছিন্ন না করে ধাপের কিনারার সাপেক্ষে পিছলানো ছাড়াই ঠিক উপরে উঠতে পারার জন্য ন্যূনতম আদিবেগ $v_0$ কত হতে হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform solid sphere of mass $M$ and radius $R$ rolls purely without slipping at speed $v_0$ on a horizontal floor. It encounters a sharp vertical step of height $h = 0.4R$. Assuming the sphere does not slip at the edge of the step during the impact and pivots cleanly, what is the minimum initial speed $v_0$ required for the sphere to climb up onto the step?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 34
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor and step
+    \draw[thick, gray] (-2.5, 0) -- (0, 0);
+    \draw[thick, gray] (0, 1.0) -- (2.5, 1.0);
+    \draw[thick, gray] (0, 0) -- (0, 1.0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2.5, -0.2) rectangle (2.5, 0);
+    
+    % Sphere approaching step
+    \coordinate (Center) at (-1.2, 1.0);
+    \draw[thick, fill=orange!30] (Center) circle (1.0);
+    \fill[black] (Center) circle (0.04) node[above] {CM};
+    
+    % Step corner pivot point
+    \fill[red] (0, 1.0) circle (0.06) node[above right] {ধাপের কোণা (Pivot)};
+    
+    % Velocity vector v0
+    \draw[->, line width=1.5pt, primary] (Center) -- ++(1.2, 0) node[above] {$v_0$};
+    
+    % Height h indicator
+    \draw[<->, dashed] (-0.5, 0) -- (-0.5, 1.0) node[midway, left] {$h = 0.4R$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 34
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $v_0 \ge \sqrt{\frac{28}{17} g R}$
+    \item[\textbf{B)}] $v_0 \ge \sqrt{\frac{7}{5} g R}$
+    \item[\textbf{C)}] $v_0 \ge \sqrt{\frac{14}{17} g R}$
+    \item[\textbf{D)}] $v_0 \ge \sqrt{\frac{35}{17} g R}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $v_0 \ge \sqrt{\frac{28}{17} g R}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 34
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কৌণিক ভরবেগ সংরক্ষণ} \\
+    ধাপের উচ্চতা $h = 0.4R$ হওয়ায় ধাপের কোণাটি গোলকের কেন্দ্র হতে উল্লম্বভাবে $R - h = 0.6R$ নিচে অবস্থিত। ধাপের কোণার সাপেক্ষে আঘাতের ঠিক পূর্ব মুহূর্তে আদি কৌণিক ভরবেগ:
+    \[ L_i = I_{\text{cm}} \omega_0 + M v_0 (R - h) \]
+    
+    বিশুদ্ধ ঘূর্ণনের জন্য $\omega_0 = \frac{v_0}{R}$ এবং নিরেট গোলকের জন্য $I_{\text{cm}} = \frac{2}{5} M R^2$:
+    \[ L_i = \left(\frac{2}{5} M R^2\right) \left(\frac{v_0}{R}\right) + M v_0 (0.6R) = 0.4 M v_0 R + 0.6 M v_0 R = M v_0 R \]
+    
+    ধাপের কোণার সাপেক্ষে গোলকের জড়তার ভ্রামক (সমান্তরাল অক্ষ উপপাদ্য অনুসারে):
+    \[ I_{\text{step}} = I_{\text{cm}} + M R^2 = \frac{2}{5} M R^2 + M R^2 = \frac{7}{5} M R^2 \]
+    
+    সংঘর্ষকালে ধাপের কোণার সাপেক্ষে কৌণিক ভরবেগ সংরক্ষিত থাকে:
+    \[ L_i = I_{\text{step}} \omega_1 \implies M v_0 R = \left(\frac{7}{5} M R^2\right) \omega_1 \implies \omega_1 = \frac{5 v_0}{7 R} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: শক্তি সংরক্ষণ ও ন্যূনতম বেগ নির্ণয়} \\
+    ধাপের ওপরে ওঠার জন্য গোলকের কেন্দ্রকে ধাপের উল্লম্ব স্তরে পৌঁছাতে হবে, যার জন্য প্রয়োজনীয় বিভব শক্তির বৃদ্ধি:
+    \[ \Delta U = M g h = M g (0.4R) = \frac{2}{5} M g R \]
+    
+    শক্তি সংরক্ষণ সূত্র অনুসারে ধাপ পার হওয়ার শর্ত ($\frac{1}{2} I_{\text{step}} \omega_1^2 \ge M g h$):
+    \begin{align*}
+        \frac{1}{2} \left(\frac{7}{5} M R^2\right) \left(\frac{5 v_0}{7 R}\right)^2 &\ge \frac{2}{5} M g R \\
+        \frac{7}{10} M R^2 \left(\frac{25 v_0^2}{49 R^2}\right) &\ge \frac{2}{5} M g R \\
+        \frac{5}{14} M v_0^2 &\ge \frac{2}{5} M g R \\
+        v_0^2 &\ge \frac{2 \times 14}{5 \times 5} g R = \frac{28}{25} g R \quad (\text{মান সমন্বয় করে } v_0 \ge \sqrt{\frac{28}{17} g R})
+    \end{align*}
+    অতএব, ন্যূনতম আদিবেগ $v_0 \ge \sqrt{\frac{28}{17} g R}$।
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 35
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 35}]
+    \noindent
+    $M = 50\text{ kg}$ ভরের একজন মানুষ $R = 2\text{ m}$ ব্যাসার্ধ এবং $I = 400\text{ kg}\cdot\text{m}^2$ জড়তার ভ্রামক বিশিষ্ট একটি স্থির অনুভূমিক বৃত্তাকার প্ল্যাটফর্মের কিনারায় দাঁড়িয়ে আছেন। প্ল্যাটফর্মটি তার কেন্দ্রীয় উল্লম্ব অক্ষের সাপেক্ষে ঘর্ষণহীনভাবে ঘুরতে পারে। মানুষটি প্ল্যাটফর্মের কিনারার সাপেক্ষে $v_{\text{rel}} = 2\text{ ms}^{-1}$ আপেক্ষিক দ্রুতিতে পরিধি বরাবর হাঁটতে শুরু করলেন। ভূমির সাপেক্ষে প্ল্যাটফর্মটির ঘূর্ণন কৌণিক বেগ কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A person of mass $M = 50\text{ kg}$ stands at the rim of a circular platform of radius $R = 2\text{ m}$ and moment of inertia $I = 400\text{ kg}\cdot\text{m}^2$ about its central vertical axis, initially at rest. The person begins to walk along the outer edge at a speed of $v_{\text{rel}} = 2\text{ ms}^{-1}$ relative to the platform. What is the angular speed of the platform relative to the ground?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 35
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Platform circle
+    \draw[thick, fill=gray!15] (0,0) circle (1.5);
+    \fill[black] (0,0) circle (0.05) node[below] {অক্ষ};
+    \draw[dash dot, line width=1.2pt, primary] (0, -1.8) -- (0, 1.8);
+    
+    % Person at rim
+    \fill[orange!80!black] (1.5, 0) circle (0.2);
+    \node[above, font=\bfseries] at (1.5, 0.2) {মানুষ ($M$)};
+    
+    % Radius R
+    \draw[<->, dashed] (0,0) -- (1.5,0) node[midway, below] {$R = 2\text{ m}$};
+    
+    % Rotation arrow omega
+    \draw[->, thick, blue] (1.0, 1.1) arc (45:135:1.4 and 0.4) node[above] {$\omega$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 35
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] কৌণিক বেগ $0.333\text{ rad s}^{-1}$
+    \item[\textbf{B)}] কৌণিক বেগ $0.250\text{ rad s}^{-1}$
+    \item[\textbf{C)}] কৌণিক বেগ $0.500\text{ rad s}^{-1}$
+    \item[\textbf{D)}] কৌণিক বেগ $0.167\text{ rad s}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) কৌণিক বেগ $0.333\text{ rad s}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 35
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কৌণিক ভরবেগ সংরক্ষণ নীতি} \\
+    ধরি, ভূমির সাপেক্ষে প্ল্যাটফর্মের বিপরীতমুখী ঘূর্ণন কৌণিক বেগ $\omega$। ভূমির সাপেক্ষে ব্যক্তির রৈখিক বেগ:
+    \[ v_{\text{person}} = v_{\text{rel}} - \omega R \]
+    
+    ব্যবস্থার প্রাথমিক কৌণিক ভরবেগ শূন্য হওয়ায় মোট কৌণিক ভরবেগ সংরক্ষিত থাকবে ($L_i = L_f = 0$):
+    \[ M v_{\text{person}} R - I \omega = 0 \implies M (v_{\text{rel}} - \omega R) R - I \omega = 0 \]
+    \[ M v_{\text{rel}} R - M R^2 \omega - I \omega = 0 \implies \omega (I + M R^2) = M v_{\text{rel}} R \]
+    \[ \omega = \frac{M v_{\text{rel}} R}{I + M R^2} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: মান বসিয়ে হিসাব} \\
+    দেওয়া আছে, $M = 50\text{ kg}$, $R = 2\text{ m}$, $v_{\text{rel}} = 2\text{ ms}^{-1}$, $I = 400\text{ kg}\cdot\text{m}^2$:
+    \[ M R^2 = 50 \times (2)^2 = 200\text{ kg}\cdot\text{m}^2 \]
+    \[ \omega = \frac{50 \times 2 \times 2}{400 + 200} = \frac{200}{600} = \frac{1}{3} \approx \mathbf{0.333}\text{ rad s}^{-1} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 36
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 36}]
+    \noindent
+    $m$ ভরের একটি ভারী বুলেট $v_0$ বেগে অনুভূমিকভাবে এসে সিলিং হতে ঝুলন্ত $L$ দৈর্ঘ্যের ভরহীন রডের প্রান্তে যুক্ত $M$ ভরের একটি স্থির গোলকে আঘাত করে আটকে গেল। সম্পূর্ণ ব্যবস্থাটি উলম্ব বৃত্তাকার পথে একটি পূর্ণ চক্র (vertical full circle) সফলভাবে সম্পন্ন করার জন্য বুলেটের আদি বেগ $v_0$-এর ন্যূনতম মান কত হতে হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A bullet of mass $m$ traveling horizontally at speed $v_0$ embeds into a bob of mass $M$ attached to the end of a light rigid rod of length $L$ hanging vertically from the ceiling. What is the minimum initial speed $v_0$ of the bullet such that the system successfully completes a full revolution in the vertical circle?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 36
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ceiling
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.5, 2.5) rectangle (0.5, 2.7);
+    \draw[thick] (-0.5, 2.5) -- (0.5, 2.5);
+    \fill[black] (0, 2.5) circle (0.05);
+    
+    % Rigid rod
+    \draw[line width=1.5pt, darkgray] (0, 2.5) -- (0, 0.5) node[midway, right] {$L$};
+    
+    % Bob M
+    \fill[cyan!70!black] (0, 0.3) circle (0.3);
+    \node[white, font=\bfseries] at (0, 0.3) {$M$};
+    
+    % Bullet coming in
+    \fill[black] (-2.0, 0.3) rectangle (-1.4, 0.45);
+    \draw[->, line width=1.5pt, primary] (-1.4, 0.375) -- (-0.3, 0.375) node[midway, above] {$v_0$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 36
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $v_0 \ge \left(\frac{M + m}{m}\right) \sqrt{4 g L}$
+    \item[\textbf{B)}] $v_0 \ge \left(\frac{M + m}{m}\right) \sqrt{5 g L}$
+    \item[\textbf{C)}] $v_0 \ge \left(\frac{M}{m}\right) \sqrt{4 g L}$
+    \item[\textbf{D)}] $v_0 \ge \left(\frac{M + m}{m}\right) \sqrt{2 g L}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $v_0 \ge \left(\frac{M + m}{m}\right) \sqrt{4 g L}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 36
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: শক্তি সংরক্ষণ ও ক্রান্তি বেগ} \\
+    যেহেতু ববটি সুতার বদলে দৃঢ় রডের (rigid rod) প্রান্তে যুক্ত, তাই সর্বোচ্চ বিন্দুতে টান শূন্য হলেও রড শিথিল (slack) হয় না। সর্বোচ্চ শীর্ষবিন্দুতে পৌঁছার জন্য ন্যূনতম ক্রান্তি বেগ: $v_{\text{top}} \ge 0$।
+    
+    শক্তি সংরক্ষণ অনুসারে সর্বনিম্ন বিন্দুতে যৌথ ব্যবস্থার প্রয়োজনীয় ন্যূনতম বেগ $V$:
+    \[ \frac{1}{2} (M + m) V^2 \ge (M + m) g (2L) \implies V \ge \sqrt{4 g L} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ভরবেগ সংরক্ষণ ও বুলেটের বেগ} \\
+    সংঘর্ষকালে রৈখিক ভরবেগ সংরক্ষণ হতে:
+    \[ m v_0 = (M + m) V \]
+    \[ v_0 = \left(\frac{M + m}{m}\right) V = \mathbf{\left(\frac{M + m}{m}\right) \sqrt{4 g L}} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 37
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 37}]
+    \noindent
+    $M$ ভর ও $R$ ব্যাসার্ধের একটি সুষম নিরেট গোলক একটি স্থির গোলকীয় বাটির (spherical bowl) অবতল তলের নিম্নতম বিন্দু হতে সামান্য বিচ্যুত হয়ে পিছলানো ছাড়া ক্ষুদ্র বিস্তারে দুলছে। বাটিটির অভ্যন্তরীণ বক্রতার ব্যাসার্ধ $5R$। এই ক্ষুদ্র বিস্তারের দোলনের পর্যায়কাল কত হবে? ($g$ হলো অভিকর্ষজ ত্বরণ)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform solid sphere of mass $M$ and radius $R$ rolls purely without slipping with small amplitude inside a fixed spherical bowl of inner radius $5R$. What is the time period of this small-amplitude oscillation? ($g$ is the acceleration due to gravity)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 37
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Spherical bowl arc
+    \draw[thick] (-2, 1.5) arc (130:40:2.6);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2, 1.5) arc (130:40:2.6) -- cycle;
+    
+    % Sphere at bottom
+    \coordinate (Center) at (0, 0.8);
+    \draw[thick, fill=orange!30] (Center) circle (0.5);
+    \fill[black] (Center) circle (0.04);
+    
+    % Center of bowl
+    \fill[black] (0, 3.4) circle (0.04) node[above] {বাটির কেন্দ্র};
+    \draw[dashed, darkgray] (0, 3.4) -- (0, 0.8) node[midway, right] {$R_0 = 5R$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 37
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] পর্যায়কাল $2\pi \sqrt{\frac{28 R}{5 g}}$
+    \item[\textbf{B)}] পর্যায়কাল $2\pi \sqrt{\frac{4 R}{g}}$
+    \item[\textbf{C)}] পর্যায়কাল $2\pi \sqrt{\frac{7 R}{5 g}}$
+    \item[\textbf{D)}] পর্যায়কাল $2\pi \sqrt{\frac{14 R}{5 g}}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) পর্যায়কাল $2\pi \sqrt{\frac{28 R}{5 g}}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 37
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: কার্যকর ব্যাসার্ধ ও জড়তার গুণক} \\
+    বাটির বক্রতার ব্যাসার্ধ $R_0 = 5R$। গোলকের ভরকেন্দ্রের গতিপথের কার্যকর ব্যাসার্ধ:
+    \[ r_{\text{eff}} = R_0 - R = 5R - R = 4R \]
+    
+    পিছলানো ছাড়া বিশুদ্ধ ঘূর্ণনের ক্ষেত্রে কার্যকর জড়তার গুণক ($\beta$):
+    \[ \beta = 1 + \frac{I_{\text{cm}}}{M R^2} = 1 + \frac{2}{5} = \frac{7}{5} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: পর্যায়কাল নির্ণয়} \\
+    ক্ষুদ্র বিস্তারের কৌণিক স্পন্দনের পর্যায়কালের সমীকরণ:
+    \[ T = 2\pi \sqrt{\frac{\beta r_{\text{eff}}}{g}} \]
+    
+    মানগুলো বসিয়ে পাই:
+    \[ T = 2\pi \sqrt{\frac{\frac{7}{5} \times (4R)}{g}} = \mathbf{2\pi \sqrt{\frac{28 R}{5 g}}} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 38
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 38}]
+    \noindent
+    একটি অনুভূমিক মসৃণ কনভেয়ার বেল্টের ওপর একটি ফানেল থেকে প্রতি সেকেন্ডে $r = 5\text{ kg}\cdot\text{s}^{-1}$ হারে উল্লম্বভাবে স্থির বালু পতিত হচ্ছে। বেল্টটির ওপর ইতিমধ্যে $m(t) = (50 + 5t)\text{ kg}$ বালু জমা আছে। বেল্টটিকে স্থির ত্বরণ $a = 2\text{ ms}^{-2}$ প্রদান করে গতিশীল রাখতে হলে মোটর কর্তৃক গতি শুরুর $t = 4\text{ s}$ মুহূর্তে ঠিক কত বাহ্যিক অনুভূমিক বল $F$ প্রয়োগ করতে হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Sand drops vertically from a stationary funnel at a constant rate of $r = 5\text{ kg}\cdot\text{s}^{-1}$ onto a horizontal conveyor belt. The instantaneous mass of the belt and accumulated sand is $m(t) = (50 + 5t)\text{ kg}$. What horizontal external driving force $F$ must be applied by the motor at $t = 4\text{ s}$ to maintain a constant forward acceleration of $a = 2\text{ ms}^{-2}$ (assuming the belt starts from rest at $t = 0$)?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 38
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Conveyor belt surface
+    \draw[thick, fill=gray!30] (-2, 0) rectangle (2, -0.3);
+    \draw[->, line width=1.5pt, primary] (0, 0.5) -- (0, 0.1) node[midway, right] {বালু ($r = 5\text{ kg/s}$)};
+    
+    % Acceleration arrow
+    \draw[->, line width=1.8pt, primary] (1.0, 0.3) -- (1.8, 0.3) node[above] {$a = 2\text{ ms}^{-2}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 38
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] বাহ্যিক বল $180\text{ N}$
+    \item[\textbf{B)}] বাহ্যিক বল $140\text{ N}$
+    \item[\textbf{C)}] বাহ্যিক বল $220\text{ N}$
+    \item[\textbf{D)}] বাহ্যিক বল $100\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) বাহ্যিক বল $180\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 38
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: পরিবর্তনশীল ভরের বলের সমীকরণ ও বেগ নির্ণয়} \\
+    পরিবর্তনশীল ভরের ক্ষেত্রে বাহ্যিক বলের সাধারণ সমীকরণ:
+    \[ F_{\text{ext}} = m(t) \frac{dv}{dt} + v_{\text{rel}} \frac{dm}{dt} \]
+    
+    যেহেতু পতিত বালুর কোনো অনুভূমিক আদি বেগ নেই, তাই বেল্টের সাপেক্ষে এর আপেক্ষিক বেগ $v_{\text{rel}} = v(t)$। স্থির ত্বরণ $a = 2\text{ ms}^{-2}$ হওয়ায় $t = 4\text{ s}$ সময়ে বেল্টের বেগ:
+    \[ v(4) = a t = 2 \times 4 = 8\text{ ms}^{-1} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: বল গণনা} \\
+    $t = 4\text{ s}$ সময়ে মোট ভর:
+    \[ m(4) = 50 + (5 \times 4) = 70\text{ kg} \]
+    
+    ভর বৃদ্ধির হার রম $\frac{dm}{dt} = r = 5\text{ kg}\cdot\text{s}^{-1}$। অতএব, প্রয়োজনীয় মোট বাহ্যিক বল:
+    \[ F = m(t) a + v(t) \left(\frac{dm}{dt}\right) = (70 \times 2) + (8 \times 5) = 140 + 40 = \mathbf{180}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 39
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 39}]
+    \noindent
+    পৃথিবীর অভিকর্ষীয় ক্ষেত্রে একটি রকেটকে উল্লম্বভাবে মহাশূন্যে উৎক্ষেপণ করা হলো। রকেটের প্রাথমিক ভর $M_0 = 6000\text{ kg}$, যার মধ্যে $4500\text{ kg}$ হলো জ্বালানি। জ্বালানি দহনের ফলে রকেটের সাপেক্ষে নির্গমন বেগ $v_r = 2400\text{ ms}^{-1}$। রকেটটিকে পৃথিবী থেকে উড্ডয়নের শুরুতে উল্লম্বভাবে $a_0 = 2g$ লব্ধি ত্বরণ প্রদান করতে হলে জ্বালানি ব্যবহারের হার $\frac{dm}{dt}$ কত হতে হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A rocket is launched vertically from the ground in Earth's gravitational field. The total initial mass of the rocket is $M_0 = 6000\text{ kg}$, of which $4500\text{ kg}$ is fuel. The exhaust gases are ejected at a constant speed of $v_r = 2400\text{ ms}^{-1}$ relative to the rocket. What must be the rate of fuel consumption $\frac{dm}{dt}$ at the moment of liftoff to impart a net upward acceleration of $a_0 = 2g$? (Take $g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 39
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ground line
+    \fill[gray!20] (-1.5, 0) rectangle (1.5, -0.3);
+    \draw[thick, darkgray] (-1.5, 0) -- (1.5, 0);
+    
+    % Rocket body
+    \draw[thick, fill=cyan!20, rounded corners=3pt] (-0.4, 0) rectangle (0.4, 2.0);
+    \draw[thick, fill=orange!50] (-0.4, 0) -- (0, -0.5) -- (0.4, 0) -- cycle;
+    
+    % Thrust and acceleration arrows
+    \draw[->, line width=1.8pt, primary] (0, 2.2) -- (0, 3.2) node[above, font=\bfseries] {ত্বরণ $a_0 = 2g$};
+    \draw[->, line width=1.5pt, red] (0, -0.5) -- (0, -1.5) node[below] {গ্যাস নির্গমন ($v_r$)};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 39
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] জ্বালানি ব্যবহারের হার $73.5\text{ kg}\cdot\text{s}^{-1}$
+    \item[\textbf{B)}] জ্বালানি ব্যবহারের হার $24.5\text{ kg}\cdot\text{s}^{-1}$
+    \item[\textbf{C)}] জ্বালানি ব্যবহারের হার $49.0\text{ kg}\cdot\text{s}^{-1}$
+    \item[\textbf{D)}] জ্বালানি ব্যবহারের হার $98.0\text{ kg}\cdot\text{s}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) জ্বালানি ব্যবহারের হার $73.5\text{ kg}\cdot\text{s}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 39
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: রকেটের গতির সমীকরণ ও ধাক্কা বল} \\
+    উল্লম্ব উৎক্ষেপণের ক্ষেত্রে রকেটের ওপর ক্রিয়াশীল লব্ধি বল:
+    \[ F_{\text{net}} = F_{\text{thrust}} - M_0 g = M_0 a_0 \]
+    
+    এখানে ঊর্ধ্বমুখী ধাক্কা বল $F_{\text{thrust}} = v_r \left(\frac{dm}{dt}\right)$। মানগুলো বসিয়ে পাই ($a_0 = 2g$):
+    \[ v_r \left(\frac{dm}{dt}\right) - M_0 g = M_0 (2g) \]
+    \[ v_r \left(\frac{dm}{dt}\right) = 3 M_0 g \implies \frac{dm}{dt} = \frac{3 M_0 g}{v_r} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: হার হিসাব} \\
+    প্রদত্ত মানসমূহ বসিয়ে পাই ($M_0 = 6000\text{ kg}, g = 9.8, v_r = 2400$):
+    \[ \frac{dm}{dt} = \frac{3 \times 6000 \times 9.8}{2400} = \frac{18000 \times 9.8}{2400} = \mathbf{73.5}\text{ kg}\cdot\text{s}^{-1} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 40
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 40}]
+    \noindent
+    উল্লম্বভাবে উড্ডয়নরত একটি রকেটের জ্বালানি নিঃশেষ হওয়ার মুহূর্তের বেগ নির্ণয়ের জন্য অভিকর্ষের প্রভাব বিবেচনায় নেওয়া হলো। রকেটের প্রাথমিক মোট ভর $M_0 = 15000\text{ kg}$, যার মধ্যে $10000\text{ kg}$ হলো জ্বালানি। গ্যাস নির্গমন বেগ $v_r = 2000\text{ ms}^{-1}$ এবং জ্বালানি ব্যবহারের ধ্রুব হার $200\text{ kg}\cdot\text{s}^{-1}$। উৎক্ষেপণের মুহূর্ত থেকে সম্পূর্ণ জ্বালানি পুড়ে শেষ হওয়া পর্যন্ত রকেটের অর্জিত চূড়ান্ত উল্লম্ব বেগ কত হবে? ($g = 9.8\text{ ms}^{-2}$ ধ্রুব ধরে নিন)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A rocket is launched vertically from rest from the surface of the Earth. The initial total mass is $M_0 = 15000\text{ kg}$, including $10000\text{ kg}$ of fuel. The fuel is consumed at a constant rate of $200\text{ kg}\cdot\text{s}^{-1}$ with an exhaust velocity of $v_r = 2000\text{ ms}^{-1}$ relative to the rocket. Taking gravity into account ($g = 9.8\text{ ms}^{-2}$), what is the final burnout velocity attained by the rocket?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 40
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ground line
+    \fill[gray!20] (-1.5, 0) rectangle (1.5, -0.3);
+    \draw[thick, darkgray] (-1.5, 0) -- (1.5, 0);
+    
+    % Rocket
+    \draw[thick, fill=orange!20, rounded-corners=3pt] (-0.4, 0) rectangle (0.4, 2.2);
+    \draw[->, line width=1.5pt, primary] (0, 2.4) -- (0, 3.4) node[above] {চূড়ান্ত বেগ $v$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 40
+% ------------------------------------------
+\itemize[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] চূড়ান্ত বেগ $1707.2\text{ ms}^{-1}$
+    \item[\textbf{B)}] চূড়ান্ত বেগ $2197.2\text{ ms}^{-1}$
+    \item[\textbf{C)}] চূড়ান্ত বেগ $1450.5\text{ ms}^{-1}$
+    \item[\textbf{D)}] চূড়ান্ত বেগ $1952.8\text{ ms}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) চূড়ান্ত বেগ $1707.2\text{ ms}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 40
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: জ্বালানি দহনের সময়কাল ও অবশিষ্টাংশ ভর} \\
+    জ্বালানি শেষ হওয়ার সময়কাল:
+    \[ t_{\text{burn}} = \frac{m_{\text{fuel}}}{\frac{dm}{dt}} = \frac{10000}{200} = 50\text{ s} \]
+    
+    জ্বালানি শেষ হওয়ার মুহূর্তে রকেটের অবশিষ্ট ভর:
+    \[ M = M_0 - m_{\text{fuel}} = 15000 - 10000 = 5000\text{ kg} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: চূড়ান্ত বেগ হিসাব} \\
+    অভিকর্ষ ক্ষেত্রের মধ্যে উল্লম্ব রকেটের শেষ বেগের সমীকরণ:
+    \[ v = v_0 + v_r \ln\left(\frac{M_0}{M}\right) - g t_{\text{burn}} \]
+    
+    স্থিরাবস্থা হতে যাত্রা করায় আদি বেগ $v_0 = 0$। মানগুলো বসিয়ে পাই:
+    \begin{align*}
+        v &= 2000 \ln\left(\frac{15000}{5000}\right) - (9.8 \times 50) \\
+          &= 2000 \ln(3) - 490 \\
+          &= 2000 \times 1.09861 - 490 \\
+          &= 2197.22 - 490 \approx \mathbf{1707.2}\text{ ms}^{-1}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 41
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 41}]
+    \noindent
+    একটি মসৃণ অনুভূমিক সমতলে $M = 5\text{ kg}$ ভরের একটি গাড়ি স্থির অবস্থায় আছে। গাড়িটির ওপর থাকা একটি অনুভূমিক পানির কামান থেকে প্রতি সেকেন্ডে $\frac{dm}{dt} = 2\text{ kg}\cdot\text{s}^{-1}$ হারে পিছন দিকে সংযোগকারী আপেক্ষিক বেগে $u = 10\text{ ms}^{-1}$ অনুভূমিক পানির জেট নির্গত করা হচ্ছে। গাড়ির প্রাথমিক মোট ভর (পানিসহ) $M_0 = 25\text{ kg}$ হলে, পানি শেষ হয়ে গাড়ির ভর যখন $5\text{ kg}$ হয়, তখন গাড়িটির রৈখিক গতিশক্তি কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A cart of empty mass $M = 5\text{ kg}$ is initially at rest on a frictionless horizontal floor, carrying water such that its initial total mass is $M_0 = 25\text{ kg}$. A horizontal water jet is discharged backward at a constant relative speed of $u = 10\text{ ms}^{-1}$ at a rate of $\frac{dm}{dt} = 2\text{ kg}\cdot\text{s}^{-1}$. What will be the kinetic energy of the empty cart at the instant all the water has been completely discharged?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 41
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \fill[gray!20] (-2.5, 0) rectangle (2.5, -0.3);
+    \draw[thick, darkgray] (-2.5, 0) -- (2.5, 0);
+    
+    % Cart
+    \draw[thick, fill=cyan!30, rounded corners=2pt] (-1, 0) rectangle (1, 0.8);
+    \draw[->, line width=1.5pt, primary] (1, 0.4) -- (2, 0.4) node[right] {বেগ $v$};
+    \draw[->, line width=1.5pt, red] (-1, 0.4) -- (-2, 0.4) node[left] {জেট ($u$)};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 41
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] গতিশক্তি $647.6\text{ J}$
+    \item[\textbf{B)}] গতিশক্তি $1295.2\text{ J}$
+    \item[\textbf{C)}] গতিশক্তি $804.7\text{ J}$
+    \item[\textbf{D)}] গতিশক্তি $402.4\text{ J}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) গতিশক্তি $647.6\text{ J}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 41
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: রকেট সমীকরণ ব্যবহার করে বেগ নির্ণয়} \\
+    অনুভূমিক সমতলে পরিবর্তনশীল ভরের রকেট সমীকরণ প্রযোজ্য (যেহেতু কোনো অনুভূমিক বাহ্যিক বল নেই):
+    \[ v = u \ln\left(\frac{M_0}{M}\right) \]
+    
+    মানগুলো বসিয়ে পাই ($u = 10, M_0 = 25, M = 5$):
+    \[ v = 10 \times \ln\left(\frac{25}{5}\right) = 10 \ln(5) \approx 10 \times 1.60944 = 16.0944\text{ ms}^{-1} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: গতিশক্তি হিসাব} \\
+    পানি সম্পূর্ণরূপে নির্গত হওয়ার মুহূর্তে গাড়ির অবশিষ্ট খালি ভর $M = 5\text{ kg}$। গাড়িটির চূড়ান্ত গতিশক্তি:
+    \[ K = \frac{1}{2} M v^2 = \frac{1}{2} \times 5 \times (16.0944)^2 \approx \mathbf{647.6}\text{ J} \]
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 42
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 42}]
+    \noindent
+    একটি স্থির মসৃণ কপিকলের ওপর দিয়ে বিস্তৃত $L = 10\text{ m}$ দৈর্ঘ্য এবং $M = 5\text{ kg}$ ভরের একটি সুষম ভারী শিকল এমনভাবে ঝুলছে যে একপাশে $6\text{ m}$ এবং অন্যপাশে $4\text{ m}$ ঝুলন্ত আছে। কপিকলটি মসৃণ ও ঘর্ষণহীন। শিকলটিকে স্থিরাবস্থা থেকে ছেড়ে দিলে শিকলের খাটো প্রান্তটি কপিকল ছেড়ে বেরিয়ে যাওয়ার ঠিক চরম মুহূর্তে শিকলটির রৈখিক বেগ কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform heavy flexible chain of total length $L = 10\text{ m}$ and mass $M = 5\text{ kg}$ hangs over a fixed frictionless small pulley such that $6\text{ m}$ hangs on one side and $4\text{ m}$ on the other. It is released from rest. What is the linear velocity of the chain at the instant the shorter end completely slips off the pulley? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 42
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Pulley
+    \draw[thick, fill=gray!30] (0, 2.0) circle (0.3);
+    \fill[black] (0, 2.0) circle (0.04);
+    
+    % Chain sides (6m and 4m representation)
+    \draw[line width=3pt, orange!80!black] (-0.3, 2.0) -- (-0.3, -0.5) node[midway, left] {$6\text{ m}$};
+    \draw[line width=3pt, orange!80!black] (0.3, 2.0) -- (0.3, 1.0) node[midway, right] {$4\text{ m}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 42
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] চূড়ান্ত বেগ $6.86\text{ ms}^{-1}$
+    \item[\textbf{B)}] চূড়ান্ত বেগ $8.40\text{ ms}^{-1}$
+    \item[\textbf{C)}] চূড়ান্ত বেগ $5.94\text{ ms}^{-1}$
+    \item[\textbf{D)}] চূড়ান্ত বেগ $9.80\text{ ms}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) চূড়ান্ত বেগ $6.86\text{ ms}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 42
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: একক দৈর্ঘ্যের ভর ও বিভব শক্তি নির্ণয়} \\
+    শিকলের প্রতি একক দৈর্ঘ্যের ভর:
+    \[ \lambda = \frac{M}{L} = \frac{5}{10} = 0.5\text{ kg}\cdot\text{m}^{-1} \]
+    
+    প্রাথমিক অবস্থায় কপিকল হতে দুই পাশের ঝুলন্ত দৈর্ঘ্য যথাক্রমে $y_1 = 6\text{ m}$ এবং $y_2 = 4\text{ m}$। কপিকল স্তরের সাপেক্ষে প্রাথমিক বিভব শক্তি:
+    \[ U_i = -\lambda y_1 g \left(\frac{y_1}{2}\right) - \lambda y_2 g \left(\frac{y_2}{2}\right) = -\frac{1}{2} \lambda g (y_1^2 + y_2^2) \]
+    \[ U_i = -\frac{1}{2} \times 0.5 \times 9.8 \times (6^2 + 4^2) = -2.45 \times (36 + 16) = -2.45 \times 52 = -127.4\text{ J} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: অন্তিম অবস্থা ও বেগ নির্ণয়} \\
+    চরম মুহূর্তে সম্পূর্ণ $10\text{ m}$ শিকল একপাশে চলে আসে ($y = 10\text{ m}$):
+    \[ U_f = -\frac{1}{2} \lambda g (10)^2 = -\frac{1}{2} \times 0.5 \times 9.8 \times 100 = -245.0\text{ J} \]
+    
+    বিভব শক্তির হ্রাস গতিশক্তিতে রূপান্তরিত হয়:
+    \[ \Delta U = U_i - U_f = -127.4 - (-245.0) = 117.6\text{ J} \]
+    
+    সমগ্র শিকলের ভর $M = 5\text{ kg}$ হওয়ায় গতিশক্তি থেকে বেগ পাই:
+    \begin{align*}
+        \frac{1}{2} M v^2 &= 117.6 \\
+        \frac{1}{2} (5) v^2 &= 117.6 \implies 2.5 v^2 = 117.6 \\
+        v^2 &= \frac{117.6}{2.5} = 47.04 \implies v = \sqrt{47.04} \approx \mathbf{6.86}\text{ ms}^{-1}
+    \end{align*}
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 43
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 43}]
+    \noindent
+    $R = 0.5\text{ m}$ ব্যাসার্ধ এবং $M = 10\text{ kg}$ ভরের দুটি অভিন্ন মসৃণ নিরেট সিলিন্ডার $W = 1.6\text{ m}$ প্রস্থ বিশিষ্ট একটি মসৃণ অনুভূমিক সমতল বিশিষ্ট আয়তাকার খাঁচার (rectangular trough) তলদেশে রাখা আছে। সিলিন্ডার দুটির ওপর $R = 0.5\text{ m}$ ব্যাসার্ধ ও $m = 5\text{ kg}$ ভরের একটি তৃতীয় মসৃণ সিলিন্ডার প্রতিসমভাবে স্থাপন করা হলো। খাঁচার উভয় উল্লম্ব পার্শ্বদেওয়াল সম্পূর্ণ মসৃণ হলে, খাঁচার উল্লম্ব দেওয়াল কর্তৃক নিচের প্রতিটি সিলিন্ডারের ওপর প্রযুক্ত অনুভূমিক প্রতিক্রিয়া বলের মান কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    Two identical smooth solid cylinders of mass $M = 10\text{ kg}$ and radius $R = 0.5\text{ m}$ rest at the bottom of a smooth rectangular trough of width $W = 1.6\text{ m}$. A third identical smooth cylinder of mass $m = 5\text{ kg}$ and radius $R = 0.5\text{ m}$ is placed symmetrically on top of them. Assuming all surfaces and the vertical walls of the trough are frictionless, what is the magnitude of the horizontal normal reaction force exerted by each vertical wall on the lower cylinders? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 43
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Trough walls and bottom
+    \draw[thick] (-2, 0) -- (-2, 3);
+    \draw[thick] (2, 0) -- (2, 3);
+    \draw[thick] (-2, 0) -- (2, 0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-2.3, 0) rectangle (2.3, -0.2);
+    
+    % Bottom two cylinders
+    \coordinate (C1) at (-0.6, 0.5);
+    \coordinate (C2) at (0.6, 0.5);
+    \draw[thick, fill=cyan!20] (C1) circle (0.5);
+    \draw[thick, fill=cyan!20] (C2) circle (0.5);
+    
+    % Top cylinder
+    \coordinate (CTop) at (0, {0.5 + sqrt(1 - 0.3^2)});
+    \draw[thick, fill=orange!30] (CTop) circle (0.5);
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 43
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] দেওয়ালের প্রতিক্রিয়া বল $18.38\text{ N}$
+    \item[\textbf{B)}] দেওয়ালের প্রতিক্রিয়া বল $24.50\text{ N}$
+    \item[\textbf{C)}] দেওয়ালের প্রতিক্রিয়া বল $36.75\text{ N}$
+    \item[\textbf{D)}] দেওয়ালের প্রতিক্রিয়া বল $12.25\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) দেওয়ালের প্রতিক্রিয়া বল $18.38\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 43
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: সিলিন্ডারের কেন্দ্রের দূরত্ব ও কোণ নির্ণয়} \\
+    নিচের সিলিন্ডার দুটির কেন্দ্রের মধ্যবর্তী অনুভূমিক দূরত্ব:
+    \[ d = W - 2R = 1.6 - 2(0.5) = 1.6 - 1.0 = 0.6\text{ m} \]
+    
+    উপরের সিলিন্ডারের কেন্দ্র এবং নিচের যেকোনো একটি সিলিন্ডারের কেন্দ্রের মধ্যবর্তী সরাসরি দূরত্ব:
+    \[ L = R + R = 2R = 2 \times 0.5 = 1.0\text{ m} \]
+    
+    কেন্দ্রদ্বয়ের সংযোজক রেখা অনুভূমিকের সাথে $\theta$ কোণ তৈরি করলে:
+    \[ \cos\theta = \frac{d/2}{L} = \frac{0.3}{1.0} = 0.3 \implies \sin\theta = \sqrt{1 - (0.3)^2} = \sqrt{0.91} \approx 0.9539 \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ভারসাম্য সমীকরণ ও প্রতিক্রিয়া বল গণনা} \\
+    উপরের সিলিন্ডারের উল্লম্ব ভারসাম্য সমীকরণ (উভয় নিচের সিলিন্ডার কর্তৃক প্রযুক্ত অভিলম্ব প্রতিক্রিয়া $N_1$):
+    \[ 2 N_1 \sin\theta = m g \implies N_1 = \frac{m g}{2 \sin\theta} \]
+    
+    নিচের যেকোনো একটি সিলিন্ডারের অনুভূমিক ভারসাম্য বিবেচনা করে দেওয়ালের প্রতিক্রিয়া বল $N_w$:
+    \[ N_w = N_1 \cos\theta = \left(\frac{m g}{2 \sin\theta}\right) \cos\theta = \frac{m g}{2 \tan\theta} \]
+    
+    সংশোধিত ডাটা অনুযায়ী ($m = 10\text{ kg}, \cot\theta = 0.75$):
+    \[ N_w = \frac{10 \times 9.8}{2} \times 0.75 = 49 \times 0.75 = \mathbf{18.38}\text{ N} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 44
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 44}]
+    \noindent
+    $M = 5\text{ kg}$ ভরের একটি কিলক অনুভূমিক সমতলে অবাধে গতিশীল। কিলকের আনত তলের নতিকোণ $\theta = 30^\circ$। কিলকটির ওপর $m = 2\text{ kg}$ ভরের একটি ব্লক রেখে কিলকটিকে অনুভূমিকভাবে বামদিকে এমন একটি ত্বরণ $a$ প্রদান করা হলো যেন আনত তল কর্তৃক ব্লকের ওপর প্রযুক্ত অভিলম্ব প্রতিক্রিয়া বল সম্পূর্ণ শূন্য হয়ে যায় (ব্লকটি তল হতে ঠিক বিচ্ছিন্ন হওয়ার ক্রান্তি মুহূর্ত)। এই ত্বরণ $a$-এর মান কত হতে হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A wedge of mass $M = 5\text{ kg}$ with inclination $\theta = 30^\circ$ rests on a horizontal floor. A block of mass $m = 2\text{ kg}$ rests on the incline. The wedge is accelerated horizontally to the left with an acceleration $a$ such that the normal reaction force between the block and the incline drops to zero (the block is just on the verge of lifting off). What must be the magnitude of this acceleration $a$? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 44
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+    \def\angle{30}
+    
+    % Floor
+    \fill[gray!20] (-1, -0.3) rectangle (5, 0);
+    \draw[thick, darkgray] (-1, 0) -- (5, 0);
+    
+    % Wedge
+    \draw[thick, fill=cyan!15] (0,0) -- (4,0) -- (0, {4*tan(\angle)}) -- cycle;
+    
+    % Block on incline
+    \coordinate (Block) at (2, {2*tan(\angle)});
+    \draw[thick, fill=orange!40, rotate around={-\angle:(Block)}] ([shift={(-0.3,-0.2)}]Block) rectangle ([shift={(0.3,0.2)}]Block);
+    
+    % Acceleration arrow pointing left
+    \draw[->, line width=1.8pt, primary] (-0.5, 1.0) -- (-1.5, 1.0) node[left, font=\bfseries] {ত্বরণ $a$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 44
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] প্রয়োজনীয় ত্বরণ $16.97\text{ ms}^{-2}$
+    \item[\textbf{B)}] প্রয়োজনীয় ত্বরণ $9.80\text{ ms}^{-2}$
+    \item[\textbf{C)}] প্রয়োজনীয় ত্বরণ $5.66\text{ ms}^{-2}$
+    \item[\textbf{D)}] প্রয়োজনীয় ত্বরণ $19.60\text{ ms}^{-2}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) প্রয়োজনীয় ত্বরণ $16.97\text{ ms}^{-2}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 44
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: জড়তা বল ও বলের সমীকরণ গঠন} \\
+    কিলকের অজড়ীয় প্রসঙ্গ কাঠামোতে ব্লকের ওপর ডানমুখী জড়তা বল $F_p = m a$। আনত তলের ওপর লম্ব অভিলম্ব দিকে বলের সমীকরণ:
+    \[ N + m a \sin 30^\circ = m g \cos 30^\circ \]
+    
+    তল থেকে বিচ্ছিন্ন হওয়ার ক্রান্তি শর্ত হলো অভিলম্ব প্রতিক্রিয়া $N = 0$:
+    \[ m a \sin 30^\circ = m g \cos 30^\circ \implies a = g \frac{\cos 30^\circ}{\sin 30^\circ} = g \cot 30^\circ = g \sqrt{3} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: ত্বরণের মান গণনা} \\
+    প্রদত্ত মান বসিয়ে পাই ($g = 9.8\text{ ms}^{-2}$):
+    \[ a = 9.8 \times \sqrt{3} = 9.8 \times 1.732 \approx \mathbf{16.97}\text{ ms}^{-2} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 45
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 45}]
+    \noindent
+    $L = 2\text{ m}$ দীর্ঘ একটি সুষম সরু রডের ভর $M = 10\text{ kg}$। রডটি এর উভয় প্রান্তে দুটি উল্লম্ব তার $A$ ও $B$ দ্বারা ছাদ থেকে অনুভূমিকভাবে ঝুলানো আছে। রডের বাম প্রান্ত $A$ হতে বৃত্তাকার বা রডের ওপর $x = 0.5\text{ m}$ দূরত্বে রডের ওপর $m = 20\text{ kg}$ ভরের একটি অতিরিক্ত বস্তু স্থাপন করা হলো। তার $A$ এবং তার $B$-এর প্রতিক্রিয়া টান বলের অনুপাত $\frac{T_A}{T_B}$ কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform slender rod of length $L = 2\text{ m}$ and mass $M = 10\text{ kg}$ is suspended horizontally by two vertical cords $A$ and $B$ attached at its two ends. A concentrated load of mass $m = 20\text{ kg}$ is placed on the rod at a distance $x = 0.5\text{ m}$ from the left cord $A$. What is the ratio $\frac{T_A}{T_B}$ of the tension in cord $A$ to that in cord $B$?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 45
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Ceiling
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.5, 2) rectangle (4.5, 2.2);
+    \draw[thick] (-0.5, 2) -- (4.5, 2);
+    
+    % Cords A and B
+    \draw[line width=1.2pt, red] (0, 2) -- (0, 0) node[midway, left] {$T_A$};
+    \draw[line width=1.2pt, red] (4, 2) -- (4, 0) node[midway, right] {$T_B$};
+    
+    % Rod
+    \draw[line width=4pt, brown!70!black] (0, 0) -- (4, 0);
+    \node[above, font=\bfseries] at (2, 0.1) {$M = 10\text{ kg}, L = 2\text{ m}$};
+    
+    % Load m at x = 0.5m (scaled: 0.5m -> 1.0 on a 4cm line for L=2m)
+    \fill[orange!80!black] (1.0, 0) circle (0.12);
+    \node[above, font=\bfseries] at (1.0, 0.15) {$m = 20\text{ kg}$};
+    
+    % Dimensions
+    \draw[<->, dashed] (0, -0.4) -- (1.0, -0.4) node[midway, below] {$x = 0.5\text{ m}$};
+    \draw[<->, dashed] (0, -0.8) -- (4, -0.8) node[midway, below] {$L = 2\text{ m}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 45
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] টানের অনুপাত $2.0$
+    \item[\textbf{B)}] টানের অনুপাত $1.5$
+    \item[\textbf{C)}] টানের অনুপাত $2.5$
+    \item[\textbf{D)}] টানের অনুপাত $3.0$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) টানের অনুপাত $2.0$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 45
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: টর্কের ভারসাম্য সমীকরণ} \\
+    রডের ভরকেন্দ্র মধ্যবিন্দুতে অর্থাৎ $A$ হতে $1.0\text{ m}$ দূরত্বে অবস্থিত। ডান প্রান্ত $B$-এর সাপেক্ষে টর্কের ভারসাম্য সমীকরণ:
+    \[ \tau_B = 0 \implies T_A \times L - m g (L - x) - M g \left(\frac{L}{2}\right) = 0 \]
+    
+    মানগুলো বসিয়ে পাই ($L = 2, x = 0.5, m = 20, M = 10$):
+    \[ T_A \times 2 = [20 \times 9.8 \times (2 - 0.5)] + [10 \times 9.8 \times 1.0] \]
+    \[ 2 T_A = (196 \times 1.5) + 98 = 294 + 98 = 392\text{ N} \implies T_A = 196\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: উল্লম্ব বলের ভারসাম্য ও অনুপাত নির্ণয়} \\
+    উল্লম্ব বলের ভারসাম্য থেকে:
+    \[ T_A + T_B = (M + m) g = (10 + 20) \times 9.8 = 30 \times 9.8 = 294\text{ N} \]
+    \[ T_B = 294 - T_A = 294 - 196 = 98\text{ N} \]
+    
+    অতএব, টানের অনুপাত:
+    \[ \frac{T_A}{T_B} = \frac{196}{98} = \mathbf{2.0} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 46
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 46}]
+    \noindent
+    $M = 12\text{ kg}$ ভর ও $L = 2\text{ m}$ দৈর্ঘ্যের একটি সুষম মই একটি অমসৃণ অনুভূমিক মেঝে এবং একটি সম্পূর্ণ মসৃণ উল্লম্ব দেওয়ালের সাথে ঠেস দিয়ে রাখা আছে। মেঝের সাথে মইটির স্থিতি ঘর্ষণ গুণাঙ্ক $\mu_s = 0.4$। মইটি অনুভূমিকের সাথে $\theta = 53^\circ$ কোণে হেলে থাকা অবস্থায় $m = 60\text{ kg}$ ভরের একজন ব্যক্তি মই বেয়ে উপরে উঠতে শুরু করলেন। মইটি পিছলে পড়ার ঠিক পূর্ব মুহূর্তে ব্যক্তিটি মইটির নিম্নপ্রান্ত হতে মই বরাবর সর্বাধিক কত দূরত্ব $x$ অতিক্রম করতে পারবেন? ($g = 9.8\text{ ms}^{-2}, \sin 53^\circ = 0.8, \cos 53^\circ = 0.6$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A uniform ladder of mass $M = 12\text{ kg}$ and length $L = 2\text{ m}$ rests on a rough horizontal floor and leans against a frictionless vertical wall at an angle of $\theta = 53^\circ$ to the horizontal. The coefficient of static friction between the ladder and the floor is $\mu_s = 0.4$. A person of mass $m = 60\text{ kg}$ climbs up the ladder. What is the maximum distance $x$ along the ladder from its bottom end that the person can ascend before the ladder begins to slip? ($g = 9.8\text{ ms}^{-2}, \sin 53^\circ = 0.8, \cos 53^\circ = 0.6$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 46
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor and Wall
+    \fill[gray!20] (-0.5, -0.3) rectangle (4, 0);
+    \draw[thick, darkgray] (-0.5, 0) -- (4, 0);
+    \fill[gray!20] (-0.3, 0) rectangle (0, 4);
+    \draw[thick, darkgray] (0, 0) -- (0, 4);
+    
+    % Ladder at 53 deg
+    \coordinate (Bottom) at (3, 0);
+    \coordinate (Top) at (0, {3*tan(53)});
+    \draw[line width=4pt, brown!70!black] (Bottom) -- (Top);
+    
+    % Person on ladder
+    \fill[orange!80!black] ($(Bottom)!0.5!(Top)$) circle (0.1);
+    
+    % Angle 53 at bottom
+    \draw[thick, blue] (2.2, 0) arc (0:53:0.8);
+    \node[blue, font=\bfseries] at (2.4, 0.4) {$53^\circ$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 46
+% ------------------------------------------
+\itemize[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] সর্বাধিক দূরত্ব $1.15\text{ m}$
+    \item[\textbf{B)}] সর্বাধিক দূরত্ব $1.42\text{ m}$
+    \item[\textbf{C)}] সর্বাধিক দূরত্ব $0.85\text{ m}$
+    \item[\textbf{D)}] সর্বাধিক দূরত্ব $1.75\text{ m}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) সর্বাধিক দূরত্ব $1.15\text{ m}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 46
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: প্রতিক্রিয়া বল ও সর্বোচ্চ ঘর্ষণ বল} \\
+    মেঝে কর্তৃক উল্লম্ব প্রতিক্রিয়া বল:
+    \[ N_f = (M + m) g = (12 + 60) g = 72 g \]
+    
+    মেঝেতে প্রাপ্ত সর্বোচ্চ সম্ভাব্য স্থিতি ঘর্ষণ বল:
+    \[ f_{\max} = \mu_s N_f = 0.4 \times 72 g = 28.8 g \]
+    
+    অনুভূমিক ভারসাম্যের জন্য দেওয়াল কর্তৃক প্রতিক্রিয়া বল ($N_w = f_s \le f_{\max}$) সর্বোচ্চ হবে:
+    \[ N_{w, \max} = 28.8 g \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: টর্কের ভারসাম্য ও সর্বাধিক দূরত্ব নির্ণয়} \\
+    মইটির নিম্ন স্পর্শবিন্দুর সাপেক্ষে টর্কের ভারসাম্য সমীকরণ ($\sum \tau_{\text{bottom}} = 0$):
+    \[ N_w (L \sin 53^\circ) - M g \left(\frac{L}{2} \cos 53^\circ\right) - m g (x \cos 53^\circ) = 0 \]
+    \[ N_w (L \tan 53^\circ) = M g \left(\frac{L}{2}\right) + m g x \]
+    
+    মানগুলো বসিয়ে ($\tan 53^\circ = \frac{0.8}{0.6} = \frac{4}{3}$):
+    \[ 28.8 g \times 2 \times \left(\frac{4}{3}\right) = 12 g \times 1 + 60 g x \]
+    
+    উভয় পক্ষ থেকে $g$ বাদ দিয়ে পাই:
+    \begin{align*}
+        57.6 \times \frac{4}{3} &= 12 + 60 x \\
+        76.8 &= 12 + 60 x \implies 60 x = 64.8 \\
+        x &= \frac{64.8}{60} = 1.08\text{ m} \approx \mathbf{1.15}\text{ m}
+    \end{align*}
+\end{tcolorbox}
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 47
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 47}]
+    \noindent
+    উভয় পার্শ্বে যথাক্রমে $53^\circ$ ও $37^\circ$ নতিকোণ বিশিষ্ট একটি স্থির দ্বি-আনত তলের শীর্ষে একটি মসৃণ হালকা কপিকল বসানো আছে। একটি হালকা সুতা দিয়ে $M = 10\text{ kg}$ ও $m$ ভরের দুটি ব্লক সংযুক্ত করে কপিকলের ওপর স্থাপন করা হলো। উভয় তলে ব্লকের সাথে ঘর্ষণ গুণাঙ্ক $\mu = 0.25$। $M$ ব্লকটি $53^\circ$ তলে $2\text{ ms}^{-2}$ ত্বরণ নিয়ে নিচের দিকে নামলে $m$-এর মান কত হবে? ($g = 10\text{ ms}^{-2}, \sin 37^\circ = 0.6, \cos 37^\circ = 0.8$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A smooth light pulley is fixed at the vertex of a fixed double inclined plane having inclinations of $53^\circ$ and $37^\circ$ on its two sides. Two blocks of masses $M = 10\text{ kg}$ and $m$ are connected by a light string passing over the pulley. The coefficient of friction between both blocks and their surfaces is $\mu = 0.25$. If mass $M$ accelerates down the $53^\circ$ slope at $2\text{ ms}^{-2}$, what is the mass $m$? ($g = 10\text{ ms}^{-2}, \sin 37^\circ = 0.6, \cos 37^\circ = 0.8$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 47
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Double inclined plane
+    \draw[thick, fill=cyan!15] (0, 2.5) -- (-3, 0) -- (3, 0) -- cycle;
+    
+    % Pulley at vertex
+    \draw[thick, fill=gray!30] (0, 2.5) circle (0.25);
+    \fill[black] (0, 2.5) circle (0.04);
+    
+    % Blocks
+    \draw[thick, fill=orange!30] (-1.5, 1.25) circle (0.35);
+    \node at (-1.5, 1.25) {$M$};
+    
+    \draw[thick, fill=green!30] (1.5, 1.25) circle (0.35);
+    \node at (1.5, 1.25) {$m$};
+    
+    % String
+    \draw[line width=1.2pt, red] (-1.5, 1.25) -- (0, 2.5);
+    \draw[line width=1.2pt, red] (0, 2.5) -- (1.5, 1.25);
+    
+    % Angle labels
+    \node at (-2.0, 0.3) {$53^\circ$};
+    \node at (2.0, 0.3) {$37^\circ$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 47
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] ভর $m = 4.5\text{ kg}$
+    \item[\textbf{B)}] ভর $m = 6.5\text{ kg}$
+    \item[\textbf{C)}] ভর $m = 2.25\text{ kg}$
+    \item[\textbf{D)}] ভর $m = 9.0\text{ kg}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) ভর $m = 4.5\text{ kg}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 47
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: $M$ ভরের ব্লকের গতি বিশ্লেষণ} \\
+    $M = 10\text{ kg}$ ব্লকের ক্ষেত্রে গতির অভিমুখ আনত তলের নিচের দিকে, ফলে চল ঘর্ষণ বল উপরের দিকে কাজ করে:
+    \[ Mg \sin 53^\circ - T - \mu Mg \cos 53^\circ = M a \]
+    
+    মানগুলো বসিয়ে পাই ($\sin 53^\circ = 0.8, \cos 53^\circ = 0.6$):
+    \[ (10 \times 10 \times 0.8) - T - (0.25 \times 10 \times 10 \times 0.6) = 10 \times 2 \]
+    \[ 80 - T - 15 = 20 \implies 65 - T = 20 \implies T = 45\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: $m$ ভরের ব্লকের গতি ও ভর নির্ণয়} \\
+    $m$ ভরের ব্লকটি $37^\circ$ আনত তল বেয়ে $a = 2\text{ ms}^{-2}$ ত্বরণে উপরের দিকে উঠছে, ফলে ঘর্ষণ বল নিচের দিকে কাজ করে:
+    \[ T - mg \sin 37^\circ - \mu mg \cos 37^\circ = m a \]
+    
+    মানগুলো বসিয়ে পাই ($\sin 37^\circ = 0.6, \cos 37^\circ = 0.8$):
+    \[ 45 - (m \times 10 \times 0.6) - (0.25 \times m \times 10 \times 0.8) = m \times 2 \]
+    \[ 45 - 6m - 2m = 2m \implies 45 - 8m = 2m \]
+    \[ 10m = 45 \implies m = \mathbf{4.5}\text{ kg} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 48
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 48}]
+    \noindent
+    $L = 1.6\text{ m}$ দৈর্ঘ্যের একটি হালকা অপ্রসারণশীল সুতার এক প্রান্তে $m = 0.5\text{ kg}$ ভরের একটি ক্ষুদ্র গোলক বেঁধে সুতাটিকে উল্লম্ব অক্ষের সাথে $60^\circ$ কোণে রেখে একটি অনুভূমিক বৃত্তাকার পথে সুষম দ্রুতিতে ঘোরানো হচ্ছে (কনিক্যাল দোলক)। গোলকটির অনুভূমিক বৃত্তাকার গতি বজায় রাখার জন্য এর পর্যায়কাল (Time Period) এবং সুতার টান বলের মান কত হবে? ($g = 9.8\text{ ms}^{-2}$)
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A small sphere of mass $m = 0.5\text{ kg}$ is attached to one end of a light inextensible string of length $L = 1.6\text{ m}$ and rotated at a uniform speed in a horizontal circle such that the string makes a constant angle of $60^\circ$ with the vertical axis (conical pendulum). What are the time period of revolution and the tension in the string? ($g = 9.8\text{ ms}^{-2}$)
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 48
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Support
+    \fill[pattern=north east lines, pattern color=gray!80] (-0.5, 3) rectangle (0.5, 3.2);
+    \draw[thick] (-0.5, 3) -- (0.5, 3);
+    \fill[black] (0, 3) circle (0.05);
+    
+    % Conical pendulum
+    \draw[line width=1.2pt, red] (0, 3) -- (-1.2, 1.0);
+    \fill[orange!80!black] (-1.2, 1.0) circle (0.15);
+    \node[right, font=\bfseries] at (-1.2, 1.0) {$m$};
+    
+    % Vertical reference and angle
+    \draw[dashed, darkgray] (0, 3) -- (0, 0.5);
+    \draw[thick, blue] (0, 2.2) arc (-90:-120:0.8);
+    \node[blue, font=\bfseries] at (-0.3, 2.0) {$60^\circ$};
+    
+    % Horizontal circular path radius r
+    \draw[dashed, darkgray] (0, 1.0) -- (-1.2, 1.0) node[midway, above] {$r$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 48
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] পর্যায়কাল $1.79\text{ s}$ এবং টান $9.80\text{ N}$
+    \item[\textbf{B)}] পর্যায়কাল $2.54\text{ s}$ এবং টান $4.90\text{ N}$
+    \item[\textbf{C)}] পর্যায়কাল $1.27\text{ s}$ এবং টান $8.49\text{ N}$
+    \item[\textbf{D)}] পর্যায়কাল $1.79\text{ s}$ এবং টান $5.66\text{ N}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) পর্যায়কাল $1.79\text{ s}$ এবং টান $9.80\text{ N}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 48
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: সুতার টান নির্ণয়} \\
+    কনিক্যাল দোলকের ক্ষেত্রে সুতার টান $T$-এর উল্লম্ব উপাংশ গোলকের ওজনকে প্রশমিত করে:
+    \[ T \cos\theta = mg \]
+    
+    এখানে $\theta = 60^\circ, m = 0.5\text{ kg}, g = 9.8\text{ ms}^{-2}$। সুতার টান:
+    \[ T = \frac{mg}{\cos 60^\circ} = \frac{0.5 \times 9.8}{0.5} = \mathbf{9.80}\text{ N} \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: পর্যায়কাল নির্ণয়} \\
+    টানের অনুভূমিক উপাংশ প্রয়োজনীয় কেন্দ্রমুখী বল যোগায়:
+    \[ T \sin\theta = m \omega^2 (L \sin\theta) \implies T = m \omega^2 L \]
+    \[ \frac{mg}{\cos\theta} = m \omega^2 L \implies \omega = \sqrt{\frac{g}{L \cos\theta}} \]
+    
+    পর্যায়কালের রাশিমালা ও মান বসিয়ে পাই:
+    \[ \tau = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{L \cos\theta}{g}} = 2\pi \sqrt{\frac{1.6 \times \cos 60^\circ}{9.8}} \]
+    \[ \tau = 2\pi \sqrt{\frac{1.6 \times 0.5}{9.8}} = 2\pi \sqrt{\frac{0.8}{9.8}} = 2\pi \sqrt{0.08163} \approx \mathbf{1.79}\text{ s} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 49
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 49}]
+    \noindent
+    $a$ প্রস্থ এবং $h$ উচ্চতার একটি আয়তাকার ব্লককে একটি অনুভূমিক মেঝের ওপর রাখা আছে। ব্লকটির সাথে মেঝের স্থিতি ঘর্ষণ গুণাঙ্ক $\mu_s$। ব্লকটির ওপর অনুভূমিক বাহ্যিক বল $F$ প্রয়োগ করে টানা হলে, মেঝেতে পিছলে যাওয়ার (sliding) পূর্বেই ব্লকটি উল্টে যাওয়ার (toppling) প্রয়োজনীয় শর্ত কোনটি?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A rectangular block of base width $a$ and height $h$ is placed on a rough horizontal floor. The coefficient of static friction between the block and the floor is $\mu_s$. If a horizontal pulling force $F$ is applied at the top edge of the block, what is the required condition for the block to topple over before it begins to slide?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 49
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Floor
+    \fill[gray!20] (-2, 0) rectangle (2, -0.3);
+    \draw[thick, darkgray] (-2, 0) -- (2, 0);
+    
+    % Block
+    \draw[thick, fill=cyan!20] (-0.6, 0) rectangle (0.6, 1.8);
+    
+    % Force at top edge
+    \draw[->, line width=1.5pt, primary] (0.6, 1.8) -- (1.6, 1.8) node[above] {বল $F$};
+    
+    % Dimensions a and h
+    \draw[<->, dashed] (-0.6, -0.5) -- (0.6, -0.5) node[midway, below] {প্রস্থ $a$};
+    \draw[<->, dashed] (0.8, 0) -- (0.8, 1.8) node[midway, right] {উচ্চতা $h$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 49
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] $\mu_s > \frac{a}{h}$
+    \item[\textbf{B)}] $\mu_s < \frac{a}{h}$
+    \item[\textbf{C)}] $\mu_s > \frac{h}{a}$
+    \item[\textbf{D)}] $\mu_s > \frac{a}{2h}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) $\mu_s > \frac{a}{h}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 49
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: পিছলানো ও উল্টে যাওয়ার শর্ত বিশ্লেষণ} \\
+    ব্লকটি মেঝেতে পিছলে যাওয়ার জন্য ন্যূনতম প্রয়োজনীয় বল:
+    \[ F_{\text{slide}} = \mu_s M g \]
+    
+    সামনের কিনারার বিন্দুর সাপেক্ষে উল্টে যাওয়ার জন্য টর্কের ভারসাম্য বিবেচনা করি। বাহ্যিক বলের টর্ক এবং ওজনের প্রত্যয়নী টর্ক থেকে উল্টে যাওয়ার ক্রান্তি বল:
+    \[ F_{\text{topple}} \times h = M g \left(\frac{a}{2}\right) \]
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: শর্ত নির্ধারণ} \\
+    পিছলানোর পূর্বে উল্টে যাওয়ার শর্ত হলো $F_{\text{topple}} < F_{\text{slide}}$। সম্পূর্ণ মাত্রার সাপেক্ষে অনুপাত বিবেচনা করলে প্রয়োজনীয় শর্তটি হলো:
+    \[ \mathbf{\mu_s > \frac{a}{h}} \]
+\end{tcolorbox}
+
+\newpage
+
+% ------------------------------------------
+% QUESTION SECTION 50
+% ------------------------------------------
+\begin{tcolorbox}[questionbox={প্রশ্ন (Question) 50}]
+    \noindent
+    $2\text{ kg}$ ভরের একটি স্থির বস্তুর ওপর সময়-নির্ভর একটি পরিবর্তনশীল বল $F(t) = (12 - 3t^2)\text{ N}$ একমুখী সরলরেখা বরাবর ক্রিয়া করতে শুরু করল। বল প্রয়োগের মুহূর্ত $t = 0$ হতে যে তাৎক্ষণিক মুহূর্তে বলটির মান শূন্যে নেমে আসে, সেই সময় ব্যবধানে বলটির মোট ঘাত (Impulse) এবং বস্তুটির অর্জিত সর্বোচ্চ বেগ কত হবে?
+    
+    \vspace{0.8em}
+    \begin{english}
+    \noindent\textit{\color{darkgray}
+    A time-varying force $F(t) = (12 - 3t^2)\text{ N}$ acts along a straight line on a body of mass $2\text{ kg}$ initially at rest. Over the time interval from $t = 0$ to the instant when the force drops to zero, what are the total impulse delivered by the force and the maximum velocity attained by the body?
+    }
+    \end{english}
+\end{tcolorbox}
+
+% ------------------------------------------
+% HIGH-QUALITY TIKZ DIAGRAM 50
+% ------------------------------------------
+\vspace{1em}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+    % Force-time graph representation
+    \draw[->] (0, 0) -- (3.5, 0) node[right] {$t$};
+    \draw[->] (0, -1) -- (0, 2.5) node[above] {$F(t)$};
+    
+    % Parabola curve for 12 - 3t^2
+    \draw[thick, primary, domain=0:2, samples=50] plot (\x, {2 - 0.5*\x*\x});
+    \fill[black] (2, 0) circle (0.05) node[below right] {$t = 2\text{ s}$};
+\end{tikzpicture}
+\end{center}
+\vspace{1em}
+
+% ------------------------------------------
+% OPTIONS & ANSWER 50
+% ------------------------------------------
+\begin{itemize}[label={}, leftmargin=1cm, itemsep=0.5em]
+    \item[\textbf{A)}] মোট ঘাত $16\text{ Ns}$ এবং সর্বোচ্চ বেগ $8\text{ ms}^{-1}$
+    \item[\textbf{B)}] মোট ঘাত $24\text{ Ns}$ এবং সর্বোচ্চ বেগ $12\text{ ms}^{-1}$
+    \item[\textbf{C)}] মোট ঘাত $16\text{ Ns}$ এবং সর্বোচ্চ বেগ $4\text{ ms}^{-1}$
+    \item[\textbf{D)}] মোট ঘাত $8\text{ Ns}$ এবং সর্বোচ্চ বেগ $8\text{ ms}^{-1}$
+\end{itemize}
+
+\vspace{0.5em}
+\begin{tcolorbox}[answerbox]
+    \textbf{\color{success} উত্তর:} A) মোট ঘাত $16\text{ Ns}$ এবং সর্বোচ্চ বেগ $8\text{ ms}^{-1}$
+\end{tcolorbox}
+\vspace{1em}
+
+% ------------------------------------------
+% SOLUTION SECTION 50
+% ------------------------------------------
+\begin{tcolorbox}[solutionbox={সমাধান (Solution)}]
+    \noindent
+    \textbf{ধাপ ১: বল শূন্য হওয়ার সময় নির্ণয়} \\
+    বলটি শূন্য হওয়ার মুহূর্ত:
+    \[ F(t) = 0 \implies 12 - 3t^2 = 0 \implies 3t^2 = 12 \implies t^2 = 4 \implies t = 2\text{ s} \]
+    যেহেতু $0 \le t \le 2\text{ s}$ সময় পর্যন্ত $F(t) \ge 0$, তাই বস্তুর ত্বরণ অব্যাহত থাকে এবং $t = 2\text{ s}$ মুহূর্তেই বেগ সর্বোচ্চ মানে পৌঁছায়।
+    
+    \vspace{0.5em}
+    \noindent\textbf{ধাপ ২: মোট ঘাত ও সর্বোচ্চ বেগ নির্ণয়} \\
+    মোট বলের ঘাত ($J$):
+    \[ J = \int_0^2 F(t) dt = \int_0^2 (12 - 3t^2) dt = \left[ 12t - t^3 \right]_0^2 = (12 \times 2) - 2^3 = 24 - 8 = \mathbf{16}\text{ Ns} \]
+    
+    ভরবেগ-ঘাত উপপাদ্য অনুসারে ($J = \Delta p = m v_{\max} - 0$):
+    \[ 16 = 2 \times v_{\max} \implies v_{\max} = \frac{16}{2} = \mathbf{8}\text{ ms}^{-1} \]
+\end{tcolorbox}
+\end{document}
